@@ -6,7 +6,7 @@ package titiritero;
  */
 public interface Posicionable {
 	
-	public int getX();
-	public int getY();
+	public double getX();
+	public double getY();
 
 }
