@@ -1,16 +1,18 @@
 package modelo;
 
+import titiritero.Posicionable;
 
-public class Base extends ElementoRectangular implements Impactable, Posicionable {
+public class Base extends ElementoRectangularSolido implements Impactable, Posicionable {
 	
 	private int impactosRecibidos;
-
+	private final int ALTO = 50;
+	private final int ANCHO = 50;
 	
-	public Base(int posicionX, int posicionY){
-		this.posicionEnX = posicionX;
-		this.posicionEnY = posicionY;
-		this.alto = 20; //poner cuanto va medir
-		this.ancho = 20;
+	public Base(double posicionX, double posicionY){
+		setX(posicionX);
+		setY(posicionY);
+		setAlto(ALTO); //poner cuanto va medir
+		setAncho(ANCHO);
 		this.impactosRecibidos = 0;
 	}
 	
