@@ -8,7 +8,7 @@ public class BalaAmetralladora extends Bala {
 	private long ultimoTiempo;
 	private ElementoRectangularSolido elemColisionado;
 	private final int FUERZA=20;
-	private final int VELOCIDAD= 150;
+	private final double VELOCIDAD= 150;
 	public BalaAmetralladora(){
 		ultimoTiempo=new Date().getTime();
 		elemColisionado=null;
@@ -17,14 +17,19 @@ public class BalaAmetralladora extends Bala {
 		long tiempoActual=new Date().getTime();
 		int intervaloTiempo=(int)(tiempoActual-ultimoTiempo);
 		ultimoTiempo=tiempoActual;
-		int movimientoRestante=(VELOCIDAD*intervaloTiempo)/1000;;
-		while(movimientoRestante != 0){
+		double movimientoRestante=(VELOCIDAD*(double)intervaloTiempo/1000.0);
+
+		while(movimientoRestante > 1.0){
+			movimientoRestante--;
 			avanzar();
 			if(colisionado()){
 				impactar();
 				return;
 			}
 		}
+		avanzar(movimientoRestante);
+		if(colisionado())
+			impactar();
 	}
 	public void impactar(){
 		if(elemColisionado != null)
@@ -32,7 +37,7 @@ public class BalaAmetralladora extends Bala {
 		destruir();
 	}
 	public boolean colisionado(){
-		/*escenario = Escenario.getActual();
+		Escenario escenario = Escenario.getActual();
 		ArrayList<ElementoRectangularSolido> solidos= escenario.getSolidos();
 		Iterator<ElementoRectangularSolido> it = solidos.iterator();
 		while(it.hasNext()){
@@ -43,7 +48,7 @@ public class BalaAmetralladora extends Bala {
 				elemColisionado=solido;
 				return true;
 			}
-		}*/
+		}
 		return false;
 	}
 

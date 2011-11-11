@@ -15,7 +15,7 @@ public class Circulo  extends Figura {
 	public void dibujar(SuperficieDeDibujo superfice) {
 		Graphics grafico = (Graphics)superfice.getBuffer();
 		grafico.setColor(getColor());
-		grafico.fillOval(getPosicionable().getX() , getPosicionable().getY(), this.radio, this.radio);
+		grafico.fillOval((int)getPosicionable().getX() , (int)getPosicionable().getY(), this.radio, this.radio);
 	}
 
 }

@@ -22,6 +22,6 @@ public class Cuadrado extends Figura {
 	public void dibujar(SuperficieDeDibujo superfice) {
 		Graphics grafico = (Graphics)superfice.getBuffer();
 		grafico.setColor(this.getColor());
-		grafico.fillRect(this.getPosicionable().getX(), this.getPosicionable().getY(), this.ancho, this.alto);
+		grafico.fillRect((int)this.getPosicionable().getX(), (int)this.getPosicionable().getY(), this.ancho, this.alto);
 	}
 }

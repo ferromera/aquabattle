@@ -29,12 +29,12 @@ public class Escenario implements ObjetoVivo,Posicionable, Observable {
 	public int getAncho() {
 		return ancho;
 	}
-	public int getX() {
-		return 0;
+	public double getX() {
+		return 0.0;
 	}
 
-	public int getY() {
-		return 0;
+	public double getY() {
+		return 0.0;
 	}
 	
 	
@@ -81,6 +81,9 @@ public class Escenario implements ObjetoVivo,Posicionable, Observable {
 			it.next().actualizar();
 		}
 		
+	}
+	public ArrayList<ElementoRectangularSolido> getSolidos(){
+		return objetosSolidos;
 	}
 
 }
