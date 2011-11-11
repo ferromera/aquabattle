@@ -14,6 +14,7 @@ public class Ametralladora implements ActionListener {
 		this.tanque=tanque;
 		cargada=true;
 	}
+	
 	public void diparar(){
 		/* Falta FabricaElementos !!!
 		 if(!cargada)
