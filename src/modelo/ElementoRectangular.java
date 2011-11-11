@@ -6,6 +6,7 @@ import java.util.Iterator;
 import misc.Observable;
 import misc.Observador;
 import titiritero.Posicionable;
+import utils.Direccion;
 
 
 public class ElementoRectangular implements Posicionable , Observable {
@@ -14,6 +15,7 @@ public class ElementoRectangular implements Posicionable , Observable {
 	private int alto;
 	private int ancho;
 	private ArrayList<Observador> observadores;
+	private Direccion orientacion;
 	
 	public ElementoRectangular(){
 		posX=0;
@@ -105,6 +107,70 @@ public class ElementoRectangular implements Posicionable , Observable {
 	}
 	public void avanzarSur(){
 		posY++;
+	}
+	public void avanzar(){
+		avanzar(1);
+	}
+	public void avanzar(int pixels){
+		switch(orientacion.get()){
+		case Direccion.NORTE:
+			avanzarNorte();
+			break;
+		case Direccion.SUR:
+			avanzarSur();
+			break;
+		case Direccion.ESTE:
+			avanzarEste();
+			break;
+		case Direccion.OESTE:
+			avanzarOeste();
+			break;
+		}
+	}
+	
+	public void setOrientacion(Direccion dir){
+		orientacion=dir;
+		switch(orientacion.get()){
+		case Direccion.NORTE:
+			moverNorte();
+			break;
+		case Direccion.SUR:
+			moverSur();
+			break;
+		case Direccion.ESTE:
+			moverEste();
+			break;
+		case Direccion.OESTE:
+			moverOeste();
+			break;
+		}
+	}
+	private void moverNorte(){
+		if(!orientacion.esNorte()){
+			orientacion.setNorte();
+			notificar();
+		}
+	}
+	private void moverSur(){
+		if(!orientacion.esSur()){
+			orientacion.setSur();
+			notificar();
+		}
+	}
+	private void moverOeste(){
+		if(!orientacion.esOeste()){
+			orientacion.setOeste();
+			notificar();
+		}
+	}
+	private void moverEste(){
+		if(!orientacion.esEste()){
+			orientacion.setEste();
+			notificar();
+		}
+	}
+	public Direccion getOrientacion(){
+		return orientacion;
 	}
 	public boolean fueraDeEscenario(){
 		/* FALTA ESCENARIO
