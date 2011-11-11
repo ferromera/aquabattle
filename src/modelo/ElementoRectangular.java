@@ -82,9 +82,33 @@ public class ElementoRectangular implements Posicionable , Observable {
 			return true;
 		return false;
 	}
+	public void avanzarEste(int pixels){
+		posX+=pixels;
+	}
+	public void avanzarEste(){
+		posX++;
+	}
+	public void avanzarOeste(int pixels){
+		posX-=pixels;
+	}
+	public void avanzarOeste(){
+		posX--;
+	}
+	public void avanzarNorte(int pixels){
+		posY-=pixels;
+	}
+	public void avanzarNorte(){
+		posY--;
+	}
+	public void avanzarSur(int pixels){
+		posY+=pixels;
+	}
+	public void avanzarSur(){
+		posY++;
+	}
 	public boolean fueraDeEscenario(){
 		/* FALTA ESCENARIO
-		escenario= Escenario.getInstance();
+		escenario= Escenario.getActual();
 		 
 		if( posX < 0 || posX >= escenario.getAncho() ||
 			posY < 0 || posY >= escenario.getAlto() )
