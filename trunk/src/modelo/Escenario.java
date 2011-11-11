@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.*;
 
 public class Escenario implements Posicionable, Observable {
 	
@@ -53,6 +54,13 @@ public class Escenario implements Posicionable, Observable {
 	
 	public borrarSolido(ElementoRectangularSolido objetoBorrar){
 		objetosSolidos.remove(objetoAgregar);
+	}
+	
+	public vivir(){
+		Iterator iterador = objetosVivos.iterator();
+			while (iterador.hasNext()){
+				iterador.next().vivir();
+			}
 	}
 
 }
