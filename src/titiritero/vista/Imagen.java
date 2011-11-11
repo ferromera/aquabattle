@@ -32,7 +32,7 @@ public class Imagen implements Dibujable{
                       RenderingHints.VALUE_INTERPOLATION_BILINEAR);
         AffineTransformOp atop = new AffineTransformOp(at,rh);
         BufferedImage imagenRotada = atop.filter(imagen, null);
-		grafico.drawImage(imagenRotada, this.posicionable.getX(), this.posicionable.getY(), null);
+		grafico.drawImage(imagenRotada,(int) this.posicionable.getX(),(int) this.posicionable.getY(), null);
 	}
 	    
 	public String getNombreArchivoImagen() {
