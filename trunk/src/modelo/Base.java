@@ -4,10 +4,7 @@ package modelo;
 public class Base extends ElementoRectangular implements Impactable, Posicionable {
 	
 	private int impactosRecibidos;
-	private int posicionEnX;
-	private int posicionEnY;
-	private int alto;
-	private int ancho;
+
 	
 	public Base(int posicionX, int posicionY){
 		this.posicionEnX = posicionX;
@@ -17,21 +14,6 @@ public class Base extends ElementoRectangular implements Impactable, Posicionabl
 		this.impactosRecibidos = 0;
 	}
 	
-	public int getPosX() {
-		return posicionEnX;
-	}
-
-	public int getPosY() {
-		return posicionEnY;
-	}
-	
-	public int getAlto() {
-		return alto;
-	}
-
-	public int getAncho() {
-		return ancho;
-	}
 	
 	public void recibirImpacto(int fuerza){
 		this.impactosRecibidos ++;
