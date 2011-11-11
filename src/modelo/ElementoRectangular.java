@@ -10,56 +10,56 @@ import utils.Direccion;
 
 
 public class ElementoRectangular implements Posicionable , Observable {
-	private int posX;
-	private int posY;
-	private int alto;
-	private int ancho;
+	private double posX;
+	private double posY;
+	private double alto;
+	private double ancho;
 	private ArrayList<Observador> observadores;
 	private Direccion orientacion;
 	
 	public ElementoRectangular(){
-		posX=0;
-		posY=0;
-		alto=30;
-		ancho=30;
+		posX=0.0;
+		posY=0.0;
+		alto=30.0;
+		ancho=30.0;
 		observadores=new ArrayList<Observador>();
 	}
-	public ElementoRectangular(int x,int y){
+	public ElementoRectangular(double x,double y){
 		posX=x;
 		posY=y;
 		alto=30;
 		ancho=30;
 		observadores=new ArrayList<Observador>();
 	}
-	public ElementoRectangular(int x,int y,int alto, int ancho){
+	public ElementoRectangular(double x,double y,double alto, double ancho){
 		posX=x;
 		posY=y;
 		this.alto=alto;
 		this.ancho=ancho;
 		observadores=new ArrayList<Observador>();
 	}
-	public int getX(){
+	public double getX(){
 		return posX;
 	}
-	public int getY(){
+	public double getY(){
 		return posY;
 	}
-	public void setX(int x){
+	public void setX(double x){
 		posX=x;
 	}
-	public void setY(int y){
+	public void setY(double y){
 		posY=y;
 	}
-	public int getAlto(){
+	public double getAlto(){
 		return alto;
 	}
-	public int getAncho(){
+	public double getAncho(){
 		return ancho;
 	}
-	public void setAlto(int alto){
+	public void setAlto(double alto){
 		this.alto=alto;
 	}
-	public void setAncho(int ancho){
+	public void setAncho(double ancho){
 		this.ancho=ancho;
 	}
 	public void adscribir(Observador observador){
@@ -84,26 +84,26 @@ public class ElementoRectangular implements Posicionable , Observable {
 			return true;
 		return false;
 	}
-	public void avanzarEste(int pixels){
-		posX+=pixels;
+	public void avanzarEste(double dx){
+		posX+=dx;
 	}
 	public void avanzarEste(){
 		posX++;
 	}
-	public void avanzarOeste(int pixels){
-		posX-=pixels;
+	public void avanzarOeste(double dx){
+		posX-=dx;
 	}
 	public void avanzarOeste(){
 		posX--;
 	}
-	public void avanzarNorte(int pixels){
-		posY-=pixels;
+	public void avanzarNorte(double dy){
+		posY-=dy;
 	}
 	public void avanzarNorte(){
 		posY--;
 	}
-	public void avanzarSur(int pixels){
-		posY+=pixels;
+	public void avanzarSur(double dy){
+		posY+=dy;
 	}
 	public void avanzarSur(){
 		posY++;
@@ -111,19 +111,19 @@ public class ElementoRectangular implements Posicionable , Observable {
 	public void avanzar(){
 		avanzar(1);
 	}
-	public void avanzar(int pixels){
+	public void avanzar(double espacio){
 		switch(orientacion.get()){
 		case Direccion.NORTE:
-			avanzarNorte();
+			avanzarNorte(espacio);
 			break;
 		case Direccion.SUR:
-			avanzarSur();
+			avanzarSur(espacio);
 			break;
 		case Direccion.ESTE:
-			avanzarEste();
+			avanzarEste(espacio);
 			break;
 		case Direccion.OESTE:
-			avanzarOeste();
+			avanzarOeste(espacio);
 			break;
 		}
 	}
@@ -173,13 +173,13 @@ public class ElementoRectangular implements Posicionable , Observable {
 		return orientacion;
 	}
 	public boolean fueraDeEscenario(){
-		/* FALTA ESCENARIO
-		escenario= Escenario.getActual();
+		
+		Escenario escenario= Escenario.getActual();
 		 
 		if( posX < 0 || posX >= escenario.getAncho() ||
 			posY < 0 || posY >= escenario.getAlto() )
 			return true;
-		 */
+		 
 		return false;
 	}
 }

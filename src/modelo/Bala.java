@@ -8,8 +8,8 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 	boolean destruida;
 	
 	public Bala(){
-		setX(0);
-		setY(0);
+		setX(0.0);
+		setY(0.0);
 		destruida=false;
 		Direccion dir= new Direccion();
 		dir.setNorte();

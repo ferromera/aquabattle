@@ -35,7 +35,7 @@ public abstract class Texto extends Figura {
 		Graphics grafico = (Graphics)superfice.getBuffer();
 		grafico.setColor(this.getColor());
 		grafico.setFont(fuente);
-		grafico.drawString(getTexto(), this.getPosicionable().getX(), this.getPosicionable().getY());
+		grafico.drawString(getTexto(), (int)this.getPosicionable().getX(), (int)this.getPosicionable().getY());
 	}
 
 	protected abstract String getTexto();
