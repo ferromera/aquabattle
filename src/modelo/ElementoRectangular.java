@@ -132,38 +132,38 @@ public class ElementoRectangular implements Posicionable , Observable {
 		orientacion=dir;
 		switch(orientacion.get()){
 		case Direccion.NORTE:
-			moverNorte();
+			orientarNorte();
 			break;
 		case Direccion.SUR:
-			moverSur();
+			orientarSur();
 			break;
 		case Direccion.ESTE:
-			moverEste();
+			orientarEste();
 			break;
 		case Direccion.OESTE:
-			moverOeste();
+			orientarOeste();
 			break;
 		}
 	}
-	private void moverNorte(){
+	private void orientarNorte(){
 		if(!orientacion.esNorte()){
 			orientacion.setNorte();
 			notificar();
 		}
 	}
-	private void moverSur(){
+	private void orientarSur(){
 		if(!orientacion.esSur()){
 			orientacion.setSur();
 			notificar();
 		}
 	}
-	private void moverOeste(){
+	private void orientarOeste(){
 		if(!orientacion.esOeste()){
 			orientacion.setOeste();
 			notificar();
 		}
 	}
-	private void moverEste(){
+	private void orientarEste(){
 		if(!orientacion.esEste()){
 			orientacion.setEste();
 			notificar();
