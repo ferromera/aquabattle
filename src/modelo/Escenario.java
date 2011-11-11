@@ -1,15 +1,20 @@
 package modelo;
 
-import java.util.ArrayList;
 import java.util.*;
 
-public class Escenario implements Posicionable, Observable {
+import titiritero.ObjetoVivo;
+import titiritero.Posicionable;
+import misc.Observable;
+import misc.Observador;
+
+public class Escenario implements ObjetoVivo,Posicionable, Observable {
 	
 	private int alto;
 	private int ancho;
 	private static Escenario escenarioActual = null;
-	ArrayList objetosVivos = new ArrayList();
-	ArrayList objetosSolidos = new ArrayList();
+	private ArrayList<ObjetoVivo> objetosVivos = new ArrayList<ObjetoVivo>();
+	private ArrayList<ElementoRectangularSolido> objetosSolidos = new ArrayList<ElementoRectangularSolido>();
+	private ArrayList<Observador> observadores;
 	
 	public Escenario(int alto, int ancho){
 		this.alto = alto;
@@ -34,33 +39,48 @@ public class Escenario implements Posicionable, Observable {
 	
 	
 	public static Escenario getActual(){
-		if (escenarioActual = null){
+		if (escenarioActual == null){
 			escenarioActual = new Escenario(50,50); //Ver medidas
 		}
 			return escenarioActual;
 	}
 	
-	public agregarObjetoVivo(ElementoRectangular objetoAgregar){
+	public void agregarObjetoVivo(ObjetoVivo objetoAgregar){
 		objetosVivos.add(objetoAgregar);
 	}
 	
-	public agregarObjetoSolido(ElementoRectangularSolido objetoAgregar){
+	public void agregarObjetoSolido(ElementoRectangularSolido objetoAgregar){
 		objetosSolidos.add(objetoAgregar);
 	}
 	
-	public borrar(ElementoRectangular objetoBorrar){
-		objetosVivos.remove(objetoAgregar);
+	public void borrarObjetoVivo(ObjetoVivo objetoBorrar){
+		objetosVivos.remove(objetoBorrar);
 	}
 	
-	public borrarSolido(ElementoRectangularSolido objetoBorrar){
-		objetosSolidos.remove(objetoAgregar);
+	public void borrarSolido(ElementoRectangularSolido objetoBorrar){
+		objetosSolidos.remove(objetoBorrar);
 	}
 	
-	public vivir(){
-		Iterator iterador = objetosVivos.iterator();
+	public void vivir(){
+		Iterator<ObjetoVivo> iterador = objetosVivos.iterator();
 			while (iterador.hasNext()){
 				iterador.next().vivir();
 			}
+	}
+	
+	public void adscribir(Observador observador){
+		if(!observadores.contains(observador))
+		observadores.add(observador);
+	}
+	public void quitar(Observador observador){
+		observadores.remove(observador);
+	}
+	public void notificar(){
+		Iterator<Observador> it= observadores.iterator();
+		while(it.hasNext()){
+			it.next().actualizar();
+		}
+		
 	}
 
 }
