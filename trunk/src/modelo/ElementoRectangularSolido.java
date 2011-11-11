@@ -3,6 +3,6 @@ package modelo;
  * Representa todos los elementos del modelo que pueden chocar
  * entre ellos.
  */
-public class ElementoRectangularSolido extends ElementoRectangular {
-
+public abstract class ElementoRectangularSolido extends ElementoRectangular implements Impactable {
+	public abstract void recibirImpacto(int fuerza);
 }
