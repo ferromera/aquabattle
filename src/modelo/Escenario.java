@@ -6,7 +6,7 @@ public class Escenario implements Posicionable, Observable {
 	
 	private int alto;
 	private int ancho;
-	private int escenarioActual = null;
+	private static Escenario escenarioActual = null;
 	ArrayList objetosVivos = new ArrayList();
 	ArrayList objetosSolidos = new ArrayList();
 	
@@ -23,6 +23,14 @@ public class Escenario implements Posicionable, Observable {
 	public int getAncho() {
 		return ancho;
 	}
+	public int getX() {
+		return 0;
+	}
+
+	public int getY() {
+		return 0;
+	}
+	
 	
 	public static Escenario getActual(){
 		if (escenarioActual = null){
