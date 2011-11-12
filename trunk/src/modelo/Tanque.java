@@ -14,14 +14,14 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	private ArrayList<Arma> armas;
 	private Arma armaActual;
 	private Iterator<Arma> itArmaActual;
-	private int vida;
+	private int resistencia;
 	private boolean moviendose;
 
 	public Tanque() {
 
 		moviendose = false;
 		orientarNorte();
-		vida = 100;
+		resistencia = 100;
 		armas = new ArrayList<Arma>();
 		itArmaActual = armas.iterator();
 		this.armaActual = null;
@@ -57,12 +57,13 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		moviendose = false;
 	}
 
-	protected void setVida(int vida) {
-		this.vida = vida;
+	protected void setResistencia(int resistencia) {
+		this.resistencia = resistencia;
 	}
 
-	public int getVida() {
-		return vida;
+	
+	public int getResistencia(){
+		return resistencia;
 	}
 
 	public boolean enMovimiento() {
