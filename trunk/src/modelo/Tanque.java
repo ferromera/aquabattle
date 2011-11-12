@@ -14,7 +14,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	private ArrayList<Arma> armas;
 	private Arma armaActual;
 	private Iterator<Arma> itArmaActual;
-	private int resistencia;
+	protected int resistencia;
+	protected double velocidad;
 	private boolean moviendose;
 
 	public Tanque() {
@@ -22,6 +23,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		moviendose = false;
 		orientarNorte();
 		resistencia = 100;
+		velocidad= 100.0;
 		armas = new ArrayList<Arma>();
 		itArmaActual = armas.iterator();
 		this.armaActual = null;
