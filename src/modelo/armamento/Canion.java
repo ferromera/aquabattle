@@ -1,6 +1,6 @@
 package modelo.armamento;
 
-import modelo.FabricaElementos;
+import misc.FabricaElementos;
 import modelo.Tanque;
 
 public class Canion extends Arma {
