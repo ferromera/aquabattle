@@ -4,7 +4,7 @@ import utils.Direccion;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
 import modelo.armamento.Cohete;
-import junit.framework.Assert;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 

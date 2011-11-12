@@ -38,15 +38,23 @@ public abstract class Arma implements ActionListener  {
 		switch(tanque.getOrientacion().get()){
 		case Direccion.NORTE:
 				yBala-= bala.getAlto() + 1;
+				//centrada en X
+				xBala+= (tanque.getAncho()-bala.getAncho())/2; 
 				break;
 		case Direccion.SUR:
 				yBala+= tanque.getAlto() + 1;
+				//centrada en X
+				xBala+= (tanque.getAncho()-bala.getAncho())/2; 
 				break;
 		case Direccion.ESTE:
 				xBala+= tanque.getAncho() + 1;
+				//centrada en Y
+				yBala+= (tanque.getAlto()-bala.getAlto())/2; 
 				break;
 		case Direccion.OESTE:
 				xBala-= bala.getAncho() + 1;
+				//centrada en Y
+				yBala+= (tanque.getAlto()-bala.getAlto())/2;
 				break;
 		}
 		bala.setX(xBala);
