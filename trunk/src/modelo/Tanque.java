@@ -3,6 +3,8 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import modelo.armamento.Arma;
+
 import excepciones.NoExisteArmaSeleccionadaException;
 
 import titiritero.ObjetoVivo;

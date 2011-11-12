@@ -1,4 +1,6 @@
-package modelo;
+package modelo.armamento;
+
+import modelo.ElementoRectangularSolido;
 
 public class Cohete extends Bala {
 
