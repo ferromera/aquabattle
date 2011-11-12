@@ -1,5 +1,6 @@
-package modelo;
+package misc;
 
+import modelo.Escenario;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
 import modelo.armamento.Cohete;
