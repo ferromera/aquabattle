@@ -2,7 +2,9 @@ package modelo.armamento;
 
 import java.util.Date;
 
+import misc.FabricaElementos;
 import modelo.ElementoRectangularSolido;
+import modelo.Escenario;
 
 import excepciones.NoExisteElementoColisionadoException;
 import titiritero.ObjetoVivo;
@@ -64,11 +66,11 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		destruir();
 	}
 	protected void destruir(){
-		/*FabricaElementos.crearExplosion(posX,posY);
-		escenario= Escenario.getActual();
-		escenario.borrar(this);
+		FabricaElementos.crearExplosion(getX(),getY());
+		Escenario.getActual().borrarSolido(this);
+		Escenario.getActual().borrarObjetoVivo(this);
 		destruida=true;
-		notificar();*/
+		notificar();
 	}
 	public boolean estaDestruida(){
 		return destruida;
