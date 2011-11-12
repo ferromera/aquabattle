@@ -6,7 +6,7 @@ import titiritero.Posicionable;
 import misc.Observable;
 import misc.Observador;
 
-public abstract class ParedConcreto extends Pared implements 
+public abstract class ParedMetal extends Pared implements 
 Posicionable, Observable {
 	
 	private final int ALTO = 20;
@@ -23,8 +23,8 @@ Posicionable, Observable {
 	
 	public void recibirImpacto(int fuerza){
 		this.impactosRecibidos ++;
-		//Solo resiste un impacto
-		if(impactosRecibidos > 0){
+		//Solo resiste dos impacto
+		if(impactosRecibidos > 1){
 			Escenario escenarioActual = Escenario.getActual();
 			escenarioActual.borrarSolido(this);
 		}
