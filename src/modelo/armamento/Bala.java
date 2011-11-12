@@ -57,7 +57,7 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		}
 	}
 	
-	public void impactar(ElementoRectangularSolido solido){
+	protected void impactar(ElementoRectangularSolido solido){
 		if(solido != null)
 			solido.recibirImpacto(fuerza);
 		destruir();
