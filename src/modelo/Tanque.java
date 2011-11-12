@@ -65,7 +65,14 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	public int getResistencia(){
 		return resistencia;
 	}
-
+	public void recibirImpacto(int fuerza){
+		resistencia-=fuerza;
+		if(resistencia < 0){
+			resistencia=0;
+			destruir();
+		}
+	}
+	protected abstract void destruir();
 	public boolean enMovimiento() {
 		return moviendose;
 	}
