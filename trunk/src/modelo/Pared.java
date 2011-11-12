@@ -1,13 +1,13 @@
 package modelo;
 
 
-import titiritero.ObjetoVivo;
+
 import titiritero.Posicionable;
 import misc.Observable;
 import misc.Observador;
 
 public abstract class Pared extends ElementoRectangularSolido implements 
-ObjetoVivo,Posicionable, Observable {
+Posicionable, Observable {
 	
 	int impactosRecibidos;
 	
