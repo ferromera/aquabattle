@@ -18,9 +18,8 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		destruida=false;
 		fuerza=10;
 		velocidad=150.0;
-		Direccion dir= new Direccion();
-		dir.setNorte();
-		setOrientacion(dir);
+		setOrientacion(Direccion.Norte());
+		
 	}
 
 	private long ultimoTiempo;
