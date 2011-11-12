@@ -1,6 +1,8 @@
-package modelo;
+package modelo.armamento;
 
 import java.util.Date;
+
+import modelo.ElementoRectangularSolido;
 
 import excepciones.NoExisteElementoColisionadoException;
 import titiritero.ObjetoVivo;

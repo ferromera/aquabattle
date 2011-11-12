@@ -1,4 +1,4 @@
-package modelo;
+package modelo.armamento;
 
 public class BalaCanion extends Bala {
 	private final int FUERZA=30;
