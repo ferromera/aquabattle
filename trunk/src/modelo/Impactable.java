@@ -6,4 +6,5 @@ public interface Impactable {
 	 *  un impactable cuando es impactado.
 	 */
 	public void recibirImpacto(int fuerza);
+	public int getResistencia();
 }

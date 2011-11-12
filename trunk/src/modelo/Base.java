@@ -26,5 +26,9 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 					
 		}
 	}
+	
+	public int getResistencia(){
+		return 1;
+	}
 
 }
