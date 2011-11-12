@@ -14,7 +14,7 @@ Posicionable, Observable {
 	private final int ALTO = 20;
 	private final int ANCHO = 20;
 	
-	public Pared(int posicionEnX, int posicionEnY){
+	public Pared(double posicionEnX, double posicionEnY){
 		setX(posicionEnX);
 		setY(posicionEnY);
 		setAlto(ALTO);      //Poner la medida que se va a usar
