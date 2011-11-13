@@ -23,6 +23,7 @@ public class ElementoRectangular implements Posicionable , Observable {
 		alto=30.0;
 		ancho=30.0;
 		observadores=new ArrayList<Observador>();
+		orientacion=Direccion.Norte();
 	}
 	public ElementoRectangular(double x,double y){
 		posX=x;
@@ -30,6 +31,7 @@ public class ElementoRectangular implements Posicionable , Observable {
 		alto=30;
 		ancho=30;
 		observadores=new ArrayList<Observador>();
+		orientacion=Direccion.Norte();
 	}
 	public ElementoRectangular(double x,double y,double alto, double ancho){
 		posX=x;
@@ -37,6 +39,7 @@ public class ElementoRectangular implements Posicionable , Observable {
 		this.alto=alto;
 		this.ancho=ancho;
 		observadores=new ArrayList<Observador>();
+		orientacion=Direccion.Norte();
 	}
 	public double getX(){
 		return posX;

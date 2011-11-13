@@ -13,7 +13,7 @@ public class Canion extends Arma {
 		tiempoCarga=TIEMPO_CARGA;
 		municion=MUNICION_INICIAL;
 	}
-	public Bala crearBala(){
+	protected Bala crearBala(){
 		municion--;
 		return FabricaElementos.crearBalaCanion();
 	}

@@ -11,7 +11,7 @@ public class Ametralladora extends Arma {
 		tiempoCarga=TIEMPO_CARGA;
 	
 	}
-	public Bala crearBala(){
+	protected Bala crearBala(){
 		return FabricaElementos.crearBalaAmetralladora();
 	}
 	public boolean tieneMunicion(){
