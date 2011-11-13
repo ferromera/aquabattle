@@ -23,8 +23,7 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular impl
 	
 	public boolean estaColisionado(){
 		Escenario escenario = Escenario.getActual();
-		ArrayList<ElementoRectangularSolido> solidos= escenario.getSolidos();
-		Iterator<ElementoRectangularSolido> it = solidos.iterator();
+		Iterator<ElementoRectangularSolido> it= escenario.getSolidos();
 		while(it.hasNext()){
 			ElementoRectangularSolido solido= it.next();
 			if( solido.equals(this))
