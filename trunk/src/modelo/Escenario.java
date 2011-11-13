@@ -9,25 +9,23 @@ import misc.Observador;
 
 public class Escenario implements ObjetoVivo,Posicionable, Observable {
 	
-	private int alto;
-	private int ancho;
+	private final int ALTO=1024;
+	private final int ANCHO=768;
 	private static Escenario escenarioActual = null;
 	private ArrayList<ObjetoVivo> objetosVivos = new ArrayList<ObjetoVivo>();
 	private ArrayList<ElementoRectangularSolido> objetosSolidos = new ArrayList<ElementoRectangularSolido>();
-	private ArrayList<Observador> observadores;
+	private ArrayList<Observador> observadores=new ArrayList<Observador>();
 	
-	public Escenario(int alto, int ancho){
-		this.alto = alto;
-		this.ancho = ancho;
-		escenarioActual = this;
+	public Escenario(){
+		
 	}
 	
 	public int getAlto() {
-		return alto;
+		return ALTO;
 	}
 
 	public int getAncho() {
-		return ancho;
+		return ANCHO;
 	}
 	public double getX() {
 		return 0.0;
@@ -40,9 +38,13 @@ public class Escenario implements ObjetoVivo,Posicionable, Observable {
 	
 	public static Escenario getActual(){
 		if (escenarioActual == null){
-			escenarioActual = new Escenario(50,50); //Ver medidas
+			escenarioActual = new Escenario(); 
 		}
 			return escenarioActual;
+	}
+	public static Escenario clear(){
+		escenarioActual = new Escenario(); 
+		return escenarioActual;
 	}
 	
 	public void agregarObjetoVivo(ObjetoVivo objetoAgregar){
