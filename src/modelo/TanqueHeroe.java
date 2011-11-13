@@ -13,7 +13,7 @@ public class TanqueHeroe extends Tanque {
 	private final double VELOCIDAD = 100.0;
 	private final double ANCHO = 50.0;
 	private final double ALTO = 50;
-	private long ultimoTiempo;
+	
 	private boolean destruido;
 
 	private static TanqueHeroe instancia = null;
@@ -33,7 +33,7 @@ public class TanqueHeroe extends Tanque {
 		setAlto(ALTO);
 		setAncho(ANCHO);
 		agregarArma(new Ametralladora(this));
-		ultimoTiempo = new Date().getTime();
+		
 	}
 
 	public void destruir() {
@@ -42,27 +42,10 @@ public class TanqueHeroe extends Tanque {
 		notificar();
 		
 	}
-
-	public void vivir() {
-		if (enMovimiento()) {
-			long tiempoActual = new Date().getTime();
-			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
-			ultimoTiempo = tiempoActual;
-			double movimientoRestante = (velocidad * (double) intervaloTiempo / 1000.0);
-
-			while (movimientoRestante > 1.0) {
-				movimientoRestante--;
-				avanzar();
-				if (estaColisionado()) {
-					retroceder();
-					return;
-				}
-			}
-			avanzar(movimientoRestante);
-			if (estaColisionado()) {
-				retroceder(movimientoRestante);
-			}
-		}
+	
+	public void calcularSiguienteMovimiento(){
+		//No hace nada ya que el proximo movimiento
+		//es controlado por el usuario.
 	}
 
 	public boolean estaDestruido() {
