@@ -76,17 +76,17 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void moverSur() {
-		orientarNorte();
+		orientarSur();
 		moviendose = true;
 	}
 
 	public void moverOeste() {
-		orientarNorte();
+		orientarOeste();
 		moviendose = true;
 	}
 
 	public void moverEste() {
-		orientarNorte();
+		orientarEste();
 		moviendose = true;
 	}
 
