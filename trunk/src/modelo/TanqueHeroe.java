@@ -39,6 +39,7 @@ public class TanqueHeroe extends Tanque {
 	public void destruir() {
 		Escenario.getActual().borrarObjetoVivo(this);
 		Escenario.getActual().borrarSolido(this);
+		destruido=true;
 		notificar();
 		
 	}
