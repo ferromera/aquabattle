@@ -18,7 +18,7 @@ public class TanqueHeroe extends Tanque {
 
 	private static TanqueHeroe instancia = null;
 
-	static TanqueHeroe getInstancia() {
+	public static TanqueHeroe getInstancia() {
 		if (instancia == null)
 			instancia = new TanqueHeroe();
 		return instancia;

@@ -1,4 +1,6 @@
-package modelo;
+package modelo.mejoras;
+
+import modelo.Tanque;
 
 public class MejoraTanqueVida extends MejoraTanque {
 	private final double PORCENTAJE_VIDA;

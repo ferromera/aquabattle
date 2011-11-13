@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import modelo.armamento.Arma;
+import modelo.mejoras.Mejora;
+import modelo.mejoras.MejoraTanque;
+import modelo.mejoras.Mejorable;
 
 import excepciones.NoExisteArmaSeleccionadaException;
 
