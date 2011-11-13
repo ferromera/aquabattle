@@ -21,6 +21,13 @@ public abstract class Arma implements ActionListener  {
 		return (getClass().equals(a.getClass()));
 	}
 	
+	public void mejorarTiempoCarga(double porcentaje){
+		tiempoCarga*=(1+porcentaje);
+	}
+	public void empeorarTiempoCarga(double porcentaje){
+		tiempoCarga*=1-porcentaje;
+	}
+	
 	public void disparar(){
 		
 		 if(!cargada)	 

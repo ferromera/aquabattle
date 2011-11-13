@@ -10,13 +10,15 @@ import excepciones.NoExisteArmaSeleccionadaException;
 import titiritero.ObjetoVivo;
 
 public abstract class Tanque extends ElementoRectangularSolido implements
-		ObjetoVivo {
+		ObjetoVivo, Mejorable {
 	private ArrayList<Arma> armas;
 	private Arma armaActual;
 	private Iterator<Arma> itArmaActual;
+	private ArrayList<MejoraTanque> mejoras;
 	protected int resistencia;
 	protected double velocidad;
 	private boolean moviendose;
+	private boolean mejorado;
 
 	public Tanque() {
 
@@ -120,5 +122,48 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		itArmaActual=armas.iterator();
 		siguienteArma();
 	}
-
+	public Arma getArmaActual(){
+		return armaActual;
+	}
+	public void mejorarVelocidad(double porcentaje){
+		velocidad*= 1+porcentaje;
+		
+	}
+	public void mejorarVelocidadDisparo(double porcentaje){
+		if(armaActual==null)
+			return;
+		armaActual.mejorarTiempoCarga(porcentaje);
+		
+	}
+	public void empeorarVelocidad(double porcentaje){
+		velocidad*= 1-porcentaje;
+	
+	}
+	public void empeorarVelocidadDisparo(double porcentaje){
+		if(armaActual==null)
+			return;
+		armaActual.empeorarTiempoCarga(porcentaje);
+		
+	}
+	public void mejorarVida(double porcentaje){
+		resistencia*= 1+porcentaje;
+	}
+	public void agregarMejora(Mejora mejora){
+		MejoraTanque mejoraTanque= (MejoraTanque) mejora;
+		mejoraTanque.mejorar(this);
+		mejoras.add(mejoraTanque);
+		if(!mejorado){
+			mejorado=true;
+			notificar();
+		}
+	}
+	public void quitarMejora(Mejora mejora){
+		MejoraTanque mejoraTanque= (MejoraTanque) mejora;
+		mejoras.remove(mejoraTanque);
+		mejoraTanque.deshacer(this);
+		if(mejoras.isEmpty()){
+			mejorado=false;
+			notificar();
+		}
+	}
 }
