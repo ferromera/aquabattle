@@ -9,7 +9,7 @@ import titiritero.Posicionable;
 import utils.Direccion;
 
 
-public class ElementoRectangular implements Posicionable , Observable {
+public abstract class ElementoRectangular implements Posicionable , Observable {
 	private double posX;
 	private double posY;
 	private double alto;
