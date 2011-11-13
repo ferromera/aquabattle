@@ -6,15 +6,15 @@ import titiritero.Posicionable;
 import misc.Observable;
 import misc.Observador;
 
-public abstract class ParedMetal extends Pared implements 
+public class ParedMetal extends Pared implements 
 Posicionable, Observable {
 	
 	private final int ALTO = 20;
 	private final int ANCHO = 20;	
+	private int impactosRecibidos;
 	 
-	public ParedConcreto(double posicionEnX, double posicionEnY){
-		setX(posicionEnX);
-		setY(posicionEnY);
+	public ParedMetal(double posicionEnX, double posicionEnY){
+		super(posicionEnX,posicionEnY);
 		setAlto(ALTO);      //Poner la medida que se va a usar
 		setAncho(ANCHO); 
 		this.impactosRecibidos = 0;
@@ -29,5 +29,6 @@ Posicionable, Observable {
 			escenarioActual.borrarSolido(this);
 		}
 	}
+	
 	
 }
