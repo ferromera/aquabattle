@@ -4,7 +4,7 @@ package modelo;
 
 import titiritero.Posicionable;
 import misc.Observable;
-import misc.Observador;
+
 
 public class ParedMetal extends Pared implements 
 Posicionable, Observable {
