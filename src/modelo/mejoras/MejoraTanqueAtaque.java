@@ -1,4 +1,6 @@
-package modelo;
+package modelo.mejoras;
+
+import modelo.Tanque;
 
 public class MejoraTanqueAtaque extends MejoraTanque {
 
