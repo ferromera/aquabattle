@@ -13,7 +13,7 @@ import utils.Direccion;
 
 public abstract class Arma implements ActionListener  {
 	private Tanque tanque;
-	private boolean cargada;
+	private boolean cargada=true;
 	protected int tiempoCarga;
 	protected int cantidadDeBalas;
 	
@@ -39,29 +39,33 @@ public abstract class Arma implements ActionListener  {
 			destruir();
 		
 	}
-	public void posicionarBala(Bala bala){
+	private void posicionarBala(Bala bala){
 		double xBala= tanque.getX();
 		double yBala= tanque.getY();
 		switch(tanque.getOrientacion().get()){
 		case Direccion.NORTE:
 				yBala-= bala.getAlto() + 1;
 				//centrada en X
-				xBala+= (tanque.getAncho()-bala.getAncho())/2; 
+				xBala+= (tanque.getAncho()-bala.getAncho())/2;
+				bala.setOrientacion(Direccion.Norte());
 				break;
 		case Direccion.SUR:
 				yBala+= tanque.getAlto() + 1;
 				//centrada en X
 				xBala+= (tanque.getAncho()-bala.getAncho())/2; 
+				bala.setOrientacion(Direccion.Sur());
 				break;
 		case Direccion.ESTE:
 				xBala+= tanque.getAncho() + 1;
 				//centrada en Y
 				yBala+= (tanque.getAlto()-bala.getAlto())/2; 
+				bala.setOrientacion(Direccion.Este());
 				break;
 		case Direccion.OESTE:
 				xBala-= bala.getAncho() + 1;
 				//centrada en Y
 				yBala+= (tanque.getAlto()-bala.getAlto())/2;
+				bala.setOrientacion(Direccion.Oeste());
 				break;
 		}
 		bala.setX(xBala);
@@ -71,11 +75,11 @@ public abstract class Arma implements ActionListener  {
 	 * Debe crear la instancia de bala correspondiente
 	 * y actualizar la municion del arma.
 	 */
-	public abstract Bala crearBala();
+	protected abstract Bala crearBala();
 	
 	public abstract boolean tieneMunicion();
 	
-	public void destruir(){
+	private void destruir(){
 		if(tanque!=null)
 			tanque.quitarArma();
 		tanque=null;
@@ -90,6 +94,7 @@ public abstract class Arma implements ActionListener  {
 	}
 	public void setTanque(Tanque tanque){
 		this.tanque=tanque;
+		tanque.agregarArma(this);
 	}
 	public Tanque getTanque(){
 		return tanque;
