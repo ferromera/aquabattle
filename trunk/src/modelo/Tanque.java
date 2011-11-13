@@ -1,6 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import modelo.armamento.Arma;
@@ -22,19 +23,48 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	protected double velocidad;
 	private boolean moviendose;
 	private boolean mejorado;
+	private long ultimoTiempo;
 
 	public Tanque() {
 
 		moviendose = false;
 		orientarNorte();
 		resistencia = 100;
-		velocidad= 100.0;
+		velocidad = 100.0;
 		armas = new ArrayList<Arma>();
 		itArmaActual = armas.iterator();
 		this.armaActual = null;
+		ultimoTiempo = new Date().getTime();
 	}
 
-	public abstract void vivir();
+	public void vivir() {
+		if (enMovimiento()) {
+			long tiempoActual = new Date().getTime();
+			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
+			ultimoTiempo = tiempoActual;
+			double movimientoRestante = (velocidad * (double) intervaloTiempo / 1000.0);
+
+			while (movimientoRestante > 1.0) {
+				movimientoRestante--;
+				avanzar();
+				if (estaColisionado()) {
+					retroceder();
+					calcularSiguienteMovimiento();
+					return;
+				}
+			}
+			avanzar(movimientoRestante);
+			if (estaColisionado()) {
+				retroceder(movimientoRestante);
+			}
+		}
+		calcularSiguienteMovimiento();
+	}
+	/*
+	 * Debe definir la logica que determine el siguiente
+	 * movimiento.
+	 */
+	public abstract void calcularSiguienteMovimiento();
 
 	public void disparar() {
 		armaActual.disparar();
@@ -68,18 +98,20 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		this.resistencia = resistencia;
 	}
 
-	
-	public int getResistencia(){
+	public int getResistencia() {
 		return resistencia;
 	}
-	public void recibirImpacto(int fuerza){
-		resistencia-=fuerza;
-		if(resistencia < 0){
-			resistencia=0;
+
+	public void recibirImpacto(int fuerza) {
+		resistencia -= fuerza;
+		if (resistencia < 0) {
+			resistencia = 0;
 			destruir();
 		}
 	}
+
 	protected abstract void destruir();
+
 	public boolean enMovimiento() {
 		return moviendose;
 	}
@@ -122,50 +154,58 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 
 	public void quitarArma() {
 		armas.remove(armaActual);
-		itArmaActual=armas.iterator();
+		itArmaActual = armas.iterator();
 		siguienteArma();
 	}
-	public Arma getArmaActual(){
+
+	public Arma getArmaActual() {
 		return armaActual;
 	}
-	public void mejorarVelocidad(double porcentaje){
-		velocidad*= 1+porcentaje;
-		
+
+	public void mejorarVelocidad(double porcentaje) {
+		velocidad *= 1 + porcentaje;
+
 	}
-	public void mejorarVelocidadDisparo(double porcentaje){
-		if(armaActual==null)
+
+	public void mejorarVelocidadDisparo(double porcentaje) {
+		if (armaActual == null)
 			return;
 		armaActual.mejorarTiempoCarga(porcentaje);
-		
+
 	}
-	public void empeorarVelocidad(double porcentaje){
-		velocidad*= 1-porcentaje;
-	
+
+	public void empeorarVelocidad(double porcentaje) {
+		velocidad *= 1 - porcentaje;
+
 	}
-	public void empeorarVelocidadDisparo(double porcentaje){
-		if(armaActual==null)
+
+	public void empeorarVelocidadDisparo(double porcentaje) {
+		if (armaActual == null)
 			return;
 		armaActual.empeorarTiempoCarga(porcentaje);
-		
+
 	}
-	public void mejorarVida(double porcentaje){
-		resistencia*= 1+porcentaje;
+
+	public void mejorarVida(double porcentaje) {
+		resistencia *= 1 + porcentaje;
 	}
-	public void agregarMejora(Mejora mejora){
-		MejoraTanque mejoraTanque= (MejoraTanque) mejora;
+
+	public void agregarMejora(Mejora mejora) {
+		MejoraTanque mejoraTanque = (MejoraTanque) mejora;
 		mejoraTanque.mejorar(this);
 		mejoras.add(mejoraTanque);
-		if(!mejorado){
-			mejorado=true;
+		if (!mejorado) {
+			mejorado = true;
 			notificar();
 		}
 	}
-	public void quitarMejora(Mejora mejora){
-		MejoraTanque mejoraTanque= (MejoraTanque) mejora;
+
+	public void quitarMejora(Mejora mejora) {
+		MejoraTanque mejoraTanque = (MejoraTanque) mejora;
 		mejoras.remove(mejoraTanque);
 		mejoraTanque.deshacer(this);
-		if(mejoras.isEmpty()){
-			mejorado=false;
+		if (mejoras.isEmpty()) {
+			mejorado = false;
 			notificar();
 		}
 	}
