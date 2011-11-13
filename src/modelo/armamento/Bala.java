@@ -11,7 +11,7 @@ import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 import utils.Direccion;
 
-public abstract class Bala extends ElementoRectangularSolido implements ObjetoVivo, Posicionable{
+public abstract class Bala extends ElementoRectangularSolido implements ObjetoVivo{
 	boolean destruida;
 	
 	public Bala(){
