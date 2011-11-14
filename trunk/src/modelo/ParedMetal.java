@@ -12,6 +12,7 @@ Posicionable, Observable {
 	private final int ALTO = 20;
 	private final int ANCHO = 20;	
 	private int impactosRecibidos;
+	private boolean destruida=false;
 	 
 	public ParedMetal(double posicionEnX, double posicionEnY){
 		super(posicionEnX,posicionEnY);
@@ -27,7 +28,13 @@ Posicionable, Observable {
 		if(impactosRecibidos > 1){
 			Escenario escenarioActual = Escenario.getActual();
 			escenarioActual.borrarSolido(this);
+			destruida=true;
+			notificar();
 		}
+	}
+	
+	public boolean estaDestruida(){
+		return destruida;
 	}
 	
 	

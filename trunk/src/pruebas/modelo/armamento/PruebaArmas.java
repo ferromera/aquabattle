@@ -1,5 +1,6 @@
 package pruebas.modelo.armamento;
 
+import misc.FabricaElementos;
 import modelo.ElementoRectangularSolido;
 import modelo.Escenario;
 import modelo.Tanque;
@@ -30,8 +31,8 @@ public class PruebaArmas {
 
 	@Before
 	public void setUp() {
-		escenario = Escenario.clear();
-		heroe = TanqueHeroe.getInstancia();
+		escenario = Escenario.nuevaInstancia();
+		heroe = FabricaElementos.crearTanqueHeroe();
 		heroe.setX(100.0);
 		heroe.setY(200.0);
 		heroe.setAlto(50);

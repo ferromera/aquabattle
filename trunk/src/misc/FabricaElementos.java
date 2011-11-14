@@ -45,14 +45,11 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(pared);
 		return pared;
 	}
-	private static boolean heroeCreado=false;
 	public static TanqueHeroe crearTanqueHeroe(){
-		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if(!heroeCreado){
-			heroeCreado=true;
+		TanqueHeroe tanque = TanqueHeroe.nuevaInstancia();
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
-		}
+		
 		return tanque;
 	}
 	public static Base crearBase(double x,double y){

@@ -31,7 +31,7 @@ public abstract class Figura implements Dibujable, MouseClickObservador {
 	}
 
 	public void MouseClick(int x, int y){
-		System.out.println("Click;" + x + "," + y);
+		
 	}
 		
 }

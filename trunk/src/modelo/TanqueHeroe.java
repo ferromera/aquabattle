@@ -14,13 +14,16 @@ public class TanqueHeroe extends Tanque {
 	private final double ANCHO = 50.0;
 	private final double ALTO = 50;
 	
-	private boolean destruido;
 
 	private static TanqueHeroe instancia = null;
 
 	public static TanqueHeroe getInstancia() {
 		if (instancia == null)
 			instancia = new TanqueHeroe();
+		return instancia;
+	}
+	public static TanqueHeroe nuevaInstancia() {
+		instancia = new TanqueHeroe();
 		return instancia;
 	}
 
@@ -36,22 +39,14 @@ public class TanqueHeroe extends Tanque {
 		
 	}
 
-	public void destruir() {
-		Escenario.getActual().borrarObjetoVivo(this);
-		Escenario.getActual().borrarSolido(this);
-		destruido=true;
-		notificar();
-		
-	}
+	
 	
 	public void calcularSiguienteMovimiento(){
 		//No hace nada ya que el proximo movimiento
 		//es controlado por el usuario.
 	}
 
-	public boolean estaDestruido() {
-		return destruido;
-	}
+	
 
 
 
