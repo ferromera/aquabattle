@@ -39,8 +39,6 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarVivirNorte(){
 		heroe.moverNorte();
-		//Inicializa el tiempo
-		heroe.vivir();
 		
 		try {
 			Thread.sleep(30);
@@ -58,8 +56,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarVivirSur(){
 		heroe.moverSur();
-		//Inicializa el tiempo
-		heroe.vivir();
+
 		long tiempo= new Date().getTime();
 		try {
 			Thread.sleep(35);
@@ -78,8 +75,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarVivirEste(){
 		heroe.moverEste();
-		//Inicializa el tiempo
-		heroe.vivir();
+
 		try {
 			Thread.sleep(51);
 		} catch (InterruptedException e) {
@@ -109,27 +105,65 @@ public class PruebaTanqueHeroe {
 		Assert.assertTrue(y==200.0);
 	}
 	@Test
+	public void probarDetener(){
+		heroe.detener();
+		
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}// paso 100 mseg
+		heroe.vivir();
+		double x= heroe.getX();
+		double y= heroe.getY();
+		Assert.assertTrue(x==300.0);
+		Assert.assertTrue(y==200.0);
+	}
+	@Test
 	public void romperConcreto(){
 		heroe.detener();
 		heroe.orientarNorte();
 		heroe.disparar();
-		//Inicializa el tiempo
-		Escenario.getActual().vivir();
+
 		try {
-			Thread.sleep(250);
+			Thread.sleep(259);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}// paso 489 mseg
+		}// paso 258 mseg
 		Escenario.getActual().vivir();
 		//Todavia no impacto en la pared
 		Assert.assertTrue(!paredConcreto.estaDestruida());
 		try {
-			Thread.sleep(200);
+			Thread.sleep(2);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}// paso 1 mseg
+		}// paso 2 mseg
 		Escenario.getActual().vivir();
 		Assert.assertTrue(paredConcreto.estaDestruida());
+	
+	}
+	@Test
+	public void romperMetal(){
+		heroe.detener();
+		heroe.orientarEste();
+		heroe.disparar();
+	
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}// paso 1 seg
+		Escenario.getActual().vivir();
+		//Todavia impacto pero no rompio
+		Assert.assertTrue(!paredMetal.estaDestruida());
+		heroe.disparar();
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}// paso 1 seg
+		Escenario.getActual().vivir();
+		Assert.assertTrue(paredMetal.estaDestruida());
 	
 	}
 	

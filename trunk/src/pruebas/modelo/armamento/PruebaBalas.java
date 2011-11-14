@@ -35,8 +35,7 @@ public class PruebaBalas {
 	
 	@Test
 	public void vivirUnSegBalaAmetralladora() {
-		//inicializa el tiempo
-		balaAmetralladora.vivir();
+
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -61,8 +60,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegBalaAmetralladora() {
-		//inicializa el tiempo
-		balaAmetralladora.vivir();
+
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -87,8 +85,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegBalaAmetralladora() {
-		//inicializa el tiempo
-		balaAmetralladora.vivir();
+
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -125,8 +122,7 @@ public class PruebaBalas {
 	@Test
 	public void vivir90MiliSegNorteBalaAmetralladora(){
 		balaAmetralladora.setOrientacion(Direccion.Norte());
-		//inicializa el tiempo
-		balaAmetralladora.vivir();
+
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -161,8 +157,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirUnSegBalaCanion() {
-		//inicializa el tiempo
-		balaCanion.vivir();
+
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -187,8 +182,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegBalaCanion() {
-		//inicializa el tiempo
-		balaCanion.vivir();
+
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -213,8 +207,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegBalaCalion() {
-		//inicializa el tiempo
-		balaCanion.vivir();
+
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -246,13 +239,12 @@ public class PruebaBalas {
 		 * Y : posicion inicial = 300.0, velocidadY = -200 pixel/seg
 		 *  => posicion luego de 90 mseg = 282.0
 		 */
-		Assert.assertTrue(y<=282.1 && y>=281.9);
+		Assert.assertTrue(y<=282.2 && y>=281.8);
 	}
 	@Test
 	public void vivir90MiliSegOesteBalaCanion(){
 		balaCanion.setOrientacion(Direccion.Oeste());
-		//inicializa el tiempo
-		balaCanion.vivir();
+
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -278,7 +270,7 @@ public class PruebaBalas {
 		 * X : posicion inicial = 200.0, velocidadX = -200 pixel/seg
 		 *  => posicion luego de 90 mseg = 182.0
 		 */
-		Assert.assertTrue(x<=182.1 && x>=181.9);
+		Assert.assertTrue(x<=182.2 && x>=181.8);
 		/*
 		 * Y : posicion inicial = 300.0, velocidadY = 0.0 pixel/seg
 		 *  => posicion luego de 90 mseg = 300.0
@@ -313,8 +305,6 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegCohete() {
-		//inicializa el tiempo
-		cohete.vivir();
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -339,8 +329,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegCohete() {
-		//inicializa el tiempo
-		cohete.vivir();
+		
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -372,13 +361,11 @@ public class PruebaBalas {
 		 * Y : posicion inicial = 0.0, velocidadY = 300 pixel/seg
 		 *  => posicion luego de 90 mseg = 27.0
 		 */
-		Assert.assertTrue(y<=27.1 && y>=26.9);
+		Assert.assertTrue(y<=27.2 && y>=26.8);
 	}
 	@Test
 	public void vivir90MiliSegOesteCohete(){
 		cohete.setOrientacion(Direccion.Oeste());
-		//inicializa el tiempo
-		cohete.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
