@@ -25,7 +25,6 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	private boolean mejorado;
 	private long ultimoTiempo;
 	protected boolean destruido;
-	private boolean primerVivir=true;
 
 	public Tanque() {
 
@@ -42,13 +41,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	public void vivir() {
 		if(destruido)
 			return;
-		if(primerVivir){
-			//Se empieza a medir el tiempo
-			primerVivir=false;
-			ultimoTiempo=new Date().getTime();
-			return;
-		}
-			
+		
 		if (enMovimiento()) {
 			long tiempoActual = new Date().getTime();
 			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);

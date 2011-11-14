@@ -8,7 +8,6 @@ import modelo.Escenario;
 
 import excepciones.NoExisteElementoColisionadoException;
 import titiritero.ObjetoVivo;
-import titiritero.Posicionable;
 import utils.Direccion;
 
 public abstract class Bala extends ElementoRectangularSolido implements ObjetoVivo{
@@ -26,7 +25,6 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 	}
 
 	private long ultimoTiempo;
-	private boolean primerVivir=true;
 	protected int fuerza;
 	protected double velocidad;
 	
@@ -34,12 +32,7 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 	public void vivir(){
 		if(destruida)
 			return;
-		if(primerVivir){
-			//Se empieza a medir el tiempo
-			primerVivir=false;
-			ultimoTiempo=new Date().getTime();
-			return;
-		}
+	
 		long tiempoActual=new Date().getTime();
 		int intervaloTiempo=(int)(tiempoActual-ultimoTiempo);
 		ultimoTiempo=tiempoActual;
