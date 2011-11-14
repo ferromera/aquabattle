@@ -35,7 +35,7 @@ public abstract class Arma implements ActionListener  {
 		descargar();
 		Bala bala= crearBala();
 		posicionarBala(bala);
-		if(tieneMunicion())
+		if(!tieneMunicion())
 			destruir();
 		
 	}

@@ -26,10 +26,20 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 	}
 
 	private long ultimoTiempo;
+	private boolean primerVivir=true;
 	protected int fuerza;
 	protected double velocidad;
 	
+	
 	public void vivir(){
+		if(destruida)
+			return;
+		if(primerVivir){
+			//Se empieza a medir el tiempo
+			primerVivir=false;
+			ultimoTiempo=new Date().getTime();
+			return;
+		}
 		long tiempoActual=new Date().getTime();
 		int intervaloTiempo=(int)(tiempoActual-ultimoTiempo);
 		ultimoTiempo=tiempoActual;

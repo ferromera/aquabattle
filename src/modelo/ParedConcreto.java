@@ -11,6 +11,7 @@ Posicionable, Observable {
 	
 	private final int ALTO = 20;
 	private final int ANCHO = 20;	
+	private boolean destruida=false;
 	 
 	public ParedConcreto(double posicionEnX, double posicionEnY){
 		super(posicionEnX,posicionEnY);
@@ -24,6 +25,11 @@ Posicionable, Observable {
 		//Solo resiste un impacto
 		Escenario escenarioActual = Escenario.getActual();
 		escenarioActual.borrarSolido(this);	
+		destruida=true;
+		notificar();
+	}
+	public boolean estaDestruida(){
+		return destruida;
 	}
 	
 }
