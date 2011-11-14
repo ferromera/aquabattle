@@ -96,5 +96,12 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	public Iterator<ElementoRectangularSolido> getSolidos() {
 		return objetosSolidos.iterator();
 	}
-
+	
+	public cantidadActualDeObjetosVivos(){
+		return objetosVivos.size();
+	}
+	
+	public cantidadActualDeObjetosVivos(){
+		return objetosSolidos.size();
+	}
 }
