@@ -1,17 +1,24 @@
 package pruebas.modelo;
 
-public class PruebaParedConcreto {
+import java.util.Date;
 
+import misc.FabricaElementos;
+import modelo.Escenario;
+import modelo.ParedConcreto;
+import modelo.ParedMetal;
+import modelo.TanqueHeroe;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.Before;
+
+public class PruebaParedConcreto {
 	ParedConcreto paredDeConcreto;
 	
 	@Before
 	public void setUp(){
 		Escenario.nuevaInstancia();
 		paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
-		paredDeConcreto.setAlto(20.0);
-		paredDeConcreto.setAncho(20.0);
-
-		
 	}
 	
 
@@ -28,11 +35,10 @@ public class PruebaParedConcreto {
 	
 	@Test
 	public void probarDestuirDeEscenario(){
-		Escenario.agregarObjetoSolido(paredDeConcreto);
 		while(!paredDeConcreto.estaDestruida()){
 			paredDeConcreto.recibirImpacto(10);
 		}
-		Assert.assertTrue(Escenario.cantidadActualDeObjetosSolidos() == 0);
+		Assert.assertTrue(Escenario.getActual().cantidadActualDeObjetosSolidos() == 0);
 	}
 	
 }
