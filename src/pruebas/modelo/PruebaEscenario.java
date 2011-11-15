@@ -1,37 +1,56 @@
 package pruebas.modelo;
 
+import java.util.Date;
+
+import misc.FabricaElementos;
+import modelo.Escenario;
+import modelo.ParedConcreto;
+import modelo.ParedMetal;
+import modelo.TanqueHeroe;
+
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.Before;
+
 public class PruebaEscenario {
 
 	ParedConcreto paredDeConcreto;
 	ParedMetal paredDeMetal;
+	TanqueHeroe tanque;
 	
 	@Before
 	public void setUp(){
-		Escenario.nuevaInstancia();
-		paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
-		paredDeConcreto.setAlto(20.0);
-		paredDeConcreto.setAncho(20.0);
-		paredDeMetal= FabricaElementos.crearParedMetal(100.0, 200.0);
-		paredDeMetal.setAlto(20.0);
-		paredDeMetal.setAncho(20.0);
-		
+		Escenario.nuevaInstancia();	
 	}
 	
 
 	
 	@Test
 	public void probarAgregarObjetoSolido(){
-		Escenario.agregarObjetoSolido(paredDeConcreto);
-		Assert.assertTrue(Escenario.cantidadActualDeObjetosSolidos() == 1);
+		paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
+		paredDeMetal= FabricaElementos.crearParedMetal(200.0, 200.0);
+		Assert.assertTrue(Escenario.getActual().cantidadActualDeObjetosSolidos() == 2);
 	}
 	
 	@Test
 	public void probarBorrarObjetoSolido(){
-		Escenario.agregarObjetoSolido(paredDeConcreto);
-		Escenario.agregarObjetoSolido(paredDeMetal);
-		Escenario.borrarObjetoSolido(paredDeConcreto);
-		Assert.assertTrue(Escenario.cantidadActualDeObjetosSolidos() == 1);
+		paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
+		paredDeMetal= FabricaElementos.crearParedMetal(200.0, 200.0);
+		Escenario.getActual().borrarSolido(paredDeConcreto);
+		Assert.assertTrue(Escenario.getActual().cantidadActualDeObjetosSolidos() == 1);
 	}
 	
+	@Test
+	public void probarAgregarObjetoVivo(){
+		tanque= FabricaElementos.crearTanqueHeroe();
+		Assert.assertTrue(Escenario.getActual().cantidadActualDeObjetosVivos() == 1);
+	}
+	
+	@Test
+	public void probarBorrarObjetoVivo(){
+		tanque= FabricaElementos.crearTanqueHeroe();
+		Escenario.getActual().borrarObjetoVivo(tanque);
+		Assert.assertTrue(Escenario.getActual().cantidadActualDeObjetosVivos() == 0);
+	}
 	
 }
