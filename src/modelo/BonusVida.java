@@ -1,12 +1,19 @@
 package modelo;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 
 public class BonusVida extends ElementoRectangularIntangible implements
-ObjetoVivo, Posicionable{
+ObjetoVivo, Posicionable, ActionListener {
+
+	public BonusVida(){
+		setX(0.0);
+		setY(0.0);
+	}
 	
 	public BonusVida(double posicionEnX, double posicionEnY){
 		setX(posicionEnX);
@@ -27,6 +34,10 @@ ObjetoVivo, Posicionable{
 				Escenario.getActual().borrarObjeto(this);
 			}
 		}
+	}
+	
+	public void actionPerformed(ActionEvent e){
+		Escenario.getActual().borrarObjeto(this);
 	}
 		
 
