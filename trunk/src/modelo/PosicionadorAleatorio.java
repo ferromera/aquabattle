@@ -2,20 +2,9 @@ package modelo;
 
 import excepciones.NoSePudoPosicionarException;
 
-public abstract class PosicionadorAleatorio {
-	protected ElementoRectangular elemento;
+public interface PosicionadorAleatorio {
 	
-	public PosicionadorAleatorio(ElementoRectangular elemRectangular){
-		setElemento(elemRectangular);
-	}
+	public abstract void posicionar(ElementoRectangular elemento) throws NoSePudoPosicionarException;
+
 	
-	public abstract void posicionar() throws NoSePudoPosicionarException;
-
-	public ElementoRectangular getElemento() {
-		return elemento;
-	}
-
-	public void setElemento(ElementoRectangular elemento) {
-		this.elemento = elemento;
-	}
 }
