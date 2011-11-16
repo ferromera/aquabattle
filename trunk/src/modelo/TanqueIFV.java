@@ -5,7 +5,7 @@ import modelo.ai.Bot;
 import modelo.ai.BotBordes;
 import modelo.armamento.Canion;
 
-public class TanqueIFV extends Tanque {
+public class TanqueIFV extends TanqueEnemigo {
 	
 	private final int RESISTENCIA = 100;
 	private final double VELOCIDAD = 100.0;

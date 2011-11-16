@@ -219,5 +219,11 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		}
 		return false;
 	}
+	public double getCentroX(){
+		return posX + ancho/2.0;
+	}
+	public double getCentroY(){
+		return posY + alto/2.0;
+	}
 	
 }
