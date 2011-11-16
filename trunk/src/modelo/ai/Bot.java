@@ -13,13 +13,8 @@ public abstract class Bot {
 		this.objetivo = objetivo;
 	}
 
-	public void actuar() {
-		calcularOrientacion();
-		decidirDisparo();
-	}
+	public abstract void actuar() ;
 
-	abstract void decidirDisparo();
-
-	abstract void calcularOrientacion();
+	
 
 }

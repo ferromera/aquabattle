@@ -130,11 +130,49 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 			break;
 		}
 	}
+	public void avanzarEnDireccion(Direccion dir){
+		avanzarEnDireccion(dir, 1);
+	}
+	public void avanzarEnDireccion(Direccion dir,double espacio){
+		switch(dir.get()){
+		case Direccion.NORTE:
+			avanzarNorte(espacio);
+			break;
+		case Direccion.SUR:
+			avanzarSur(espacio);
+			break;
+		case Direccion.ESTE:
+			avanzarEste(espacio);
+			break;
+		case Direccion.OESTE:
+			avanzarOeste(espacio);
+			break;
+		}
+	}
 	public void retroceder(){
 		retroceder(1);
 	}
 	public void retroceder(double espacio){
 		switch(orientacion.get()){
+		case Direccion.NORTE:
+			avanzarSur(espacio);
+			break;
+		case Direccion.SUR:
+			avanzarNorte(espacio);
+			break;
+		case Direccion.ESTE:
+			avanzarOeste(espacio);
+			break;
+		case Direccion.OESTE:
+			avanzarEste(espacio);
+			break;
+		}
+	}
+	public void retrocederEnDireccion(Direccion dir){
+		retrocederEnDireccion(dir,1);
+	}
+	public void retrocederEnDireccion(Direccion dir,double espacio){
+		switch(dir.get()){
 		case Direccion.NORTE:
 			avanzarSur(espacio);
 			break;
