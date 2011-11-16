@@ -1,5 +1,6 @@
 package misc;
 
+import excepciones.YaExisteBaseException;
 import modelo.Base;
 import modelo.Escenario;
 import modelo.Explosion;
@@ -59,8 +60,9 @@ public class FabricaElementos {
 		
 		return tanque;
 	}
-	public static Base crearBase(double x,double y){
+	public static Base crearBase(double x,double y) throws YaExisteBaseException{
 		Base base = new Base(x, y);
+		Escenario.getActual().agregarBase(base);
 		Escenario.getActual().agregarObjeto(base);
 		Escenario.getActual().agregarObjetoSolido(base);
 		return base;
