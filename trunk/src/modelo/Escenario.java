@@ -15,6 +15,7 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	private ArrayList<ObjetoVivo> objetosVivos = new ArrayList<ObjetoVivo>();
 	private ArrayList<ElementoRectangularSolido> objetosSolidos = new ArrayList<ElementoRectangularSolido>();
 	private ArrayList<Observador> observadores = new ArrayList<Observador>();
+	private ArrayList<ElementoRectangular> elementos= new ArrayList<ElementoRectangular>();
 
 	public Escenario() {
 
@@ -55,6 +56,9 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	public void agregarObjetoSolido(ElementoRectangularSolido objetoAgregar) {
 		objetosSolidos.add(objetoAgregar);
 	}
+	public void agregarObjeto(ElementoRectangular objetoAgregar) {
+		elementos.add(objetoAgregar);
+	}
 
 	public void borrarObjetoVivo(ObjetoVivo objetoBorrar) {
 		objetosVivos.remove(objetoBorrar);
@@ -62,6 +66,9 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 
 	public void borrarSolido(ElementoRectangularSolido objetoBorrar) {
 		objetosSolidos.remove(objetoBorrar);
+	}
+	public void borrarObjeto(ElementoRectangular objetoBorrar) {
+		elementos.remove(objetoBorrar);
 	}
 
 	public void vivir() {
@@ -95,6 +102,9 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 
 	public Iterator<ElementoRectangularSolido> getSolidos() {
 		return objetosSolidos.iterator();
+	}
+	public Iterator<ElementoRectangular> getObjetos() {
+		return elementos.iterator();
 	}
 	
 	public int cantidadActualDeObjetosVivos(){

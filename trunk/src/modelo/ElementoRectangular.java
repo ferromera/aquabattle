@@ -203,4 +203,21 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		 
 		return false;
 	}
+
+	public boolean estaSuperpuesto() {
+
+		Escenario escenario = Escenario.getActual();
+		Iterator<ElementoRectangular> it = escenario.getObjetos();
+		ElementoRectangular elem;
+		while (it.hasNext()) {
+			elem = it.next();
+			if (elem.equals(this))
+				continue;
+			if (superpuestoCon(elem)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
 }
