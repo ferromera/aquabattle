@@ -1,11 +1,15 @@
 package misc;
 
+import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
 import modelo.Base;
+import modelo.BonusAtaque;
+import modelo.BonusVida;
 import modelo.Escenario;
 import modelo.Explosion;
 import modelo.ParedConcreto;
 import modelo.ParedMetal;
+import modelo.PosicionadorAleatorioStd;
 import modelo.TanqueHeroe;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
@@ -67,16 +71,14 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(base);
 		return base;
 	}
-	public static BonusVida crearBonusVida(){
-		BonusVida bonus= new BonusVida();
-		bonus.posicionar();
+	public static BonusVida crearBonusVida() throws NoSePudoPosicionarException{
+		BonusVida bonus= new BonusVida(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
 		return bonus;
 	}
-	public static BonusVida crearBonusAtaque(){
-		BonusAtaque bonus= new BonusAtaque();
-		bonus.posicionar();
+	public static BonusAtaque crearBonusAtaque() throws NoSePudoPosicionarException{
+		BonusAtaque bonus= new BonusAtaque(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
 		return bonus;

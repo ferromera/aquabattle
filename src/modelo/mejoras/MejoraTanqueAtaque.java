@@ -4,9 +4,14 @@ import modelo.Tanque;
 
 public class MejoraTanqueAtaque extends MejoraTanque {
 
-	private final double PORCENTAJE_VELOCIDAD = 0.2;
-	private final double PORCENTAJE_DISPARO = 0.3;
+	private final double PORCENTAJE_VELOCIDAD;
+	private final double PORCENTAJE_DISPARO;
 
+	public MejoraTanqueAtaque(double porcentajeVelocidad,double porcentajeDisparo){
+		PORCENTAJE_VELOCIDAD=porcentajeVelocidad;
+		PORCENTAJE_DISPARO=porcentajeDisparo;
+	}
+	
 	public void mejorar(Object o) {
 		Tanque tanque = (Tanque) o;
 		tanque.mejorarVelocidad(PORCENTAJE_VELOCIDAD);

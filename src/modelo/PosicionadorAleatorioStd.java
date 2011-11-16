@@ -2,13 +2,10 @@ package modelo;
 
 import excepciones.NoSePudoPosicionarException;
 
-public class PosicionadorAleatorioStd  extends PosicionadorAleatorio{
+public class PosicionadorAleatorioStd  implements PosicionadorAleatorio{
 
-		
-	public PosicionadorAleatorioStd(ElementoRectangular elemRectangular) {
-		super(elemRectangular);
-	}
-	public void posicionar() throws NoSePudoPosicionarException{
+	
+	public void posicionar(ElementoRectangular elemento) throws NoSePudoPosicionarException{
 		double x;
 		double y;
 		boolean posicionInvalida=true;
