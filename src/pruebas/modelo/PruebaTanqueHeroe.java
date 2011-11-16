@@ -12,6 +12,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
+import utils.Direccion;
+
 public class PruebaTanqueHeroe {
 	TanqueHeroe heroe;
 	ParedConcreto paredConcreto;
@@ -38,7 +40,7 @@ public class PruebaTanqueHeroe {
 	
 	@Test
 	public void probarVivirNorte(){
-		heroe.moverNorte();
+		heroe.mover(Direccion.Norte());
 		
 		try {
 			Thread.sleep(30);
@@ -55,7 +57,7 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void probarVivirSur(){
-		heroe.moverSur();
+		heroe.mover(Direccion.Sur());
 
 		long tiempo= new Date().getTime();
 		try {
@@ -74,7 +76,7 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void probarVivirEste(){
-		heroe.moverEste();
+		heroe.mover(Direccion.Este());
 
 		try {
 			Thread.sleep(51);
@@ -90,7 +92,7 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void probarVivirOeste(){
-		heroe.moverOeste();
+		heroe.mover(Direccion.Oeste());
 		//Inicializa el tiempo
 		heroe.vivir();		
 		try {

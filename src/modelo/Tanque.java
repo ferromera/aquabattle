@@ -12,6 +12,7 @@ import modelo.mejoras.Mejorable;
 import excepciones.NoExisteArmaSeleccionadaException;
 
 import titiritero.ObjetoVivo;
+import utils.Direccion;
 
 public abstract class Tanque extends ElementoRectangularSolido implements
 		ObjetoVivo, Mejorable {
@@ -74,7 +75,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		armaActual.disparar();
 	}
 
-	public void moverNorte() {
+	/*public void moverNorte() {
 		orientarNorte();
 		moviendose = true;
 	}
@@ -92,8 +93,12 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	public void moverEste() {
 		orientarEste();
 		moviendose = true;
-	}
+	}*/
 
+	public void mover(Direccion dir){
+		moviendose=true;
+		setOrientacion(dir);
+	}
 	public void detener() {
 		moviendose = false;
 	}
