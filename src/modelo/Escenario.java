@@ -2,6 +2,9 @@ package modelo;
 
 import java.util.*;
 
+import excepciones.NoExisteBaseException;
+import excepciones.YaExisteBaseException;
+
 import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 import misc.Observable;
@@ -16,6 +19,7 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	private ArrayList<ElementoRectangularSolido> objetosSolidos = new ArrayList<ElementoRectangularSolido>();
 	private ArrayList<Observador> observadores = new ArrayList<Observador>();
 	private ArrayList<ElementoRectangular> elementos= new ArrayList<ElementoRectangular>();
+	private Base base;
 
 	public Escenario() {
 
@@ -47,6 +51,30 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	public static Escenario nuevaInstancia() {
 		escenarioActual = new Escenario();
 		return escenarioActual;
+	}
+	
+	public void agregarBase(Base base) throws YaExisteBaseException {
+		if (this.base != null)
+			throw new YaExisteBaseException("ya existe una base");
+		this.base = base;
+		agregarObjetoSolido(base);
+	}
+	
+	public void borrarBase() throws NoExisteBaseException {
+		if (this.base == null)
+			throw new NoExisteBaseException("no hay una base que borrar");
+		this.base = null;
+		borrarSolido(this.base);
+	}
+	
+	public boolean tieneBase() {
+		return this.base != null ? true : false;
+	}
+	
+	public Base getBase() throws NoExisteBaseException {
+		if (this.base == null)
+			throw new NoExisteBaseException("no hay una base asignada al escenario");
+		return this.base;
 	}
 
 	public void agregarObjetoVivo(ObjetoVivo objetoAgregar) {
