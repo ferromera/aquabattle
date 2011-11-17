@@ -50,12 +50,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 100.0, velocidadX = 150 pixel/seg
 		 *  => posicion luego de 1 seg = 250.0
 		 */
-		Assert.assertTrue(x<=250.1 && x>=249.9);
+		Assert.assertTrue(x<=250.3 && x>=249.7);
 		/*
 		 * Y : posicion inicial = 200.0, velocidadY = 0 pixel/seg
 		 *  => posicion luego de 1 seg = 200.0
 		 */
-		Assert.assertTrue(y<=200.1 && y>=199.9);
+		Assert.assertTrue(y<=200.2 && y>=199.8);
 		
 	}
 	@Test
@@ -75,12 +75,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 100.0, velocidadX = 150 pixel/seg
 		 *  => posicion luego de 20 mseg = 103.0
 		 */
-		Assert.assertTrue(x<=103.1 && x>=102.9);
+		Assert.assertTrue(x<=103.2 && x>=102.8);
 		/*
 		 * Y : posicion inicial = 200.0, velocidadY = 0 pixel/seg
 		 *  => posicion luego de 20 mseg = 200.0
 		 */
-		Assert.assertTrue(y<=200.1 && y>=199.9);
+		Assert.assertTrue(y<=200.2 && y>=199.8);
 		
 	}
 	@Test
@@ -112,12 +112,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 100.0, velocidadX = 150 pixel/seg
 		 *  => posicion luego de 90 mseg = 113.5
 		 */
-		Assert.assertTrue(x<=113.6 && x>=113.4);
+		Assert.assertTrue(x<=113.7 && x>=113.3);
 		/*
 		 * Y : posicion inicial = 200.0, velocidadY = 0 pixel/seg
 		 *  => posicion luego de 90 mseg = 200.0
 		 */
-		Assert.assertTrue(y<=200.1 && y>=199.9);
+		Assert.assertTrue(y<=200.2 && y>=199.8);
 	}
 	@Test
 	public void vivir90MiliSegNorteBalaAmetralladora(){
@@ -148,12 +148,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 100.0, velocidadX = 0 pixel/seg
 		 *  => posicion luego de 90 mseg = 100.0
 		 */
-		Assert.assertTrue(x<=100.1 && x>=99.9);
+		Assert.assertTrue(x<=100.2 && x>=99.8);
 		/*
 		 * Y : posicion inicial = 200.0, velocidadY = -150.0 pixel/seg
 		 *  => posicion luego de 90 mseg = 186.5
 		 */
-		Assert.assertTrue(y<=186.6 && y>=186.4);
+		Assert.assertTrue(y<=186.7 && y>=186.3);
 	}
 	@Test
 	public void vivirUnSegBalaCanion() {
@@ -172,12 +172,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 200.0, velocidadX = 0 pixel/seg
 		 *  => posicion luego de 1 seg = 200.0
 		 */
-		Assert.assertTrue(x<=200.1 && x>=199.9);
+		Assert.assertTrue(x<=200.2 && x>=199.8);
 		/*
 		 * Y : posicion inicial = 300.0, velocidadY = -200 pixel/seg
 		 *  => posicion luego de 1 seg = 100.0
 		 */
-		Assert.assertTrue(y<=100.1 && y>=99.9);
+		Assert.assertTrue(y<=100.2 && y>=99.8);
 		
 	}
 	@Test
@@ -197,12 +197,12 @@ public class PruebaBalas {
 		 * X : posicion inicial = 200.0, velocidadX = 0 pixel/seg
 		 *  => posicion luego de 20 mseg = 200.0
 		 */
-		Assert.assertTrue(x<=200.1 && x>=199.9);
+		Assert.assertTrue(x<=200.2 && x>=199.8);
 		/*
 		 * Y : posicion inicial = 300.0, velocidadY = -200 pixel/seg
 		 *  => posicion luego de 20 mseg = 296.0
 		 */
-		Assert.assertTrue(y<296.01 && y>295.99);
+		Assert.assertTrue(y<296.2 && y>295.8);
 		
 	}
 	@Test
@@ -234,7 +234,7 @@ public class PruebaBalas {
 		 * X : posicion inicial = 200.0, velocidadX = 0 pixel/seg
 		 *  => posicion luego de 90 mseg = 200.0
 		 */
-		Assert.assertTrue(x<=200.1 && x>=199.9);
+		Assert.assertTrue(x<=200.2 && x>=199.8);
 		/*
 		 * Y : posicion inicial = 300.0, velocidadY = -200 pixel/seg
 		 *  => posicion luego de 90 mseg = 282.0
@@ -300,7 +300,7 @@ public class PruebaBalas {
 		 * Y : posicion inicial = 0.0, velocidadY = 300 pixel/seg
 		 *  => posicion luego de 1 seg = 300.0
 		 */
-		Assert.assertTrue(y<=300.1 && y>=299.9);
+		Assert.assertTrue(y<=300.2 && y>=299.8);
 		
 	}
 	@Test
@@ -324,7 +324,7 @@ public class PruebaBalas {
 		 * Y : posicion inicial = 0.0, velocidadY = 300 pixel/seg
 		 *  => posicion luego de 20 mseg = 6.0
 		 */
-		Assert.assertTrue(y<=6.1 && y>=5.9);
+		Assert.assertTrue(y<=6.2 && y>=5.8);
 		
 	}
 	@Test
@@ -391,7 +391,7 @@ public class PruebaBalas {
 		 * X : posicion inicial = 400.0, velocidadX = -300 pixel/seg
 		 *  => posicion luego de 90 mseg = 373.0
 		 */
-		Assert.assertTrue(x<=373.1 && x>=372.9);
+		Assert.assertTrue(x<=373.2 && x>=372.8);
 		/*
 		 * Y : posicion inicial = 0.0, velocidadY = 0.0 pixel/seg
 		 *  => posicion luego de 90 mseg = 0.0
