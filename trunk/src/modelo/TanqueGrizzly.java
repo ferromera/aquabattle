@@ -1,7 +1,7 @@
 package modelo;
 
 import modelo.ai.Bot;
-import modelo.ai.BotBordes;
+import modelo.ai.BotCentro;
 import modelo.armamento.Ametralladora;
 import modelo.TanqueHeroe;
 
@@ -23,7 +23,7 @@ public class TanqueGrizzly extends TanqueEnemigo {
 		setAlto(ALTO);
 		setAncho(ANCHO);
 		agregarArma(new Ametralladora(this));
-		bot = new BotBordes(this, TanqueHeroe.getInstancia());
+		bot = new BotCentro(this, TanqueHeroe.getInstancia());
 	}
 
 	@Override

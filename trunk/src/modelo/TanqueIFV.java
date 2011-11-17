@@ -28,8 +28,7 @@ public class TanqueIFV extends TanqueEnemigo {
 
 	@Override
 	public void calcularSiguienteMovimiento() {
-		// TODO Auto-generated method stub
-
+		bot.actuar();
 	}
 
 }
