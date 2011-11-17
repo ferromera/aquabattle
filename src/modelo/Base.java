@@ -1,5 +1,6 @@
 package modelo;
 
+import excepciones.NoExisteBaseException;
 import titiritero.Posicionable;
 
 public class Base extends ElementoRectangularSolido implements Impactable, Posicionable {
@@ -11,7 +12,7 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 	public Base(double posicionX, double posicionY){
 		setX(posicionX);
 		setY(posicionY);
-		setAlto(ALTO); //poner cuanto va medir
+		setAlto(ALTO);
 		setAncho(ANCHO);
 		this.impactosRecibidos = 0;
 	}
@@ -20,10 +21,11 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 	public void recibirImpacto(int fuerza){
 		this.impactosRecibidos ++;
 		if (impactosRecibidos > 1){
-			Escenario escenarioActual = Escenario.getActual();
-			escenarioActual.borrarSolido(this);
-			//Igual se tendria que terminar el juego...
-					
+			try{
+			Escenario.getActual().borrarBase();
+			}catch (NoExisteBaseException e){
+				e.printStackTrace();
+			}
 		}
 	}
 	
