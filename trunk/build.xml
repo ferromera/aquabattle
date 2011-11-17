@@ -1,0 +1,36 @@
+<project name="AlgoTank" default="test" basedir=".">
+	<!-- propiedades globales -->
+	<property name="src" value="src"/>
+	<property name="build" value="build"/>
+	<path id="classpath.base">
+	</path>
+	<path id="classpath.test">
+		<pathelement location="junit-4.10.jar" />
+		<pathelement location="${build}" />
+		<path refid="classpath.base" />
+	</path>
+	<target name="init">
+		<!-- crea directorio de compilacion -->
+		<mkdir dir="${build}"/>
+	</target>
+	<target name="compile" depends="init">
+		<!-- Compila los .java de ${src} a .class en ${build} --> 
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="true"/>
+	</target>
+	
+	<target name="clean">
+		<delete dir="${build}"/>
+	</target>
+	<target name="test" depends="compile">
+		<junit>
+			<classpath refid="classpath.test" />
+			<formatter type="brief" usefile="false" />
+			<test name="pruebas.modelo.PruebaEscenario" />
+			<test name="pruebas.modelo.PruebaParedConcreto" />
+			<test name="pruebas.modelo.PruebaParedMetal" />
+			<test name="pruebas.modelo.PruebaTanqueHeroe" />
+			<test name="pruebas.modelo.armamento.PruebaArmas" />
+			<test name="pruebas.modelo.armamento.PruebaBalas" />
+			</junit>
+	</target>
+</project>
