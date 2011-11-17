@@ -80,6 +80,8 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		
 	}
 	public boolean superpuestoCon(ElementoRectangular rect){
+		if(rect==this)
+			return false;
 		if( posX <= rect.posX + rect.ancho &&
 			posY <= rect.posY + rect.alto &&
 			posX + ancho >= rect.posX &&
@@ -249,8 +251,6 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		ElementoRectangular elem;
 		while (it.hasNext()) {
 			elem = it.next();
-			if (elem.equals(this))
-				continue;
 			if (superpuestoCon(elem)) {
 				return true;
 			}

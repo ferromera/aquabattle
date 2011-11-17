@@ -1,8 +1,6 @@
 package modelo;
 
-import java.util.Date;
 
-import excepciones.NoExisteElementoColisionadoException;
 import modelo.armamento.Ametralladora;
 
 public class TanqueHeroe extends Tanque {

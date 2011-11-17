@@ -1,12 +1,9 @@
 package pruebas.modelo;
 
-import java.util.Date;
 
 import misc.FabricaElementos;
 import modelo.Escenario;
 import modelo.ParedConcreto;
-import modelo.ParedMetal;
-import modelo.TanqueHeroe;
 
 import org.junit.Assert;
 import org.junit.Test;

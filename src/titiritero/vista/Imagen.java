@@ -5,7 +5,6 @@ import java.awt.RenderingHints;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 import java.net.URL;
-import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.lang.Math;
 
