@@ -1,11 +1,9 @@
 package modelo.ai;
 
 import utils.Direccion;
-import excepciones.NoExisteElementoColisionadoException;
 import modelo.ElementoRectangular;
-import modelo.ElementoRectangularSolido;
 import modelo.Tanque;
-import modelo.TanqueEnemigo;
+
 
 public class BotCentro extends Bot {
 

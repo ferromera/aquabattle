@@ -4,7 +4,6 @@ import misc.FabricaElementos;
 import modelo.ElementoRectangularSolido;
 import modelo.Escenario;
 import modelo.Tanque;
-import modelo.TanqueHeroe;
 import modelo.armamento.Ametralladora;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;

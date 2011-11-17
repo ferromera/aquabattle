@@ -4,7 +4,7 @@ package modelo;
 
 import titiritero.Posicionable;
 import misc.Observable;
-import misc.Observador;
+
 
 public abstract class Pared extends ElementoRectangularSolido implements 
 Posicionable, Observable {

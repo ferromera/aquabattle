@@ -27,5 +27,8 @@ public class Explosion extends ElementoRectangularIntangible implements ActionLi
 		destruido=true;
 		notificar();
 	}
+	public boolean estaDestruido() {
+		return destruido;
+	}
 
 }
