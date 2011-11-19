@@ -75,25 +75,6 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		armaActual.disparar();
 	}
 
-	/*public void moverNorte() {
-		orientarNorte();
-		moviendose = true;
-	}
-
-	public void moverSur() {
-		orientarSur();
-		moviendose = true;
-	}
-
-	public void moverOeste() {
-		orientarOeste();
-		moviendose = true;
-	}
-
-	public void moverEste() {
-		orientarEste();
-		moviendose = true;
-	}*/
 
 	public void mover(Direccion dir){
 		moviendose=true;
@@ -230,6 +211,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	public void setVelocidad(double vel){
 		velocidad=vel;
 	}
-	
+	public boolean estaMejorado(){
+		return mejorado;
+	}
 	
 }
