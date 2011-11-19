@@ -19,11 +19,19 @@ import titiritero.SuperficieDeDibujo;
  * Simplemente requiere de una referencia al nombre del archivo JPG
  */
 public class Imagen implements Dibujable{
-	
-	public Imagen(String nombreArchivoImagen){
+    private BufferedImage imagen;
+    private Posicionable posicionable;
+    private double anguloRotacion=0;
+    
+    public Imagen(BufferedImage img,Posicionable posicionable){
+    	setPosicionable(posicionable);
+    	imagen=img;
+    }
+	public Imagen(String nombreArchivoImagen,Posicionable posicionable){
+    	setPosicionable(posicionable);
 		setNombreArchivoImagen(nombreArchivoImagen);
 	}
-	private double anguloRotacion;
+	
 	public void dibujar(SuperficieDeDibujo superficeDeDibujo) {
 		Graphics grafico = (Graphics)superficeDeDibujo.getBuffer();
 		AffineTransform at = AffineTransform.getRotateInstance(anguloRotacion, imagen.getWidth()/2, imagen.getHeight()/2);
@@ -34,18 +42,14 @@ public class Imagen implements Dibujable{
 		grafico.drawImage(imagenRotada,(int) this.posicionable.getX(),(int) this.posicionable.getY(), null);
 	}
 	    
-	public String getNombreArchivoImagen() {
-		return nombreArchivoImagen;
-	}
 
 	/**
 	 * Estable la imagen con la que se dibujará el objeto.
 	 * @param nombreArchivoImagen es el nombre del archivo que contiene l a imagen. Se espera que dicho archivo sea .jpg y esté ubicado en....
 	 */
 	public void setNombreArchivoImagen(String nombreArchivoImagen) {
-		this.nombreArchivoImagen = nombreArchivoImagen;
 		try{
-			URL u = this.getClass().getResource(this.nombreArchivoImagen);
+			URL u = this.getClass().getResource(nombreArchivoImagen);
 			this.imagen = ImageIO.read(u);
 		}catch(Exception ex){
 
@@ -78,9 +82,14 @@ public class Imagen implements Dibujable{
 	public void setPosicionable(Posicionable posicionable) {
 		this.posicionable = posicionable;
 	}
-	
-	private String nombreArchivoImagen;
-    private BufferedImage imagen;
-    private Posicionable posicionable;
+	public int getAlto(){
+		return imagen.getHeight();
+	}
+	public int getAncho(){
+		return imagen.getWidth();
+	}
+	public Imagen getSubimagen(int x,int y,int ancho,int alto){
+		return new Imagen(imagen.getSubimage(x, y, ancho, alto),posicionable);
+		}
 
 }
