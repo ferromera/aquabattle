@@ -5,7 +5,7 @@ import modelo.Tanque;
 
 public class LanzaCohetes extends Arma{
 
-	private final int TIEMPO_CARGA=2000;
+	private final int TIEMPO_CARGA=500;
 	private final int MUNICION_INICIAL=5;
 	private int municion;
 	public LanzaCohetes(Tanque tanque){

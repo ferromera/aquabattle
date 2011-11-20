@@ -26,6 +26,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	private boolean mejorado;
 	private long ultimoTiempo;
 	protected boolean destruido;
+	private boolean pausado;
 
 	public Tanque() {
 
@@ -37,14 +38,18 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		itArmaActual = armas.iterator();
 		this.armaActual = null;
 		ultimoTiempo = new Date().getTime();
+		pausado=true;
 	}
 
 	public void vivir() {
 		if(destruido)
 			return;
-		
+		long tiempoActual = new Date().getTime();
+		if(pausado){
+			ultimoTiempo = tiempoActual;
+			pausado=false;
+		}
 		if (enMovimiento()) {
-			long tiempoActual = new Date().getTime();
 			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
 			ultimoTiempo = tiempoActual;
 			double movimientoRestante = (velocidad * (double) intervaloTiempo / 1000.0);
@@ -63,6 +68,9 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 				retroceder(movimientoRestante);
 			}
 		}
+		else{
+			ultimoTiempo = tiempoActual;
+		}
 		calcularSiguienteMovimiento();
 	}
 	/*
@@ -77,11 +85,16 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 
 
 	public void mover(Direccion dir){
-		moviendose=true;
 		setOrientacion(dir);
+		if(!moviendose){
+			moviendose=true;
+			notificar();
+		}moviendose=true;
+		
 	}
 	public void detener() {
 		moviendose = false;
+		notificar();
 	}
 
 	protected void setResistencia(int resistencia) {
@@ -213,6 +226,9 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 	public boolean estaMejorado(){
 		return mejorado;
+	}
+	public void pausar(){
+		pausado=true;
 	}
 	
 }

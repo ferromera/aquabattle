@@ -5,7 +5,7 @@ import modelo.Tanque;
 
 public class Ametralladora extends Arma {
 
-	private final int TIEMPO_CARGA=500;
+	private final int TIEMPO_CARGA=1500;
 	public Ametralladora(Tanque tanque){
 		setTanque(tanque);
 		tiempoCarga=TIEMPO_CARGA;
