@@ -190,8 +190,7 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		}
 	}
 	public void setOrientacion(Direccion dir){
-		orientacion=dir;
-		switch(orientacion.get()){
+		switch(dir.get()){
 		case Direccion.NORTE:
 			orientarNorte();
 			break;

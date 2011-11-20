@@ -25,7 +25,7 @@ public class VistaTanqueHeroe implements Dibujable, Observador {
 	private Animacion spriteMejoradoLanzaCohetes;
 	private Animacion spriteDestruido;
 
-	private final String RUTA_SPRITE = "/img/SpriteAlgoTank.jpg";
+	private final String RUTA_SPRITE = "/sprites/SpriteAlgoTank.png";
 	
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
@@ -40,18 +40,18 @@ public class VistaTanqueHeroe implements Dibujable, Observador {
 	private static final int FILA_SPRITE_DESTRUIDO = 6;
 
 	// FPS DE CADA SPRITE
-	private static final double FPS_NORMAL_AMETRALLADORA = 4.0;
-	private static final double FPS_NORMAL_CANION = 4.0;
-	private static final double FPS_NORMAL_LANZACOHETES = 4.0;
-	private static final double FPS_MEJORADO_AMETRALLADORA = 4.0;
-	private static final double FPS_MEJORADO_CANION = 4.0;
-	private static final double FPS_MEJORADO_LANZACOHETES = 4.0;
+	private static final double FPS_NORMAL_AMETRALLADORA = 25.0;
+	private static final double FPS_NORMAL_CANION = 25.0;
+	private static final double FPS_NORMAL_LANZACOHETES = 25.0;
+	private static final double FPS_MEJORADO_AMETRALLADORA = 25.0;
+	private static final double FPS_MEJORADO_CANION = 25.0;
+	private static final double FPS_MEJORADO_LANZACOHETES = 25.0;
 	private static final double FPS_DESTRUIDO = 4.0;
 
-	private static final int DURACION_DESTRUIDO = 1000;
 
 	public VistaTanqueHeroe(TanqueHeroe tanque) {
 		this.tanque = tanque;
+		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
 		
 		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
@@ -96,7 +96,7 @@ public class VistaTanqueHeroe implements Dibujable, Observador {
 		spriteDestruido=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
 		spriteDestruido.setFps(FPS_DESTRUIDO);
 		
-		
+		spriteActual=spriteNormalAmetralladora;
 		actualizar();
 	}
 

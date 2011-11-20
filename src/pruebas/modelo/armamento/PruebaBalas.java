@@ -35,7 +35,7 @@ public class PruebaBalas {
 	
 	@Test
 	public void vivirUnSegBalaAmetralladora() {
-
+		balaAmetralladora.vivir();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -60,7 +60,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegBalaAmetralladora() {
-
+		balaAmetralladora.vivir();
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -85,7 +85,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegBalaAmetralladora() {
-
+		balaAmetralladora.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -122,7 +122,7 @@ public class PruebaBalas {
 	@Test
 	public void vivir90MiliSegNorteBalaAmetralladora(){
 		balaAmetralladora.setOrientacion(Direccion.Norte());
-
+		balaAmetralladora.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -157,7 +157,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirUnSegBalaCanion() {
-
+		balaCanion.vivir();
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -182,7 +182,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegBalaCanion() {
-
+		balaCanion.vivir();
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -207,7 +207,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegBalaCalion() {
-
+		balaCanion.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -244,7 +244,7 @@ public class PruebaBalas {
 	@Test
 	public void vivir90MiliSegOesteBalaCanion(){
 		balaCanion.setOrientacion(Direccion.Oeste());
-
+		balaCanion.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -305,6 +305,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirVeinteMiliSegCohete() {
+		cohete.vivir();
 		try {
 			Thread.sleep(20);
 		} catch (InterruptedException e) {
@@ -329,7 +330,7 @@ public class PruebaBalas {
 	}
 	@Test
 	public void vivirNoventaMiliSegCohete() {
-		
+		cohete.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -366,6 +367,7 @@ public class PruebaBalas {
 	@Test
 	public void vivir90MiliSegOesteCohete(){
 		cohete.setOrientacion(Direccion.Oeste());
+		cohete.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {

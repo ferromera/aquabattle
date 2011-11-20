@@ -14,6 +14,14 @@ import titiritero.audio.Reproductor;
  */
 public class ControladorJuego implements Runnable {
 	
+	
+	private static ControladorJuego instancia = null;
+	public static ControladorJuego getInstancia(){
+		if(instancia==null)
+			instancia=new ControladorJuego(false);
+		return instancia;
+	}
+	
 	public ControladorJuego(boolean activarReproductor){
 		this.objetosVivos = new ArrayList<ObjetoVivo>();
 		this.dibujables = new ArrayList<Dibujable>();
@@ -107,7 +115,8 @@ public class ControladorJuego implements Runnable {
  
 	private void dibujar() {
 		this.superficieDeDibujo.limpiar();
-		Iterator<Dibujable> iterador = dibujables.iterator();
+		ArrayList<Dibujable> copia= new ArrayList<Dibujable>(dibujables);
+		Iterator<Dibujable> iterador = copia.iterator();
 		while(iterador.hasNext()){
 			Dibujable dibujable = iterador.next();
 			dibujable.dibujar(this.superficieDeDibujo);

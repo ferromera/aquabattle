@@ -41,7 +41,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarVivirNorte(){
 		heroe.mover(Direccion.Norte());
-		
+		heroe.vivir();
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -51,22 +51,19 @@ public class PruebaTanqueHeroe {
 		
 		double x= heroe.getX();
 		double y= heroe.getY();
-	
 		Assert.assertTrue(x==300.0);
 		Assert.assertTrue(y>=196.9 && y<=197.1);
 	}
 	@Test
 	public void probarVivirSur(){
 		heroe.mover(Direccion.Sur());
-
-		long tiempo= new Date().getTime();
+		heroe.vivir();
 		try {
 			Thread.sleep(35);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}// paso 35 mseg
 		heroe.vivir();
-		tiempo= new Date().getTime() - tiempo;
 		
 		double x= heroe.getX();
 		double y= heroe.getY();
@@ -77,7 +74,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarVivirEste(){
 		heroe.mover(Direccion.Este());
-
+		heroe.vivir();
 		try {
 			Thread.sleep(51);
 		} catch (InterruptedException e) {
@@ -109,7 +106,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarDetener(){
 		heroe.detener();
-		
+		heroe.vivir();
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -126,7 +123,7 @@ public class PruebaTanqueHeroe {
 		heroe.detener();
 		heroe.orientarNorte();
 		heroe.disparar();
-
+		Escenario.getActual().vivir();
 		try {
 			Thread.sleep(259);
 		} catch (InterruptedException e) {
@@ -149,16 +146,17 @@ public class PruebaTanqueHeroe {
 		heroe.detener();
 		heroe.orientarEste();
 		heroe.disparar();
-	
+		Escenario.getActual().vivir();
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}// paso 1 seg
+		}// paso 2 seg
 		Escenario.getActual().vivir();
-		//Todavia impacto pero no rompio
-		Assert.assertTrue(!paredMetal.estaDestruida());
 		heroe.disparar();
+		Escenario.getActual().vivir();
+		// impacto pero no rompio
+				Assert.assertTrue(!paredMetal.estaDestruida());
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

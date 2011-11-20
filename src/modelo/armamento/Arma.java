@@ -16,6 +16,7 @@ public abstract class Arma implements ActionListener  {
 	private boolean cargada=true;
 	protected int tiempoCarga;
 	protected int cantidadDeBalas;
+	private Timer timer;
 	
 	public boolean equals(Arma a){
 		return (getClass().equals(a.getClass()));
@@ -86,11 +87,13 @@ public abstract class Arma implements ActionListener  {
 	}	
 	private void descargar(){
 		cargada=false;
-		Timer timer = new Timer(tiempoCarga, this);
+		timer = new Timer(tiempoCarga, this);
 		timer.start();
 	}
 	public void actionPerformed(ActionEvent e){
 		cargada=true;
+		timer.stop();
+		
 	}
 	public void setTanque(Tanque tanque){
 		this.tanque=tanque;

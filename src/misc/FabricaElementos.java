@@ -1,5 +1,8 @@
 package misc;
 
+import controlador.ControladorTanqueHeroe;
+import vista.VistaBalaAmetralladora;
+import vista.VistaTanqueHeroe;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
 import modelo.Base;
@@ -14,6 +17,7 @@ import modelo.TanqueHeroe;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
 import modelo.armamento.Cohete;
+import titiritero.ControladorJuego;
 
 public class FabricaElementos {
 
@@ -23,6 +27,8 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjeto(bala);
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
+		VistaBalaAmetralladora vista= new VistaBalaAmetralladora(bala);
+		ControladorJuego.getInstancia().agregarDibujable(vista);
 		return bala;
 	}
 	public static BalaCanion crearBalaCanion(){
@@ -61,6 +67,10 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
+		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
+		ControladorJuego.getInstancia().agregarDibujable(vista);
+		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
+		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
 		
 		return tanque;
 	}

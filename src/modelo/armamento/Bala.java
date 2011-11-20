@@ -11,7 +11,8 @@ import titiritero.ObjetoVivo;
 import utils.Direccion;
 
 public abstract class Bala extends ElementoRectangularSolido implements ObjetoVivo{
-	boolean destruida;
+	private boolean destruida;
+	private boolean pausado;
 	
 	public Bala(){
 		setX(0.0);
@@ -21,6 +22,7 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		velocidad=150.0;
 		setOrientacion(Direccion.Norte());
 		ultimoTiempo=new Date().getTime();
+		pausado=true;
 		
 	}
 
@@ -33,7 +35,12 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		if(destruida)
 			return;
 	
-		long tiempoActual=new Date().getTime();
+		long tiempoActual = new Date().getTime();
+		if(pausado){
+			ultimoTiempo = tiempoActual;
+			pausado=false;
+			return;
+		}
 		int intervaloTiempo=(int)(tiempoActual-ultimoTiempo);
 		ultimoTiempo=tiempoActual;
 		double movimientoRestante=(velocidad*(double)intervaloTiempo/1000.0);
@@ -83,6 +90,8 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 	public int getResistencia(){
 		return 1;
 	}
-	
+	public void pausar(){
+		pausado=true;
+	}
 	
 }

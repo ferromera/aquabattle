@@ -39,25 +39,23 @@ public class Animacion implements Dibujable,ActionListener {
 		int altoImagen=imagen.getAlto();
 		
 		for(y=0;y<altoImagen;y+=alto)
-			for(x=0;x<anchoImagen;x+=ancho){
+			for(x=0;x<anchoImagen;x+=ancho)
 				imagenes.add(imagen.getSubimagen(x, y, ancho, alto));
-				System.out.println(x+" "+y+" "+anchoImagen + " "+ altoImagen);
-			}
+			
 	}
 	public Animacion(Imagen imagen,int alto, int ancho){
 		imagenes=new ArrayList<Imagen>();
 		this.alto=alto;
 		this.ancho=ancho;
-		setFps(10.0);
+		timer = new Timer(100,this);
 		int x=0,y=0;
 		int anchoImagen=imagen.getAncho();
 		int altoImagen=imagen.getAlto();
 		
 		for(y=0;y<altoImagen;y+=alto)
-			for(x=0;x<anchoImagen;x+=ancho){
+			for(x=0;x<anchoImagen;x+=ancho)
 				imagenes.add(imagen.getSubimagen(x, y, ancho, alto));
-				System.out.println(x+" "+y+" "+anchoImagen + " "+ altoImagen);
-			}
+				
 	}
 
 	public double getFps() {
