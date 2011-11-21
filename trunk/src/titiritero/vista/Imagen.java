@@ -4,8 +4,10 @@ import java.awt.Graphics;
 import java.awt.RenderingHints;
 import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
+import java.awt.image.BufferedImageOp;
 import java.net.URL;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
 import java.lang.Math;
 
 import javax.imageio.ImageIO;
@@ -37,10 +39,13 @@ public class Imagen implements Dibujable{
 		AffineTransform at = AffineTransform.getRotateInstance(anguloRotacion, imagen.getWidth()/2, imagen.getHeight()/2);
         RenderingHints rh = new RenderingHints(RenderingHints.KEY_INTERPOLATION,
                       RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+       
         AffineTransformOp atop = new AffineTransformOp(at,rh);
         BufferedImage imagenRotada = atop.filter(imagen, null);
+
 		grafico.drawImage(imagenRotada,(int) this.posicionable.getX(),(int) this.posicionable.getY(), null);
 	}
+	
 	    
 
 	/**

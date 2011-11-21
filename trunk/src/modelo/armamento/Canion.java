@@ -6,7 +6,7 @@ import modelo.Tanque;
 public class Canion extends Arma {
 
 	private final int TIEMPO_CARGA=1000;
-	private final int MUNICION_INICIAL=10;
+	private final int MUNICION_INICIAL=20;
 	private int municion;
 	public Canion(Tanque tanque){
 		setTanque(tanque);

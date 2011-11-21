@@ -2,6 +2,8 @@ package misc;
 
 import controlador.ControladorTanqueHeroe;
 import vista.VistaBalaAmetralladora;
+import vista.VistaBalaCanion;
+import vista.VistaCohete;
 import vista.VistaTanqueHeroe;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
@@ -36,6 +38,8 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjeto(bala);
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
+		VistaBalaCanion vista= new VistaBalaCanion(bala);
+		ControladorJuego.getInstancia().agregarDibujable(vista);
 		return bala;
 	}
 	public static Cohete crearCohete(){
@@ -43,6 +47,8 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjeto(cohete);
 		Escenario.getActual().agregarObjetoSolido(cohete);
 		Escenario.getActual().agregarObjetoVivo(cohete);
+		VistaCohete vista= new VistaCohete(cohete);
+		ControladorJuego.getInstancia().agregarDibujable(vista);
 		return cohete;
 	}
 	public static Explosion crearExplosion(double x,double y){

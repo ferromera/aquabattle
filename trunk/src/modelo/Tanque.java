@@ -137,8 +137,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 				armaActual = itArmaActual.next();
 			else
 				armaActual = null;
-
 		}
+		notificar();
 	}
 
 	public void agregarArma(Arma arma) {
@@ -158,8 +158,11 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		itArmaActual = armas.iterator();
 		while (itArmaActual.hasNext()) {
 			armaActual = itArmaActual.next();
-			if (armaActual.equals(arma))
+			if (armaActual.equals(arma)){
+				notificar();
 				return;
+			}
+				
 		}
 		throw new NoExisteArmaSeleccionadaException();
 	}
