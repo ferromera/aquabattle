@@ -1,23 +1,24 @@
 package vista;
 
+import misc.Observador;
+
+import modelo.armamento.BalaCanion;
 import titiritero.ControladorJuego;
 import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import utils.Direccion;
-import misc.Observador;
-import modelo.armamento.BalaAmetralladora;
 
-public class VistaBalaAmetralladora implements Dibujable,Observador {
-	private BalaAmetralladora bala;
+public class VistaBalaCanion implements Dibujable,Observador {
+	private BalaCanion bala;
 	private Imagen sprite;
 	
 	
 	
-	private final String RUTA_SPRITE = "/sprites/SpriteBalaAmetralladora.png"; 
+	private final String RUTA_SPRITE = "/sprites/SpriteBalaCanion2.png"; 
 	
-	public VistaBalaAmetralladora(BalaAmetralladora bala) {
+	public VistaBalaCanion(BalaCanion bala) {
 		this.bala = bala;
 		bala.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE, bala);
@@ -34,15 +35,15 @@ public class VistaBalaAmetralladora implements Dibujable,Observador {
 	}
 
 	public void setPosicionable(Posicionable bala) {
-		this.bala = (BalaAmetralladora) bala;
+		this.bala = (BalaCanion) bala;
 		sprite.setPosicionable(bala);
 	}
 
-	public void setBala(BalaAmetralladora bala) {
+	public void setBala(BalaCanion bala) {
 		setPosicionable(bala);
 	}
 
-	public BalaAmetralladora getBala() {
+	public BalaCanion getBala() {
 		return bala;
 	}
 

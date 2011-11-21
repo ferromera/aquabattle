@@ -33,11 +33,11 @@ public abstract class Arma implements ActionListener  {
 		
 		 if(!cargada)	 
 			return;
+		
 		descargar();
 		Bala bala= crearBala();
 		posicionarBala(bala);
-		if(!tieneMunicion())
-			destruir();
+		
 		
 	}
 	private void posicionarBala(Bala bala){
@@ -92,7 +92,10 @@ public abstract class Arma implements ActionListener  {
 	}
 	public void actionPerformed(ActionEvent e){
 		cargada=true;
-		timer.stop();
+		 if(!tieneMunicion()){
+				destruir();
+		 }
+		 timer.stop();
 		
 	}
 	public void setTanque(Tanque tanque){
