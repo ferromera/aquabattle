@@ -14,7 +14,7 @@ public class VistaBase implements Dibujable,Observador {
 	private Base base;
 	private Imagen sprite;
 
-	private final String RUTA_SPRITE = "/sprites"; //Aca tengo que ver donde esta la imagen
+	private final String RUTA_SPRITE = "/sprites/SpriteBase.png"; 
 
 	private Animacion spriteActual;
 	private Animacion spriteNormal;
@@ -27,7 +27,7 @@ public class VistaBase implements Dibujable,Observador {
 	private static final int FILA_SPRITE_NORMAL = 0;
 	private static final double FPS_NORMAL = 25.0;
 
-	private static final int FILA_SPRITE_DESTRUIDO = 6;
+	private static final int FILA_SPRITE_DESTRUIDO = 1;
 	private static final double FPS_DESTRUIDO = 4.0;
 	
 	
