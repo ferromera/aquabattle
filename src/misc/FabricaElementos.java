@@ -81,6 +81,20 @@ public class FabricaElementos {
 		
 		return tanque;
 	}
+	public static TanqueHeroe crearTanqueHeroe(double x,double y){
+		TanqueHeroe tanque = TanqueHeroe.nuevaInstancia();
+		tanque.setX(x);
+		tanque.setY(y);
+		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoSolido(tanque);
+		Escenario.getActual().agregarObjetoVivo(tanque);
+		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
+		VistaEscenario.getInstancia().agregarVista(vista);
+		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
+		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
+		
+		return tanque;
+	}
 	public static Base crearBase(double x,double y) throws YaExisteBaseException{
 		Base base = new Base(x, y);
 		Escenario.getActual().agregarBase(base);
