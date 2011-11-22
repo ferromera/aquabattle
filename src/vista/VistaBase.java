@@ -7,6 +7,7 @@ import modelo.Escenario;
 import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
+import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 
 public class VistaBase implements Dibujable,Observador {
@@ -14,6 +15,22 @@ public class VistaBase implements Dibujable,Observador {
 	private Imagen sprite;
 
 	private final String RUTA_SPRITE = "/sprites"; //Aca tengo que ver donde esta la imagen
+
+	private Animacion spriteActual;
+	private Animacion spriteNormal;
+	private Animacion spriteDestruido;
+	
+	private static final int ALTO_SPRITE = 50;
+	private static final int ANCHO_SPRITE = 50;
+	
+
+	private static final int FILA_SPRITE_NORMAL = 0;
+	private static final double FPS_NORMAL = 25.0;
+
+	private static final int FILA_SPRITE_DESTRUIDO = 6;
+	private static final double FPS_DESTRUIDO = 4.0;
+	
+	
 	
 	
 	public VistaBase(){
@@ -22,8 +39,21 @@ public class VistaBase implements Dibujable,Observador {
 		}catch (NoExisteBaseException e){
 			e.printStackTrace();
 		}
-		
+		base.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE, base);
+		
+		Imagen subImagen = sprite.getSubimagen( 0 , FILA_SPRITE_NORMAL * ALTO_SPRITE, sprite.getAncho(),ALTO_SPRITE);
+		spriteNormal=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteNormal.setFps(FPS_NORMAL);
+		
+		
+		subImagen = sprite.getSubimagen(0,FILA_SPRITE_DESTRUIDO * ALTO_SPRITE, sprite.getAncho(), ALTO_SPRITE);
+		spriteDestruido=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteDestruido.setFps(FPS_DESTRUIDO);
+				
+		spriteActual = spriteNormal;
+				
+		
 		actualizar();
 	}
 	
@@ -50,7 +80,12 @@ public class VistaBase implements Dibujable,Observador {
 	
 	@Override
 	public void actualizar() {
-			//Aca si esta destruida deberia terminar el juego
+		spriteActual.detener();
+			if (base.estaDestruida()){
+				spriteActual = spriteDestruido;
+				spriteActual.reproducirUnaVez();
+				//Aca se deberia terminar el juego
+			}
 
 	}
 	

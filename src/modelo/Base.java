@@ -32,5 +32,14 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 	public int getResistencia(){
 		return 1;
 	}
-
+	
+	public boolean estaDestruida(){
+		boolean estaDestruida = false;
+		if (impactosRecibidos > 1){
+			estaDestruida = true;
+		}
+		return estaDestruida;
+		}
+	
+	
 }
