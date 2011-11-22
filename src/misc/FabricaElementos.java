@@ -4,6 +4,7 @@ import controlador.ControladorTanqueHeroe;
 import vista.VistaBalaAmetralladora;
 import vista.VistaBalaCanion;
 import vista.VistaCohete;
+import vista.VistaEscenario;
 import vista.VistaTanqueHeroe;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
@@ -30,7 +31,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
 		VistaBalaAmetralladora vista= new VistaBalaAmetralladora(bala);
-		ControladorJuego.getInstancia().agregarDibujable(vista);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return bala;
 	}
 	public static BalaCanion crearBalaCanion(){
@@ -39,7 +40,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
 		VistaBalaCanion vista= new VistaBalaCanion(bala);
-		ControladorJuego.getInstancia().agregarDibujable(vista);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return bala;
 	}
 	public static Cohete crearCohete(){
@@ -48,7 +49,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(cohete);
 		Escenario.getActual().agregarObjetoVivo(cohete);
 		VistaCohete vista= new VistaCohete(cohete);
-		ControladorJuego.getInstancia().agregarDibujable(vista);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return cohete;
 	}
 	public static Explosion crearExplosion(double x,double y){
@@ -74,7 +75,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
-		ControladorJuego.getInstancia().agregarDibujable(vista);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
 		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
 		

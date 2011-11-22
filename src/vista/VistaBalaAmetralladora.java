@@ -9,10 +9,10 @@ import utils.Direccion;
 import misc.Observador;
 import modelo.armamento.BalaAmetralladora;
 
-public class VistaBalaAmetralladora implements Dibujable,Observador {
+public class VistaBalaAmetralladora extends Vista implements Observador {
 	private BalaAmetralladora bala;
 	private Imagen sprite;
-	
+	private static final int ORDEN=5;
 	
 	
 	private final String RUTA_SPRITE = "/sprites/SpriteBalaAmetralladora.png"; 
@@ -21,12 +21,14 @@ public class VistaBalaAmetralladora implements Dibujable,Observador {
 		this.bala = bala;
 		bala.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE, bala);
+		orden=ORDEN;
 		actualizar();
 		
 	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
+		System.out.println("Dibujado ametralladora");
 	}
 
 	public Posicionable getPosicionable() {
@@ -74,4 +76,5 @@ public class VistaBalaAmetralladora implements Dibujable,Observador {
 				
 			}
 	}
+	
 }

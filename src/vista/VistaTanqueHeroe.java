@@ -13,9 +13,11 @@ import modelo.TanqueHeroe;
 import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;
 
-public class VistaTanqueHeroe implements Dibujable, Observador {
+public class VistaTanqueHeroe extends Vista implements Observador {
 	private TanqueHeroe tanque;
-
+	
+	private static final int ORDEN=2;
+	
 	private Animacion spriteActual;
 	private Animacion spriteNormalAmetralladora;
 	private Animacion spriteNormalCanion;
@@ -51,6 +53,7 @@ public class VistaTanqueHeroe implements Dibujable, Observador {
 
 	public VistaTanqueHeroe(TanqueHeroe tanque) {
 		this.tanque = tanque;
+		orden=ORDEN;
 		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
 		
@@ -101,6 +104,7 @@ public class VistaTanqueHeroe implements Dibujable, Observador {
 	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
+		System.out.println("Dibujado tanque");
 		spriteActual.dibujar(sup);
 	}
 
