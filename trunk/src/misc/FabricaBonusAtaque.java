@@ -4,6 +4,7 @@ import excepciones.NoSePudoPosicionarException;
 
 public class FabricaBonusAtaque extends FabricaBonus {
 	
+	
 	public FabricaBonusAtaque(SorteadorBinario sorteador){
 		super(sorteador);
 	}
