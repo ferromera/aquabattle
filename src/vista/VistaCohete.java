@@ -13,7 +13,7 @@ import utils.Direccion;
 public class VistaCohete extends Vista implements Observador {
 	private Cohete bala;
 	private Imagen sprite;
-	private static final int ORDEN=8;
+	private static final int ORDEN=3;
 	
 	
 	

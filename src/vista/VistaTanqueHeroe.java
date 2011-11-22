@@ -16,7 +16,7 @@ import modelo.armamento.Canion;
 public class VistaTanqueHeroe extends Vista implements Observador {
 	private TanqueHeroe tanque;
 	
-	private static final int ORDEN=2;
+	private static final int ORDEN=3;
 	
 	private Animacion spriteActual;
 	private Animacion spriteNormalAmetralladora;

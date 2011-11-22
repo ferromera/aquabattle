@@ -13,11 +13,11 @@ import utils.Direccion;
 public class VistaBalaCanion extends Vista implements Observador {
 	private BalaCanion bala;
 	private Imagen sprite;
-	private static final int ORDEN=4;
+	private static final int ORDEN=3;
 	
 	
 	
-	private final String RUTA_SPRITE = "/sprites/SpriteBalaCanion2.png"; 
+	private final String RUTA_SPRITE = "/sprites/SpriteBalaCanion.png"; 
 	
 	public VistaBalaCanion(BalaCanion bala) {
 		this.bala = bala;

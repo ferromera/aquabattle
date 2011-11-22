@@ -12,7 +12,7 @@ import modelo.armamento.BalaAmetralladora;
 public class VistaBalaAmetralladora extends Vista implements Observador {
 	private BalaAmetralladora bala;
 	private Imagen sprite;
-	private static final int ORDEN=5;
+	private static final int ORDEN=3;
 	
 	
 	private final String RUTA_SPRITE = "/sprites/SpriteBalaAmetralladora.png"; 
