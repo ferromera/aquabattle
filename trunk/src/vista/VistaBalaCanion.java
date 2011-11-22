@@ -10,9 +10,10 @@ import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import utils.Direccion;
 
-public class VistaBalaCanion implements Dibujable,Observador {
+public class VistaBalaCanion extends Vista implements Observador {
 	private BalaCanion bala;
 	private Imagen sprite;
+	private static final int ORDEN=4;
 	
 	
 	
@@ -22,12 +23,14 @@ public class VistaBalaCanion implements Dibujable,Observador {
 		this.bala = bala;
 		bala.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE, bala);
+		orden=ORDEN;
 		actualizar();
 		
 	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
+		System.out.println("Dibujado canion");
 	}
 
 	public Posicionable getPosicionable() {

@@ -10,9 +10,10 @@ import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import utils.Direccion;
 
-public class VistaCohete implements Dibujable,Observador {
+public class VistaCohete extends Vista implements Observador {
 	private Cohete bala;
 	private Imagen sprite;
+	private static final int ORDEN=8;
 	
 	
 	
@@ -22,12 +23,14 @@ public class VistaCohete implements Dibujable,Observador {
 		this.bala = bala;
 		bala.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE, bala);
+		orden=ORDEN;
 		actualizar();
 		
 	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
+		System.out.println("Dibujado cohete");
 	}
 
 	public Posicionable getPosicionable() {
