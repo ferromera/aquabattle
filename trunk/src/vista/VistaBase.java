@@ -14,21 +14,10 @@ public class VistaBase implements Dibujable,Observador {
 	private Base base;
 	private Imagen sprite;
 
-	private final String RUTA_SPRITE = "/sprites/SpriteBase.png"; 
+	private final String RUTA_SPRITE_BaseNormal = "/sprites/SpriteBaseNormal.png"; 
+	private final String RUTA_SPRITE_BaseConDisparo = "/sprites/SpriteBaseConDisparo.png"; 
+	private final String RUTA_SPRITE_BaseDestruida = "/sprites/SpriteBaseDestruida.png"; 
 
-	private Animacion spriteActual;
-	private Animacion spriteNormal;
-	private Animacion spriteDestruido;
-	
-	private static final int ALTO_SPRITE = 50;
-	private static final int ANCHO_SPRITE = 50;
-	
-
-	private static final int FILA_SPRITE_NORMAL = 0;
-	private static final double FPS_NORMAL = 25.0;
-
-	private static final int FILA_SPRITE_DESTRUIDO = 1;
-	private static final double FPS_DESTRUIDO = 4.0;
 	
 	
 	
@@ -40,19 +29,7 @@ public class VistaBase implements Dibujable,Observador {
 			e.printStackTrace();
 		}
 		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE, base);
-		
-		Imagen subImagen = sprite.getSubimagen( 0 , FILA_SPRITE_NORMAL * ALTO_SPRITE, sprite.getAncho(),ALTO_SPRITE);
-		spriteNormal=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteNormal.setFps(FPS_NORMAL);
-		
-		
-		subImagen = sprite.getSubimagen(0,FILA_SPRITE_DESTRUIDO * ALTO_SPRITE, sprite.getAncho(), ALTO_SPRITE);
-		spriteDestruido=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteDestruido.setFps(FPS_DESTRUIDO);
-				
-		spriteActual = spriteNormal;
-				
+		sprite = new Imagen(RUTA_SPRITE_BaseNormal, base);
 		
 		actualizar();
 	}
@@ -80,13 +57,17 @@ public class VistaBase implements Dibujable,Observador {
 	
 	@Override
 	public void actualizar() {
-		spriteActual.detener();
-			if (base.estaDestruida()){
-				spriteActual = spriteDestruido;
-				spriteActual.reproducirUnaVez();
-				//Aca se deberia terminar el juego
-			}
+			if (base.impactosRecibidos() == 1){
+				Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BaseConDisparo, base);
+				sprite = nuevaImagen;
+			}else if (base.impactosRecibidos() > 1){
+				Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BaseDestruida, base);
+				sprite = nuevaImagen;
 
-	}
-	
+				//Aca se deberia terminar el juego
+				
+			}
+		}
+
 }
+	
