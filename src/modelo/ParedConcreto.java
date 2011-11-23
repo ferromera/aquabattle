@@ -15,7 +15,7 @@ Posicionable, Observable {
 	 
 	public ParedConcreto(double posicionEnX, double posicionEnY){
 		super(posicionEnX,posicionEnY);
-		setAlto(ALTO);      //Poner la medida que se va a usar
+		setAlto(ALTO);   
 		setAncho(ANCHO); 
 		
 	}

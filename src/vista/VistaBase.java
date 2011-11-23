@@ -36,6 +36,7 @@ public class VistaBase implements Dibujable,Observador {
 	
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
+		System.out.println("Dibujada Base");
 	}
 	
 	public Posicionable getPosicionable() {
