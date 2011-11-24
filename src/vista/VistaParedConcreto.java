@@ -11,13 +11,13 @@ public class VistaParedConcreto extends Vista implements Observador{
 	private ParedConcreto pared;
 	private Imagen sprite;
 	
-	private final String RUTA_SPRITE_BaseNormal = "/sprites/SpriteParedConcretoNormal.png"; 
-	private final String RUTA_SPRITE_BaseDestruida = "/sprites/SpriteParedConcretoDestruida.png";
+	private final String RUTA_SPRITE_ParedConcretoNormal = "/sprites/SpriteParedConcretoNormal.png"; 
+	private final String RUTA_SPRITE_ParedConcretoDestruida = "/sprites/SpriteParedConcretoDestruida.png";
 	
 	public VistaParedConcreto(ParedConcreto paredConcreto){
 		this.pared = paredConcreto;
 		paredConcreto.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BaseNormal, paredConcreto);
+		sprite = new Imagen(RUTA_SPRITE_ParedConcretoNormal, paredConcreto);
 		actualizar();
 		
 	}
@@ -49,7 +49,7 @@ public class VistaParedConcreto extends Vista implements Observador{
 	@Override
 	public void actualizar() {
 		if (pared.estaDestruida()){
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BaseDestruida, pared);
+			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_ParedConcretoDestruida, pared);
 			sprite = nuevaImagen;
 			//Borrarla del escenario
 		}
