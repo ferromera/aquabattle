@@ -37,5 +37,8 @@ Posicionable, Observable {
 		return destruida;
 	}
 	
+	public int impactosRecibidos(){
+		return impactosRecibidos;
+	}
 	
 }
