@@ -14,9 +14,9 @@ public class VistaBase implements Dibujable,Observador {
 	private Base base;
 	private Imagen sprite;
 
-	private final String RUTA_SPRITE_BaseNormal = "/sprites/SpriteBaseNormal.png"; 
-	private final String RUTA_SPRITE_BaseConDisparo = "/sprites/SpriteBaseConDisparo.png"; 
-	private final String RUTA_SPRITE_BaseDestruida = "/sprites/SpriteBaseDestruida.png"; 
+	private final String RUTA_SPRITE_BaseNormal = "/sprites/SpriteBaseNormal.PNG"; 
+	private final String RUTA_SPRITE_BaseConDisparo = "/sprites/SpriteBaseConDisparo.PNG"; 
+	private final String RUTA_SPRITE_BaseDestruida = "/sprites/SpriteBaseDestruida.PNG"; 
 
 	
 	
