@@ -4,6 +4,7 @@ import controlador.ControladorTanqueHeroe;
 import vista.VistaBalaAmetralladora;
 import vista.VistaBalaCanion;
 import vista.VistaBase;
+import vista.VistaBonusAtaque;
 import vista.VistaBonusVida;
 import vista.VistaCohete;
 import vista.VistaEscenario;
@@ -124,6 +125,8 @@ public class FabricaElementos {
 		BonusAtaque bonus= new BonusAtaque(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
+		VistaBonusAtaque vista = new VistaBonusAtaque(bonus);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		
 		return bonus;
 	}
