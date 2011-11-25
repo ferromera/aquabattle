@@ -51,7 +51,7 @@ public class Pruebas {
 		//Agrego objetos vivos
 		controladorJuego.agregarObjetoVivo(escenario);
 		
-		Nivel nivel1=new Nivel(1,"./bin/niveles/nivel1.xml");
+		Nivel nivel1=new Nivel(1,"./bin/niveles/nivel1.xml",1000);
 		try {
 			nivel1.cargar();
 		} catch (NoPudoLeerXMLExeption e) {

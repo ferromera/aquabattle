@@ -7,6 +7,8 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 
+import modelo.Escenario;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -20,9 +22,12 @@ import excepciones.YaExisteBaseException;
 public class Nivel {
 
 	private boolean ganado;
-	private boolean perdido;
+	private int puntos;
+	private final int maxPuntos;
 	private String rutaXML;
 	private String tagNivel;
+	private double xInicial;
+	private double yInicial;
 	private static final String TAG_TANQUE_HEROE = "heroe";
 	private static final String TAG_PARED = "pared";
 	private static final String TAG_FLOTA = "flota";
@@ -36,11 +41,17 @@ public class Nivel {
 	private static final String TAG_BERNOULLI = "bernoulli";
 	private static final String TAG_BASE = "base";
 
-	public Nivel(int numeroDeNivel, String ruta) {
+	public Nivel(int numeroDeNivel, String ruta,int puntosNivel) {
 		tagNivel = "nivel";
 		tagNivel.concat(Integer.toString(numeroDeNivel));
 		rutaXML = ruta;
+		maxPuntos=puntosNivel;
 
+	}
+	public void sumarPuntos(int puntosGanados){
+		puntos+=puntosGanados;
+		if(puntos >= maxPuntos)
+			ganado=true;
 	}
 
 	public void cargar() throws NoPudoLeerXMLExeption {
@@ -274,12 +285,12 @@ public class Nivel {
 
 	private void cargarHeroe(Element elemHeroe) throws NoPudoLeerXMLExeption {
 		
-		double x = getPosX(elemHeroe);
-		double y = getPosY(elemHeroe);
+		xInicial = getPosX(elemHeroe);
+		yInicial = getPosY(elemHeroe);
 		
 
 		try {
-			FabricaElementos.crearTanqueHeroe(x, y);
+			FabricaElementos.crearTanqueHeroe(xInicial,yInicial);
 		} catch (NoSePudoPosicionarException e) {
 			System.err.println("No se pudo posicionar heroe al cargar "
 					+ tagNivel);
@@ -289,19 +300,18 @@ public class Nivel {
 
 	}
 
-	public void setGanado(boolean b) {
-		ganado = b;
-	}
 
-	public void setPerdido(boolean b) {
-		perdido = b;
-	}
+	
 
 	public boolean estaGanado() {
 		return ganado;
 	}
-
-	public boolean estaPerdido() {
-		return perdido;
+	public double getXInicial() {
+		return xInicial;
 	}
+	public double getYInicial() {
+		return xInicial;
+	}
+
+	
 }

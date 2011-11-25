@@ -43,4 +43,7 @@ public abstract class FabricaBonus implements ActionListener{
 	public void setSorteadorBinario(SorteadorBinario sorteadorBinario) {
 		this.sorteadorBinario = sorteadorBinario;
 	}
+	public boolean estaProduciendo(){
+		return produciendo;
+	}
 }
