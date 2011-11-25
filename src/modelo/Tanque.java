@@ -211,8 +211,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		mejoras.add(mejoraTanque);
 		if (!mejorado) {
 			mejorado = true;
-			notificar();
 		}
+		notificar();
 	}
 
 	public void quitarMejora(Mejora mejora) {

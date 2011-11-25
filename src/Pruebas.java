@@ -4,6 +4,8 @@ import titiritero.vista.KeyPressedController;
 
 import controlador.ControladorTanqueHeroe;
 import excepciones.NoExisteArmaSeleccionadaException;
+import excepciones.NoSePudoPosicionarException;
+import excepciones.YaExisteBaseException;
 
 import titiritero.ControladorJuego;
 
@@ -17,7 +19,11 @@ import vista.VistaEscenario;
 import vista.VistaTanqueHeroe;
 
 import misc.FabricaElementos;
+import modelo.Base;
+import modelo.BonusVida;
 import modelo.Escenario;
+import modelo.ParedConcreto;
+import modelo.ParedMetal;
 import modelo.TanqueHeroe;
 import modelo.armamento.Canion;
 import modelo.armamento.LanzaCohetes;
@@ -41,9 +47,26 @@ public class Pruebas {
 		//Agrego objetos vivos
 		controladorJuego.agregarObjetoVivo(escenario);
 		
+		ParedConcreto pared = FabricaElementos.crearParedConcreto(0.0,100.0);
+		ParedMetal pared2 = FabricaElementos.crearParedMetal(0.0,200.0);
+		
+		try{
+		Base base = FabricaElementos.crearBase(100.0,100.0);
+		}catch (YaExisteBaseException e){
+			e.printStackTrace();
+		}
+		
+		try{
+		BonusVida bonus = FabricaElementos.crearBonusVida();
+		} catch (NoSePudoPosicionarException e){
+			e.printStackTrace();
+		}
+		
+		
+		
 		TanqueHeroe tanque=FabricaElementos.crearTanqueHeroe();
 		tanque.setX(0.0);
-		tanque.setY(100.0);
+		tanque.setY(300.0);
 		
 		LanzaCohetes arma=new LanzaCohetes(tanque);
 		tanque.agregarArma(arma);
@@ -55,6 +78,8 @@ public class Pruebas {
 			e.printStackTrace();
 		}
 		tanque.mover(Direccion.Este());
+		
+		
 		
 		controladorJuego.comenzarJuego();
 		
