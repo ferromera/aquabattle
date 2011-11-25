@@ -4,18 +4,29 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import modelo.armamento.Arma;
 import modelo.mejoras.Mejora;
 import modelo.mejoras.MejoraTanque;
 import modelo.mejoras.Mejorable;
 
 import excepciones.NoExisteArmaSeleccionadaException;
+import excepciones.NoPudoLeerXMLExeption;
 
 import titiritero.ObjetoVivo;
 import utils.Direccion;
 
 public abstract class Tanque extends ElementoRectangularSolido implements
 		ObjetoVivo, Mejorable {
+	public static final String TAG = "tanque";
+	private static final String TAG_RESISTENCIA = "resistencia";
+	private static final String TAG_VELOCIDAD = "velocidad";
+	private static final String TAG_MOVIENDOSE = "moviendose";
+	private static final String TAG_MEJORADO = "mejorado";
+	private static final String TAG_DESTRUIDO = "destruido";
+	private static final String TAG_PAUSADO = "pausado";
 	private ArrayList<Arma> armas;
 	private Arma armaActual;
 	private Iterator<Arma> itArmaActual;
@@ -39,6 +50,65 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		this.armaActual = null;
 		ultimoTiempo = new Date().getTime();
 		pausado=true;
+	}
+	
+	public Tanque(Element element) throws NoPudoLeerXMLExeption{
+		super((Element)element.getElementsByTagName(ElementoRectangularSolido.TAG).item(0));
+		//Por default
+		moviendose = false;
+		orientarNorte();
+		resistencia = 100;
+		velocidad = 100.0;
+		armas = new ArrayList<Arma>();
+		itArmaActual = armas.iterator();
+		this.armaActual = null;
+		ultimoTiempo = new Date().getTime();
+		pausado=true;
+		NodeList nodo;
+		Element elem;
+		nodo = element.getElementsByTagName(TAG_RESISTENCIA);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_RESISTENCIA+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			resistencia=Integer.parseInt(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_VELOCIDAD);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_VELOCIDAD+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			velocidad=Double.parseDouble(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_MOVIENDOSE);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MOVIENDOSE+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			moviendose=Boolean.parseBoolean(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_MEJORADO);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MEJORADO+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			mejorado=Boolean.parseBoolean(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_DESTRUIDO);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DESTRUIDO+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			destruido=Boolean.parseBoolean(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_PAUSADO);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_PAUSADO+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			pausado=Boolean.parseBoolean(elem.getNodeValue());
+		}
+		
 	}
 
 	public void vivir() {
