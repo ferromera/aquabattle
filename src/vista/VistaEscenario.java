@@ -6,12 +6,15 @@ import java.util.PriorityQueue;
 import modelo.Escenario;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
+import titiritero.vista.Imagen;
 
 public class VistaEscenario extends Vista{
 	
 	private Escenario escenario;
 	private PriorityQueue<Vista> vistas;
 	private static VistaEscenario instancia;
+	private static final String RUTA_SUELO="/sprites/suelo.png";
+	private Imagen suelo;
 	public static VistaEscenario getInstancia(){
 		if(instancia==null)
 			instancia=new VistaEscenario();
@@ -20,10 +23,12 @@ public class VistaEscenario extends Vista{
 	
 	public VistaEscenario(){
 		vistas=new PriorityQueue<Vista>();
+		suelo = new Imagen(RUTA_SUELO, Escenario.getActual());
 	}
 
 	@Override
 	public void dibujar(SuperficieDeDibujo superfice) {
+		suelo.dibujar(superfice);
 		PriorityQueue<Vista> clon=new PriorityQueue<Vista>();
 		Iterator<Vista> it= vistas.iterator();
 		while(it.hasNext()){
@@ -46,6 +51,9 @@ public class VistaEscenario extends Vista{
 	}
 	public void agregarVista(Vista vista){
 		vistas.add(vista);
+	}
+	public void borrarVista(Vista vista){
+		vistas.remove(vista);
 	}
 	
 

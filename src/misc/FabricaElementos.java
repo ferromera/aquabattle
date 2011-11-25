@@ -107,8 +107,6 @@ public class FabricaElementos {
 	public static Base crearBase(double x,double y) throws YaExisteBaseException{
 		Base base = new Base(x, y);
 		Escenario.getActual().agregarBase(base);
-		Escenario.getActual().agregarObjeto(base);
-		Escenario.getActual().agregarObjetoSolido(base);
 		VistaBase vista = new VistaBase();
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return base;

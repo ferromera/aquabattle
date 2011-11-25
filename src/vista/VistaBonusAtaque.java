@@ -41,7 +41,6 @@ public class VistaBonusAtaque extends Vista implements Observador {
 	}
 	
 	public void dibujar(SuperficieDeDibujo sup) {
-		System.out.println("Dibujado Bonus Ataque");
 		spriteActual.dibujar(sup);
 	}
 

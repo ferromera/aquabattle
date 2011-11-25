@@ -41,7 +41,6 @@ public class VistaBonusVida extends Vista implements Observador {
 	}
 	
 	public void dibujar(SuperficieDeDibujo sup) {
-		System.out.println("Dibujado Bonus Vida");
 		spriteActual.dibujar(sup);
 	}
 

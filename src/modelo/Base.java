@@ -29,11 +29,13 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 		this.impactosRecibidos ++;
 		if (impactosRecibidos > 1){
 			try{
+				System.out.println("Base Muerta");
 			Escenario.getActual().borrarBase();
 			}catch (NoExisteBaseException e){
 				e.printStackTrace();
 			}
 		}
+		notificar();
 	}
 	
 	public int getResistencia(){

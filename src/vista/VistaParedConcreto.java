@@ -25,7 +25,6 @@ public class VistaParedConcreto extends Vista implements Observador{
 	
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		System.out.println("Dibujada Pared Concreto");
 	}
 	
 	public Posicionable getPosicionable() {
