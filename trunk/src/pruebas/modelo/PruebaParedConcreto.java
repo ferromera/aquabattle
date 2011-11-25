@@ -9,13 +9,19 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
+import excepciones.NoSePudoPosicionarException;
+
 public class PruebaParedConcreto {
 	ParedConcreto paredDeConcreto;
 	
 	@Before
 	public void setUp(){
 		Escenario.nuevaInstancia();
-		paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
+		try {
+			paredDeConcreto= FabricaElementos.crearParedConcreto(100.0, 100.0);
+		} catch (NoSePudoPosicionarException e) {
+			e.printStackTrace();
+		}
 	}
 	
 

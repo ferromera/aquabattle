@@ -13,7 +13,7 @@ public class PosicionadorAleatorioStd  implements PosicionadorAleatorio{
 		while(posicionInvalida){
 				
 			if(iteraciones > 1000)
-				throw new NoSePudoPosicionarException();
+				throw new NoSePudoPosicionarException("PosicionadorAleatorioStd fallo al posicionar elemento.");
 			x= generarX();
 			y= generarY();
 			elemento.setX(x);

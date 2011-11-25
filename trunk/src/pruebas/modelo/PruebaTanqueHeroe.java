@@ -12,6 +12,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
+import excepciones.NoSePudoPosicionarException;
+
 import utils.Direccion;
 
 public class PruebaTanqueHeroe {
@@ -22,18 +24,24 @@ public class PruebaTanqueHeroe {
 	@Before
 	public void setUp(){
 		Escenario.nuevaInstancia();
-		heroe = FabricaElementos.crearTanqueHeroe();
-		heroe.setX(300.0);
-		heroe.setY(200.0);
-		heroe.setAncho(50.0);
-		heroe.setAlto(50.0);
-		heroe.setVelocidad(100.0);
-		paredConcreto= FabricaElementos.crearParedConcreto(300.0, 100.0);
-		paredConcreto.setAlto(50.0);
-		paredConcreto.setAncho(50.0);
-		paredMetal= FabricaElementos.crearParedMetal(500.0, 200.0);
-		paredMetal.setAlto(50.0);
-		paredMetal.setAncho(50.0);
+		try {
+			heroe = FabricaElementos.crearTanqueHeroe();
+			heroe.setX(300.0);
+			heroe.setY(200.0);
+			heroe.setAncho(50.0);
+			heroe.setAlto(50.0);
+			heroe.setVelocidad(100.0);
+			paredConcreto= FabricaElementos.crearParedConcreto(300.0, 100.0);
+			paredConcreto.setAlto(50.0);
+			paredConcreto.setAncho(50.0);
+			paredMetal= FabricaElementos.crearParedMetal(500.0, 200.0);
+			paredMetal.setAlto(50.0);
+			paredMetal.setAncho(50.0);
+			
+		} catch (NoSePudoPosicionarException e) {
+			e.printStackTrace();
+		}
+		
 		
 		
 	}

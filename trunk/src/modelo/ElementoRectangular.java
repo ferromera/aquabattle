@@ -326,4 +326,6 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		return posY + alto/2.0;
 	}
 	
+	
+	
 }

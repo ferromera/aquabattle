@@ -47,44 +47,37 @@ public class Pruebas {
 		//Agrego objetos vivos
 		controladorJuego.agregarObjetoVivo(escenario);
 		
-		ParedConcreto pared = FabricaElementos.crearParedConcreto(0.0,100.0);
-		ParedMetal pared2 = FabricaElementos.crearParedMetal(0.0,200.0);
-		ParedMetal pared3 = FabricaElementos.crearParedMetal(0.0,250.0);
-		ParedMetal pared4 = FabricaElementos.crearParedMetal(0.0,300.0);
-		
-		try{
-		Base base = FabricaElementos.crearBase(100.0,100.0);
-		}catch (YaExisteBaseException e){
-			e.printStackTrace();
-		}
-		
-		
-		try{
-		BonusAtaque bonus = FabricaElementos.crearBonusAtaque();
-		} catch (NoSePudoPosicionarException e){
-			e.printStackTrace();
-		}
-		
-		
-		
-		TanqueHeroe tanque=FabricaElementos.crearTanqueHeroe();
-		tanque.setX(0.0);
-		tanque.setY(400.0);
-		
-		LanzaCohetes arma=new LanzaCohetes(tanque);
-		tanque.agregarArma(arma);
-		Canion canion=new Canion(tanque);
-		tanque.agregarArma(canion);
 		try {
+			ParedConcreto pared = FabricaElementos.crearParedConcreto(0.0,100.0);
+			ParedMetal pared2 = FabricaElementos.crearParedMetal(0.0,200.0);
+			ParedMetal pared3 = FabricaElementos.crearParedMetal(0.0,250.0);
+			ParedMetal pared4 = FabricaElementos.crearParedMetal(0.0,300.0);
+			Base base = FabricaElementos.crearBase(100.0,100.0);
+			BonusAtaque bonus = FabricaElementos.crearBonusAtaque();
+			TanqueHeroe tanque=FabricaElementos.crearTanqueHeroe();
+			tanque.setX(0.0);
+			tanque.setY(400.0);
+			
+			LanzaCohetes arma=new LanzaCohetes(tanque);
+			tanque.agregarArma(arma);
+			Canion canion=new Canion(tanque);
+			tanque.agregarArma(canion);
 			tanque.seleccionarArma(arma);
+			tanque.mover(Direccion.Este());
+			controladorJuego.comenzarJuego();
+			
+		} catch (NoSePudoPosicionarException e1) {
+			e1.printStackTrace();
+		} catch (YaExisteBaseException e){
+			e.printStackTrace();
 		} catch (NoExisteArmaSeleccionadaException e) {
 			e.printStackTrace();
 		}
-		tanque.mover(Direccion.Este());
 		
 		
 		
-		controladorJuego.comenzarJuego();
+		
+		
 		
 		/*ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		Ventana ventana = new Ventana(960,720,controladorJuego);
