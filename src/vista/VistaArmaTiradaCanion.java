@@ -1,33 +1,33 @@
 package vista;
 
 import misc.Observador;
-import modelo.BonusArmaLanzaCohetes;
+import modelo.ArmaTiradaCanion;
 import modelo.TanqueHeroe;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 
-public class VistaBonusArmaLanzaCohetes extends Vista implements Observador {
-	private BonusArmaLanzaCohetes bonusArmaLanzaCohetes;
+public class VistaArmaTiradaCanion extends Vista implements Observador {
+	private ArmaTiradaCanion ArmaTiradaCanion;
 	
 
 	private Animacion spriteActual;
 	
 
-	private final String RUTA_SPRITE = "/sprites/SpriteBonusArmaLanzaCohetes.png";
+	private final String RUTA_SPRITE = "/sprites/SpriteBonusArmaCanion.png";
 	
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
 	
 	private static final double FPS_NORMAL_BONUS= 5.0;
 	
-	public VistaBonusArmaLanzaCohetes(BonusArmaLanzaCohetes bonusArmaLanzaCohetes){
-		this.bonusArmaLanzaCohetes = bonusArmaLanzaCohetes;
-		bonusArmaLanzaCohetes.adscribir(this);
+	public VistaArmaTiradaCanion(ArmaTiradaCanion ArmaCanion){
+		this.ArmaTiradaCanion = ArmaCanion;
+		ArmaCanion.adscribir(this);
 		
 
-		Imagen spriteBonus = new Imagen(RUTA_SPRITE, bonusArmaLanzaCohetes);
+		Imagen spriteBonus = new Imagen(RUTA_SPRITE, ArmaCanion);
 		
 		Imagen subImagen = spriteBonus.getSubimagen( 0 , 0,
 				spriteBonus.getAncho(),ALTO_SPRITE);
@@ -45,33 +45,34 @@ public class VistaBonusArmaLanzaCohetes extends Vista implements Observador {
 	}
 
 	public Posicionable getPosicionable() {
-		return this.bonusArmaLanzaCohetes;
+		return this.ArmaTiradaCanion;
 	}
 
 	public void setPosicionable(Posicionable bonus) {
-		this.bonusArmaLanzaCohetes = (BonusArmaLanzaCohetes) bonus;
+		this.ArmaTiradaCanion = (ArmaTiradaCanion) bonus;
 		spriteActual.setPosicionable(bonus);
 
 	}
 
-	public void setBonusArmaLanzaCohetes(BonusArmaLanzaCohetes bonusArmaLanzaCohetes) {
-		setPosicionable(bonusArmaLanzaCohetes);
+	public void setBonusArmaCanion(ArmaTiradaCanion bonusArmaCanion) {
+		setPosicionable(bonusArmaCanion);
 	}
 
-	public BonusArmaLanzaCohetes getBonusArmaLanzaCohetes() {
-		return this.bonusArmaLanzaCohetes;
+	public ArmaTiradaCanion getBonusArmaCanion() {
+		return this.ArmaTiradaCanion;
 	}
 
 	@Override
 	public void actualizar() {
 		spriteActual.reproducir();
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if (this.bonusArmaLanzaCohetes.superpuestoCon(tanque)) {
+		if (this.ArmaTiradaCanion.superpuestoCon(tanque)) {
 			
 			//Destruir Bonus
 		}
 
 
 	}
+	
 
 }
