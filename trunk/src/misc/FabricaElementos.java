@@ -1,6 +1,8 @@
 package misc;
 
 import controlador.ControladorTanqueHeroe;
+import vista.VistaArmaTiradaCanion;
+import vista.VistaArmaTiradaLanzaCohetes;
 import vista.VistaBalaAmetralladora;
 import vista.VistaBalaCanion;
 import vista.VistaBase;
@@ -14,6 +16,8 @@ import vista.VistaParedMetal;
 import vista.VistaTanqueHeroe;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
+import modelo.ArmaTiradaCanion;
+import modelo.ArmaTiradaLanzaCohetes;
 import modelo.Base;
 import modelo.BonusAtaque;
 import modelo.BonusVida;
@@ -208,6 +212,28 @@ public class FabricaElementos {
 		//VistaEscenario.getInstancia().agregarVista(vista);
 		
 	}
-
 	
+	
+	public static ArmaTiradaCanion crearArmaTiradaCanion(double posX,double posY)
+			throws NoSePudoPosicionarException {
+		ArmaTiradaCanion arma = new ArmaTiradaCanion(posX,posY);
+		Escenario.getActual().agregarObjeto(arma);
+		Escenario.getActual().agregarObjetoVivo(arma);
+		VistaArmaTiradaCanion vista = new VistaArmaTiradaCanion(arma);
+		VistaEscenario.getInstancia().agregarVista(vista);
+
+		return arma;
+	}
+	
+	public static ArmaTiradaLanzaCohetes crearArmaTiradaLanzaCohetes(double posX,double posY)
+			throws NoSePudoPosicionarException {
+		ArmaTiradaLanzaCohetes arma = new ArmaTiradaLanzaCohetes(posX,posY);
+		Escenario.getActual().agregarObjeto(arma);
+		Escenario.getActual().agregarObjetoVivo(arma);
+		VistaArmaTiradaLanzaCohetes vista = new VistaArmaTiradaLanzaCohetes(arma);
+		VistaEscenario.getInstancia().agregarVista(vista);
+
+		return arma;
+	}
+
 }
