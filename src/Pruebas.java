@@ -1,6 +1,6 @@
+
 import java.awt.Color;
 
-import niveles.Nivel;
 
 import titiritero.vista.KeyPressedController;
 
@@ -22,6 +22,7 @@ import vista.VistaEscenario;
 import vista.VistaTanqueHeroe;
 
 import misc.FabricaElementos;
+import misc.Nivel;
 import modelo.Base;
 import modelo.BonusAtaque;
 import modelo.BonusVida;
@@ -37,8 +38,20 @@ public class Pruebas {
 
 	
 	public static void main(String args[]){
+		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
+		KeyPressedController keyController= new KeyPressedController(controladorJuego);
+		Ventana ventana = new Ventana(960+16,720+38,controladorJuego);
+		ventana.addKeyListener(keyController);
+		Panel panel = new Panel(960,720,ventana);
+		controladorJuego.setSuperficieDeDibujo(panel);
+		controladorJuego.setIntervaloSimulacion(1000/50);
+		//Agrego dibujables
+		Escenario escenario= Escenario.getActual();
+		controladorJuego.agregarDibujable(VistaEscenario.getInstancia());
+		//Agrego objetos vivos
+		controladorJuego.agregarObjetoVivo(escenario);
 		
-		Nivel nivel1=new Nivel(1,"./bin/nivel1.xml");
+		Nivel nivel1=new Nivel(1,"./bin/niveles/nivel1.xml");
 		try {
 			nivel1.cargar();
 		} catch (NoPudoLeerXMLExeption e) {
@@ -46,8 +59,10 @@ public class Pruebas {
 			e.printStackTrace();
 		}
 		
+		controladorJuego.comenzarJuego();
 		
-		/*ControladorJuego controladorJuego= ControladorJuego.getInstancia();
+		/*
+		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
 		Ventana ventana = new Ventana(960+16,720+38,controladorJuego);
 		ventana.addKeyListener(keyController);
@@ -87,7 +102,7 @@ public class Pruebas {
 			e.printStackTrace();
 		}
 		
-		*/
+		
 		
 		
 		
