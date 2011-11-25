@@ -1,9 +1,13 @@
 package modelo.armamento;
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
 import modelo.ElementoRectangularSolido;
 
 public class Cohete extends Bala {
-
+	public  static final String TAG = "cohete";
 	private final double VELOCIDAD = 300.0;
 	private final double ANCHO = 50.0;
 	private final double ALTO = 50.0;
@@ -12,6 +16,9 @@ public class Cohete extends Bala {
 		velocidad = VELOCIDAD;
 		setAlto(ALTO);
 		setAncho(ANCHO);
+	}
+	public Cohete(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(Bala.TAG).item(0));
 	}
 	public Cohete(double x, double y) {
 		velocidad = VELOCIDAD;

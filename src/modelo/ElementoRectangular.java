@@ -3,6 +3,12 @@ package modelo;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import misc.DiccionarioDeSerializables;
 import misc.Observable;
 import misc.Observador;
 import titiritero.Posicionable;
@@ -10,6 +16,12 @@ import utils.Direccion;
 
 
 public abstract class ElementoRectangular implements Posicionable , Observable {
+	private static final String TAG_POS_Y = "posicion-y";
+	private static final String TAG_POS_X = "posicion-x";
+	private static final String TAG_ALTO = "alto";
+	private static final String TAG_ANCHO = "ancho";
+	public  static final String TAG = "elemento-rectangular";
+	private static final String TAG_DIRECCION = "direccion";
 	private double posX;
 	private double posY;
 	private double alto;
@@ -25,6 +37,7 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		observadores=new ArrayList<Observador>();
 		orientacion=Direccion.Norte();
 	}
+
 	public ElementoRectangular(double x,double y){
 		posX=x;
 		posY=y;
@@ -34,12 +47,62 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		orientacion=Direccion.Norte();
 	}
 	public ElementoRectangular(double x,double y,double alto, double ancho){
+
 		posX=x;
 		posY=y;
 		this.alto=alto;
 		this.ancho=ancho;
 		observadores=new ArrayList<Observador>();
 		orientacion=Direccion.Norte();
+	}
+	public ElementoRectangular(Element element) throws NoPudoLeerXMLExeption{
+		//Valores por default
+		posX=0.0;
+		posY=0.0;
+		alto=30.0;
+		ancho=30.0;
+		observadores=new ArrayList<Observador>();
+		orientacion=Direccion.Norte();
+		
+		NodeList nodoX = element.getElementsByTagName(TAG_POS_X);
+		if(nodoX!=null && nodoX.getLength()>0){
+			if(nodoX.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_X+" en el nodo "+element.getTagName());
+			Element elemX = (Element) nodoX.item(0);
+			posX=Double.parseDouble(elemX.getNodeValue());
+		}
+		NodeList nodoY = element.getElementsByTagName(TAG_POS_Y);
+		if(nodoY!=null && nodoY.getLength()>0){
+			if(nodoY.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_Y+" en el nodo "+element.getTagName());
+			Element elemY = (Element) nodoY.item(0);
+			posY=Double.parseDouble(elemY.getNodeValue());
+		}
+		NodeList nodoAlto = element.getElementsByTagName(TAG_ALTO);
+		if(nodoAlto!=null && nodoAlto.getLength()>0){
+			if(nodoAlto.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ALTO+" en el nodo "+element.getTagName());
+			Element elemAlto = (Element) nodoAlto.item(0);
+			alto=Double.parseDouble(elemAlto.getNodeValue());
+		}
+		NodeList nodoAncho = element.getElementsByTagName(TAG_ANCHO);
+		if(nodoAncho!=null && nodoAncho.getLength()>0){
+			if(nodoAncho.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ANCHO+" en el nodo "+element.getTagName());
+			Element elemAncho = (Element) nodoAncho.item(0);
+			ancho=Double.parseDouble(elemAncho.getNodeValue());
+		}
+		NodeList nodoDir = element.getElementsByTagName(TAG_DIRECCION);
+		if(nodoDir!=null && nodoDir.getLength()>0){
+			if(nodoDir.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DIRECCION+" en el nodo "+element.getTagName());
+			Element elemDir = (Element) nodoDir.item(0);
+			orientacion=DiccionarioDeSerializables.getInstanciaDireccion(elemDir);
+		}
+		//TODO: Falta Observables
+		
+		
+		
 	}
 	public double getX(){
 		return posX;

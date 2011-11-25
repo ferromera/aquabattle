@@ -3,18 +3,43 @@ package modelo;
 
 import java.util.Iterator;
 
+import misc.DiccionarioDeSerializables;
+
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 
 import excepciones.NoExisteElementoColisionadoException;
+import excepciones.NoPudoLeerXMLExeption;
 
 /*
  * Representa todos los elementos del modelo que pueden chocar
  * entre ellos.
  */
 public abstract class ElementoRectangularSolido extends ElementoRectangular implements Impactable {
+	private static final String TAG_COLISIONADO = "elemento-colisionado";
+	public  static final String TAG = "elemento-rectangular-solido";
+
 	public abstract void recibirImpacto(int fuerza);
 	public abstract int getResistencia();
 	
-	private ElementoRectangularSolido elemColisionado=null;
+	private ElementoRectangularSolido elemColisionado;
+	
+	public ElementoRectangularSolido(){
+		elemColisionado=null;
+	}
+	
+	public ElementoRectangularSolido(Element element) throws NoPudoLeerXMLExeption{
+		super((Element)element.getElementsByTagName(ElementoRectangular.TAG).item(0));
+		elemColisionado=null;
+		NodeList nodoColisionado = element.getElementsByTagName(TAG_COLISIONADO);
+		if(nodoColisionado!=null && nodoColisionado.getLength()>0){
+			if(nodoColisionado.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_COLISIONADO+" en el nodo "+element.getTagName());
+			Element elemDOMColisionado = (Element) nodoColisionado.item(0);
+			elemColisionado=DiccionarioDeSerializables.getInstanciaColisionado(elemDOMColisionado);
+		}
+	}
 	
 	public ElementoRectangularSolido getColisionado() throws NoExisteElementoColisionadoException{
 		if(!estaColisionado())

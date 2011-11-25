@@ -5,6 +5,12 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import misc.DiccionarioDeSerializables;
 import modelo.Tanque;
 
 import utils.Direccion;
@@ -12,12 +18,45 @@ import utils.Direccion;
 
 
 public abstract class Arma implements ActionListener  {
+	public  static final String TAG = "arma";
+	private static final String TAG_TANQUE = "tanque";
+	private static final String TAG_CARGADA = "cargada";
+	private static final String TAG_TIEMPO_CARGA = "tiempo-carga";
+	private static final String TAG_CANTIDAD_BALAS = "cantidad-balas";
 	private Tanque tanque;
 	private boolean cargada=true;
 	protected int tiempoCarga;
-	protected int cantidadDeBalas;
 	private Timer timer;
 	
+	
+	public Arma(){
+		
+	}
+	public Arma(Element element) throws NoPudoLeerXMLExeption{
+		NodeList nodo;
+		Element elem;
+		nodo = element.getElementsByTagName(TAG_TANQUE);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TANQUE+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			tanque=DiccionarioDeSerializables.getInstanciaTanque(elem);
+		}
+		nodo = element.getElementsByTagName(TAG_CARGADA);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_CARGADA+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			cargada=Boolean.parseBoolean(elem.getNodeValue());
+		}
+		nodo = element.getElementsByTagName(TAG_TIEMPO_CARGA);
+		if(nodo!=null && nodo.getLength()>0){
+			if(nodo.getLength()>1)
+				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TIEMPO_CARGA+" en el nodo "+element.getTagName());
+			elem = (Element) nodo.item(0);
+			tiempoCarga=Integer.parseInt(elem.getNodeValue());
+		}
+	}
 	public boolean equals(Arma a){
 		return (getClass().equals(a.getClass()));
 	}

@@ -1,16 +1,20 @@
 package modelo;
 
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
 import modelo.armamento.Ametralladora;
 
 public class TanqueHeroe extends Tanque {
-
-	private final int RESISTENCIA = 100;
-	private final double POS_X = 300.0;
-	private final double POS_Y = 400.0;
-	private final double VELOCIDAD = 100.0;
-	private final double ANCHO = 50.0;
-	private final double ALTO = 50;
+	public static final String TAG="tanque-heroe";
+	private static final int RESISTENCIA = 100;
+	private static final double POS_X = 300.0;
+	private static final double POS_Y = 400.0;
+	private static final double VELOCIDAD = 100.0;
+	private static final double ANCHO = 50.0;
+	private static final double ALTO = 50;
 	
 
 	private static TanqueHeroe instancia = null;
@@ -24,6 +28,10 @@ public class TanqueHeroe extends Tanque {
 		instancia = new TanqueHeroe();
 		return instancia;
 	}
+	public static TanqueHeroe nuevaInstancia(Element element) throws NoPudoLeerXMLExeption {
+		instancia = new TanqueHeroe(element);
+		return instancia;
+	}
 
 	public TanqueHeroe() {
 		destruido=false;
@@ -35,6 +43,9 @@ public class TanqueHeroe extends Tanque {
 		setAncho(ANCHO);
 		agregarArma(new Ametralladora(this));
 		
+	}
+	public TanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(Tanque.TAG).item(0));
 	}
 
 	

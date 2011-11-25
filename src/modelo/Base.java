@@ -1,10 +1,13 @@
 package modelo;
 
+import org.w3c.dom.Element;
+
 import excepciones.NoExisteBaseException;
+import excepciones.NoPudoLeerXMLExeption;
 import titiritero.Posicionable;
 
 public class Base extends ElementoRectangularSolido implements Impactable, Posicionable {
-	
+	public  static final String TAG = "base";
 	private int impactosRecibidos;
 	private final int ALTO = 50;
 	private final int ANCHO = 50;
@@ -15,6 +18,10 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 		setAlto(ALTO);
 		setAncho(ANCHO);
 		this.impactosRecibidos = 0;
+	}
+	public Base(Element element) throws NoPudoLeerXMLExeption{
+		super((Element)element.getElementsByTagName(ElementoRectangularSolido.TAG).item(0));
+
 	}
 	
 	
