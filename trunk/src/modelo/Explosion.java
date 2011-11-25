@@ -6,17 +6,25 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
 public class Explosion extends ElementoRectangularIntangible implements ActionListener {
-	private static final int DURACION= 2000;
-	private boolean destruido=false;
+	private static final int DURACION= 1000;
+	private static final double ALTO= 50;
+	private static final double ANCHO= 50;
+	private boolean destruida=false;
 	
 	public Explosion(){
+		setAlto(ALTO);
+		setAncho(ANCHO);
 		Timer timer= new Timer(DURACION, this);
+		timer.setRepeats(false);
 		timer.start();
 	}
 	public Explosion(double x,double y){
 		setX(x);
 		setY(y);
+		setAlto(ALTO);
+		setAncho(ANCHO);
 		Timer timer= new Timer(DURACION, this);
+		timer.setRepeats(false);
 		timer.start();
 	}
 	
@@ -24,11 +32,11 @@ public class Explosion extends ElementoRectangularIntangible implements ActionLi
 		destruir();
 	}
 	public void destruir(){
-		destruido=true;
+		destruida=true;
 		notificar();
 	}
-	public boolean estaDestruido() {
-		return destruido;
+	public boolean estaDestruida() {
+		return destruida;
 	}
 
 }
