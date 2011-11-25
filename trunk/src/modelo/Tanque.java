@@ -127,14 +127,14 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 			while (movimientoRestante > 1.0) {
 				movimientoRestante--;
 				avanzar();
-				if (estaColisionado()) {
+				if (estaColisionado()||fueraDeEscenario()) {
 					retroceder();
 					calcularSiguienteMovimiento();
 					return;
 				}
 			}
 			avanzar(movimientoRestante);
-			if (estaColisionado()) {
+			if (estaColisionado()||fueraDeEscenario()) {
 				retroceder(movimientoRestante);
 			}
 		}
