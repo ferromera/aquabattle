@@ -37,14 +37,14 @@ Posicionable, Observable {
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DESTRUIDA+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			destruida=Boolean.parseBoolean(elem.getNodeValue());
+			destruida=Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_IMPACTOS);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_IMPACTOS+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			impactosRecibidos=Integer.parseInt(elem.getNodeValue());
+			impactosRecibidos=Integer.parseInt(elem.getTextContent());
 		}
 	}
 	

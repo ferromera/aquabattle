@@ -71,42 +71,42 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_RESISTENCIA+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			resistencia=Integer.parseInt(elem.getNodeValue());
+			resistencia=Integer.parseInt(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_VELOCIDAD);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_VELOCIDAD+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			velocidad=Double.parseDouble(elem.getNodeValue());
+			velocidad=Double.parseDouble(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_MOVIENDOSE);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MOVIENDOSE+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			moviendose=Boolean.parseBoolean(elem.getNodeValue());
+			moviendose=Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_MEJORADO);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MEJORADO+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			mejorado=Boolean.parseBoolean(elem.getNodeValue());
+			mejorado=Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_DESTRUIDO);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DESTRUIDO+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			destruido=Boolean.parseBoolean(elem.getNodeValue());
+			destruido=Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_PAUSADO);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_PAUSADO+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			pausado=Boolean.parseBoolean(elem.getNodeValue());
+			pausado=Boolean.parseBoolean(elem.getTextContent());
 		}
 		
 	}

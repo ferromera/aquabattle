@@ -34,7 +34,7 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TIEMPO_RESTANTE+" en el nodo "+element.getTagName());
 			Element elem = (Element) nodo.item(0);
-			int tiempoRestante=Integer.parseInt(elem.getNodeValue());
+			int tiempoRestante=Integer.parseInt(elem.getTextContent());
 			Timer timer =new Timer(tiempoRestante,this);
 			timer.setRepeats(false);
 		}
