@@ -1,6 +1,8 @@
 package vista;
 
+import misc.FabricaElementos;
 import misc.Observador;
+import modelo.ParedConcreto;
 import modelo.ParedMetal;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
@@ -10,7 +12,7 @@ public class VistaParedMetal  extends Vista implements Observador{
 	private ParedMetal pared;
 	private Imagen sprite;
 	
-	private final String RUTA_SPRITE_ParedMetalNormal = "/sprites/SpriteParedMetalNormal.png"; 
+	private final String RUTA_SPRITE_ParedMetalNormal = "/sprites/SpriteParedMetalNormal1.png"; 
 	private final String RUTA_SPRITE_ParedMetalConDisparo= "/sprites/SpriteParedMetalConDisparo.png"; 
 	private final String RUTA_SPRITE_ParedMetalDestruida = "/sprites/SpriteParedMetalDestruida.png";
 	
@@ -48,9 +50,10 @@ public class VistaParedMetal  extends Vista implements Observador{
 	
 	@Override
 	public void actualizar() {
-		if (pared.impactosRecibidos() == 1){
+		if (pared.impactosRecibidos() == 1 ){
 			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_ParedMetalConDisparo, pared);
 			sprite = nuevaImagen;
+
 		}else if (pared.impactosRecibidos() > 1){
 			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_ParedMetalDestruida, pared);
 			sprite = nuevaImagen;

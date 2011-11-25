@@ -29,8 +29,8 @@ Posicionable, Observable {
 			Escenario escenarioActual = Escenario.getActual();
 			escenarioActual.borrarSolido(this);
 			destruida=true;
-			notificar();
 		}
+		notificar();
 	}
 	
 	public boolean estaDestruida(){

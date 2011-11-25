@@ -3,8 +3,11 @@ package misc;
 import controlador.ControladorTanqueHeroe;
 import vista.VistaBalaAmetralladora;
 import vista.VistaBalaCanion;
+import vista.VistaBase;
 import vista.VistaCohete;
 import vista.VistaEscenario;
+import vista.VistaParedConcreto;
+import vista.VistaParedMetal;
 import vista.VistaTanqueHeroe;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
@@ -61,12 +64,16 @@ public class FabricaElementos {
 		ParedConcreto pared = new ParedConcreto(x, y);
 		Escenario.getActual().agregarObjeto(pared);
 		Escenario.getActual().agregarObjetoSolido(pared);
+		VistaParedConcreto vista = new VistaParedConcreto(pared);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return pared;
 	}
 	public static ParedMetal crearParedMetal(double x,double y){
 		ParedMetal pared = new ParedMetal(x, y);
 		Escenario.getActual().agregarObjeto(pared);
 		Escenario.getActual().agregarObjetoSolido(pared);
+		VistaParedMetal vista = new VistaParedMetal(pared);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return pared;
 	}
 	public static TanqueHeroe crearTanqueHeroe(){
@@ -100,6 +107,8 @@ public class FabricaElementos {
 		Escenario.getActual().agregarBase(base);
 		Escenario.getActual().agregarObjeto(base);
 		Escenario.getActual().agregarObjetoSolido(base);
+		VistaBase vista = new VistaBase();
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return base;
 	}
 	public static BonusVida crearBonusVida() throws NoSePudoPosicionarException{
