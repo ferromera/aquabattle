@@ -58,7 +58,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 						"No puede haber mas de un tag: " + TAG_DESTRUIDA
 								+ " en el nodo " + element.getTagName());
 			elem = (Element) nodo.item(0);
-			destruida = Boolean.parseBoolean(elem.getNodeValue());
+			destruida = Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_PAUSADO);
 		if (nodo != null && nodo.getLength() > 0) {
@@ -67,7 +67,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 						"No puede haber mas de un tag: " + TAG_PAUSADO
 								+ " en el nodo " + element.getTagName());
 			elem = (Element) nodo.item(0);
-			pausado = Boolean.parseBoolean(elem.getNodeValue());
+			pausado = Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_FUERZA);
 		if (nodo != null && nodo.getLength() > 0) {
@@ -77,7 +77,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 								+ " en el nodo " + element.getTagName());
 			elem = (Element) nodo.item(0);
 
-			fuerza = Integer.parseInt(elem.getNodeValue());
+			fuerza = Integer.parseInt(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_VELOCIDAD);
 		if (nodo != null && nodo.getLength() > 0) {
@@ -86,7 +86,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 						"No puede haber mas de un tag: " + TAG_VELOCIDAD
 								+ " en el nodo " + element.getTagName());
 			elem = (Element) nodo.item(0);
-			velocidad = Double.parseDouble(elem.getNodeValue());
+			velocidad = Double.parseDouble(elem.getTextContent());
 		}
 
 	}
@@ -165,7 +165,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 			break;
 		case Direccion.SUR:
 			// centrada en Y
-			y += (getAlto() - explosion.getAlto()) / 2;
+			y += getAlto() - (explosion.getAlto()) / 2;
 			// centrada en X
 			x += (getAncho() - explosion.getAncho()) / 2;
 			break;

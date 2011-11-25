@@ -1,9 +1,12 @@
 import java.awt.Color;
 
+import niveles.Nivel;
+
 import titiritero.vista.KeyPressedController;
 
 import controlador.ControladorTanqueHeroe;
 import excepciones.NoExisteArmaSeleccionadaException;
+import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
 
@@ -34,7 +37,17 @@ public class Pruebas {
 
 	
 	public static void main(String args[]){
-		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
+		
+		Nivel nivel1=new Nivel(1,"./bin/nivel1.xml");
+		try {
+			nivel1.cargar();
+		} catch (NoPudoLeerXMLExeption e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		/*ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
 		Ventana ventana = new Ventana(960+16,720+38,controladorJuego);
 		ventana.addKeyListener(keyController);
@@ -74,7 +87,7 @@ public class Pruebas {
 			e.printStackTrace();
 		}
 		
-		
+		*/
 		
 		
 		

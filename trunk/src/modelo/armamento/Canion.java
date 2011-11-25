@@ -28,7 +28,7 @@ public class Canion extends Arma {
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MUNICION+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			municion=Integer.parseInt(elem.getNodeValue());
+			municion=Integer.parseInt(elem.getTextContent());
 		}
 	}
 	protected Bala crearBala(){

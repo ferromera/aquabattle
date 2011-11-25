@@ -21,7 +21,7 @@ import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.ProbabilidadInvalidaException;
 
-public abstract class Nivel {
+public class Nivel {
 
 	private boolean ganado;
 	private boolean perdido;
@@ -133,7 +133,7 @@ public abstract class Nivel {
 				throw new NoPudoLeerXMLExeption("Debe haber a lo sumo un tag: "+TAG_BERNOULLI+" en el nodo "+elem.getTagName());
 			if(nodoBernoulli.getLength()==1){
 				Element elemBernoulli = (Element) nodoBernoulli.item(0);
-				double probabilidad=Double.parseDouble(elemBernoulli.getNodeValue());
+				double probabilidad=Double.parseDouble(elemBernoulli.getTextContent());
 				try {
 					return new SorteadorBernoulli(probabilidad);
 				} catch (ProbabilidadInvalidaException e) {
@@ -171,9 +171,10 @@ public abstract class Nivel {
 	}
 
 	private void cargarParedMetal(Element elemMetal) throws NoPudoLeerXMLExeption {
-		
+		System.out.println("pared metal");
 		double x= getPosX(elemMetal);
 		double y= getPosY(elemMetal);
+		System.out.println("x "+x+" y "+y);
 		try {
 			FabricaElementos.crearParedMetal(x, y);
 		} catch (NoSePudoPosicionarException e) {
@@ -185,8 +186,10 @@ public abstract class Nivel {
 	}
 	
 	private void cargarParedConcreto(Element elemConcreto) throws NoPudoLeerXMLExeption {
+		System.out.println("pared concreto");
 		double x= getPosX(elemConcreto);
 		double y= getPosY(elemConcreto);
+		System.out.println("x "+x+" y "+y);
 		try {
 			FabricaElementos.crearParedConcreto(x, y);
 		} catch (NoSePudoPosicionarException e) {
@@ -205,7 +208,7 @@ public abstract class Nivel {
 		if(nodoY.getLength()!=1)
 			throw new NoPudoLeerXMLExeption("Debe haber solo un tag: "+TAG_POS_Y+" en el nodo "+elem.getTagName());
 		Element elemY = (Element) nodoY.item(0);
-		double y=Double.parseDouble(elemY.getNodeValue());
+		double y=Double.parseDouble(elemY.getTextContent());
 		return y;
 	}
 
@@ -217,14 +220,16 @@ public abstract class Nivel {
 		if(nodoX.getLength()!=1)
 			throw new NoPudoLeerXMLExeption("Debe haber solo un tag: "+TAG_POS_X+" en el nodo "+elem.getTagName());
 		Element elemX = (Element) nodoX.item(0);
-		double x=Double.parseDouble(elemX.getNodeValue());
+		double x=Double.parseDouble(elemX.getTextContent());
 		return x;
 	}
 
 	private void cargarHeroe(Element elemHeroe) throws NoPudoLeerXMLExeption {
-		
+		System.out.println("heroe");
 		double x=getPosX(elemHeroe);
 		double y=getPosY(elemHeroe);
+		System.out.println("x "+x+" y "+y);
+		
 		try {
 			FabricaElementos.crearTanqueHeroe(x,y);
 		} catch (NoSePudoPosicionarException e) {

@@ -47,14 +47,14 @@ public abstract class Arma implements ActionListener  {
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_CARGADA+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			cargada=Boolean.parseBoolean(elem.getNodeValue());
+			cargada=Boolean.parseBoolean(elem.getTextContent());
 		}
 		nodo = element.getElementsByTagName(TAG_TIEMPO_CARGA);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TIEMPO_CARGA+" en el nodo "+element.getTagName());
 			elem = (Element) nodo.item(0);
-			tiempoCarga=Integer.parseInt(elem.getNodeValue());
+			tiempoCarga=Integer.parseInt(elem.getTextContent());
 		}
 	}
 	public boolean equals(Arma a){

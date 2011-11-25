@@ -34,7 +34,7 @@ Posicionable, Observable {
 			if(nodoDestruida.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DESTRUIDA+" en el nodo "+element.getTagName());
 			Element elemDestruida = (Element) nodoDestruida.item(0);
-			destruida=Boolean.parseBoolean(elemDestruida.getNodeValue());
+			destruida=Boolean.parseBoolean(elemDestruida.getTextContent());
 		}
 		
 	}

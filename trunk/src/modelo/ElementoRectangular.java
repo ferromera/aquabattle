@@ -69,28 +69,28 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 			if(nodoX.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_X+" en el nodo "+element.getTagName());
 			Element elemX = (Element) nodoX.item(0);
-			posX=Double.parseDouble(elemX.getNodeValue());
+			posX=Double.parseDouble(elemX.getTextContent());
 		}
 		NodeList nodoY = element.getElementsByTagName(TAG_POS_Y);
 		if(nodoY!=null && nodoY.getLength()>0){
 			if(nodoY.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_Y+" en el nodo "+element.getTagName());
 			Element elemY = (Element) nodoY.item(0);
-			posY=Double.parseDouble(elemY.getNodeValue());
+			posY=Double.parseDouble(elemY.getTextContent());
 		}
 		NodeList nodoAlto = element.getElementsByTagName(TAG_ALTO);
 		if(nodoAlto!=null && nodoAlto.getLength()>0){
 			if(nodoAlto.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ALTO+" en el nodo "+element.getTagName());
 			Element elemAlto = (Element) nodoAlto.item(0);
-			alto=Double.parseDouble(elemAlto.getNodeValue());
+			alto=Double.parseDouble(elemAlto.getTextContent());
 		}
 		NodeList nodoAncho = element.getElementsByTagName(TAG_ANCHO);
 		if(nodoAncho!=null && nodoAncho.getLength()>0){
 			if(nodoAncho.getLength()>1)
 				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ANCHO+" en el nodo "+element.getTagName());
 			Element elemAncho = (Element) nodoAncho.item(0);
-			ancho=Double.parseDouble(elemAncho.getNodeValue());
+			ancho=Double.parseDouble(elemAncho.getTextContent());
 		}
 		NodeList nodoDir = element.getElementsByTagName(TAG_DIRECCION);
 		if(nodoDir!=null && nodoDir.getLength()>0){
