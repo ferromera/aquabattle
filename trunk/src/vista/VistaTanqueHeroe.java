@@ -104,7 +104,6 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
-		System.out.println("Dibujado tanque");
 		spriteActual.dibujar(sup);
 	}
 

@@ -58,17 +58,20 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 			throw new YaExisteBaseException("ya existe una base");
 		this.base = base;
 		agregarObjetoSolido(base);
+		agregarObjeto(base);
 	}
 	
 	public void borrarBase() throws NoExisteBaseException {
 		if (this.base == null)
 			throw new NoExisteBaseException("no hay una base que borrar");
-		this.base = null;
 		borrarSolido(this.base);
+		borrarObjeto(this.base);
+		this.base = null;
+		
 	}
 	
 	public boolean tieneBase() {
-		return this.base != null ? true : false;
+		return this.base != null ;
 	}
 	
 	public Base getBase() throws NoExisteBaseException {

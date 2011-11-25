@@ -36,7 +36,6 @@ public class VistaBase extends Vista implements Observador {
 	
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		System.out.println("Dibujada Base");
 	}
 	
 	public Posicionable getPosicionable() {
@@ -65,7 +64,7 @@ public class VistaBase extends Vista implements Observador {
 				Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BaseDestruida, base);
 				sprite = nuevaImagen;
 
-				//Aca se deberia terminar el juego
+				//TODO: Aca se deberia terminar el juego
 				
 			}
 		}

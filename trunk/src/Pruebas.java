@@ -43,7 +43,6 @@ public class Pruebas {
 		controladorJuego.setIntervaloSimulacion(1000/50);
 		//Agrego dibujables
 		Escenario escenario= Escenario.getActual();
-		controladorJuego.agregarObjetoVivo(escenario);
 		controladorJuego.agregarDibujable(VistaEscenario.getInstancia());
 		//Agrego objetos vivos
 		controladorJuego.agregarObjetoVivo(escenario);

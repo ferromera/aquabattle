@@ -28,7 +28,6 @@ public class VistaBalaAmetralladora extends Vista implements Observador {
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		System.out.println("Dibujado ametralladora");
 	}
 
 	public Posicionable getPosicionable() {
@@ -51,9 +50,7 @@ public class VistaBalaAmetralladora extends Vista implements Observador {
 	@Override
 	public void actualizar() {
 		if(bala.estaDestruida()){
-			//TODO: 
-			//borrarVista
-			ControladorJuego.getInstancia().removerDibujable(this);
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 		else
 			actualizarOrientacion();

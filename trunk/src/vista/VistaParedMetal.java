@@ -27,7 +27,6 @@ public class VistaParedMetal  extends Vista implements Observador{
 	
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		System.out.println("Dibujada Pared Metal");
 	}
 	
 	public Posicionable getPosicionable() {
