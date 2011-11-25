@@ -57,5 +57,9 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		Escenario.getActual().borrarObjeto(this);
 		Escenario.getActual().borrarObjetoVivo(this);
 	}
+	@Override
+	public void pausar() {
+		
+	}
 
 }

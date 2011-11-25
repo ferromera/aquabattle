@@ -145,4 +145,15 @@ public class Escenario implements ObjetoVivo, Posicionable, Observable {
 	public int cantidadActualDeObjetosSolidos(){
 		return objetosSolidos.size();
 	}
+
+	public void pausar() {
+		Iterator<ObjetoVivo> iterador = objetosVivos.iterator();
+		
+		while (iterador.hasNext()) {
+			iterador.next().pausar();
+		}
+		
+		
+	}
+
 }
