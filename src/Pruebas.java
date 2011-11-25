@@ -36,7 +36,7 @@ public class Pruebas {
 	public static void main(String args[]){
 		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
-		Ventana ventana = new Ventana(960,720,controladorJuego);
+		Ventana ventana = new Ventana(960+16,720+38,controladorJuego);
 		ventana.addKeyListener(keyController);
 		Panel panel = new Panel(960,720,ventana);
 		controladorJuego.setSuperficieDeDibujo(panel);

@@ -95,6 +95,8 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 		while(movimientoRestante > 1.0){
 			movimientoRestante--;
 			avanzar();
+			if(fueraDeEscenario())
+				destruir();
 			if(estaColisionado()){
 				try {
 					impactar(getColisionado());
@@ -105,6 +107,8 @@ public abstract class Bala extends ElementoRectangularSolido implements ObjetoVi
 			}
 		}
 		avanzar(movimientoRestante);
+		if(fueraDeEscenario())
+			destruir();
 		if(estaColisionado()){
 			try {
 				impactar(getColisionado());

@@ -299,8 +299,8 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		
 		Escenario escenario= Escenario.getActual();
 		 
-		if( posX < 0 || posX >= escenario.getAncho() ||
-			posY < 0 || posY >= escenario.getAlto() )
+		if( posX < 0 || posX+getAncho() >= escenario.getAncho() ||
+			posY < 0 || posY+getAlto() >= escenario.getAlto() )
 			return true;
 		 
 		return false;

@@ -12,8 +12,8 @@ import misc.Observador;
 
 public class Escenario implements ObjetoVivo, Posicionable, Observable {
 
-	private final int ALTO = 1024;
-	private final int ANCHO = 768;
+	private final int ALTO = 720;
+	private final int ANCHO = 960;
 	private static Escenario escenarioActual = null;
 	private ArrayList<ObjetoVivo> objetosVivos = new ArrayList<ObjetoVivo>();
 	private ArrayList<ElementoRectangularSolido> objetosSolidos = new ArrayList<ElementoRectangularSolido>();
