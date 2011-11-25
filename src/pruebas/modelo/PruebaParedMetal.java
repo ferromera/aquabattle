@@ -11,6 +11,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.Before;
 
+import excepciones.NoSePudoPosicionarException;
+
 public class PruebaParedMetal {
 	ParedMetal paredDeMetal;
 
@@ -18,7 +20,11 @@ public class PruebaParedMetal {
 	@Before
 	public void setUp(){
 		Escenario.nuevaInstancia();
-		paredDeMetal = FabricaElementos.crearParedMetal(100.0, 100.0);		
+		try {
+			paredDeMetal = FabricaElementos.crearParedMetal(100.0, 100.0);
+		} catch (NoSePudoPosicionarException e) {
+			e.printStackTrace();
+		}		
 	}
 	
 

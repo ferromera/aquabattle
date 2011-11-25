@@ -18,6 +18,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import excepciones.NoPudoLeerXMLExeption;
+import excepciones.NoSePudoPosicionarException;
 import excepciones.ProbabilidadInvalidaException;
 
 public abstract class Nivel {
@@ -173,14 +174,26 @@ public abstract class Nivel {
 		
 		double x= getPosX(elemMetal);
 		double y= getPosY(elemMetal);
-		FabricaElementos.crearParedMetal(x, y);
+		try {
+			FabricaElementos.crearParedMetal(x, y);
+		} catch (NoSePudoPosicionarException e) {
+			System.err.println("No se pudo posicionar pared de metal al cargar "+tagNivel);
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 	
 	private void cargarParedConcreto(Element elemConcreto) throws NoPudoLeerXMLExeption {
 		double x= getPosX(elemConcreto);
 		double y= getPosY(elemConcreto);
-		FabricaElementos.crearParedConcreto(x, y);
+		try {
+			FabricaElementos.crearParedConcreto(x, y);
+		} catch (NoSePudoPosicionarException e) {
+			System.err.println("No se pudo posicionar pared de concreto al cargar "+tagNivel);
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -212,7 +225,13 @@ public abstract class Nivel {
 		
 		double x=getPosX(elemHeroe);
 		double y=getPosY(elemHeroe);
-		FabricaElementos.crearTanqueHeroe(x,y);
+		try {
+			FabricaElementos.crearTanqueHeroe(x,y);
+		} catch (NoSePudoPosicionarException e) {
+			System.err.println("No se pudo posicionar heroe al cargar "+tagNivel);
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		}
 		
 	}
 

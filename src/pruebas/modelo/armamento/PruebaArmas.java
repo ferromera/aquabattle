@@ -19,6 +19,7 @@ import org.junit.Before;
 import utils.Direccion;
 
 import excepciones.NoExisteArmaSeleccionadaException;
+import excepciones.NoSePudoPosicionarException;
 
 public class PruebaArmas {
 
@@ -31,17 +32,20 @@ public class PruebaArmas {
 	@Before
 	public void setUp() {
 		escenario = Escenario.nuevaInstancia();
-		heroe = FabricaElementos.crearTanqueHeroe();
-		heroe.setX(100.0);
-		heroe.setY(200.0);
-		heroe.setAlto(50);
-		heroe.setAncho(50);
-		heroe.setOrientacion(Direccion.Este());
-		ametralladora = new Ametralladora(heroe); // Arma Nº1
-		canion = new Canion(heroe);// Arma Nº2
-		lanzaCohetes = new LanzaCohetes(heroe);// Arma Nº3
 		try {
+			heroe = FabricaElementos.crearTanqueHeroe();
+			heroe.setX(100.0);
+			heroe.setY(200.0);
+			heroe.setAlto(50);
+			heroe.setAncho(50);
+			heroe.setOrientacion(Direccion.Este());
+			ametralladora = new Ametralladora(heroe); // Arma Nº1
+			canion = new Canion(heroe);// Arma Nº2
+			lanzaCohetes = new LanzaCohetes(heroe);// Arma Nº3
 			heroe.seleccionarArma(ametralladora);
+			
+		} catch (NoSePudoPosicionarException e1) {
+			e1.printStackTrace();
 		} catch (NoExisteArmaSeleccionadaException e) {
 			e.printStackTrace();
 		}

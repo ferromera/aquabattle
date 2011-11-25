@@ -21,7 +21,11 @@ import modelo.Explosion;
 import modelo.ParedConcreto;
 import modelo.ParedMetal;
 import modelo.PosicionadorAleatorioStd;
+import modelo.TanqueEnemigo;
+import modelo.TanqueGrizzly;
 import modelo.TanqueHeroe;
+import modelo.TanqueIFV;
+import modelo.TanqueMirage;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
 import modelo.armamento.Cohete;
@@ -29,57 +33,65 @@ import titiritero.ControladorJuego;
 
 public class FabricaElementos {
 
-	
-	public static BalaAmetralladora crearBalaAmetralladora(){
+	public static BalaAmetralladora crearBalaAmetralladora() {
 		BalaAmetralladora bala = new BalaAmetralladora();
 		Escenario.getActual().agregarObjeto(bala);
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
-		VistaBalaAmetralladora vista= new VistaBalaAmetralladora(bala);
+		VistaBalaAmetralladora vista = new VistaBalaAmetralladora(bala);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return bala;
 	}
-	public static BalaCanion crearBalaCanion(){
+
+	public static BalaCanion crearBalaCanion() {
 		BalaCanion bala = new BalaCanion();
 		Escenario.getActual().agregarObjeto(bala);
 		Escenario.getActual().agregarObjetoSolido(bala);
 		Escenario.getActual().agregarObjetoVivo(bala);
-		VistaBalaCanion vista= new VistaBalaCanion(bala);
+		VistaBalaCanion vista = new VistaBalaCanion(bala);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return bala;
 	}
-	public static Cohete crearCohete(){
+
+	public static Cohete crearCohete() {
 		Cohete cohete = new Cohete();
 		Escenario.getActual().agregarObjeto(cohete);
 		Escenario.getActual().agregarObjetoSolido(cohete);
 		Escenario.getActual().agregarObjetoVivo(cohete);
-		VistaCohete vista= new VistaCohete(cohete);
+		VistaCohete vista = new VistaCohete(cohete);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return cohete;
 	}
-	public static Explosion crearExplosion(double x,double y){
-		Explosion explosion = new Explosion(x,y);
+
+	public static Explosion crearExplosion(double x, double y) {
+		Explosion explosion = new Explosion(x, y);
 		Escenario.getActual().agregarObjeto(explosion);
 		return explosion;
 	}
-	public static ParedConcreto crearParedConcreto(double x,double y){
+
+	public static ParedConcreto crearParedConcreto(double x, double y) throws NoSePudoPosicionarException {
 		ParedConcreto pared = new ParedConcreto(x, y);
+		pared.posicionar();
 		Escenario.getActual().agregarObjeto(pared);
 		Escenario.getActual().agregarObjetoSolido(pared);
 		VistaParedConcreto vista = new VistaParedConcreto(pared);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return pared;
 	}
-	public static ParedMetal crearParedMetal(double x,double y){
+
+	public static ParedMetal crearParedMetal(double x, double y) throws NoSePudoPosicionarException {
 		ParedMetal pared = new ParedMetal(x, y);
+		pared.posicionar();
 		Escenario.getActual().agregarObjeto(pared);
 		Escenario.getActual().agregarObjetoSolido(pared);
 		VistaParedMetal vista = new VistaParedMetal(pared);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return pared;
 	}
-	public static TanqueHeroe crearTanqueHeroe(){
+
+	public static TanqueHeroe crearTanqueHeroe() throws NoSePudoPosicionarException {
 		TanqueHeroe tanque = TanqueHeroe.nuevaInstancia();
+		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
@@ -87,13 +99,15 @@ public class FabricaElementos {
 		VistaEscenario.getInstancia().agregarVista(vista);
 		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
 		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
-		
+
 		return tanque;
 	}
-	public static TanqueHeroe crearTanqueHeroe(double x,double y){
+
+	public static TanqueHeroe crearTanqueHeroe(double x, double y) throws NoSePudoPosicionarException {
 		TanqueHeroe tanque = TanqueHeroe.nuevaInstancia();
 		tanque.setX(x);
 		tanque.setY(y);
+		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
@@ -101,31 +115,74 @@ public class FabricaElementos {
 		VistaEscenario.getInstancia().agregarVista(vista);
 		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
 		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
-		
+
 		return tanque;
 	}
-	public static Base crearBase(double x,double y) throws YaExisteBaseException{
+
+	public static Base crearBase(double x, double y)
+			throws YaExisteBaseException, NoSePudoPosicionarException {
 		Base base = new Base(x, y);
+		base.posicionar();
 		Escenario.getActual().agregarBase(base);
 		VistaBase vista = new VistaBase();
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return base;
 	}
-	public static BonusVida crearBonusVida() throws NoSePudoPosicionarException{
-		BonusVida bonus= new BonusVida(new PosicionadorAleatorioStd());
+
+	public static BonusVida crearBonusVida() throws NoSePudoPosicionarException {
+		BonusVida bonus = new BonusVida(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
 		VistaBonusVida vista = new VistaBonusVida(bonus);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return bonus;
 	}
-	public static BonusAtaque crearBonusAtaque() throws NoSePudoPosicionarException{
-		BonusAtaque bonus= new BonusAtaque(new PosicionadorAleatorioStd());
+
+	public static BonusAtaque crearBonusAtaque()
+			throws NoSePudoPosicionarException {
+		BonusAtaque bonus = new BonusAtaque(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
 		VistaBonusAtaque vista = new VistaBonusAtaque(bonus);
 		VistaEscenario.getInstancia().agregarVista(vista);
-		
+
 		return bonus;
+	}
+
+	public static void insertarTanqueEnemigo(TanqueEnemigo tanque) throws NoSePudoPosicionarException {
+		if (tanque.getClass() == TanqueGrizzly.class)
+			insertarTanqueGrizzly((TanqueGrizzly) tanque);
+		else if (tanque.getClass() == TanqueIFV.class)
+			insertarTanqueIFV((TanqueIFV) tanque);
+		else if (tanque.getClass() == TanqueMirage.class)
+			insertarTanqueMirage((TanqueMirage) tanque);
+
+	}
+
+	public static void insertarTanqueMirage(TanqueMirage tanque) throws NoSePudoPosicionarException {
+		tanque.posicionar();
+		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoVivo(tanque);
+		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
+		//VistaEscenario.getInstancia().agregarVista(vista);
+		
+	}
+
+	public static void insertarTanqueIFV(TanqueIFV tanque) throws NoSePudoPosicionarException {
+		tanque.posicionar();
+		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoVivo(tanque);
+		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
+		//VistaEscenario.getInstancia().agregarVista(vista);
+		
+	}
+
+	public static void insertarTanqueGrizzly(TanqueGrizzly tanque) throws NoSePudoPosicionarException {
+		tanque.posicionar();
+		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoVivo(tanque);
+		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
+		//VistaEscenario.getInstancia().agregarVista(vista);
+		
 	}
 }
