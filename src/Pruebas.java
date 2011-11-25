@@ -20,6 +20,7 @@ import vista.VistaTanqueHeroe;
 
 import misc.FabricaElementos;
 import modelo.Base;
+import modelo.BonusAtaque;
 import modelo.BonusVida;
 import modelo.Escenario;
 import modelo.ParedConcreto;
@@ -49,6 +50,8 @@ public class Pruebas {
 		
 		ParedConcreto pared = FabricaElementos.crearParedConcreto(0.0,100.0);
 		ParedMetal pared2 = FabricaElementos.crearParedMetal(0.0,200.0);
+		ParedMetal pared3 = FabricaElementos.crearParedMetal(0.0,250.0);
+		ParedMetal pared4 = FabricaElementos.crearParedMetal(0.0,300.0);
 		
 		try{
 		Base base = FabricaElementos.crearBase(100.0,100.0);
@@ -56,8 +59,9 @@ public class Pruebas {
 			e.printStackTrace();
 		}
 		
+		
 		try{
-		BonusVida bonus = FabricaElementos.crearBonusVida();
+		BonusAtaque bonus = FabricaElementos.crearBonusAtaque();
 		} catch (NoSePudoPosicionarException e){
 			e.printStackTrace();
 		}
@@ -66,7 +70,7 @@ public class Pruebas {
 		
 		TanqueHeroe tanque=FabricaElementos.crearTanqueHeroe();
 		tanque.setX(0.0);
-		tanque.setY(300.0);
+		tanque.setY(400.0);
 		
 		LanzaCohetes arma=new LanzaCohetes(tanque);
 		tanque.agregarArma(arma);
