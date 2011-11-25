@@ -8,6 +8,7 @@ import vista.VistaBonusAtaque;
 import vista.VistaBonusVida;
 import vista.VistaCohete;
 import vista.VistaEscenario;
+import vista.VistaExplosion;
 import vista.VistaParedConcreto;
 import vista.VistaParedMetal;
 import vista.VistaTanqueHeroe;
@@ -62,7 +63,13 @@ public class FabricaElementos {
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return cohete;
 	}
-
+	public static Explosion crearExplosion() {
+		Explosion explosion = new Explosion();
+		Escenario.getActual().agregarObjeto(explosion);
+		VistaExplosion vista=new VistaExplosion(explosion);
+		VistaEscenario.getInstancia().agregarVista(vista);
+		return explosion;
+	}
 	public static Explosion crearExplosion(double x, double y) {
 		Explosion explosion = new Explosion(x, y);
 		Escenario.getActual().agregarObjeto(explosion);
