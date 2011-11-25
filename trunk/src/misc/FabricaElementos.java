@@ -4,6 +4,7 @@ import controlador.ControladorTanqueHeroe;
 import vista.VistaBalaAmetralladora;
 import vista.VistaBalaCanion;
 import vista.VistaBase;
+import vista.VistaBonusVida;
 import vista.VistaCohete;
 import vista.VistaEscenario;
 import vista.VistaParedConcreto;
@@ -115,12 +116,15 @@ public class FabricaElementos {
 		BonusVida bonus= new BonusVida(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
+		VistaBonusVida vista = new VistaBonusVida(bonus);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		return bonus;
 	}
 	public static BonusAtaque crearBonusAtaque() throws NoSePudoPosicionarException{
 		BonusAtaque bonus= new BonusAtaque(new PosicionadorAleatorioStd());
 		Escenario.getActual().agregarObjeto(bonus);
 		Escenario.getActual().agregarObjetoVivo(bonus);
+		
 		return bonus;
 	}
 }
