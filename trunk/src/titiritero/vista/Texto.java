@@ -19,7 +19,7 @@ public abstract class Texto extends Figura {
 	
 	public Texto(){
 		setColor(Color.WHITE);
-		setFuente("Serif",14);
+		setFuente("Arial",15);
 	}
 	
 	public Texto(Color color, Font fuente){

@@ -151,11 +151,15 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	public abstract void calcularSiguienteMovimiento();
 
 	public void disparar() {
+		if(pausado)
+			return;
 		armaActual.disparar();
 	}
 
 
 	public void mover(Direccion dir){
+		if(pausado)
+			return;
 		setOrientacion(dir);
 		if(!moviendose){
 			moviendose=true;
@@ -200,6 +204,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void siguienteArma() {
+		if(pausado)
+			return;
 		if (itArmaActual.hasNext())
 			armaActual = itArmaActual.next();
 		else {

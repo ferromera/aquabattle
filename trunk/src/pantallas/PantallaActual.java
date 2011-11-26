@@ -21,13 +21,23 @@ public class PantallaActual extends Pantalla {
 	}
 	
 	public void cambiarA(Pantalla nuevaPantalla){
-		estadoPantalla.cambiarA(nuevaPantalla);
+		estadoPantalla.dejarDeSerActual();
+		estadoPantalla=nuevaPantalla;
+		estadoPantalla.convertirEnActual();
 	}
 
 	@Override
 	public void pausar() {
 		estadoPantalla.pausar();
 		
+	}
+
+	@Override
+	public void convertirEnActual() {
+	}
+
+	@Override
+	public void dejarDeSerActual() {
 	}
 
 }

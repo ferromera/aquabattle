@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.Timer;
 
 public class Explosion extends ElementoRectangularIntangible implements ActionListener {
-	private static final int DURACION= 1000;
+	private static final int DURACION= 500;
 	private static final double ALTO= 50;
 	private static final double ANCHO= 50;
 	private boolean destruida=false;

@@ -20,4 +20,16 @@ public class MenuPrincipal extends Pantalla {
 		
 	}
 
+	@Override
+	public void convertirEnActual() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void dejarDeSerActual() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
