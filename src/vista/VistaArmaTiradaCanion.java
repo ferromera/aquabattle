@@ -66,9 +66,8 @@ public class VistaArmaTiradaCanion extends Vista implements Observador {
 	public void actualizar() {
 		spriteActual.reproducir();
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if (this.ArmaTiradaCanion.superpuestoCon(tanque)) {
-			
-			//Destruir Bonus
+		if (this.ArmaTiradaCanion.estaBorrado()) {
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 
 

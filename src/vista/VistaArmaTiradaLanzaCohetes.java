@@ -66,9 +66,8 @@ public class VistaArmaTiradaLanzaCohetes extends Vista implements Observador {
 	public void actualizar() {
 		spriteActual.reproducir();
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if (this.ArmaTiradaLanzaCohetes.superpuestoCon(tanque)) {
-			
-			//Destruir Bonus
+		if (this.ArmaTiradaLanzaCohetes.estaBorrado()) {
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 
 

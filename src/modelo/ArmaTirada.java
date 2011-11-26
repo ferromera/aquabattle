@@ -14,14 +14,17 @@ public abstract class ArmaTirada extends ElementoRectangularIntangible implement
 ObjetoVivo ,ActionListener{
 	
 	private long tiempoActual;
+
+	private boolean borrado;
 	
 	public ArmaTirada(double posX, double posY,int tiempoDeVida) throws NoSePudoPosicionarException{
-		setX(posX);
-		setY(posY);
+		this.setX(posX);
+		this.setY(posY);
 		Timer timer=new Timer(tiempoDeVida,this);
 		timer.setRepeats(false);
 		timer.start();
 		tiempoActual = new Date().getTime();
+		borrado = false;
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -40,10 +43,20 @@ ObjetoVivo ,ActionListener{
 	protected abstract void aplicarEfecto(Tanque tanque);
 	
 	protected void destruir(){
+		borrado=true;
 		Escenario.getActual().borrarObjeto(this);
 		Escenario.getActual().borrarObjetoVivo(this);
+		notificar();
 	}
 	
+	@Override
+	public void pausar() {
+		
+	}
+	
+	public boolean estaBorrado() {
+		return borrado;
+		}
 	
 	
 	
