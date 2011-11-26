@@ -6,23 +6,32 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
+import titiritero.ControladorJuego;
+import vista.pantallas.VistaPantallaJuego;
+
+import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 import misc.FabricaBonus;
+import misc.FabricaBonusAtaque;
 import misc.FabricaElementos;
 import misc.Nivel;
+import misc.SorteadorBernoulli;
 import modelo.Escenario;
 
 public class PantallaJuego extends Pantalla {
 	private static final String RUTA_NIVEL_1 = "./bin/niveles/nivel1.xml";
-	private static final int VIDAS = 3;
+	private static final int VIDAS = 5;
+	private static final int X_VIDA = 975;
+	private static final int Y_VIDA = 500;
+	private static final int SEPARACION_VIDA = 30;
 	private static PantallaJuego instancia;
 	private Escenario escenario;
 	private FabricaBonus fabricaBonus;
 	private ArrayList<Nivel> niveles;
+	private ArrayList<Vida> vidas;
 	private int nivelActual;
 	private int puntos;
-	private int vidas;
 	private boolean perdido;
 	
 	public static PantallaJuego getInstancia(){
@@ -35,12 +44,23 @@ public class PantallaJuego extends Pantalla {
 		niveles=new ArrayList<Nivel>();
 		niveles.add(new Nivel(1,RUTA_NIVEL_1,1000));
 		//TODO: agregar mas niveles.
-		nivelActual=1;
+		nivelActual=0;
+		try {
+			niveles.get(nivelActual).cargar();
+		} catch (NoPudoLeerXMLExeption e) {
+			System.err.println("No se pudo cargar nivel "+nivelActual+1 +" ." );
+			e.printStackTrace();
+		}
 		puntos=0;
-		vidas=VIDAS;
-		perdido=false;
-		
+		vidas=new ArrayList<Vida>();
+		new VistaPantallaJuego(this);
+		for(int i=0 ;i<VIDAS;i++)
+			vidas.add(FabricaElementos.crearVida(X_VIDA,Y_VIDA+SEPARACION_VIDA*i));
+		perdido=false;		
+		fabricaBonus=new FabricaBonusAtaque(new SorteadorBernoulli());
+		fabricaBonus.detenerProduccion();
 	}
+	
 	
 
 	@Override
@@ -51,15 +71,16 @@ public class PantallaJuego extends Pantalla {
 			siguienteNivel();
 			return;
 		}
-		if(!fabricaBonus.estaProduciendo())
-			fabricaBonus.comenzarProduccion();
+	//	if(!fabricaBonus.estaProduciendo())
+		//	fabricaBonus.comenzarProduccion();
 		escenario.vivir();
 		
 		
 	}
 	public void perderVida() {
-
-		if(--vidas==0){
+		vidas.get(0).borrar();
+		vidas.remove(0);
+		if(vidas.size()==0){
 			perder();
 			return;
 		}
@@ -75,7 +96,7 @@ public class PantallaJuego extends Pantalla {
 		}
 		
 	}
-	private void perder() {
+	public void perder() {
 		pausar();
 		perdido=true;
 		Timer timer=new Timer(2000,new ActionListener(){
@@ -90,7 +111,9 @@ public class PantallaJuego extends Pantalla {
 	}
 	public void sumarPuntos(int puntosGanados){
 		puntos+=puntosGanados;
-		
+	}
+	public int getPuntos(){
+		return puntos;
 	}
 	public void pausar() {
 		escenario.pausar();
@@ -105,6 +128,16 @@ public class PantallaJuego extends Pantalla {
 	public void cambiarA(Pantalla pantalla) {
 		// TODO Auto-generated method stub
 		
+	}
+	@Override
+	public void dejarDeSerActual() {
+		ControladorJuego.getInstancia().removerDibujable(VistaPantallaJuego.getInstancia());
+		ControladorJuego.getInstancia().removerObjetoVivo(this);
+		
+	}
+	public void convertirEnActual(){
+		ControladorJuego.getInstancia().agregarDibujable(VistaPantallaJuego.getInstancia());
+		ControladorJuego.getInstancia().agregarObjetoVivo(this);
 	}
 
 }

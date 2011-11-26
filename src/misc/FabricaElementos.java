@@ -1,5 +1,6 @@
 package misc;
 
+import pantallas.Vida;
 import controlador.ControladorTanqueHeroe;
 import vista.VistaArmaTiradaCanion;
 import vista.VistaArmaTiradaLanzaCohetes;
@@ -14,6 +15,8 @@ import vista.VistaExplosion;
 import vista.VistaParedConcreto;
 import vista.VistaParedMetal;
 import vista.VistaTanqueHeroe;
+import vista.pantallas.VistaPantallaJuego;
+import vista.pantallas.VistaVida;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.YaExisteBaseException;
 import modelo.ArmaTiradaCanion;
@@ -234,6 +237,13 @@ public class FabricaElementos {
 		VistaEscenario.getInstancia().agregarVista(vista);
 
 		return arma;
+	}
+
+	public static Vida crearVida(int x, int y) {
+		Vida vida=new Vida(x,y);
+		VistaVida vista=new VistaVida(vida);
+		VistaPantallaJuego.getInstancia().agregarVistaVida(vista);
+		return vida;
 	}
 
 }

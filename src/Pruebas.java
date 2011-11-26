@@ -1,5 +1,11 @@
 
 import java.awt.Color;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.Window;
+
+import pantallas.PantallaActual;
+import pantallas.PantallaJuego;
 
 
 import titiritero.vista.KeyPressedController;
@@ -40,16 +46,37 @@ public class Pruebas {
 	public static void main(String args[]){
 		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
-		Ventana ventana = new Ventana(960+16,720+38,controladorJuego);
+		Ventana ventana = new Ventana(1024,768,controladorJuego);
+		//ventana.setUndecorated(true);
 		ventana.addKeyListener(keyController);
-		Panel panel = new Panel(960,720,ventana);
+		
+		
+		Panel panel = new Panel(1024,768,ventana);
+	
+		
+	//	GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice().setFullScreenWindow(null);
 		controladorJuego.setSuperficieDeDibujo(panel);
 		controladorJuego.setIntervaloSimulacion(1000/50);
-		//Agrego dibujables
+	
+
+		PantallaActual.getInstancia().cambiarA(PantallaJuego.getInstancia());
+		
+		/*//Agrego dibujables
 		Escenario escenario= Escenario.getActual();
 		controladorJuego.agregarDibujable(VistaEscenario.getInstancia());
 		//Agrego objetos vivos
 		controladorJuego.agregarObjetoVivo(escenario);
+		TanqueHeroe tanque =TanqueHeroe.getInstancia();
+		LanzaCohetes arma=new LanzaCohetes(TanqueHeroe.getInstancia());
+		tanque.agregarArma(arma);
+		Canion canion=new Canion(tanque);
+		tanque.agregarArma(canion);
+		try {
+			tanque.seleccionarArma(arma);
+		} catch (NoExisteArmaSeleccionadaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		Nivel nivel1=new Nivel(1,"./bin/niveles/nivel1.xml",1000);
 		try {
@@ -57,7 +84,7 @@ public class Pruebas {
 		} catch (NoPudoLeerXMLExeption e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
 		
 		controladorJuego.comenzarJuego();
 		
@@ -104,7 +131,7 @@ public class Pruebas {
 		
 		
 		
-		
+		*/
 		
 		
 		/*ControladorJuego controladorJuego= ControladorJuego.getInstancia();

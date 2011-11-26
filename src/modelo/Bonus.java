@@ -49,7 +49,6 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
 
 		if (this.superpuestoCon(tanque)) {
-			System.out.println("Bonus superpuesto");
 			aplicarEfecto(tanque);
 			destruir();
 		}

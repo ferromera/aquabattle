@@ -3,6 +3,8 @@ package modelo;
 
 import org.w3c.dom.Element;
 
+import pantallas.PantallaJuego;
+
 import excepciones.NoPudoLeerXMLExeption;
 
 import modelo.armamento.Ametralladora;
@@ -47,8 +49,15 @@ public class TanqueHeroe extends Tanque {
 	public TanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
 		super((Element)element.getElementsByTagName(Tanque.TAG).item(0));
 	}
-
-	
+	@Override
+	protected void destruir() {
+		Escenario.getActual().borrarObjetoVivo(this);
+		Escenario.getActual().borrarSolido(this);
+		destruido=true;
+		PantallaJuego.getInstancia().perderVida();
+		notificar();
+		
+	}
 	
 	public void calcularSiguienteMovimiento(){
 		//No hace nada ya que el proximo movimiento

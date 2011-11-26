@@ -83,5 +83,6 @@ public class Panel extends java.awt.Panel implements SuperficieDeDibujo {
 		this.setVisible(true);	
 		ventana.add(this);
 		this.imagen = this.createImage(getSize().width, getSize().height);
+		color=Color.BLACK;
 	}
 }

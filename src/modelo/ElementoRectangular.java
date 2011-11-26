@@ -15,7 +15,7 @@ import titiritero.Posicionable;
 import utils.Direccion;
 
 
-public abstract class ElementoRectangular implements Posicionable , Observable {
+public  class ElementoRectangular implements Posicionable , Observable {
 	private static final String TAG_POS_Y = "posicion-y";
 	private static final String TAG_POS_X = "posicion-x";
 	private static final String TAG_ALTO = "alto";
@@ -299,8 +299,8 @@ public abstract class ElementoRectangular implements Posicionable , Observable {
 		
 		Escenario escenario= Escenario.getActual();
 		 
-		if( posX < 0 || posX+getAncho() > escenario.getAncho() ||
-			posY < 0 || posY+getAlto() > escenario.getAlto() )
+		if( posX < escenario.getX() || posX+getAncho() > escenario.getX()+escenario.getAncho() ||
+			posY < escenario.getY() || posY+getAlto() > escenario.getY()+escenario.getAlto() )
 			return true;
 		 
 		return false;

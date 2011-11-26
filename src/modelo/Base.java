@@ -2,6 +2,8 @@ package modelo;
 
 import org.w3c.dom.Element;
 
+import pantallas.PantallaJuego;
+
 import excepciones.NoExisteBaseException;
 import excepciones.NoPudoLeerXMLExeption;
 import titiritero.Posicionable;
@@ -29,8 +31,8 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 		this.impactosRecibidos ++;
 		if (impactosRecibidos > 1){
 			try{
-				System.out.println("Base Muerta");
 			Escenario.getActual().borrarBase();
+			PantallaJuego.getInstancia().perder();
 			}catch (NoExisteBaseException e){
 				e.printStackTrace();
 			}

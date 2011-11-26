@@ -29,11 +29,7 @@ public class VistaEscenario extends Vista{
 	@Override
 	public void dibujar(SuperficieDeDibujo superfice) {
 		suelo.dibujar(superfice);
-		PriorityQueue<Vista> clon=new PriorityQueue<Vista>();
-		Iterator<Vista> it= vistas.iterator();
-		while(it.hasNext()){
-			clon.add(it.next());
-		}
+		PriorityQueue<Vista> clon=new PriorityQueue<Vista>(vistas);
 		while(clon.peek()!=null){
 			clon.poll().dibujar(superfice);
 		}
