@@ -50,6 +50,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		this.armaActual = null;
 		ultimoTiempo = new Date().getTime();
 		pausado=true;
+		mejoras=new ArrayList<MejoraTanque>();
 	}
 	
 	public Tanque(Element element) throws NoPudoLeerXMLExeption{

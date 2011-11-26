@@ -20,7 +20,7 @@ public class VistaBonusVida extends Vista implements Observador {
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
 	
-	private static final double FPS_NORMAL_BONUSVIDA = 5.0;
+	private static final double FPS_BONUSVIDA = 5.0;
 	
 	public VistaBonusVida(BonusVida bonusVida){
 		this.bonusVida = bonusVida;
@@ -33,9 +33,10 @@ public class VistaBonusVida extends Vista implements Observador {
 				spriteBonus.getAncho(),ALTO_SPRITE);
 		
 		spriteActual = new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteActual.setFps(FPS_NORMAL_BONUSVIDA);
+		spriteActual.setFps(FPS_BONUSVIDA);
+		spriteActual.reproducir();
 		
-
+		spriteActual.reproducir();
 		actualizar();
 		
 	}
@@ -64,11 +65,8 @@ public class VistaBonusVida extends Vista implements Observador {
 
 	@Override
 	public void actualizar() {
-		spriteActual.reproducir();
-		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if (this.bonusVida.superpuestoCon(tanque)) {
-			
-			//Destruir BonusVida
+		if (this.bonusVida.estaBorrado()) {
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 
 

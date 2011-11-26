@@ -18,6 +18,7 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 	public  static final String TAG = "base";
 	private static final String TAG_TIEMPO_RESTANTE = "tiempo-restante";
 	private long tiempoActual;
+	private boolean borrado;
 	
 
 	public Bonus(PosicionadorAleatorio posicionador,int tiempoDeVida) throws NoSePudoPosicionarException{
@@ -26,6 +27,7 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		timer.setRepeats(false);
 		timer.start();
 		tiempoActual = new Date().getTime();
+		borrado=false;
 	}
 	public Bonus(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(ElementoRectangularIntangible.TAG).item(0));
@@ -47,6 +49,7 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
 
 		if (this.superpuestoCon(tanque)) {
+			System.out.println("Bonus superpuesto");
 			aplicarEfecto(tanque);
 			destruir();
 		}
@@ -54,9 +57,14 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 	protected abstract void aplicarEfecto(Tanque tanque);
 	
 	protected void destruir(){
+		borrado=true;
 		Escenario.getActual().borrarObjeto(this);
 		Escenario.getActual().borrarObjetoVivo(this);
+		notificar();
 	}
+	public boolean estaBorrado() {
+		return borrado;
+		}
 	@Override
 	public void pausar() {
 		
