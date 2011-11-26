@@ -20,7 +20,7 @@ public class VistaBonusAtaque extends Vista implements Observador {
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
 	
-	private static final double FPS_NORMAL_BONUSATAQUE= 5.0;
+	private static final double FPS_BONUSATAQUE= 5.0;
 	
 	public VistaBonusAtaque(BonusAtaque bonusAtaque){
 		this.bonusAtaque = bonusAtaque;
@@ -33,8 +33,8 @@ public class VistaBonusAtaque extends Vista implements Observador {
 				spriteBonus.getAncho(),ALTO_SPRITE);
 		
 		spriteActual = new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteActual.setFps(FPS_NORMAL_BONUSATAQUE);
-		
+		spriteActual.setFps(FPS_BONUSATAQUE);
+		spriteActual.reproducir();
 
 		actualizar();
 		
@@ -64,11 +64,9 @@ public class VistaBonusAtaque extends Vista implements Observador {
 
 	@Override
 	public void actualizar() {
-		spriteActual.reproducir();
-		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-		if (this.bonusAtaque.superpuestoCon(tanque)) {
-			
-			//Destruir BonusAtaque
+		
+		if (this.bonusAtaque.estaBorrado()) {
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 
 

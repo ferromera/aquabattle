@@ -31,5 +31,6 @@ public class BonusAtaque extends Bonus {
 	
 	
 	
+	
 
 }

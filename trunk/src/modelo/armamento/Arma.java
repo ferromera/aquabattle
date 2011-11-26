@@ -62,10 +62,10 @@ public abstract class Arma implements ActionListener  {
 	}
 	
 	public void mejorarTiempoCarga(double porcentaje){
-		tiempoCarga*=(1+porcentaje);
+		tiempoCarga/=(1+porcentaje);
 	}
 	public void empeorarTiempoCarga(double porcentaje){
-		tiempoCarga*=1-porcentaje;
+		tiempoCarga/=1-porcentaje;
 	}
 	
 	public void disparar(){
