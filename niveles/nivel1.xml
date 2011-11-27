@@ -1,4 +1,12 @@
 <nivel1>
+	<bonus>
+		<bonus-ataque>
+			<bernoulli> 0.03 </bernoulli>
+		</bonus-ataque>
+		<bonus-vida> 
+			<bernoulli> 0.1 </bernoulli>
+		</bonus-vida>
+	</bonus>
 	<pared>
 		<pared-concreto>
 			<pos-x> 60 </pos-x>

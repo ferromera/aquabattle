@@ -25,8 +25,7 @@ public class BonusAtaque extends Bonus {
 	}
 	
 	public void aplicarEfecto(Tanque tanque){
-		MejoraTanqueAtaque mejoraAtaque = new MejoraTanqueAtaque(PORCENTAJE_VELOCIDAD,PORCENTAJE_DISPARO);
-		tanque.agregarMejora(mejoraAtaque);
+		new MejoraTanqueAtaque(PORCENTAJE_VELOCIDAD,PORCENTAJE_DISPARO,tanque);
 	}
 	
 	

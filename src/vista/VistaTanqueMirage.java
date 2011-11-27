@@ -12,12 +12,10 @@ import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 import utils.Direccion;
 
-public class VistaTanqueMirage extends Vista implements Observador {
-	private TanqueMirage tanque;
+public class VistaTanqueMirage extends VistaTanque implements Observador {
 	
 	private static final int ORDEN=3;
 	
-	private Animacion spriteActual;
 	private Animacion spriteAmetralladora;
 	private Animacion spriteLanzaCohetes;
 	
@@ -38,7 +36,7 @@ public class VistaTanqueMirage extends Vista implements Observador {
 
 
 	public VistaTanqueMirage(TanqueMirage tanque) {
-		this.tanque = tanque;
+		super(tanque);
 		orden=ORDEN;
 		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
@@ -59,9 +57,6 @@ public class VistaTanqueMirage extends Vista implements Observador {
 		actualizar();
 	}
 
-	public void dibujar(SuperficieDeDibujo sup) {
-		spriteActual.dibujar(sup);
-	}
 
 	public Posicionable getPosicionable() {
 		return tanque;
@@ -78,7 +73,7 @@ public class VistaTanqueMirage extends Vista implements Observador {
 	}
 
 	public TanqueMirage getTanque() {
-		return tanque;
+		return (TanqueMirage) tanque;
 	}
 
 	@Override

@@ -17,17 +17,24 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		ObjetoVivo ,ActionListener{
 	public  static final String TAG = "base";
 	private static final String TAG_TIEMPO_RESTANTE = "tiempo-restante";
-	private long tiempoActual;
 	private boolean borrado;
+	private Timer timer;
+	private int restante;
+	private long tiempoInicial;
+	private int tiempoVida;
+	private boolean pausado;
 	
 
 	public Bonus(PosicionadorAleatorio posicionador,int tiempoDeVida) throws NoSePudoPosicionarException{
 		posicionador.posicionar(this);
-		Timer timer=new Timer(tiempoDeVida,this);
+		restante=tiempoDeVida;
+		tiempoVida=tiempoDeVida;
+		timer=new Timer(restante,this);
 		timer.setRepeats(false);
 		timer.start();
-		tiempoActual = new Date().getTime();
+		tiempoInicial = new Date().getTime();
 		borrado=false;
+		pausado=false;
 	}
 	public Bonus(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(ElementoRectangularIntangible.TAG).item(0));
@@ -46,8 +53,15 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 	}
 
 	public void vivir() {
+		if(borrado)
+			return;
 		TanqueHeroe tanque = TanqueHeroe.getInstancia();
-
+		if(pausado){
+			timer=new Timer(restante,this);
+			timer.setRepeats(false);
+			timer.start();
+		}
+			
 		if (this.superpuestoCon(tanque)) {
 			aplicarEfecto(tanque);
 			destruir();
@@ -66,7 +80,9 @@ public abstract class Bonus extends ElementoRectangularIntangible implements
 		}
 	@Override
 	public void pausar() {
-		
+		pausado=true;
+		restante= tiempoVida-(int)(new Date().getTime()-tiempoInicial);
+		timer.stop();
 	}
 
 }
