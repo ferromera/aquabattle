@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 import javax.swing.Timer;
 
+import controlador.ControladorPantallaJuego;
+
 import titiritero.ControladorJuego;
 import vista.pantallas.VistaPantallaJuego;
 
@@ -134,11 +136,13 @@ public class PantallaJuego extends Pantalla {
 	public void dejarDeSerActual() {
 		ControladorJuego.getInstancia().removerDibujable(VistaPantallaJuego.getInstancia());
 		ControladorJuego.getInstancia().removerObjetoVivo(this);
+		ControladorJuego.getInstancia().removerKeyPressObservador(ControladorPantallaJuego.getInstancia());
 		
 	}
 	public void convertirEnActual(){
 		ControladorJuego.getInstancia().agregarDibujable(VistaPantallaJuego.getInstancia());
 		ControladorJuego.getInstancia().agregarObjetoVivo(this);
+		ControladorJuego.getInstancia().agregarKeyPressObservador(ControladorPantallaJuego.getInstancia());
 	}
 
 }

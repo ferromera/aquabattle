@@ -28,20 +28,20 @@ public class BotBordes extends Bot {
 	}
 
 	private void atacarHaciaXDeObjetivo() {
-		if (tanque.getCentroX() < objetivo.getCentroX())
+		if (tanque.getCentroX() < getObjetivo().getCentroX())
 			atacarEn(Direccion.Este());
 		else
 			atacarEn(Direccion.Oeste());
 	}
 
 	private void moverHaciaYDeObjetivo() {
-		if (tanque.getCentroY() < objetivo.getCentroY()) {
-			if (tanque.getCentroX() < objetivo.getCentroX())
+		if (tanque.getCentroY() < getObjetivo().getCentroY()) {
+			if (tanque.getCentroX() < getObjetivo().getCentroX())
 				moverPor(Direccion.Sur(), Direccion.Este());
 			else
 				moverPor(Direccion.Sur(), Direccion.Oeste());
 		} else {
-			if (tanque.getCentroX() < objetivo.getCentroX())
+			if (tanque.getCentroX() < getObjetivo().getCentroX())
 				moverPor(Direccion.Norte(), Direccion.Este());
 			else
 				moverPor(Direccion.Norte(), Direccion.Oeste());
@@ -49,16 +49,16 @@ public class BotBordes extends Bot {
 	}
 
 	private void moverHaciaBordeX() {
-		if (tanque.getCentroX() < objetivo.getCentroX()) {
-			if (tanque.getCentroY() < objetivo.getCentroY())
-				moverPor(Direccion.Sur(), Direccion.Oeste());
+		if (tanque.getCentroX() < getObjetivo().getCentroX()) {
+			if (tanque.getCentroY() < getObjetivo().getCentroY())
+				moverPor(Direccion.Oeste(),Direccion.Sur());
 			else
-				moverPor(Direccion.Norte(), Direccion.Oeste());
+				moverPor(Direccion.Oeste(),Direccion.Norte());
 		} else {
-			if (tanque.getCentroY() < objetivo.getCentroY())
-				moverPor(Direccion.Sur(), Direccion.Este());
+			if (tanque.getCentroY() < getObjetivo().getCentroY())
+				moverPor(Direccion.Este(),Direccion.Sur());
 			else
-				moverPor(Direccion.Norte(), Direccion.Este());
+				moverPor(Direccion.Este(),Direccion.Norte());
 		}
 	}
 
@@ -72,6 +72,7 @@ public class BotBordes extends Bot {
 
 
 	private boolean enYDeObjetivo() {
-		return (tanque.getCentroY() == objetivo.getCentroY());
+		return (tanque.getCentroY() < getObjetivo().getCentroY()+5
+				&& tanque.getCentroY() > getObjetivo().getCentroY()-5 );
 	}
 }

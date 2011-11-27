@@ -26,4 +26,5 @@ public class Ametralladora extends Arma {
 		return true;
 	}
 	
+	
 }

@@ -145,5 +145,10 @@ public abstract class Arma implements ActionListener  {
 		return tanque;
 	}
 	
+	public void setTiempoDeCarga(int tiempoEntreDisparos) {
+		tiempoCarga=tiempoEntreDisparos;
+		
+	}
+	
 	
 }

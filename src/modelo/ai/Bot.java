@@ -10,30 +10,39 @@ import modelo.TanqueEnemigo;
 public abstract class Bot {
 
 	protected Tanque tanque;
-	protected ElementoRectangular objetivo;
+	private ElementoRectangular objetivo;
 	
 	public Bot(Tanque tanque, ElementoRectangular objetivo) {
 		this.tanque = tanque;
-		this.objetivo = objetivo;
+		this.setObjetivo(objetivo);
 	}
 
 	public abstract void actuar() ;
 
 	protected void moverPor(Direccion primaria, Direccion secundaria) {
 		ElementoRectangularSolido colisionPrimaria = null;
+		boolean finDeEscenarioPorPrimaria=false;
+
 		tanque.avanzarEnDireccion(primaria);
-		if (tanque.estaColisionado()) {
+		if (tanque.estaColisionado()||tanque.fueraDeEscenario()) {
 			// Bloqueado por primaria
 			try {
-				colisionPrimaria = tanque.getColisionado();
+				if(tanque.fueraDeEscenario())
+					finDeEscenarioPorPrimaria=true;
+				else
+					colisionPrimaria = tanque.getColisionado();
 			} catch (NoExisteElementoColisionadoException e1) {
 				e1.printStackTrace();
 			}
 			tanque.retrocederEnDireccion(primaria);
 			tanque.avanzarEnDireccion(secundaria);
-			if (tanque.estaColisionado()) {
+			if (tanque.estaColisionado()||tanque.fueraDeEscenario()) {
 				// Bloqueado por primaria y secundaria
 				tanque.retrocederEnDireccion(secundaria);
+				if(finDeEscenarioPorPrimaria){
+					tanque.mover(secundaria);
+					tanque.disparar();
+				}else
 				if (colisionPrimaria instanceof TanqueEnemigo) {
 					// Enemigo en direccion primaria
 					tanque.mover(secundaria);
@@ -74,6 +83,14 @@ public abstract class Bot {
 		tanque.mover(dir);
 		if (!(visto instanceof TanqueEnemigo))
 			tanque.disparar();
+	}
+
+	public ElementoRectangular getObjetivo() {
+		return objetivo;
+	}
+
+	public void setObjetivo(ElementoRectangular objetivo) {
+		this.objetivo = objetivo;
 	}
 
 }

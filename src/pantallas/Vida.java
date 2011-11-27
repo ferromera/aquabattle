@@ -44,6 +44,7 @@ public class Vida implements Observable,Posicionable {
 	}
 	public void borrar(){
 		borrada=true;
+		notificar();
 	}
 
 	private ArrayList<Observador> observadores=new ArrayList<Observador>();
