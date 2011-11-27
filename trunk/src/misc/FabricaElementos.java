@@ -14,7 +14,10 @@ import vista.VistaEscenario;
 import vista.VistaExplosion;
 import vista.VistaParedConcreto;
 import vista.VistaParedMetal;
+import vista.VistaTanqueGrizzly;
 import vista.VistaTanqueHeroe;
+import vista.VistaTanqueIFV;
+import vista.VistaTanqueMirage;
 import vista.pantallas.VistaPantallaJuego;
 import vista.pantallas.VistaVida;
 import excepciones.NoSePudoPosicionarException;
@@ -193,8 +196,8 @@ public class FabricaElementos {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
-		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
-		//VistaEscenario.getInstancia().agregarVista(vista);
+		VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		
 	}
 
@@ -202,8 +205,8 @@ public class FabricaElementos {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
-		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
-		//VistaEscenario.getInstancia().agregarVista(vista);
+		VistaTanqueIFV vista =new VistaTanqueIFV(tanque);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		
 	}
 
@@ -211,8 +214,8 @@ public class FabricaElementos {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
-		//VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
-		//VistaEscenario.getInstancia().agregarVista(vista);
+		VistaTanqueGrizzly vista =new VistaTanqueGrizzly(tanque);
+		VistaEscenario.getInstancia().agregarVista(vista);
 		
 	}
 	

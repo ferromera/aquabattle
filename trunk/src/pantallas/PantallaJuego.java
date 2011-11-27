@@ -71,6 +71,7 @@ public class PantallaJuego extends Pantalla {
 			siguienteNivel();
 			return;
 		}
+		niveles.get(nivelActual).actualizarFlota();
 	//	if(!fabricaBonus.estaProduciendo())
 		//	fabricaBonus.comenzarProduccion();
 		escenario.vivir();

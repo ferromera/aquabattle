@@ -10,6 +10,11 @@ import misc.FabricaElementos;
 public class Flota {
 	private ArrayList<TanqueEnemigo> tanques;
 	
+	
+	public Flota(){
+		tanques=new ArrayList<TanqueEnemigo>();
+	}
+	
 	public void agregar(){
 		Iterator<TanqueEnemigo> it= tanques.iterator();
 		while(it.hasNext()){
@@ -26,6 +31,14 @@ public class Flota {
 	}
 	public void borrarTanque(TanqueEnemigo tanque){
 		tanques.remove(tanque);
+	}
+	public boolean estaDestruida(){
+		Iterator<TanqueEnemigo> it= tanques.iterator();
+		while(it.hasNext()){
+			if(!it.next().estaDestruido())
+				return false;
+		}
+		return true;
 	}
 
 }

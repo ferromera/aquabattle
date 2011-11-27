@@ -725,6 +725,205 @@
 		<pos-x> 455 </pos-x>
 		<pos-y> 670 </pos-y>
 	</base>
+	<flotas>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<IFV>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<IFV>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+			<IFV>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+			<Grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<IFV>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Mirage>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Mirage>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 550 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+		</flota>
+		<flota>
+			<Grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<IFV>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+		</flota>
+		<flota>
+			<IFV>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<IFV>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+		</flota>
+		<flota>
+			<IFV>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</IFV>
+			<Grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Grizzly>
+			<Mirage>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</Mirage>
+		</flota>
+		
+	</flotas>
 	<heroe>
 		<pos-x> 550 </pos-x>
 		<pos-y> 500 </pos-y>

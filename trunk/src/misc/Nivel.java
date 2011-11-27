@@ -1,6 +1,8 @@
 package misc;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -8,6 +10,10 @@ import javax.xml.parsers.ParserConfigurationException;
 
 
 import modelo.Escenario;
+import modelo.Flota;
+import modelo.TanqueGrizzly;
+import modelo.TanqueIFV;
+import modelo.TanqueMirage;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,9 +34,11 @@ public class Nivel {
 	private String tagNivel;
 	private double xInicial;
 	private double yInicial;
+	private LinkedList<Flota> flotas;
+	
 	private static final String TAG_TANQUE_HEROE = "heroe";
 	private static final String TAG_PARED = "pared";
-	private static final String TAG_FLOTA = "flota";
+	private static final String TAG_FLOTAS = "flotas";
 	private static final String TAG_POS_X = "pos-x";
 	private static final String TAG_POS_Y = "pos-y";
 	private static final String TAG_PARED_METAL = "pared-metal";
@@ -40,12 +48,17 @@ public class Nivel {
 	private static final String TAG_BONUS_VIDA = "bonus-vida";
 	private static final String TAG_BERNOULLI = "bernoulli";
 	private static final String TAG_BASE = "base";
+	private static final String TAG_FLOTA = "flota";
+	private static final String TAG_GRIZZLY = "grizzly";
+	private static final String TAG_IFV = "ifv";
+	private static final String TAG_MIRAGE = "mirage";
 
 	public Nivel(int numeroDeNivel, String ruta,int puntosNivel) {
 		tagNivel = "nivel";
 		tagNivel.concat(Integer.toString(numeroDeNivel));
 		rutaXML = ruta;
 		maxPuntos=puntosNivel;
+		flotas= new LinkedList<Flota>();
 
 	}
 	public void sumarPuntos(int puntosGanados){
@@ -101,11 +114,11 @@ public class Nivel {
 				Element elemPared = (Element) nodosPared.item(i);
 				cargarPared(elemPared);
 			}
-		NodeList nodosFlotas = raiz.getElementsByTagName(TAG_FLOTA);
+		NodeList nodosFlotas = raiz.getElementsByTagName(TAG_FLOTAS);
 		if (nodosFlotas != null)
 			for (int i = 0; i < nodosFlotas.getLength(); i++) {
-				Element elemFlota = (Element) nodosFlotas.item(i);
-				cargarFlota(elemFlota);
+				Element elemFlotas = (Element) nodosFlotas.item(i);
+				cargarFlotas(elemFlotas);
 			}
 		NodeList nodosBonus = raiz.getElementsByTagName(TAG_BONUS);
 		if (nodosBonus != null)
@@ -198,11 +211,60 @@ public class Nivel {
 
 	}
 
-	private void cargarFlota(Element elemFlota) {
-		// TODO Auto-generated method stub
+	private void cargarFlotas(Element elemFlotas) throws NoPudoLeerXMLExeption {
+		NodeList nodosFlota = elemFlotas.getElementsByTagName(TAG_FLOTA);
+		if (nodosFlota != null)
+			for (int i = 0; i < nodosFlota.getLength(); i++) {
+				Element elemFlota = (Element) nodosFlota.item(i);
+				cargarFlota(elemFlota);
+			}
+		flotas.peek().agregar();
 
 	}
 
+	private void cargarFlota(Element elemFlota) throws NoPudoLeerXMLExeption {
+		NodeList nodo;
+		Element elem;
+		Flota flota= new Flota();
+		nodo = elemFlota.getElementsByTagName(TAG_GRIZZLY);
+		if (nodo != null)
+			for (int i = 0; i < nodo.getLength(); i++) {
+				elem = (Element) nodo.item(i);
+				cargarGrizzly(elem,flota);
+			}
+		nodo = elemFlota.getElementsByTagName(TAG_IFV);
+		if (nodo != null)
+			for (int i = 0; i < nodo.getLength(); i++) {
+				elem = (Element) nodo.item(i);
+				cargarIFV(elem,flota);
+			}
+		nodo = elemFlota.getElementsByTagName(TAG_MIRAGE);
+		if (nodo != null)
+			for (int i = 0; i < nodo.getLength(); i++) {
+				elem = (Element) nodo.item(i);
+				cargarMirage(elem,flota);
+			}
+		flotas.add(flota);
+		
+	}
+	private void cargarMirage(Element elem,Flota flota) throws NoPudoLeerXMLExeption {
+		double x = getPosX(elem);
+		double y = getPosY(elem);
+		flota.agregarTanque(new TanqueMirage(x, y));
+		
+	}
+	private void cargarIFV(Element elem,Flota flota) throws NoPudoLeerXMLExeption {
+		double x = getPosX(elem);
+		double y = getPosY(elem);
+		flota.agregarTanque(new TanqueIFV(x, y));
+		
+	}
+	private void cargarGrizzly(Element elem,Flota flota) throws NoPudoLeerXMLExeption {
+		double x = getPosX(elem);
+		double y = getPosY(elem);
+		flota.agregarTanque(new TanqueGrizzly(x, y));
+		
+	}
 	private void cargarPared(Element elemPared) throws NoPudoLeerXMLExeption {
 		NodeList nodosMetal = elemPared.getElementsByTagName(TAG_PARED_METAL);
 		if (nodosMetal != null)
@@ -301,7 +363,14 @@ public class Nivel {
 	}
 
 
-	
+	public void actualizarFlota(){
+		if(!flotas.isEmpty())
+			if(flotas.peek().estaDestruida()){
+				flotas.poll();
+				if(!flotas.isEmpty())
+					flotas.peek().agregar();
+			}
+	}
 
 	public boolean estaGanado() {
 		return ganado;
