@@ -17,7 +17,7 @@ public class TanqueIFV extends TanqueEnemigo {
 	
 	private Bot bot;
 	
-	public TanqueIFV(double x, double y) throws NoExisteBaseException {
+	public TanqueIFV(double x, double y)  {
 		destruido=false;
 		resistencia = RESISTENCIA;
 		setX(x);
@@ -26,7 +26,11 @@ public class TanqueIFV extends TanqueEnemigo {
 		setAlto(ALTO);
 		setAncho(ANCHO);
 		agregarArma(new Canion(this));
-		bot = new BotBordes(this, Escenario.getActual().getBase());
+		try {
+			bot = new BotBordes(this, Escenario.getActual().getBase());
+		} catch (NoExisteBaseException e) {
+			e.printStackTrace();
+		}
 	}
 	public TanqueIFV(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(TanqueEnemigo.TAG).item(0));

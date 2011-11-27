@@ -17,7 +17,7 @@ public class TanqueMirage extends TanqueEnemigo {
 	
 	private Bot bot;
 	
-	public TanqueMirage(double x, double y) throws NoExisteBaseException {
+	public TanqueMirage(double x, double y) {
 		destruido=false;
 		resistencia = RESISTENCIA;
 		setX(x);
@@ -26,7 +26,12 @@ public class TanqueMirage extends TanqueEnemigo {
 		setAlto(ALTO);
 		setAncho(ANCHO);
 		agregarArma(new Canion(this));
-		bot = new BotCentro(this, Escenario.getActual().getBase());
+		bot=null;
+		try {
+			bot = new BotCentro(this, Escenario.getActual().getBase());
+		} catch (NoExisteBaseException e) {
+			e.printStackTrace();
+		}
 	}
 	public TanqueMirage(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(TanqueEnemigo.TAG).item(0));
