@@ -8,12 +8,10 @@ import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 import utils.Direccion;
 
-public class VistaTanqueGrizzly extends Vista implements Observador {
-private TanqueGrizzly tanque;
+public class VistaTanqueGrizzly extends VistaTanque implements Observador {
 	
 	private static final int ORDEN=3;
 	
-	private Animacion sprite;
 
 	private final String RUTA_SPRITE = "/sprites/SpriteGrizzly.png";
 	
@@ -25,19 +23,17 @@ private TanqueGrizzly tanque;
 	private static final double FPS = 25.0;
 
 	public VistaTanqueGrizzly(TanqueGrizzly tanque) {
-		this.tanque = tanque;
+		super(tanque);
+
 		orden=ORDEN;
 		tanque.adscribir(this);
 		
-		sprite=new Animacion(new Imagen(RUTA_SPRITE, tanque),ANCHO_SPRITE,ALTO_SPRITE);
-		sprite.setFps(FPS);
+		spriteActual=new Animacion(new Imagen(RUTA_SPRITE, tanque),ANCHO_SPRITE,ALTO_SPRITE);
+		spriteActual.setFps(FPS);
 		
 		actualizar();
 	}
 
-	public void dibujar(SuperficieDeDibujo sup) {
-		sprite.dibujar(sup);
-	}
 
 	public Posicionable getPosicionable() {
 		return tanque;
@@ -45,7 +41,7 @@ private TanqueGrizzly tanque;
 
 	public void setPosicionable(Posicionable tanque) {
 		this.tanque = (TanqueGrizzly) tanque;
-		sprite.setPosicionable(tanque);
+		spriteActual.setPosicionable(tanque);
 	}
 
 	public void setTanque(TanqueGrizzly tanque) {
@@ -53,19 +49,19 @@ private TanqueGrizzly tanque;
 	}
 
 	public TanqueGrizzly getTanque() {
-		return tanque;
+		return (TanqueGrizzly) tanque;
 	}
 
 	@Override
 	public void actualizar() {
-		sprite.detener();
+		spriteActual.detener();
 		if(tanque.estaDestruido()){
 			VistaEscenario.getInstancia().borrarVista(this);
 		}
 		if(tanque.enMovimiento())
-			sprite.reproducir();
+			spriteActual.reproducir();
 		else
-			sprite.detener();
+			spriteActual.detener();
 	
 		actualizarOrientacion();
 	}
@@ -73,16 +69,16 @@ private TanqueGrizzly tanque;
 	private void actualizarOrientacion(){
 			switch(tanque.getOrientacion().get()){
 			case Direccion.NORTE:
-				sprite.orientarArriba();
+				spriteActual.orientarArriba();
 				break;
 			case Direccion.SUR:
-				sprite.orientarAbajo();
+				spriteActual.orientarAbajo();
 				break;
 			case Direccion.ESTE:
-				sprite.orientarDerecha();
+				spriteActual.orientarDerecha();
 				break;
 			case Direccion.OESTE:
-				sprite.orientarIzquierda();
+				spriteActual.orientarIzquierda();
 				break;
 				
 			}

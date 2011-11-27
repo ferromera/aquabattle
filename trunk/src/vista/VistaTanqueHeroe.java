@@ -1,24 +1,29 @@
 package vista;
 
+import java.awt.Color;
+import java.awt.Font;
+
 import javax.swing.Timer;
 
 import titiritero.Dibujable;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
+import titiritero.vista.ObjetoDeTexto;
+import titiritero.vista.TextoDinamico;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import utils.Direccion;
 import misc.Observador;
+import modelo.ElementoRectangular;
 import modelo.TanqueHeroe;
 import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;
 
-public class VistaTanqueHeroe extends Vista implements Observador {
-	private TanqueHeroe tanque;
+public class VistaTanqueHeroe extends VistaTanque implements Observador {
+	
 	
 	private static final int ORDEN=3;
 	
-	private Animacion spriteActual;
 	private Animacion spriteNormalAmetralladora;
 	private Animacion spriteNormalCanion;
 	private Animacion spriteNormalLanzaCohetes;
@@ -52,7 +57,7 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 
 
 	public VistaTanqueHeroe(TanqueHeroe tanque) {
-		this.tanque = tanque;
+		super(tanque);
 		orden=ORDEN;
 		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
@@ -103,10 +108,7 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 		actualizar();
 	}
 
-	public void dibujar(SuperficieDeDibujo sup) {
-		spriteActual.dibujar(sup);
-	}
-
+	
 	public Posicionable getPosicionable() {
 		return tanque;
 	}
@@ -127,7 +129,7 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 	}
 
 	public TanqueHeroe getTanque() {
-		return tanque;
+		return (TanqueHeroe)tanque;
 	}
 
 	@Override
@@ -137,7 +139,7 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 			VistaEscenario.getInstancia().borrarVista(this);
 		}
 		else{
-		if(tanque.estaMejorado()){
+		if(tanque.tieneDisparoMejorado()){
 			if(tanque.getArmaActual().getClass()==Ametralladora.class)
 				spriteActual=spriteMejoradoAmetralladora;
 			else if(tanque.getArmaActual().getClass()==Canion.class)
@@ -151,7 +153,6 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 				spriteActual=spriteNormalCanion;
 			else 
 				spriteActual=spriteNormalLanzaCohetes;
-			
 		}
 		if(tanque.enMovimiento())
 			spriteActual.reproducir();

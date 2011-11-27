@@ -28,13 +28,11 @@ public class PantallaJuego extends Pantalla {
 	private static final int Y_VIDA = 500;
 	private static final int SEPARACION_VIDA = 30;
 	private static PantallaJuego instancia;
-	private Escenario escenario;
-	private FabricaBonus fabricaBonus;
 	private ArrayList<Nivel> niveles;
 	private ArrayList<Vida> vidas;
 	private int nivelActual;
 	private int puntos;
-	private boolean perdido;
+	private boolean pausado=false;
 	
 	public static PantallaJuego getInstancia(){
 		if(instancia==null)
@@ -42,7 +40,6 @@ public class PantallaJuego extends Pantalla {
 		return instancia;
 	}
 	private PantallaJuego(){
-		escenario=Escenario.nuevaInstancia();
 		niveles=new ArrayList<Nivel>();
 		niveles.add(new Nivel(1,RUTA_NIVEL_1,1000));
 		//TODO: agregar mas niveles.
@@ -57,27 +54,21 @@ public class PantallaJuego extends Pantalla {
 		vidas=new ArrayList<Vida>();
 		new VistaPantallaJuego(this);
 		for(int i=0 ;i<VIDAS;i++)
-			vidas.add(FabricaElementos.crearVida(X_VIDA,Y_VIDA+SEPARACION_VIDA*i));
-		perdido=false;		
-		fabricaBonus=new FabricaBonusAtaque(new SorteadorBernoulli());
-		fabricaBonus.detenerProduccion();
+			vidas.add(FabricaElementos.crearVida(X_VIDA,Y_VIDA+SEPARACION_VIDA*i));		
+		pausado=false;
 	}
 	
 	
 
 	@Override
 	public void vivir() {
-		if(perdido)
+		if(pausado)
 			return;
 		if(niveles.get(nivelActual).estaGanado()){
 			siguienteNivel();
 			return;
 		}
-		niveles.get(nivelActual).actualizarFlota();
-	//	if(!fabricaBonus.estaProduciendo())
-		//	fabricaBonus.comenzarProduccion();
-		escenario.vivir();
-		
+		niveles.get(nivelActual).vivir();	
 		
 	}
 	public void perderVida() {
@@ -101,7 +92,6 @@ public class PantallaJuego extends Pantalla {
 	}
 	public void perder() {
 		pausar();
-		perdido=true;
 		Timer timer=new Timer(2000,new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				cambiarA(FinDelJuego.getInstancia());
@@ -119,9 +109,12 @@ public class PantallaJuego extends Pantalla {
 		return puntos;
 	}
 	public void pausar() {
-		escenario.pausar();
-		fabricaBonus.detenerProduccion();
-
+		pausado=true;
+		niveles.get(nivelActual).pausar();
+	}
+	public void reanudar(){
+		pausado=false;
+		niveles.get(nivelActual).reanudar();
 	}
 	private void siguienteNivel() {
 		// TODO Auto-generated method stub

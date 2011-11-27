@@ -2,6 +2,7 @@ package misc;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -20,12 +21,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import titiritero.ObjetoVivo;
+
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 import excepciones.ProbabilidadInvalidaException;
 import excepciones.YaExisteBaseException;
 
-public class Nivel {
+public class Nivel implements ObjetoVivo{
 
 	private boolean ganado;
 	private int puntos;
@@ -35,6 +38,8 @@ public class Nivel {
 	private double xInicial;
 	private double yInicial;
 	private LinkedList<Flota> flotas;
+	private LinkedList<FabricaBonus> fabricasBonus;
+	private boolean pausado;
 	
 	private static final String TAG_TANQUE_HEROE = "heroe";
 	private static final String TAG_PARED = "pared";
@@ -59,6 +64,8 @@ public class Nivel {
 		rutaXML = ruta;
 		maxPuntos=puntosNivel;
 		flotas= new LinkedList<Flota>();
+		fabricasBonus=new LinkedList<FabricaBonus>();
+		pausado=false;
 
 	}
 	public void sumarPuntos(int puntosGanados){
@@ -176,7 +183,7 @@ public class Nivel {
 			throws NoPudoLeerXMLExeption {
 		SorteadorBinario sorteador = cargarSorteador(elemBonusAtaque);
 		FabricaBonusAtaque fabAtaque = new FabricaBonusAtaque(sorteador);
-		// PantallaJuego.addFabricaBonus(fabAtaque);
+		fabricasBonus.add(fabAtaque);
 
 	}
 
@@ -207,7 +214,7 @@ public class Nivel {
 			throws NoPudoLeerXMLExeption {
 		SorteadorBinario sorteador = cargarSorteador(elemBonusVida);
 		FabricaBonusVida fabVida = new FabricaBonusVida(sorteador);
-		// PantallaJuego.addFabricaBonus(fabVida);
+		fabricasBonus.add(fabVida);
 
 	}
 
@@ -363,7 +370,7 @@ public class Nivel {
 	}
 
 
-	public void actualizarFlota(){
+	private void actualizarFlota(){
 		if(!flotas.isEmpty())
 			if(flotas.peek().estaDestruida()){
 				flotas.poll();
@@ -382,5 +389,26 @@ public class Nivel {
 		return xInicial;
 	}
 
-	
+	public void pausar(){
+		pausado=true;
+		Escenario.getActual().pausar();
+		Iterator<FabricaBonus> it = fabricasBonus.iterator();
+		while(it.hasNext()){
+			it.next().detenerProduccion();
+		}
+	}
+	public void reanudar(){
+		pausado=false;
+		Iterator<FabricaBonus> it = fabricasBonus.iterator();
+		while(it.hasNext()){
+			it.next().comenzarProduccion();
+		}
+	}
+	public void vivir() {
+		if(pausado)
+			return;
+		System.out.println("nivel vivo");
+		Escenario.getActual().vivir();
+		actualizarFlota();
+	}
 }

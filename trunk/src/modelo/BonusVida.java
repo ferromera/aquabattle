@@ -23,8 +23,7 @@ public class BonusVida extends Bonus {
 	}
 	
 	public void aplicarEfecto(Tanque tanque){
-		MejoraTanqueVida mejoraVida = new MejoraTanqueVida(0.4);
-		tanque.agregarMejora(mejoraVida);
+		new MejoraTanqueVida(0.4,tanque);
 	}
 		
 

@@ -9,30 +9,34 @@ public abstract class FabricaBonus implements ActionListener{
 	private boolean produciendo;
 	private SorteadorBinario sorteadorBinario;
 	private int intervaloSorteo; //en mseg
+	private Timer timer;
 	
 	public FabricaBonus(SorteadorBinario sorteador){
 		produciendo=false;
-		intervaloSorteo=100;
+		intervaloSorteo=1000;
 		sorteadorBinario=sorteador;
+		timer = new Timer(intervaloSorteo, this);
+		timer.start();
 	}
 
 	public void comenzarProduccion(){
+		if(produciendo)
+			return;
 		produciendo=true;
-		Timer timer = new Timer(intervaloSorteo, this);
-		timer.start();
+		System.out.println(this+"Se comenzo la produccion");
 	}
 	public void detenerProduccion(){
 		produciendo=false;
+		System.out.println(this+"Se detuvo la produccion");
 	}
 	public abstract void crearBonus();
 	
 	public void actionPerformed(ActionEvent e){
-		if(!produciendo)
+		if(produciendo==false)
 			return;
 		if(sorteadorBinario.sortear())
 			crearBonus();
-		Timer timer = new Timer(intervaloSorteo, this);
-		timer.start();
+		System.out.println(this+" " +produciendo);
 	}
 	public int getIntervaloSorteo() {
 		return intervaloSorteo;

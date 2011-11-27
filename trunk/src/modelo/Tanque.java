@@ -34,10 +34,11 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	protected int resistencia;
 	protected double velocidad;
 	private boolean moviendose;
-	private boolean mejorado;
 	private long ultimoTiempo;
 	protected boolean destruido;
 	private boolean pausado;
+	private boolean disparoMejorado;
+	private double mejoraDisparo;
 
 	public Tanque() {
 
@@ -51,6 +52,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		ultimoTiempo = new Date().getTime();
 		pausado=true;
 		mejoras=new ArrayList<MejoraTanque>();
+		disparoMejorado=false;
+		mejoraDisparo=0;
 	}
 	
 	public Tanque(Element element) throws NoPudoLeerXMLExeption{
@@ -88,13 +91,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 			elem = (Element) nodo.item(0);
 			moviendose=Boolean.parseBoolean(elem.getTextContent());
 		}
-		nodo = element.getElementsByTagName(TAG_MEJORADO);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MEJORADO+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			mejorado=Boolean.parseBoolean(elem.getTextContent());
-		}
+		
 		nodo = element.getElementsByTagName(TAG_DESTRUIDO);
 		if(nodo!=null && nodo.getLength()>0){
 			if(nodo.getLength()>1)
@@ -113,12 +110,14 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void vivir() {
+		System.out.println(resistencia + " " + mejoraDisparo);
 		if(destruido)
 			return;
 		long tiempoActual = new Date().getTime();
 		if(pausado){
 			ultimoTiempo = tiempoActual;
 			pausado=false;
+			reanudarMejoras();
 		}
 		if (enMovimiento()) {
 			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
@@ -144,6 +143,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		}
 		calcularSiguienteMovimiento();
 	}
+	
+
 	/*
 	 * Debe definir la logica que determine el siguiente
 	 * movimiento.
@@ -182,7 +183,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 
 	public void recibirImpacto(int fuerza) {
 		resistencia -= fuerza;
-		if (resistencia < 0) {
+		if (resistencia <= 0) {
 			resistencia = 0;
 			destruir();
 		}
@@ -226,6 +227,8 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		} catch (NoExisteArmaSeleccionadaException e) {
 			e.printStackTrace();
 		}
+		if(disparoMejorado)
+			arma.mejorarTiempoCarga(mejoraDisparo);
 
 	}
 
@@ -260,10 +263,15 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void mejorarVelocidadDisparo(double porcentaje) {
-		if (armaActual == null)
+		if(disparoMejorado)
 			return;
-		armaActual.mejorarTiempoCarga(porcentaje);
-
+		disparoMejorado=true;
+		mejoraDisparo=porcentaje;
+		Iterator<Arma> it = armas.iterator();
+		while(it.hasNext()){
+			it.next().mejorarTiempoCarga(porcentaje);
+		}
+		notificar();
 	}
 
 	public void empeorarVelocidad(double porcentaje) {
@@ -272,10 +280,15 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void empeorarVelocidadDisparo(double porcentaje) {
-		if (armaActual == null)
+		if(!disparoMejorado)
 			return;
-		armaActual.empeorarTiempoCarga(porcentaje);
-
+		disparoMejorado=false;
+		mejoraDisparo=0;
+		Iterator<Arma> it = armas.iterator();
+		while(it.hasNext()){
+			it.next().empeorarTiempoCarga(porcentaje);
+		}
+		notificar();
 	}
 
 	public void mejorarVida(double porcentaje) {
@@ -284,31 +297,35 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 
 	public void agregarMejora(Mejora mejora) {
 		MejoraTanque mejoraTanque = (MejoraTanque) mejora;
-		mejoraTanque.mejorar(this);
+		mejoraTanque.mejorar();
 		mejoras.add(mejoraTanque);
-		if (!mejorado) {
-			mejorado = true;
-		}
-		notificar();
 	}
 
 	public void quitarMejora(Mejora mejora) {
 		MejoraTanque mejoraTanque = (MejoraTanque) mejora;
 		mejoras.remove(mejoraTanque);
-		mejoraTanque.deshacer(this);
-		if (mejoras.isEmpty()) {
-			mejorado = false;
-			notificar();
-		}
+		mejoraTanque.deshacer();
+		
 	}
 	public void setVelocidad(double vel){
 		velocidad=vel;
 	}
-	public boolean estaMejorado(){
-		return mejorado;
+	public boolean tieneDisparoMejorado(){
+		return disparoMejorado;
 	}
 	public void pausar(){
 		pausado=true;
+		Iterator<MejoraTanque> it = mejoras.iterator();
+		while(it.hasNext()){
+			it.next().pausar();
+		}
+	}
+	private void reanudarMejoras() {
+		Iterator<MejoraTanque> it = mejoras.iterator();
+		while(it.hasNext()){
+			it.next().reanudar();
+		}
+		
 	}
 	
 }
