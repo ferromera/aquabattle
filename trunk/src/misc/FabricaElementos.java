@@ -1,6 +1,7 @@
 package misc;
 
 import pantallas.Vida;
+import controlador.ControladorPantallaJuego;
 import controlador.ControladorTanqueHeroe;
 import vista.VistaArmaTiradaCanion;
 import vista.VistaArmaTiradaLanzaCohetes;
@@ -114,8 +115,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);
-		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
-		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
+		ControladorPantallaJuego.getInstancia().actualizar();
 
 		return tanque;
 	}
@@ -130,8 +130,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);
-		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
-		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
+		ControladorPantallaJuego.getInstancia().actualizar();
 
 		return tanque;
 	}
@@ -145,8 +144,7 @@ public class FabricaElementos {
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueHeroe vista = new VistaTanqueHeroe(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);
-		ControladorTanqueHeroe control = new ControladorTanqueHeroe(tanque);
-		ControladorJuego.getInstancia().agregarKeyPressObservador(control);
+		ControladorPantallaJuego.getInstancia().actualizar();
 
 		return tanque;
 		
@@ -195,6 +193,7 @@ public class FabricaElementos {
 	public static void insertarTanqueMirage(TanqueMirage tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueMirage vista =new VistaTanqueMirage(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);
@@ -204,6 +203,7 @@ public class FabricaElementos {
 	public static void insertarTanqueIFV(TanqueIFV tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueIFV vista =new VistaTanqueIFV(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);
@@ -213,6 +213,7 @@ public class FabricaElementos {
 	public static void insertarTanqueGrizzly(TanqueGrizzly tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
 		Escenario.getActual().agregarObjeto(tanque);
+		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
 		VistaTanqueGrizzly vista =new VistaTanqueGrizzly(tanque);
 		VistaEscenario.getInstancia().agregarVista(vista);

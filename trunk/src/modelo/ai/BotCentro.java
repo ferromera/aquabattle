@@ -18,15 +18,15 @@ public class BotCentro extends Bot {
 		boolean enCentroX = false;
 		boolean enCentroY = false;
 
-		if (tanque.getCentroX() < objetivo.getCentroX() - 4.0)
+		if (tanque.getCentroX() < getObjetivo().getCentroX() - 4.0)
 			haciaEste = true;
-		else if (tanque.getCentroX() > objetivo.getCentroX() + 4.0)
+		else if (tanque.getCentroX() > getObjetivo().getCentroX() + 4.0)
 			haciaEste = false;
 		else
 			enCentroX = true;
-		if (tanque.getCentroY() < objetivo.getCentroY() - 4.0)
+		if (tanque.getCentroY() < getObjetivo().getCentroY() - 4.0)
 			haciaSur = true;
-		else if (tanque.getCentroY() > objetivo.getCentroY() + 4.0)
+		else if (tanque.getCentroY() > getObjetivo().getCentroY() + 4.0)
 			haciaSur = false;
 		else
 			enCentroY = true;

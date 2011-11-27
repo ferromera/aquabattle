@@ -71,14 +71,20 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoSur() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
+		boolean primerVisto=true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoSur(solido))
+			if (estaViendoSur(solido)){
+				if(primerVisto){
+					solidoVisto = solido;
+					primerVisto=false;
+				}
 				if (solidoVisto != null && solidoVisto.getY() > solido.getY())
 					solidoVisto = solido;
+			}
 		}
-		return solido;
+		return solidoVisto;
 	}
 
 	public boolean estaViendoSur(ElementoRectangularSolido solido) {
@@ -95,14 +101,20 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoNorte() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
+		boolean primerVisto=true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoNorte(solido))
+			if (estaViendoNorte(solido)){
+				if(primerVisto){
+					solidoVisto = solido;
+					primerVisto=false;
+				}
 				if (solidoVisto != null && solidoVisto.getY() < solido.getY())
 					solidoVisto = solido;
+			}
 		}
-		return solido;
+		return solidoVisto;
 	}
 
 	public boolean estaViendoNorte(ElementoRectangularSolido solido) {
@@ -119,14 +131,21 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoEste() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
+		boolean primerVisto=true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoEste(solido))
+			if (estaViendoEste(solido)){
+				if(primerVisto){
+					solidoVisto = solido;
+					primerVisto=false;
+				}
+				else
 				if (solidoVisto != null && solidoVisto.getX() > solido.getX())
 					solidoVisto = solido;
+			}
 		}
-		return solido;
+		return solidoVisto;
 	}
 
 	public boolean estaViendoEste(ElementoRectangularSolido solido) {
@@ -143,14 +162,20 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoOeste() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
+		boolean primerVisto=true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoOeste(solido))
+			if (estaViendoOeste(solido)){
+				if(primerVisto){
+					solidoVisto = solido;
+					primerVisto=false;
+				}
 				if (solidoVisto != null && solidoVisto.getX() < solido.getX())
 					solidoVisto = solido;
+			}
 		}
-		return solido;
+		return solidoVisto;
 	}
 
 	public boolean estaViendoOeste(ElementoRectangularSolido solido) {

@@ -17,7 +17,7 @@ public class ArmaTiradaCanion extends ArmaTirada {
 
 	
 	public void aplicarEfecto(Tanque tanque){
-		Canion canionAgregar = new Canion(tanque);
+		tanque.agregarArma(new Canion(tanque));
 	}
 	
 }

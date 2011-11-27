@@ -19,6 +19,6 @@ public class ArmaTiradaLanzaCohetes extends ArmaTirada {
 
 	
 	public void aplicarEfecto(Tanque tanque){
-		LanzaCohetes armaAgregar = new LanzaCohetes(tanque);
+		tanque.agregarArma(new LanzaCohetes(tanque));
 	}
 }

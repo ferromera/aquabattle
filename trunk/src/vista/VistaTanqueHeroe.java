@@ -134,9 +134,7 @@ public class VistaTanqueHeroe extends Vista implements Observador {
 	public void actualizar() {
 		spriteActual.detener();
 		if(tanque.estaDestruido()){
-			spriteActual=spriteDestruido;
-			spriteActual.reproducirUnaVez();
-			//PantallaActual.getInstacia().cambiarA(new FinDeJuego());
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 		else{
 		if(tanque.estaMejorado()){
