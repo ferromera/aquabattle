@@ -11,6 +11,8 @@ import org.w3c.dom.NodeList;
 import excepciones.NoPudoLeerXMLExeption;
 
 import misc.DiccionarioDeSerializables;
+import misc.FabricaElementos;
+import misc.Nivel;
 import modelo.Tanque;
 
 import utils.Direccion;
@@ -18,11 +20,11 @@ import utils.Direccion;
 
 
 public abstract class Arma implements ActionListener  {
-	public  static final String TAG = "arma";
+	public  static final String TAG = "objeto-arma";
 	private static final String TAG_TANQUE = "tanque";
 	private static final String TAG_CARGADA = "cargada";
 	private static final String TAG_TIEMPO_CARGA = "tiempo-carga";
-	private static final String TAG_CANTIDAD_BALAS = "cantidad-balas";
+	
 	private Tanque tanque;
 	private boolean cargada=true;
 	protected int tiempoCarga;
@@ -33,29 +35,21 @@ public abstract class Arma implements ActionListener  {
 		
 	}
 	public Arma(Element element) throws NoPudoLeerXMLExeption{
-		NodeList nodo;
+		NodeList hijos;
 		Element elem;
-		nodo = element.getElementsByTagName(TAG_TANQUE);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TANQUE+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			tanque=DiccionarioDeSerializables.getInstanciaTanque(elem);
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_TANQUE))
+					tanque=(Tanque)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+				else if(elem.getTagName().equals(TAG_CARGADA))
+					cargada=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_TIEMPO_CARGA))
+					tiempoCarga=Integer.parseInt(elem.getTextContent());
+			}
 		}
-		nodo = element.getElementsByTagName(TAG_CARGADA);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_CARGADA+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			cargada=Boolean.parseBoolean(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_TIEMPO_CARGA);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_TIEMPO_CARGA+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			tiempoCarga=Integer.parseInt(elem.getTextContent());
-		}
+		descargar();
 	}
 	public boolean equals(Arma a){
 		return (getClass().equals(a.getClass()));
@@ -68,8 +62,7 @@ public abstract class Arma implements ActionListener  {
 		tiempoCarga/=1-porcentaje;
 	}
 	
-	public void disparar(){
-		
+	public void disparar(){	
 		 if(!cargada)	 
 			return;
 		
@@ -79,6 +72,8 @@ public abstract class Arma implements ActionListener  {
 		
 		
 	}
+	
+
 	private void posicionarBala(Bala bala){
 		double xBala= tanque.getX();
 		double yBala= tanque.getY();
@@ -110,6 +105,7 @@ public abstract class Arma implements ActionListener  {
 		}
 		bala.setX(xBala);
 		bala.setY(yBala);
+		bala.reanudar();
 	}
 	/*
 	 * Debe crear la instancia de bala correspondiente
@@ -126,6 +122,8 @@ public abstract class Arma implements ActionListener  {
 	}	
 	private void descargar(){
 		cargada=false;
+		if(timer!=null)
+			timer.stop();
 		timer = new Timer(tiempoCarga, this);
 		timer.start();
 	}

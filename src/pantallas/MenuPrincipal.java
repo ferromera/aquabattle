@@ -32,4 +32,10 @@ public class MenuPrincipal extends Pantalla {
 		
 	}
 
+	@Override
+	public void reanudar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

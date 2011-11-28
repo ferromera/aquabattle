@@ -4,10 +4,13 @@ import org.w3c.dom.Element;
 
 import excepciones.NoPudoLeerXMLExeption;
 
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangularSolido;
 
 public class Cohete extends Bala {
-	public  static final String TAG = "cohete";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-cohete";
 	private final double VELOCIDAD = 300.0;
 	private final double ANCHO = 50.0;
 	private final double ALTO = 50.0;

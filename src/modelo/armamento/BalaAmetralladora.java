@@ -1,5 +1,6 @@
 package modelo.armamento;
 
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangularSolido;
 
 import org.w3c.dom.Element;
@@ -9,7 +10,9 @@ import excepciones.NoPudoLeerXMLExeption;
 
 
 public class BalaAmetralladora extends Bala {
-	public  static final String TAG = "bala-ametralladora";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-bala-ametralladora";
 	private static final int FUERZA=20;
 	private static final double VELOCIDAD=150.0;
 	private static final double ANCHO=10.0;

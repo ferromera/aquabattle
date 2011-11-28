@@ -4,13 +4,17 @@ import org.w3c.dom.Element;
 
 import excepciones.NoPudoLeerXMLExeption;
 
+import misc.ContadorDeInstancias;
 import misc.FabricaElementos;
 import modelo.Pared;
 import modelo.Tanque;
 
 public class Ametralladora extends Arma {
-	public  static final String TAG = "ametralladora";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-ametralladora";
 	private static final int TIEMPO_CARGA=1500;
+	
 	public Ametralladora(Tanque tanque){
 		setTanque(tanque);
 		tiempoCarga=TIEMPO_CARGA;

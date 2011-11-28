@@ -8,12 +8,15 @@ import org.w3c.dom.NodeList;
 import excepciones.NoPudoLeerXMLExeption;
 
 import titiritero.Posicionable;
+import misc.ContadorDeInstancias;
 import misc.Observable;
 
 
 public class ParedMetal extends Pared implements 
 Posicionable, Observable {
-	public  static final String TAG = "pared-metal";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-pared-metal";
 	private static final String TAG_DESTRUIDA = "destruida";
 	private static final String TAG_IMPACTOS = "impactos";
 	private static final int ALTO = 20;

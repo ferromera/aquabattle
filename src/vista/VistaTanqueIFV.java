@@ -1,5 +1,10 @@
 package vista;
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import misc.ContadorDeInstancias;
 import misc.Observador;
 import modelo.TanqueIFV;
 import modelo.armamento.Ametralladora;
@@ -11,6 +16,7 @@ import titiritero.vista.Imagen;
 import utils.Direccion;
 
 public class VistaTanqueIFV extends VistaTanque implements Observador {
+	private long id=ContadorDeInstancias.getId();
 	
 	private static final int ORDEN=3;
 	
@@ -18,7 +24,7 @@ public class VistaTanqueIFV extends VistaTanque implements Observador {
 	private Animacion spriteCanion;
 	
 
-	private final String RUTA_SPRITE = "/sprites/SpriteIFV.png";
+	private static final String RUTA_SPRITE = "/sprites/SpriteIFV.png";
 	
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
@@ -30,11 +36,35 @@ public class VistaTanqueIFV extends VistaTanque implements Observador {
 	// FPS DE CADA SPRITE
 	private static final double FPS_AMETRALLADORA = 25.0;
 	private static final double FPS_CANION = 25.0;
+
+	public static final String TAG = "objeto-vista-tanque-ifv";
 	
 
 
 	public VistaTanqueIFV(TanqueIFV tanque) {
 		super(tanque);
+		orden=ORDEN;
+		tanque.adscribir(this);
+		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
+		
+		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteAmetralladora.setFps(FPS_AMETRALLADORA);
+		
+		subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_CANION * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteCanion=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteCanion.setFps(FPS_CANION);
+		
+		spriteActual=spriteCanion;
+		actualizar();
+	}
+
+	public VistaTanqueIFV(Element element)throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
 		orden=ORDEN;
 		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);

@@ -9,7 +9,7 @@ import excepciones.NoPudoLeerXMLExeption;
  * Representa todos los elementos del modelo que no pueden ser chocados.
  */
 public class ElementoRectangularIntangible extends ElementoRectangular {
-	public  static final String TAG = "elemento-rectangular-intangible";
+	public  static final String TAG = "objeto-elemento-rectangular-intangible";
 	
 	public ElementoRectangularIntangible(){}
 	public ElementoRectangularIntangible(Element element) throws NoPudoLeerXMLExeption{

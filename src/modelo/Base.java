@@ -1,6 +1,9 @@
 package modelo;
 
+import misc.ContadorDeInstancias;
+
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import pantallas.PantallaJuego;
 
@@ -9,10 +12,14 @@ import excepciones.NoPudoLeerXMLExeption;
 import titiritero.Posicionable;
 
 public class Base extends ElementoRectangularSolido implements Impactable, Posicionable {
-	public  static final String TAG = "base";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-base";
+
+	private static final String TAG_IMPACTOS_RECIBIDOS = "impactos-recibidos";
 	private int impactosRecibidos;
-	private final int ALTO = 50;
-	private final int ANCHO = 50;
+	private static final int ALTO = 50;
+	private static final int ANCHO = 50;
 	
 	public Base(double posicionX, double posicionY){
 		setX(posicionX);
@@ -23,7 +30,16 @@ public class Base extends ElementoRectangularSolido implements Impactable, Posic
 	}
 	public Base(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(ElementoRectangularSolido.TAG).item(0));
-
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_IMPACTOS_RECIBIDOS))
+					impactosRecibidos=Integer.parseInt(elem.getTextContent());
+			}
+		}
 	}
 	
 	

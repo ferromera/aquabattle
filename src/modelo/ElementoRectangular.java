@@ -8,20 +8,26 @@ import org.w3c.dom.NodeList;
 
 import excepciones.NoPudoLeerXMLExeption;
 
+import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observable;
 import misc.Observador;
+import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 import utils.Direccion;
 
 
 public  class ElementoRectangular implements Posicionable , Observable {
+	private long id=ContadorDeInstancias.getId();
+	
 	private static final String TAG_POS_Y = "posicion-y";
 	private static final String TAG_POS_X = "posicion-x";
 	private static final String TAG_ALTO = "alto";
 	private static final String TAG_ANCHO = "ancho";
-	public  static final String TAG = "elemento-rectangular";
-	private static final String TAG_DIRECCION = "direccion";
+	public  static final String TAG = "objeto-elemento-rectangular";
+	private static final String TAG_ORIENTACION = "orientacion";
+	private static final String TAG_OBSERVADORES = "observadores";
+	
 	private double posX;
 	private double posY;
 	private double alto;
@@ -56,52 +62,27 @@ public  class ElementoRectangular implements Posicionable , Observable {
 		orientacion=Direccion.Norte();
 	}
 	public ElementoRectangular(Element element) throws NoPudoLeerXMLExeption{
-		//Valores por default
-		posX=0.0;
-		posY=0.0;
-		alto=30.0;
-		ancho=30.0;
-		observadores=new ArrayList<Observador>();
-		orientacion=Direccion.Norte();
-		
-		NodeList nodoX = element.getElementsByTagName(TAG_POS_X);
-		if(nodoX!=null && nodoX.getLength()>0){
-			if(nodoX.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_X+" en el nodo "+element.getTagName());
-			Element elemX = (Element) nodoX.item(0);
-			posX=Double.parseDouble(elemX.getTextContent());
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_POS_X))
+					posX=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_POS_Y))
+					posY=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_OBSERVADORES))
+					observadores.add((Observador)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
+				else if(elem.getTagName().equals(TAG_ALTO))
+					alto=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_ANCHO))
+					ancho=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_ORIENTACION))
+				orientacion=(Direccion)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+				
+			}
 		}
-		NodeList nodoY = element.getElementsByTagName(TAG_POS_Y);
-		if(nodoY!=null && nodoY.getLength()>0){
-			if(nodoY.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_POS_Y+" en el nodo "+element.getTagName());
-			Element elemY = (Element) nodoY.item(0);
-			posY=Double.parseDouble(elemY.getTextContent());
-		}
-		NodeList nodoAlto = element.getElementsByTagName(TAG_ALTO);
-		if(nodoAlto!=null && nodoAlto.getLength()>0){
-			if(nodoAlto.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ALTO+" en el nodo "+element.getTagName());
-			Element elemAlto = (Element) nodoAlto.item(0);
-			alto=Double.parseDouble(elemAlto.getTextContent());
-		}
-		NodeList nodoAncho = element.getElementsByTagName(TAG_ANCHO);
-		if(nodoAncho!=null && nodoAncho.getLength()>0){
-			if(nodoAncho.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_ANCHO+" en el nodo "+element.getTagName());
-			Element elemAncho = (Element) nodoAncho.item(0);
-			ancho=Double.parseDouble(elemAncho.getTextContent());
-		}
-		NodeList nodoDir = element.getElementsByTagName(TAG_DIRECCION);
-		if(nodoDir!=null && nodoDir.getLength()>0){
-			if(nodoDir.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DIRECCION+" en el nodo "+element.getTagName());
-			Element elemDir = (Element) nodoDir.item(0);
-			orientacion=DiccionarioDeSerializables.getInstanciaDireccion(elemDir);
-		}
-		//TODO: Falta Observables
-		
-		
 		
 	}
 	public double getX(){

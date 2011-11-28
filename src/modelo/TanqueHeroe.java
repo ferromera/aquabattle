@@ -7,10 +7,14 @@ import pantallas.PantallaJuego;
 
 import excepciones.NoPudoLeerXMLExeption;
 
+import misc.ContadorDeInstancias;
 import modelo.armamento.Ametralladora;
 
 public class TanqueHeroe extends Tanque {
-	public static final String TAG="tanque-heroe";
+	private long id=ContadorDeInstancias.getId();
+	
+	public static final String TAG="objeto-tanque-heroe";
+	
 	private static final int RESISTENCIA = 100;
 	private static final double POS_X = 300.0;
 	private static final double POS_Y = 400.0;
@@ -48,10 +52,10 @@ public class TanqueHeroe extends Tanque {
 	}
 	public TanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
 		super((Element)element.getElementsByTagName(Tanque.TAG).item(0));
+		instancia=this;
 	}
 	@Override
 	protected void destruir() {
-		System.out.println("destruido");
 		Escenario.getActual().borrarObjetoVivo(this);
 		Escenario.getActual().borrarSolido(this);
 		Escenario.getActual().borrarObjeto(this);

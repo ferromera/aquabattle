@@ -1,10 +1,21 @@
 package modelo;
 
+import org.w3c.dom.Element;
+
+import misc.ContadorDeInstancias;
 import excepciones.NoSePudoPosicionarException;
 
 public class PosicionadorAleatorioStd  implements PosicionadorAleatorio{
+	public static final String TAG = "objeto-posicionador-aleatorio-std";
+	private long id=ContadorDeInstancias.getId();
 
 	
+	public PosicionadorAleatorioStd(Element element) {
+		
+	}
+	public PosicionadorAleatorioStd() {
+		
+	}
 	public void posicionar(ElementoRectangular elemento) throws NoSePudoPosicionarException{
 		double x;
 		double y;

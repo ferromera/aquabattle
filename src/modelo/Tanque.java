@@ -7,6 +7,8 @@ import java.util.Iterator;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import misc.DiccionarioDeSerializables;
+import misc.Observador;
 import modelo.armamento.Arma;
 import modelo.mejoras.Mejora;
 import modelo.mejoras.MejoraTanque;
@@ -20,13 +22,17 @@ import utils.Direccion;
 
 public abstract class Tanque extends ElementoRectangularSolido implements
 		ObjetoVivo, Mejorable {
-	public static final String TAG = "tanque";
+	public static final String TAG = "objeto-tanque";
 	private static final String TAG_RESISTENCIA = "resistencia";
 	private static final String TAG_VELOCIDAD = "velocidad";
 	private static final String TAG_MOVIENDOSE = "moviendose";
-	private static final String TAG_MEJORADO = "mejorado";
 	private static final String TAG_DESTRUIDO = "destruido";
 	private static final String TAG_PAUSADO = "pausado";
+	private static final String TAG_DISPARO_MEJORADO = "disparo-mejorado";
+	private static final String TAG_MEJORA_DISPARO = "mejora-disparo";
+	private static final String TAG_ARMAS = "armas";
+	private static final String TAG_ARMA_ACTUAL = "arma-actual";
+	private static final String TAG_MEJORAS = "mejoras";
 	private ArrayList<Arma> armas;
 	private Arma armaActual;
 	private Iterator<Arma> itArmaActual;
@@ -58,67 +64,51 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	
 	public Tanque(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(ElementoRectangularSolido.TAG).item(0));
-		//Por default
-		moviendose = false;
-		orientarNorte();
-		resistencia = 100;
-		velocidad = 100.0;
 		armas = new ArrayList<Arma>();
-		itArmaActual = armas.iterator();
-		this.armaActual = null;
-		ultimoTiempo = new Date().getTime();
-		pausado=true;
-		NodeList nodo;
-		Element elem;
-		nodo = element.getElementsByTagName(TAG_RESISTENCIA);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_RESISTENCIA+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			resistencia=Integer.parseInt(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_VELOCIDAD);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_VELOCIDAD+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			velocidad=Double.parseDouble(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_MOVIENDOSE);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MOVIENDOSE+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			moviendose=Boolean.parseBoolean(elem.getTextContent());
-		}
 		
-		nodo = element.getElementsByTagName(TAG_DESTRUIDO);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_DESTRUIDO+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			destruido=Boolean.parseBoolean(elem.getTextContent());
+		armaActual = null;
+		ultimoTiempo = new Date().getTime();
+		
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_RESISTENCIA))
+					resistencia=Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_VELOCIDAD))
+					velocidad=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_MOVIENDOSE))
+					moviendose=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_DESTRUIDO))
+					destruido=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_PAUSADO))
+					pausado=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_DISPARO_MEJORADO))
+					disparoMejorado=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_MEJORA_DISPARO))
+					mejoraDisparo=Double.parseDouble(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_ARMAS))
+					armas.add((Arma)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
+				else if(elem.getTagName().equals(TAG_ARMA_ACTUAL))
+					armaActual=(Arma)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+				else if(elem.getTagName().equals(TAG_MEJORAS))
+					mejoras.add((MejoraTanque)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
+			}
 		}
-		nodo = element.getElementsByTagName(TAG_PAUSADO);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_PAUSADO+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			pausado=Boolean.parseBoolean(elem.getTextContent());
+		itArmaActual = armas.iterator();
+		while(itArmaActual.hasNext()){
+			if(itArmaActual.next()==armaActual)
+				break;
 		}
 		
 	}
 
 	public void vivir() {
-		System.out.println(resistencia + " " + mejoraDisparo);
-		if(destruido)
+		if(destruido||pausado)
 			return;
 		long tiempoActual = new Date().getTime();
-		if(pausado){
-			ultimoTiempo = tiempoActual;
-			pausado=false;
-			reanudarMejoras();
-		}
 		if (enMovimiento()) {
 			int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
 			ultimoTiempo = tiempoActual;
@@ -314,13 +304,19 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		return disparoMejorado;
 	}
 	public void pausar(){
+		if(pausado)
+			return;
 		pausado=true;
 		Iterator<MejoraTanque> it = mejoras.iterator();
 		while(it.hasNext()){
 			it.next().pausar();
 		}
 	}
-	private void reanudarMejoras() {
+	public void reanudar() {
+		if(!pausado)
+			return;
+		pausado=false;
+		ultimoTiempo=new Date().getTime();
 		Iterator<MejoraTanque> it = mejoras.iterator();
 		while(it.hasNext()){
 			it.next().reanudar();

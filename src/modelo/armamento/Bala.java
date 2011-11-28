@@ -2,6 +2,9 @@ package modelo.armamento;
 
 import java.util.Date;
 
+import javax.rmi.CORBA.Tie;
+import javax.swing.Timer;
+
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -18,7 +21,7 @@ import utils.Direccion;
 
 public abstract class Bala extends ElementoRectangularSolido implements
 		ObjetoVivo {
-	public static final String TAG = "bala";
+	public static final String TAG = "objeto-bala";
 	private static final String TAG_DESTRUIDA = "destruida";
 	private static final String TAG_PAUSADO = "pausado";
 	private static final String TAG_FUERZA = "fuerza";
@@ -44,63 +47,30 @@ public abstract class Bala extends ElementoRectangularSolido implements
 	public Bala(Element element) throws NoPudoLeerXMLExeption {
 		super((Element) element.getElementsByTagName(
 				ElementoRectangularSolido.TAG).item(0));
-		destruida = false;
-		fuerza = 10;
-		velocidad = 150.0;
-		ultimoTiempo = new Date().getTime();
-		pausado = true;
-		NodeList nodo;
+		NodeList hijos;
 		Element elem;
-		nodo = element.getElementsByTagName(TAG_DESTRUIDA);
-		if (nodo != null && nodo.getLength() > 0) {
-			if (nodo.getLength() > 1)
-				throw new NoPudoLeerXMLExeption(
-						"No puede haber mas de un tag: " + TAG_DESTRUIDA
-								+ " en el nodo " + element.getTagName());
-			elem = (Element) nodo.item(0);
-			destruida = Boolean.parseBoolean(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_PAUSADO);
-		if (nodo != null && nodo.getLength() > 0) {
-			if (nodo.getLength() > 1)
-				throw new NoPudoLeerXMLExeption(
-						"No puede haber mas de un tag: " + TAG_PAUSADO
-								+ " en el nodo " + element.getTagName());
-			elem = (Element) nodo.item(0);
-			pausado = Boolean.parseBoolean(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_FUERZA);
-		if (nodo != null && nodo.getLength() > 0) {
-			if (nodo.getLength() > 1)
-				throw new NoPudoLeerXMLExeption(
-						"No puede haber mas de un tag: " + TAG_FUERZA
-								+ " en el nodo " + element.getTagName());
-			elem = (Element) nodo.item(0);
-
-			fuerza = Integer.parseInt(elem.getTextContent());
-		}
-		nodo = element.getElementsByTagName(TAG_VELOCIDAD);
-		if (nodo != null && nodo.getLength() > 0) {
-			if (nodo.getLength() > 1)
-				throw new NoPudoLeerXMLExeption(
-						"No puede haber mas de un tag: " + TAG_VELOCIDAD
-								+ " en el nodo " + element.getTagName());
-			elem = (Element) nodo.item(0);
-			velocidad = Double.parseDouble(elem.getTextContent());
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_DESTRUIDA))
+					destruida=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_PAUSADO))
+					pausado=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_FUERZA))
+					fuerza = Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_VELOCIDAD))
+					velocidad = Double.parseDouble(elem.getTextContent());
+			}
 		}
 
 	}
 
 	public void vivir() {
-		if (destruida)
+		if (destruida || pausado)
 			return;
 
 		long tiempoActual = new Date().getTime();
-		if (pausado) {
-			ultimoTiempo = tiempoActual;
-			pausado = false;
-			return;
-		}
 		int intervaloTiempo = (int) (tiempoActual - ultimoTiempo);
 		ultimoTiempo = tiempoActual;
 		double movimientoRestante = (velocidad * (double) intervaloTiempo / 1000.0);
@@ -194,8 +164,18 @@ public abstract class Bala extends ElementoRectangularSolido implements
 		return 1;
 	}
 
-	public void pausar() {
-		pausado = true;
+	public void pausar(){
+		if(pausado)
+			return;
+		pausado=true;
+		
+	}
+	public void reanudar(){
+		if(!pausado)
+			return;
+		pausado=false;
+		ultimoTiempo= new Date().getTime();
+		
 	}
 
 }

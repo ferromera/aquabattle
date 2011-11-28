@@ -20,15 +20,19 @@ public class PruebaBalas {
 		balaAmetralladora.setX(100.0);
 		balaAmetralladora.setY(200.0);
 		balaAmetralladora.setOrientacion(Direccion.Este());
+		balaAmetralladora.reanudar();
 
 		balaCanion = new BalaCanion();
 		balaCanion.setX(200.0);
 		balaCanion.setY(300.0);
 		balaCanion.setOrientacion(Direccion.Norte());
+		balaCanion.reanudar();
+		
 		cohete = new Cohete();
 		cohete.setX(400.0);
 		cohete.setY(0.0);
 		cohete.setOrientacion(Direccion.Sur());
+		cohete.reanudar();
 		
 
 	}

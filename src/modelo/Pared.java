@@ -12,7 +12,7 @@ import misc.Observable;
 
 public abstract class Pared extends ElementoRectangularSolido implements 
 Posicionable, Observable {
-	public  static final String TAG = "pared";
+	public  static final String TAG = "objeto-pared";
 	
 	public Pared(){}
 	public Pared(Element element) throws NoPudoLeerXMLExeption{

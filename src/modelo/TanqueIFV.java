@@ -1,10 +1,13 @@
 package modelo;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import excepciones.NoExisteBaseException;
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
 import modelo.ai.Bot;
 import modelo.ai.BotBordes;
@@ -12,13 +15,17 @@ import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;
 
 public class TanqueIFV extends TanqueEnemigo {
-	public static final String TAG="tanque-ifv";
+	private long id=ContadorDeInstancias.getId();
+	
+	public static final String TAG="objeto-tanque-ifv";
 	private static final int RESISTENCIA = 100;
 	private static final double VELOCIDAD = 80.0;
 	private static final double ANCHO = 50.0;
 	private static final double ALTO = 50;
 	private static final int PUNTOS_OTORGADOS = 30;
 	private static final int TIEMPO_ENTRE_DISPAROS = 3000;
+
+	private static final String TAG_BOT = "bot";
 	
 	private Bot bot;
 	
@@ -45,6 +52,16 @@ public class TanqueIFV extends TanqueEnemigo {
 	}
 	public TanqueIFV(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(TanqueEnemigo.TAG).item(0));
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_BOT))
+					bot=(Bot)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+			}
+		}
 	}
 
 	@Override

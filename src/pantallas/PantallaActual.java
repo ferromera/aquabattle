@@ -40,4 +40,10 @@ public class PantallaActual extends Pantalla {
 	public void dejarDeSerActual() {
 	}
 
+	@Override
+	public void reanudar() {
+		estadoPantalla.reanudar();
+		
+	}
+
 }

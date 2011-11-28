@@ -3,9 +3,12 @@ package modelo;
 import java.util.Iterator;
 
 import misc.DiccionarioDeSerializables;
+import misc.Observador;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
+import utils.Direccion;
 
 import excepciones.NoExisteElementoColisionadoException;
 import excepciones.NoPudoLeerXMLExeption;
@@ -18,12 +21,11 @@ import excepciones.NoSePudoPosicionarException;
 public abstract class ElementoRectangularSolido extends ElementoRectangular
 		implements Impactable {
 	private static final String TAG_COLISIONADO = "elemento-colisionado";
-	public static final String TAG = "elemento-rectangular-solido";
+	public static final String TAG = "objeto-elemento-rectangular-solido";
 
 	public abstract void recibirImpacto(int fuerza);
-
 	public abstract int getResistencia();
-
+	
 	private ElementoRectangularSolido elemColisionado;
 
 	public ElementoRectangularSolido() {
@@ -35,17 +37,17 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 		super((Element) element.getElementsByTagName(ElementoRectangular.TAG)
 				.item(0));
 		elemColisionado = null;
-		NodeList nodoColisionado = element
-				.getElementsByTagName(TAG_COLISIONADO);
-		if (nodoColisionado != null && nodoColisionado.getLength() > 0) {
-			if (nodoColisionado.getLength() > 1)
-				throw new NoPudoLeerXMLExeption(
-						"No puede haber mas de un tag: " + TAG_COLISIONADO
-								+ " en el nodo " + element.getTagName());
-			Element elemDOMColisionado = (Element) nodoColisionado.item(0);
-			elemColisionado = DiccionarioDeSerializables
-					.getInstanciaColisionado(elemDOMColisionado);
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_COLISIONADO))
+					elemColisionado=(ElementoRectangularSolido)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+			}
 		}
+		
 	}
 
 	public ElementoRectangularSolido getColisionado()

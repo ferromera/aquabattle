@@ -1,14 +1,25 @@
 package modelo.ai;
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
 import utils.Direccion;
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangular;
 import modelo.Tanque;
 
 
 public class BotCentro extends Bot {
+	public static final String TAG = "objeto-bot-centro";
+	private long id=ContadorDeInstancias.getId();
 
 	public BotCentro(Tanque tanque, ElementoRectangular objetivo) {
 		super(tanque, objetivo);
+	}
+
+	public BotCentro(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(Bot.TAG).item(0));
 	}
 
 	@Override

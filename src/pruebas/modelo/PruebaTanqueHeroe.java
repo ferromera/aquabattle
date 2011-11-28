@@ -48,8 +48,12 @@ public class PruebaTanqueHeroe {
 	
 	@Test
 	public void probarVivirNorte(){
+		heroe.reanudar();
 		heroe.mover(Direccion.Norte());
-		heroe.vivir();
+		
+		double x= heroe.getX();
+		double y= heroe.getY();
+		System.out.println(x+" "+y);
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -57,15 +61,17 @@ public class PruebaTanqueHeroe {
 		}// paso 30 mseg
 		heroe.vivir();
 		
-		double x= heroe.getX();
-		double y= heroe.getY();
+	 x= heroe.getX();
+	 y= heroe.getY();
+		System.out.println(x+" "+y);
 		Assert.assertTrue(x==300.0);
 		Assert.assertTrue(y>=196.9 && y<=197.1);
 	}
 	@Test
 	public void probarVivirSur(){
+		heroe.reanudar();
 		heroe.mover(Direccion.Sur());
-		heroe.vivir();
+
 		try {
 			Thread.sleep(35);
 		} catch (InterruptedException e) {
@@ -81,8 +87,9 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void probarVivirEste(){
+		heroe.reanudar();
 		heroe.mover(Direccion.Este());
-		heroe.vivir();
+
 		try {
 			Thread.sleep(51);
 		} catch (InterruptedException e) {
@@ -97,9 +104,9 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void probarVivirOeste(){
+		heroe.reanudar();
 		heroe.mover(Direccion.Oeste());
-		//Inicializa el tiempo
-		heroe.vivir();		
+
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -114,7 +121,7 @@ public class PruebaTanqueHeroe {
 	@Test
 	public void probarDetener(){
 		heroe.detener();
-		heroe.vivir();
+		heroe.reanudar();
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -128,10 +135,10 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void romperConcreto(){
+		Escenario.getActual().reanudar();
 		heroe.detener();
 		heroe.orientarNorte();
 		heroe.disparar();
-		Escenario.getActual().vivir();
 		try {
 			Thread.sleep(259);
 		} catch (InterruptedException e) {
@@ -151,10 +158,11 @@ public class PruebaTanqueHeroe {
 	}
 	@Test
 	public void romperMetal(){
+		Escenario.getActual().reanudar();
 		heroe.detener();
 		heroe.orientarEste();
 		heroe.disparar();
-		Escenario.getActual().vivir();
+		
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

@@ -1,5 +1,6 @@
 package modelo.armamento;
 
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangularSolido;
 
 import org.w3c.dom.Element;
@@ -7,7 +8,9 @@ import org.w3c.dom.Element;
 import excepciones.NoPudoLeerXMLExeption;
 
 public class BalaCanion extends Bala {
-	public  static final String TAG = "bala-canion";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-bala-canion";
 	private final int FUERZA=30;
 	private final double VELOCIDAD=200.0;
 	private final double ANCHO=30.0;
