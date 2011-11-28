@@ -5,6 +5,10 @@ import java.awt.Font;
 
 import javax.swing.Timer;
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
 import titiritero.Dibujable;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
@@ -13,6 +17,7 @@ import titiritero.vista.TextoDinamico;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import utils.Direccion;
+import misc.ContadorDeInstancias;
 import misc.Observador;
 import modelo.ElementoRectangular;
 import modelo.TanqueHeroe;
@@ -20,10 +25,10 @@ import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;
 
 public class VistaTanqueHeroe extends VistaTanque implements Observador {
-	
-	
-	private static final int ORDEN=3;
-	
+	private long id = ContadorDeInstancias.getId();
+
+	private static final int ORDEN = 3;
+
 	private Animacion spriteNormalAmetralladora;
 	private Animacion spriteNormalCanion;
 	private Animacion spriteNormalLanzaCohetes;
@@ -32,8 +37,8 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 	private Animacion spriteMejoradoLanzaCohetes;
 	private Animacion spriteDestruido;
 
-	private final String RUTA_SPRITE = "/sprites/SpriteAlgoTank.png";
-	
+	private static final String RUTA_SPRITE = "/sprites/SpriteAlgoTank.png";
+
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
 
@@ -55,60 +60,118 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 	private static final double FPS_MEJORADO_LANZACOHETES = 25.0;
 	private static final double FPS_DESTRUIDO = 4.0;
 
+	public static final String TAG = "objeto-vista-tanque-heroe";
 
 	public VistaTanqueHeroe(TanqueHeroe tanque) {
 		super(tanque);
-		orden=ORDEN;
 		tanque.adscribir(this);
+		orden = ORDEN;
+
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
-		
-		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
+
+		Imagen subImagen = spriteTanque.getSubimagen(0,
 				FILA_SPRITE_NORMAL_AMETRALLADORA * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteNormalAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
 		spriteNormalAmetralladora.setFps(FPS_NORMAL_AMETRALLADORA);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
-				FILA_SPRITE_NORMAL_CANION * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteNormalCanion=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_NORMAL_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalCanion = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
 		spriteNormalCanion.setFps(FPS_NORMAL_CANION);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
+
+		subImagen = spriteTanque.getSubimagen(0,
 				FILA_SPRITE_NORMAL_LANZACOHETES * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteNormalLanzaCohetes=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
 		spriteNormalLanzaCohetes.setFps(FPS_NORMAL_LANZACOHETES);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
+
+		subImagen = spriteTanque.getSubimagen(0,
 				FILA_SPRITE_MEJORADO_AMETRALLADORA * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteMejoradoAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
 		spriteMejoradoAmetralladora.setFps(FPS_MEJORADO_AMETRALLADORA);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
-				FILA_SPRITE_MEJORADO_CANION * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteMejoradoCanion=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_MEJORADO_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoCanion = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
 		spriteMejoradoCanion.setFps(FPS_MEJORADO_CANION);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
+
+		subImagen = spriteTanque.getSubimagen(0,
 				FILA_SPRITE_MEJORADO_LANZACOHETES * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteMejoradoLanzaCohetes=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
 		spriteMejoradoLanzaCohetes.setFps(FPS_MEJORADO_LANZACOHETES);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
-				FILA_SPRITE_DESTRUIDO * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteDestruido=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_DESTRUIDO
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteDestruido = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
 		spriteDestruido.setFps(FPS_DESTRUIDO);
-		
-		spriteActual=spriteNormalAmetralladora;
+
+		spriteActual = spriteNormalAmetralladora;
 		actualizar();
 	}
 
-	
+	public VistaTanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
+		tanque.adscribir(this);
+		orden = ORDEN;
+
+		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
+
+		Imagen subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_NORMAL_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteNormalAmetralladora.setFps(FPS_NORMAL_AMETRALLADORA);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_NORMAL_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalCanion = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
+		spriteNormalCanion.setFps(FPS_NORMAL_CANION);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_NORMAL_LANZACOHETES * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteNormalLanzaCohetes.setFps(FPS_NORMAL_LANZACOHETES);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_MEJORADO_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoAmetralladora.setFps(FPS_MEJORADO_AMETRALLADORA);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_MEJORADO_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoCanion = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoCanion.setFps(FPS_MEJORADO_CANION);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_MEJORADO_LANZACOHETES * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoLanzaCohetes.setFps(FPS_MEJORADO_LANZACOHETES);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_DESTRUIDO
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteDestruido = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
+		spriteDestruido.setFps(FPS_DESTRUIDO);
+
+		spriteActual = spriteNormalAmetralladora;
+		actualizar();
+	}
+
 	public Posicionable getPosicionable() {
 		return tanque;
 	}
@@ -129,54 +192,53 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 	}
 
 	public TanqueHeroe getTanque() {
-		return (TanqueHeroe)tanque;
+		return (TanqueHeroe) tanque;
 	}
 
 	@Override
 	public void actualizar() {
 		spriteActual.detener();
-		if(tanque.estaDestruido()){
+		if (tanque.estaDestruido()) {
 			VistaEscenario.getInstancia().borrarVista(this);
+		} else {
+			if (tanque.tieneDisparoMejorado()) {
+				if (tanque.getArmaActual().getClass() == Ametralladora.class)
+					spriteActual = spriteMejoradoAmetralladora;
+				else if (tanque.getArmaActual().getClass() == Canion.class)
+					spriteActual = spriteMejoradoCanion;
+				else
+					spriteActual = spriteMejoradoLanzaCohetes;
+			} else {
+				if (tanque.getArmaActual().getClass() == Ametralladora.class)
+					spriteActual = spriteNormalAmetralladora;
+				else if (tanque.getArmaActual().getClass() == Canion.class)
+					spriteActual = spriteNormalCanion;
+				else
+					spriteActual = spriteNormalLanzaCohetes;
+			}
+			if (tanque.enMovimiento())
+				spriteActual.reproducir();
+			else
+				spriteActual.detener();
 		}
-		else{
-		if(tanque.tieneDisparoMejorado()){
-			if(tanque.getArmaActual().getClass()==Ametralladora.class)
-				spriteActual=spriteMejoradoAmetralladora;
-			else if(tanque.getArmaActual().getClass()==Canion.class)
-				spriteActual=spriteMejoradoCanion;
-			else 
-				spriteActual=spriteMejoradoLanzaCohetes;
-		}else{
-			if(tanque.getArmaActual().getClass()==Ametralladora.class)
-				spriteActual=spriteNormalAmetralladora;
-			else if(tanque.getArmaActual().getClass()==Canion.class)
-				spriteActual=spriteNormalCanion;
-			else 
-				spriteActual=spriteNormalLanzaCohetes;
-		}
-		if(tanque.enMovimiento())
-			spriteActual.reproducir();
-		else
-			spriteActual.detener();
-	}
 		actualizarOrientacion();
 	}
 
-	private void actualizarOrientacion(){
-			switch(tanque.getOrientacion().get()){
-			case Direccion.NORTE:
-				spriteActual.orientarArriba();
-				break;
-			case Direccion.SUR:
-				spriteActual.orientarAbajo();
-				break;
-			case Direccion.ESTE:
-				spriteActual.orientarDerecha();
-				break;
-			case Direccion.OESTE:
-				spriteActual.orientarIzquierda();
-				break;
-				
-			}
+	private void actualizarOrientacion() {
+		switch (tanque.getOrientacion().get()) {
+		case Direccion.NORTE:
+			spriteActual.orientarArriba();
+			break;
+		case Direccion.SUR:
+			spriteActual.orientarAbajo();
+			break;
+		case Direccion.ESTE:
+			spriteActual.orientarDerecha();
+			break;
+		case Direccion.OESTE:
+			spriteActual.orientarIzquierda();
+			break;
+
+		}
 	}
 }

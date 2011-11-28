@@ -1,5 +1,7 @@
 package misc;
 
+import org.w3c.dom.Element;
+
 import pantallas.Vida;
 import controlador.ControladorPantallaJuego;
 import controlador.ControladorTanqueHeroe;
@@ -77,6 +79,7 @@ public class FabricaElementos {
 	public static Explosion crearExplosion() {
 		Explosion explosion = new Explosion();
 		Escenario.getActual().agregarObjeto(explosion);
+		Escenario.getActual().agregarObjetoVivo(explosion);
 		VistaExplosion vista=new VistaExplosion(explosion);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return explosion;
@@ -249,5 +252,7 @@ public class FabricaElementos {
 		VistaPantallaJuego.getInstancia().agregarVistaVida(vista);
 		return vida;
 	}
+
+
 
 }

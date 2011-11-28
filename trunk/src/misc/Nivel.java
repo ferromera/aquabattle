@@ -12,6 +12,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import modelo.Escenario;
 import modelo.Flota;
+import modelo.TanqueEnemigo;
 import modelo.TanqueGrizzly;
 import modelo.TanqueIFV;
 import modelo.TanqueMirage;
@@ -29,6 +30,7 @@ import excepciones.ProbabilidadInvalidaException;
 import excepciones.YaExisteBaseException;
 
 public class Nivel implements ObjetoVivo{
+	private long id=ContadorDeInstancias.getId();
 
 	private boolean ganado;
 	private int puntos;
@@ -58,6 +60,18 @@ public class Nivel implements ObjetoVivo{
 	private static final String TAG_IFV = "ifv";
 	private static final String TAG_MIRAGE = "mirage";
 
+	public static final String TAG = "objeto-nivel";
+
+	private static final String TAG_GANADO = "ganado";
+	private static final String TAG_PUNTOS = "puntos";
+	private static final String TAG_PAUSADO = "pausado";
+	private static final String TAG_MAX_PUNTOS = "max-puntos";
+	private static final String TAG_RUTA_XML = "ruta-xml";
+	private static final String TAG_TAG_NIVEL = "tag-nivel";
+	private static final String TAG_X_INICIAL = "x-inicial";
+	private static final String TAG_Y_INICIAL = "y-inicial";
+	private static final String TAG_FABRICAS_BONUS = "fabrica-bonus";
+
 	public Nivel(int numeroDeNivel, String ruta,int puntosNivel) {
 		tagNivel = "nivel";
 		tagNivel.concat(Integer.toString(numeroDeNivel));
@@ -65,8 +79,43 @@ public class Nivel implements ObjetoVivo{
 		maxPuntos=puntosNivel;
 		flotas= new LinkedList<Flota>();
 		fabricasBonus=new LinkedList<FabricaBonus>();
-		pausado=false;
+		pausado=true;
 
+	}
+	public Nivel(Element element) throws NoPudoLeerXMLExeption {
+		flotas=new LinkedList<Flota>();
+		fabricasBonus=new LinkedList<FabricaBonus>();
+		int maxPuntos_=1000;
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_GANADO))
+					ganado=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_PUNTOS))
+					puntos=Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_PAUSADO))
+					pausado=Boolean.parseBoolean(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_MAX_PUNTOS))
+					maxPuntos_=Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_RUTA_XML))
+					rutaXML=elem.getTextContent();
+				else if(elem.getTagName().equals(TAG_TAG_NIVEL))
+					tagNivel=elem.getTextContent();
+				else if(elem.getTagName().equals(TAG_X_INICIAL))
+					xInicial=Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_Y_INICIAL))
+					yInicial=Integer.parseInt(elem.getTextContent());
+				else if(elem.getTagName().equals(TAG_FLOTAS))
+					flotas.add((Flota) DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
+				else if(elem.getTagName().equals(TAG_FABRICAS_BONUS))
+					fabricasBonus.add((FabricaBonus)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
+				
+			}
+		}
+		maxPuntos=maxPuntos_;
 	}
 	public void sumarPuntos(int puntosGanados){
 		puntos+=puntosGanados;
@@ -390,6 +439,8 @@ public class Nivel implements ObjetoVivo{
 	}
 
 	public void pausar(){
+		if(pausado)
+			return;
 		pausado=true;
 		Escenario.getActual().pausar();
 		Iterator<FabricaBonus> it = fabricasBonus.iterator();
@@ -398,7 +449,10 @@ public class Nivel implements ObjetoVivo{
 		}
 	}
 	public void reanudar(){
+		if(!pausado)
+			return;
 		pausado=false;
+		Escenario.getActual().reanudar();
 		Iterator<FabricaBonus> it = fabricasBonus.iterator();
 		while(it.hasNext()){
 			it.next().comenzarProduccion();
@@ -407,7 +461,6 @@ public class Nivel implements ObjetoVivo{
 	public void vivir() {
 		if(pausado)
 			return;
-		System.out.println("nivel vivo");
 		Escenario.getActual().vivir();
 		actualizarFlota();
 	}

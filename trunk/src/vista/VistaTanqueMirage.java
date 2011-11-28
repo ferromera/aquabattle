@@ -1,5 +1,10 @@
 package vista;
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import misc.ContadorDeInstancias;
 import misc.Observador;
 import modelo.TanqueIFV;
 import modelo.TanqueMirage;
@@ -13,6 +18,7 @@ import titiritero.vista.Imagen;
 import utils.Direccion;
 
 public class VistaTanqueMirage extends VistaTanque implements Observador {
+	private long id=ContadorDeInstancias.getId();
 	
 	private static final int ORDEN=3;
 	
@@ -32,11 +38,36 @@ public class VistaTanqueMirage extends VistaTanque implements Observador {
 	// FPS DE CADA SPRITE
 	private static final double FPS_AMETRALLADORA = 25.0;
 	private static final double FPS_LANZACOHETES = 25.0;
+
+	public static final String TAG = "objeto-vista-tanque-mirage";
 	
 
 
 	public VistaTanqueMirage(TanqueMirage tanque) {
 		super(tanque);
+		orden=ORDEN;
+		tanque.adscribir(this);
+		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
+		
+		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteAmetralladora.setFps(FPS_AMETRALLADORA);
+		
+		subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_LANZACOHETES * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteLanzaCohetes=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteLanzaCohetes.setFps(FPS_LANZACOHETES);
+		
+		spriteActual=spriteLanzaCohetes;
+		actualizar();
+	}
+
+
+	public VistaTanqueMirage(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
 		orden=ORDEN;
 		tanque.adscribir(this);
 		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);

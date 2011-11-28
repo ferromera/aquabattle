@@ -1,13 +1,29 @@
 package vista;
 
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.Observador;
+import modelo.Explosion;
 import modelo.ParedConcreto;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 
 public class VistaParedConcreto extends Vista implements Observador{
+	public static final String TAG = "objeto-vista-pared-concreto";
+
+	private static final int ORDEN = 1;
+
+	private static final String TAG_PARED = "pared";
+
+	private long id=ContadorDeInstancias.getId();
+	
 	private ParedConcreto pared;
 	private Imagen sprite;
 	
@@ -18,11 +34,31 @@ public class VistaParedConcreto extends Vista implements Observador{
 		this.pared = paredConcreto;
 		paredConcreto.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE_ParedConcretoNormal, paredConcreto);
+		orden=ORDEN;
 		actualizar();
 		
 	}
 	
 	
+	public VistaParedConcreto(Element element) throws NoPudoLeerXMLExeption {
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_PARED))
+					pared = (ParedConcreto) DiccionarioDeSerializables
+							.getInstancia((Element) elem.getFirstChild());
+			}
+		}
+		pared.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE_ParedConcretoNormal, pared);
+		orden=ORDEN;
+		actualizar();
+	}
+
+
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
 	}

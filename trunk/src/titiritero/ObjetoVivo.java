@@ -2,8 +2,10 @@ package titiritero;
 
 public interface ObjetoVivo {
 	
-	void vivir();
+	public void vivir();
 
-	void pausar();
+	public void pausar();
+
+	public void reanudar();
 	
 }

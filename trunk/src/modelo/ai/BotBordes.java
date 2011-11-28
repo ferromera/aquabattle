@@ -2,7 +2,14 @@ package modelo.ai;
 
 
 
+import org.w3c.dom.Element;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import pantallas.Pantalla;
+
 import utils.Direccion;
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangular;
 import modelo.Escenario;
 
@@ -10,9 +17,15 @@ import modelo.Tanque;
 
 
 public class BotBordes extends Bot {
+	public static final String TAG = "objeto-bot-bordes";
+	private long id=ContadorDeInstancias.getId();
 
 	public BotBordes(Tanque tanque, ElementoRectangular objetivo) {
 		super(tanque, objetivo);
+	}
+
+	public BotBordes(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(Bot.TAG).item(0));
 	}
 
 	@Override

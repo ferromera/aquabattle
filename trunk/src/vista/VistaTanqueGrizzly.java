@@ -1,6 +1,16 @@
 package vista;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import excepciones.NoPudoLeerXMLExeption;
+
+import pantallas.Pantalla;
+
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.Observador;
+import modelo.Tanque;
 import modelo.TanqueGrizzly;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
@@ -9,11 +19,12 @@ import titiritero.vista.Imagen;
 import utils.Direccion;
 
 public class VistaTanqueGrizzly extends VistaTanque implements Observador {
+	private long id=ContadorDeInstancias.getId();
 	
 	private static final int ORDEN=3;
 	
 
-	private final String RUTA_SPRITE = "/sprites/SpriteGrizzly.png";
+	private static final String RUTA_SPRITE = "/sprites/SpriteGrizzly.png";
 	
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
@@ -22,9 +33,23 @@ public class VistaTanqueGrizzly extends VistaTanque implements Observador {
 	// FPS DE CADA SPRITE
 	private static final double FPS = 25.0;
 
+	public static final String TAG = "objeto-vista-tanque-grizzly";
+
 	public VistaTanqueGrizzly(TanqueGrizzly tanque) {
 		super(tanque);
 
+		orden=ORDEN;
+		tanque.adscribir(this);
+		
+		spriteActual=new Animacion(new Imagen(RUTA_SPRITE, tanque),ANCHO_SPRITE,ALTO_SPRITE);
+		spriteActual.setFps(FPS);
+		
+		actualizar();
+	}
+
+
+	public VistaTanqueGrizzly(Element element) throws NoPudoLeerXMLExeption {
+		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
 		orden=ORDEN;
 		tanque.adscribir(this);
 		

@@ -1,16 +1,40 @@
 package modelo.ai;
 
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
 import utils.Direccion;
 import excepciones.NoExisteElementoColisionadoException;
+import excepciones.NoPudoLeerXMLExeption;
+import misc.DiccionarioDeSerializables;
+import misc.FabricaElementos;
+import misc.Nivel;
 import modelo.ElementoRectangular;
 import modelo.ElementoRectangularSolido;
 import modelo.Tanque;
 import modelo.TanqueEnemigo;
 
 public abstract class Bot {
-
+	public static final String TAG= "objeto-bot";
+	private static final String TAG_TANQUE = "tanque";
+	private static final Object TAG_OBJETIVO = "objetivo";
 	protected Tanque tanque;
 	private ElementoRectangular objetivo;
+	
+	public Bot(Element element) throws NoPudoLeerXMLExeption{
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_OBJETIVO))
+					objetivo=(ElementoRectangular)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+				else if(elem.getTagName().equals(TAG_TANQUE))
+					tanque=(Tanque)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+			}
+		}
+	}
 	
 	public Bot(Tanque tanque, ElementoRectangular objetivo) {
 		this.tanque = tanque;

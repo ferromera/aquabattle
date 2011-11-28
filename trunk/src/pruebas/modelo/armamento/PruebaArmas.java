@@ -53,6 +53,7 @@ public class PruebaArmas {
 
 	@Test
 	public void dispararAmetralladora(){
+		heroe.reanudar();
 		heroe.disparar();
 		/*
 		 * Se debe generar una bala de ametralladora
@@ -81,6 +82,7 @@ public class PruebaArmas {
 
 	@Test
 	public void dispararCanionNorte() {
+		heroe.reanudar();
 		try {
 			heroe.seleccionarArma(canion);
 		} catch (NoExisteArmaSeleccionadaException e) {
@@ -117,6 +119,7 @@ public class PruebaArmas {
 
 	@Test
 	public void dispararLanzaCohetesSur() {
+		heroe.reanudar();
 		try {
 			heroe.seleccionarArma(lanzaCohetes);
 		} catch (NoExisteArmaSeleccionadaException e) {

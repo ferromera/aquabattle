@@ -3,6 +3,9 @@ package vista.pantallas;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.w3c.dom.Element;
+
+import misc.ContadorDeInstancias;
 import modelo.ElementoRectangular;
 
 
@@ -18,6 +21,8 @@ import vista.Vista;
 import vista.VistaEscenario;
 
 public class VistaPantallaJuego extends Vista implements Dibujable {
+	private long id=ContadorDeInstancias.getId();
+	
 	class TextoPuntos implements ObjetoDeTexto{
 		@Override
 		public String getTexto() {
@@ -34,6 +39,7 @@ public class VistaPantallaJuego extends Vista implements Dibujable {
 	private static final int TEXTO_PUNTOS_Y= 300;
 	private static final int PUNTOS_X= 965;
 	private static final int PUNTOS_Y= 330;
+	public static final String TAG = "objeto-vista-pantalla-juego";
 	private TextoEstatico textoPuntos;
 	private TextoDinamico puntos;
 	
@@ -56,6 +62,9 @@ public class VistaPantallaJuego extends Vista implements Dibujable {
 		vistaEscenario=VistaEscenario.getInstancia();
 		vistaVidas=new ArrayList<VistaVida>();
 		
+	}
+	public VistaPantallaJuego(Element element) {
+		// TODO Auto-generated constructor stub
 	}
 	public void agregarVistaVida(VistaVida vista){
 		vistaVidas.add(vista);

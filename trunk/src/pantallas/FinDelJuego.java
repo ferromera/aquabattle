@@ -37,4 +37,10 @@ public class FinDelJuego extends Pantalla {
 		
 	}
 
+	@Override
+	public void reanudar() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

@@ -1,10 +1,13 @@
 package modelo;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import excepciones.NoExisteBaseException;
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
 import modelo.ai.Bot;
 import modelo.ai.BotCentro;
@@ -13,9 +16,13 @@ import modelo.armamento.Canion;
 import modelo.armamento.LanzaCohetes;
 
 public class TanqueMirage extends TanqueEnemigo {
-	public static final String TAG="tanque-mirage";
+	private long id=ContadorDeInstancias.getId();
+	
+	public static final String TAG="objeto-tanque-mirage";
 	private static final int PUNTOS_OTORGADOS = 50;
 	private static final int TIEMPO_ENTRE_DISPAROS = 2000;
+
+	private static final String TAG_BOT = "bot";
 	private final int RESISTENCIA = 100;
 	private final double VELOCIDAD = 50.0;
 	private final double ANCHO = 50.0;
@@ -47,6 +54,16 @@ public class TanqueMirage extends TanqueEnemigo {
 	}
 	public TanqueMirage(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(TanqueEnemigo.TAG).item(0));
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_BOT))
+					bot=(Bot)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
+			}
+		}
 	}
 	@Override
 	public void calcularSiguienteMovimiento() {

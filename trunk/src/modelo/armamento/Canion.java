@@ -5,15 +5,22 @@ import org.w3c.dom.NodeList;
 
 import excepciones.NoPudoLeerXMLExeption;
 
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
 import modelo.Tanque;
 
 public class Canion extends Arma {
-	public  static final String TAG = "canion";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-canion";
 	private static final String TAG_MUNICION = "municion";
-	private final int TIEMPO_CARGA=1000;
-	private final int MUNICION_INICIAL=20;
+	
+	private static final int TIEMPO_CARGA=1000;
+	private static final int MUNICION_INICIAL=20;
+	
 	private int municion;
+	
 	public Canion(Tanque tanque){
 		setTanque(tanque);
 		tiempoCarga=TIEMPO_CARGA;
@@ -21,15 +28,18 @@ public class Canion extends Arma {
 	}
 	public Canion(Element element) throws NoPudoLeerXMLExeption{
 		super((Element)element.getElementsByTagName(Arma.TAG).item(0));
-		NodeList nodo;
+		
+		NodeList hijos;
 		Element elem;
-		nodo = element.getElementsByTagName(TAG_MUNICION);
-		if(nodo!=null && nodo.getLength()>0){
-			if(nodo.getLength()>1)
-				throw new NoPudoLeerXMLExeption("No puede haber mas de un tag: "+TAG_MUNICION+" en el nodo "+element.getTagName());
-			elem = (Element) nodo.item(0);
-			municion=Integer.parseInt(elem.getTextContent());
+		hijos = element.getChildNodes();
+		if(hijos!=null && hijos.getLength()>0){
+			for(int i=0;i<hijos.getLength();i++){
+				elem = (Element) hijos.item(i);
+				if(elem.getTagName().equals(TAG_MUNICION))
+					municion=Integer.parseInt(elem.getTextContent());
+			}
 		}
+		
 	}
 	protected Bala crearBala(){
 		municion--;

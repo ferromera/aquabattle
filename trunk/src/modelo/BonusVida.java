@@ -6,11 +6,14 @@ import org.w3c.dom.Element;
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
+import misc.ContadorDeInstancias;
 import modelo.mejoras.MejoraTanqueVida;
 
 
 public class BonusVida extends Bonus {
-	public  static final String TAG = "bonus-vida";
+	private long id=ContadorDeInstancias.getId();
+	
+	public  static final String TAG = "objeto-bonus-vida";
 	private static final int TIEMPO_DE_VIDA = 10000;
 
 	public BonusVida(PosicionadorAleatorio posicionador)

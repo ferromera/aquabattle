@@ -3,17 +3,23 @@ package vista;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 
+import org.w3c.dom.Element;
+
+import misc.ContadorDeInstancias;
 import modelo.Escenario;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 
 public class VistaEscenario extends Vista{
+	private long id=ContadorDeInstancias.getId();
 	
 	private Escenario escenario;
 	private PriorityQueue<Vista> vistas;
 	private static VistaEscenario instancia;
 	private static final String RUTA_SUELO="/sprites/suelo.png";
+
+	public static final String TAG = "objeto-vista-escenario";
 	private Imagen suelo;
 	public static VistaEscenario getInstancia(){
 		if(instancia==null)
@@ -22,6 +28,11 @@ public class VistaEscenario extends Vista{
 	}
 	
 	public VistaEscenario(){
+		vistas=new PriorityQueue<Vista>();
+		suelo = new Imagen(RUTA_SUELO, Escenario.getActual());
+	}
+
+	public VistaEscenario(Element element) {
 		vistas=new PriorityQueue<Vista>();
 		suelo = new Imagen(RUTA_SUELO, Escenario.getActual());
 	}
