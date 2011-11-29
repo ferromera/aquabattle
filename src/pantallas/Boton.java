@@ -44,9 +44,7 @@ public class Boton implements Observable,Posicionable {
 	public boolean estaSeleccionado(){
 		return seleccionado;
 	}
-	public void borrar(){
-		notificar();
-	}
+
 	public void seleccionar(){
 		seleccionado = true;
 		notificar();

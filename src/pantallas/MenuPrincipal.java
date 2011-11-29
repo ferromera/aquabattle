@@ -6,6 +6,7 @@ import controlador.ControladorMenuPrincipal;
 import controlador.ControladorPantallaJuego;
 
 import titiritero.ControladorJuego;
+import titiritero.Posicionable;
 import vista.pantallas.VistaMenuPrincipal;
 import vista.pantallas.VistaPantallaJuego;
 
@@ -20,17 +21,21 @@ public class MenuPrincipal extends Pantalla {
 	private static final int BOTONES = 4;
 	private static final int X_BOTON = -5;
 	private static final int Y_BOTON = 545;
+	private static final int ALTO_BOTON = 40;
 	private static final int SEPARACION_BOTONES= 11;
 	private ArrayList<Boton> botones;
-	
-	public MenuPrincipal(){
 
+	public MenuPrincipal(){
 		botones = new ArrayList<Boton>();
+		new VistaMenuPrincipal(this);
+		
 		for(int i=0 ;i<BOTONES;i++)
-			botones.add(FabricaElementos.crearBoton(X_BOTON,Y_BOTON+SEPARACION_BOTONES*i));		
+			botones.add(FabricaElementos.crearBoton(X_BOTON,Y_BOTON+(ALTO_BOTON*i)+(SEPARACION_BOTONES*i)));		
+
 		pausado = false;
+		
+		
 	}
-	
 	public static MenuPrincipal getInstance(){
 		if(instancia == null){
 			instancia = new MenuPrincipal();

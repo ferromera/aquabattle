@@ -257,8 +257,8 @@ public class FabricaElementos {
 	}
 	
 	public static Boton crearBoton(int x, int y) {
-		Boton boton=new Boton(x,y);
-		VistaBoton vista=new VistaBoton(boton);
+		Boton boton = new Boton(x,y);
+		VistaBoton vista = new VistaBoton(boton);
 		VistaMenuPrincipal.getInstancia().agregarVistaBoton(vista);
 		return boton;
 	}
