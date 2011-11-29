@@ -2,6 +2,7 @@ package misc;
 
 import org.w3c.dom.Element;
 
+import pantallas.Boton;
 import pantallas.Vida;
 import controlador.ControladorPantallaJuego;
 import controlador.ControladorTanqueHeroe;
@@ -21,6 +22,8 @@ import vista.VistaTanqueGrizzly;
 import vista.VistaTanqueHeroe;
 import vista.VistaTanqueIFV;
 import vista.VistaTanqueMirage;
+import vista.pantallas.VistaBoton;
+import vista.pantallas.VistaMenuPrincipal;
 import vista.pantallas.VistaPantallaJuego;
 import vista.pantallas.VistaVida;
 import excepciones.NoSePudoPosicionarException;
@@ -251,6 +254,13 @@ public class FabricaElementos {
 		VistaVida vista=new VistaVida(vida);
 		VistaPantallaJuego.getInstancia().agregarVistaVida(vista);
 		return vida;
+	}
+	
+	public static Boton crearBoton(int x, int y) {
+		Boton boton=new Boton(x,y);
+		VistaBoton vista=new VistaBoton(boton);
+		VistaMenuPrincipal.getInstancia().agregarVistaBoton(vista);
+		return boton;
 	}
 
 
