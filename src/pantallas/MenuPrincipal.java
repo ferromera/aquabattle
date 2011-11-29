@@ -3,15 +3,11 @@ package pantallas;
 import java.util.ArrayList;
 
 import controlador.ControladorMenuPrincipal;
-import controlador.ControladorPantallaJuego;
 
 import titiritero.ControladorJuego;
-import titiritero.Posicionable;
 import vista.pantallas.VistaMenuPrincipal;
-import vista.pantallas.VistaPantallaJuego;
 
 import misc.FabricaElementos;
-import misc.Nivel;
 
 public class MenuPrincipal extends Pantalla {
 
@@ -31,7 +27,6 @@ public class MenuPrincipal extends Pantalla {
 		
 		for(int i=0 ;i<BOTONES;i++)
 			botones.add(FabricaElementos.crearBoton(X_BOTON,Y_BOTON+(ALTO_BOTON*i)+(SEPARACION_BOTONES*i)));		
-
 		pausado = false;
 		
 		
