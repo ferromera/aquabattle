@@ -1,6 +1,28 @@
 package pantallas;
 
+import titiritero.ControladorJuego;
+import vista.pantallas.VistaFinDelJuego;
+
 public class FinDelJuego extends Pantalla {
+	
+	boolean pausado;
+	static FinDelJuego instancia;
+	
+	
+	public FinDelJuego(){
+		new VistaFinDelJuego(this);
+		pausado = false;
+		
+		
+	}
+	public static FinDelJuego getInstancia(){
+		if(instancia == null){
+			instancia = new FinDelJuego();
+		}
+		
+		return instancia;
+	}
+	
 
 	@Override
 	public void vivir() {
@@ -14,32 +36,36 @@ public class FinDelJuego extends Pantalla {
 		
 	}
 
-	public static FinDelJuego getInstancia() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void pausar() {
-		// TODO Auto-generated method stub
+		pausado=true;
 		
 	}
 
 	@Override
 	public void convertirEnActual() {
-		// TODO Auto-generated method stub
+		ControladorJuego.getInstancia().agregarDibujable(VistaFinDelJuego.getInstancia());
+		ControladorJuego.getInstancia().agregarObjetoVivo(this);
+		//ControladorJuego.getInstancia().agregarKeyPressObservador(ControladorMenuPrincipal.getInstancia());
+		reanudar();
 		
 	}
 
 	@Override
 	public void dejarDeSerActual() {
-		// TODO Auto-generated method stub
+		pausar();
+		ControladorJuego.getInstancia().removerDibujable(VistaFinDelJuego.getInstancia());
+		ControladorJuego.getInstancia().removerObjetoVivo(this);
+		//ControladorJuego.getInstancia().removerKeyPressObservador(ControladorMenuPrincipal.getInstancia());
+		
+		
 		
 	}
 
 	@Override
 	public void reanudar() {
-		// TODO Auto-generated method stub
+		pausado=false;
 		
 	}
 

@@ -1,7 +1,6 @@
 package vista.pantallas;
 
 
-import java.util.ArrayList;
 
 import misc.Observador;
 
@@ -41,7 +40,6 @@ public class VistaBoton extends Vista implements Observador {
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		System.out.println("Boton Dibujado");
 	}
 
 	public Posicionable getPosicionable() {

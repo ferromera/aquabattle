@@ -2,7 +2,6 @@ package vista.pantallas;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.PriorityQueue;
 
 import misc.Observador;
 
@@ -12,7 +11,6 @@ import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import vista.Vista;
-import vista.VistaEscenario;
 
 public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
