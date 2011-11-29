@@ -2,6 +2,7 @@ package vista.pantallas;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.PriorityQueue;
 
 import misc.Observador;
 
@@ -11,6 +12,7 @@ import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import vista.Vista;
+import vista.VistaEscenario;
 
 public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
@@ -18,18 +20,19 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
 	private MenuPrincipal menu;
 	
-	ArrayList<VistaBoton> vistaBotones;
+	ArrayList<VistaBoton> vistaBotones = new ArrayList<VistaBoton>();
 
 	private Imagen sprite;
 	private static final String RUTA_SPRITE_FONDO= "/sprites/FondoMenu.png";
 
-	
-	
 	public VistaMenuPrincipal (){
-		menu = MenuPrincipal.getInstance();
 		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
-		
-		vistaBotones = new ArrayList<VistaBoton>();
+	}
+	
+	public VistaMenuPrincipal (MenuPrincipal menu){
+		this.menu = menu;
+		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+		instancia = this;
 	}
 	
 	public void agregarVistaBoton(VistaBoton vista){
@@ -49,14 +52,15 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	}
 	
 	public static VistaMenuPrincipal getInstancia() {
-		if(instancia==null)
-			instancia=new VistaMenuPrincipal();
+		if(instancia == null)
+			instancia = new VistaMenuPrincipal();
 		return instancia;
 	}
 	
 	
 	public void dibujar(SuperficieDeDibujo sup) {
-		dibujarBotones(sup);
+		sprite.dibujar(sup);
+		dibujarBotones(sup);		
 	}
 	
 	public Posicionable getPosicionable() {

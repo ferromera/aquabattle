@@ -7,27 +7,28 @@ import titiritero.KeyPressedObservador;
 
 public class ControladorMenuPrincipal implements KeyPressedObservador{
 	
-	private boolean continuar, nuevoJuego, puntajesAltos, salir;
+	private boolean seleccionadoContinuar, seleccionadoNuevoJuego, seleccionadoPuntajesAltos, seleccionadoSalir;
 	MenuPrincipal menu;
 	private static ControladorMenuPrincipal instancia=null;
 	
 	public ControladorMenuPrincipal (MenuPrincipal menu){
 		this.menu = menu;
-		continuar = false;
-		nuevoJuego = false;
-		puntajesAltos = false;
-		salir = false;
+		seleccionadoContinuar = false;
+		seleccionadoNuevoJuego = false;
+		seleccionadoPuntajesAltos = false;
+		seleccionadoSalir = false;
 	}
 	
 	public static ControladorMenuPrincipal getInstancia(){
-		if(instancia==null)
-			instancia=new ControladorMenuPrincipal(MenuPrincipal.getInstance());
+		if(instancia == null)
+			instancia = new ControladorMenuPrincipal(MenuPrincipal.getInstance());
 		return instancia;
 	}
 	
 	
 	public void keyPressed(KeyEvent e){
-		
+		int key= e.getKeyCode();
+
 	}
 	
 
@@ -35,19 +36,19 @@ public class ControladorMenuPrincipal implements KeyPressedObservador{
 	}
 	
 	private void actualizarMenuPrincipal(){
-		if (continuar){
+		if (seleccionadoContinuar){
 			
 		}
 		
-		if (nuevoJuego){
+		if (seleccionadoNuevoJuego){
 			
 		}
 		
-		if (puntajesAltos){
+		if (seleccionadoPuntajesAltos){
 			
 		}
 		
-		if (salir){
+		if (seleccionadoSalir){
 			
 		}
 		
