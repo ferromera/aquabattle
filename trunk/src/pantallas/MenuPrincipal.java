@@ -28,7 +28,6 @@ public class MenuPrincipal extends Pantalla {
 	private static final String TEXTO_JUEGO_NUEVO="JUEGO NUEVO";
 	private static final String TEXTO_MEJORES_PUNTAJES="MEJORES PUNTAJES";
 	private static final String TEXTO_SALIR="SALIR";
-	private static final String RUTA_GUARDADO="partida_guardada.xml";
 	
 
 	private ArrayList<Boton> botones;
@@ -40,7 +39,7 @@ public class MenuPrincipal extends Pantalla {
 		botones = new ArrayList<Boton>();
 		new VistaMenuPrincipal(this);
 		Boton boton;
-		if(new File(RUTA_GUARDADO).exists()){
+		if(new File(PantallaJuego.RUTA_GUARDADO).exists()){
 			boton=FabricaElementos.crearBoton(X_BOTON_CONTINUAR,Y_BOTON_CONTINUAR,TEXTO_CONTINUAR);
 			boton.setAccion(AccionContinuar.getInstancia());
 			botones.add(boton);

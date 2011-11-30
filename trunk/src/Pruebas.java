@@ -4,7 +4,9 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Window;
 
+import pantallas.FinDelJuego;
 import pantallas.PantallaActual;
+import pantallas.PantallaGuardarPuntaje;
 import pantallas.PantallaJuego;
 
 

@@ -10,7 +10,7 @@ public class AccionPuntajes implements AccionBoton{
 	}
 	@Override
 	public void actuar() {
-		//PantallaActual.getInstancia().cambiarA(PantallaPuntajes.getInstancia());
+		PantallaActual.getInstancia().cambiarA(PantallaPuntajesAltos.getInstancia());
 		
 	}
 

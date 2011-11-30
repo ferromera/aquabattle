@@ -174,6 +174,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 	private static final String TAG_VIDAS = "vidas";
 	private static final String TAG_NIVELES = "niveles";
 	private static final String TAG_ESCENARIO = "escenario";
+	public static final String RUTA_GUARDADO = "partida_guardada.xml";
 
 	
 
