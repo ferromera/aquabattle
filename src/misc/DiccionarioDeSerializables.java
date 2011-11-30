@@ -168,7 +168,6 @@ public class DiccionarioDeSerializables {
 			map.put(id, instancia);
 			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Escenario.TAG)) {
-			System.out.println("NUEVO ESCENARIO");
 			instancia = Escenario.nuevaInstancia();
 			map.put(id, instancia);
 			instancia.fromElementoXML(element);

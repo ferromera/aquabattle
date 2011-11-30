@@ -17,6 +17,7 @@ public class ControladorMenuPrincipal implements KeyPressedObservador{
 		seleccionadoNuevoJuego = false;
 		seleccionadoPuntajesAltos = false;
 		seleccionadoSalir = false;
+		instancia=this;
 	}
 	
 	public static ControladorMenuPrincipal getInstancia(){
@@ -28,6 +29,10 @@ public class ControladorMenuPrincipal implements KeyPressedObservador{
 	
 	public void keyPressed(KeyEvent e){
 		int key= e.getKeyCode();
+		 if(key==KeyEvent.VK_DOWN)
+			menu.seleccionarSiguienteBoton();	 
+	     if(key==KeyEvent.VK_UP)
+	        menu.seleccionarBotonAnterior();
 
 	}
 	
@@ -35,24 +40,7 @@ public class ControladorMenuPrincipal implements KeyPressedObservador{
 	public void keyReleased(KeyEvent e){
 	}
 	
-	private void actualizarMenuPrincipal(){
-		if (seleccionadoContinuar){
-			
-		}
-		
-		if (seleccionadoNuevoJuego){
-			
-		}
-		
-		if (seleccionadoPuntajesAltos){
-			
-		}
-		
-		if (seleccionadoSalir){
-			
-		}
-		
-	}
+	
 	
 
 }

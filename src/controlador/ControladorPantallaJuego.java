@@ -78,7 +78,6 @@ public class ControladorPantallaJuego implements KeyPressedObservador {
 
 	@Override
 	public void keyPressed(KeyEvent event) {
-		System.out.println("pressed");
 		controlTanque.keyPressed(event);
 		int key = event.getKeyCode();
 		if (key == KeyEvent.VK_ENTER) {

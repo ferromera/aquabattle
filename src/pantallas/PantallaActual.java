@@ -5,7 +5,7 @@ public class PantallaActual extends Pantalla {
 	private static PantallaActual instancia;
 	public static PantallaActual getInstancia(){
 		if(instancia==null)
-			instancia =new PantallaActual(new MenuPrincipal());
+			instancia =new PantallaActual(MenuPrincipal.getInstance());
 		return instancia;
 	}
 	
