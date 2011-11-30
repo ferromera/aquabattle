@@ -8,7 +8,6 @@ import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import modelo.armamento.LanzaCohetes;
 
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 public class ArmaTiradaLanzaCohetes extends ArmaTirada {

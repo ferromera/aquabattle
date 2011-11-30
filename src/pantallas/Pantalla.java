@@ -8,15 +8,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.DiccionarioDeSerializables;
-import misc.FabricaElementos;
-import misc.Nivel;
 import misc.Observable;
 import misc.Observador;
 import misc.SerializableXML;
-import modelo.TanqueEnemigo;
 import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 

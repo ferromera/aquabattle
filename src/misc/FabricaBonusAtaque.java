@@ -1,14 +1,9 @@
 package misc;
 
-import modelo.TanqueEnemigo;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
-import pantallas.Pantalla;
-
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 public class FabricaBonusAtaque extends FabricaBonus {

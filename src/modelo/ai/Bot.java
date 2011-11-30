@@ -7,15 +7,10 @@ import org.w3c.dom.NodeList;
 
 import utils.Direccion;
 import excepciones.NoExisteElementoColisionadoException;
-import excepciones.NoPudoLeerXMLExeption;
-import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaElementos;
-import misc.Nivel;
 import misc.SerializableXML;
 import modelo.ElementoRectangular;
 import modelo.ElementoRectangularSolido;
-import modelo.Flota;
 import modelo.Tanque;
 import modelo.TanqueEnemigo;
 

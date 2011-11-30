@@ -1,7 +1,5 @@
 package utils;
 
-import java.util.Iterator;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,7 +7,6 @@ import org.w3c.dom.NodeList;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Observador;
 import misc.SerializableXML;
 
 public class Direccion implements SerializableXML {

@@ -1,14 +1,10 @@
 package pantallas;
 
-import java.io.File;
 import java.util.ArrayList;
 
-import misc.FabricaElementos;
 import titiritero.ControladorJuego;
 import vista.pantallas.VistaBoton;
-import vista.pantallas.VistaMenuPrincipal;
 import vista.pantallas.VistaPantallaPausa;
-import controlador.ControladorMenuPrincipal;
 import controlador.ControladorPantallaPausa;
 
 public class PantallaPausa extends Pantalla {
@@ -35,7 +31,6 @@ public class PantallaPausa extends Pantalla {
 	private ArrayList<Boton> botones;
 	private int indiceBotonSeleccionado;
 	private Boton botonSeleccionado;
-	private int cantBotones;
 
 	public PantallaPausa() {
 		new VistaPantallaPausa(this);

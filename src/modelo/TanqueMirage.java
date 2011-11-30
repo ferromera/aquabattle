@@ -5,10 +5,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import titiritero.ObjetoVivo;
+
 
 import excepciones.NoExisteBaseException;
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
@@ -16,7 +15,6 @@ import misc.FabricaElementos;
 import modelo.ai.Bot;
 import modelo.ai.BotCentro;
 import modelo.armamento.Ametralladora;
-import modelo.armamento.Canion;
 import modelo.armamento.LanzaCohetes;
 
 public class TanqueMirage extends TanqueEnemigo {

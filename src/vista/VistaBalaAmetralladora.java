@@ -5,19 +5,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
-import titiritero.ControladorJuego;
-import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
-import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 import utils.Direccion;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.ArmaTiradaLanzaCohetes;
 import modelo.armamento.BalaAmetralladora;
 
 public class VistaBalaAmetralladora extends Vista implements Observador {

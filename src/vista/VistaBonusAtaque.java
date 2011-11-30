@@ -5,14 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.BonusAtaque;
-import modelo.TanqueHeroe;
-import modelo.armamento.BalaCanion;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Animacion;

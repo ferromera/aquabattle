@@ -4,7 +4,6 @@ package modelo;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 import misc.ContadorDeInstancias;

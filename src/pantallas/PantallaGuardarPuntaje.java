@@ -23,7 +23,6 @@ public class PantallaGuardarPuntaje extends Pantalla {
 	}
 	
 	public void agregarLetra(char letra){
-		System.out.println("agregando letra "+letra);
 		nombre=nombre.concat(new Character(letra).toString());
 	}
 	public void borrarUltimaLetra(){

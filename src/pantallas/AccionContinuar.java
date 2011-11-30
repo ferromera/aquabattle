@@ -7,13 +7,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import misc.DiccionarioDeSerializables;
-import modelo.Escenario;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import vista.VistaEscenario;
 
 public class AccionContinuar implements AccionBoton {
 	private static AccionContinuar instancia=null;

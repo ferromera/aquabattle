@@ -3,7 +3,6 @@ package misc;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 public class FabricaBonusVida extends FabricaBonus {

@@ -2,7 +2,6 @@ package pantallas;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -21,17 +20,11 @@ import vista.pantallas.VistaPantallaJuego;
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
-import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaBonus;
-import misc.FabricaBonusAtaque;
 import misc.FabricaElementos;
 import misc.Nivel;
-import misc.Observador;
 import misc.SerializableXML;
-import misc.SorteadorBernoulli;
 import modelo.Escenario;
-import modelo.TanqueEnemigo;
 
 public class PantallaJuego extends Pantalla implements SerializableXML {
 	private static final String RUTA_NIVEL_1 = "./bin/niveles/nivel1.xml";
@@ -128,7 +121,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 
 	public void perder() {
 		pausar();
-		Timer timer = new Timer(2000, new ActionListener() {
+		Timer timer = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PantallaActual.getInstancia().cambiarA(FinDelJuego.getInstancia());
 			}
@@ -141,7 +134,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 
 	public void sumarPuntos(int puntosGanados) {
 		puntos += puntosGanados;
-		System.out.println(puntos);
+		niveles.get(nivelActual).sumarPuntos(puntosGanados);
 	}
 
 	public int getPuntos() {
@@ -159,7 +152,8 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 	}
 
 	private void siguienteNivel() {
-		// TODO Auto-generated method stub
+		//Hay solo un nivel
+		PantallaActual.getInstancia().cambiarA(FinDelJuego.getInstancia());
 
 	}
 

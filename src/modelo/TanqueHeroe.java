@@ -6,7 +6,6 @@ import org.w3c.dom.Element;
 
 import pantallas.PantallaJuego;
 
-import excepciones.NoPudoLeerXMLExeption;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;

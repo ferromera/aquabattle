@@ -3,8 +3,6 @@ package modelo.ai;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import utils.Direccion;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;

@@ -2,19 +2,12 @@ package vista;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
-import excepciones.NoPudoLeerXMLExeption;
-
-import pantallas.Pantalla;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.Tanque;
 import modelo.TanqueGrizzly;
 import titiritero.Posicionable;
-import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 import utils.Direccion;

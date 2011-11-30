@@ -11,7 +11,6 @@ import org.w3c.dom.Element;
 
 import pantallas.PantallaGuardarPuntaje;
 
-import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
@@ -19,7 +18,6 @@ import titiritero.vista.ObjetoDeTexto;
 import titiritero.vista.TextoDinamico;
 import titiritero.vista.TextoEstatico;
 import vista.Vista;
-import vista.VistaTanque.TextoResistencia;
 
 public class VistaPantallaGuardarPuntaje extends Vista implements Observador{
 	public class TextoNombre implements ObjetoDeTexto {

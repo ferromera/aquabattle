@@ -3,8 +3,6 @@ package vista;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
@@ -12,7 +10,6 @@ import modelo.TanqueIFV;
 import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;
 import titiritero.Posicionable;
-import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 import utils.Direccion;

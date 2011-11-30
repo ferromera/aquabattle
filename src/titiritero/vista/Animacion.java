@@ -1,17 +1,11 @@
 package titiritero.vista;
 
-import java.awt.Graphics;
-import java.awt.RenderingHints;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
-import java.awt.image.AffineTransformOp;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import titiritero.Dibujable;
@@ -142,6 +136,12 @@ public class Animacion implements Dibujable,ActionListener {
 		while(it.hasNext())
 			it.next().orientarArriba();
 		
+	}
+	public int getAlto(){
+		return alto;
+	}
+	public int getAncho(){
+		return ancho;
 	}
 	
 

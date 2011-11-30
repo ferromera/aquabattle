@@ -1,9 +1,5 @@
 package modelo;
 
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
-import modelo.armamento.Arma;
-import modelo.mejoras.MejoraTanque;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -11,8 +7,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import pantallas.PantallaJuego;
-
-import excepciones.NoPudoLeerXMLExeption;
 
 public abstract class TanqueEnemigo extends Tanque {
 	public static final String TAG = "objeto-tanque-enemigo";

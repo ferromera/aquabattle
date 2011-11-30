@@ -1,7 +1,5 @@
 package pruebas.modelo;
 
-import java.util.Date;
-
 import misc.FabricaElementos;
 import modelo.Escenario;
 import modelo.ParedConcreto;

@@ -5,11 +5,7 @@ package modelo;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import titiritero.Posicionable;
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
 import misc.Observable;
 
 

@@ -1,22 +1,15 @@
 package modelo;
 
-import java.util.ArrayList;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import pantallas.Pantalla;
-import pantallas.Vida;
-
-import excepciones.NoPudoLeerXMLExeption;
 
 import titiritero.Posicionable;
-import vista.pantallas.VistaPantallaJuego;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Nivel;
 import misc.Observable;
 
 public class ParedMetal extends Pared implements Posicionable, Observable {

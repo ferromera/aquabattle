@@ -1,7 +1,6 @@
 package misc;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 import modelo.ArmaTiradaCanion;
 import modelo.ArmaTiradaLanzaCohetes;
@@ -9,14 +8,12 @@ import modelo.Base;
 import modelo.BonusAtaque;
 import modelo.BonusVida;
 import modelo.ElementoRectangular;
-import modelo.ElementoRectangularSolido;
 import modelo.Escenario;
 import modelo.Explosion;
 import modelo.Flota;
 import modelo.ParedConcreto;
 import modelo.ParedMetal;
 import modelo.PosicionadorAleatorioStd;
-import modelo.Tanque;
 import modelo.TanqueGrizzly;
 import modelo.TanqueHeroe;
 import modelo.TanqueIFV;
@@ -37,9 +34,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import pantallas.Vida;
-
-import excepciones.NoPudoLeerXMLExeption;
-import excepciones.NoSePudoPosicionarException;
 
 import utils.Direccion;
 import vista.VistaArmaTiradaCanion;

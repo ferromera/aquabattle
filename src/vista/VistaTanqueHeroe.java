@@ -1,27 +1,16 @@
 package vista;
 
-import java.awt.Color;
-import java.awt.Font;
-
-import javax.swing.Timer;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
-import titiritero.Dibujable;
 import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
-import titiritero.vista.ObjetoDeTexto;
-import titiritero.vista.TextoDinamico;
 import titiritero.Posicionable;
-import titiritero.SuperficieDeDibujo;
 import utils.Direccion;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.ElementoRectangular;
 import modelo.TanqueHeroe;
 import modelo.armamento.Ametralladora;
 import modelo.armamento.Canion;

@@ -10,16 +10,12 @@ import org.w3c.dom.NodeList;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Nivel;
 import misc.Observador;
 import misc.SerializableXML;
 import modelo.ElementoRectangular;
-import modelo.armamento.Arma;
-import modelo.mejoras.MejoraTanque;
 
 
 import pantallas.PantallaJuego;
-import pantallas.Vida;
 import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;

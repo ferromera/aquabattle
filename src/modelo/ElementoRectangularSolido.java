@@ -2,19 +2,15 @@ package modelo;
 
 import java.util.Iterator;
 
-import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Observador;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import utils.Direccion;
 
 import excepciones.NoExisteElementoColisionadoException;
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 /*

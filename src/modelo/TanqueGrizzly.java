@@ -5,17 +5,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import titiritero.ObjetoVivo;
-
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import modelo.ai.Bot;
 import modelo.ai.BotCentro;
 import modelo.armamento.Ametralladora;
-import modelo.armamento.Arma;
-import modelo.mejoras.MejoraTanque;
+
 import modelo.TanqueHeroe;
 
 public class TanqueGrizzly extends TanqueEnemigo {

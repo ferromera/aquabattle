@@ -46,7 +46,6 @@ public class PantallaPuntajesAltos extends Pantalla {
 	private ArrayList<Puntuacion> puntajes;
 
 	public PantallaPuntajesAltos() {
-		System.out.println("String\tcon Tab");
 		cargar();
 	}
 
@@ -91,7 +90,6 @@ public class PantallaPuntajesAltos extends Pantalla {
 		}
 		for(int i=0;i<CANTIDAD_DE_PUNTAJES;i++){
 			puntajes.get(i).setPosicion(PUNTUACION_X, PUNTUACION_Y+(SEPARACION_Y*i));
-			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
 		}
 
 	}
@@ -134,18 +132,11 @@ public class PantallaPuntajesAltos extends Pantalla {
 	}
 
 	public void insertar(Puntuacion puntuacion) {
-		System.out.println(puntuacion.getNombre()+"  "+puntuacion.getPuntos());
 		puntajes.add(puntuacion);
 		Collections.sort(puntajes);
-		for(int i=0;i<CANTIDAD_DE_PUNTAJES+1;i++){
-			puntajes.get(i).setPosicion(PUNTUACION_X,PUNTUACION_Y+SEPARACION_Y*i);
-			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
-		}
-		
 		puntajes.remove(CANTIDAD_DE_PUNTAJES);
 		for(int i=0;i<CANTIDAD_DE_PUNTAJES;i++){
 			puntajes.get(i).setPosicion(PUNTUACION_X, PUNTUACION_Y+(SEPARACION_Y*i));
-			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
 		}
 		notificar();
 		guardar();
@@ -195,7 +186,6 @@ public class PantallaPuntajesAltos extends Pantalla {
 	}
 
 	public int getMenorPuntaje() {
-		System.out.println("Menor: "+puntajes.get(CANTIDAD_DE_PUNTAJES-1).getPuntos());
 		return puntajes.get(CANTIDAD_DE_PUNTAJES-1).getPuntos();
 	}
 
