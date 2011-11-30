@@ -13,7 +13,6 @@ import misc.FabricaElementos;
 
 public class MenuPrincipal extends Pantalla {
 
-	boolean pausado;
 	static MenuPrincipal instancia;
 	
 	private static final int X_BOTON_CONTINUAR = -5;
@@ -59,15 +58,10 @@ public class MenuPrincipal extends Pantalla {
 		boton.setAccion(AccionSalir.getInstancia());
 		botones.add(boton);
 		
-		
-		
-		
 		botonSeleccionado=botones.get(0);
 		botonSeleccionado.seleccionar();
 		indiceBotonSeleccionado=0;
-		
-		
-		pausado = false;
+
 		
 		
 	}
@@ -88,7 +82,6 @@ public class MenuPrincipal extends Pantalla {
 
 	@Override
 	public void pausar() {
-		pausado=true;
 	}
 
 	@Override
@@ -112,7 +105,6 @@ public class MenuPrincipal extends Pantalla {
 
 	@Override
 	public void reanudar() {
-		pausado=false;
 		
 	}
 	public void seleccionarSiguienteBoton() {

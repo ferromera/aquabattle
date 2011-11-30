@@ -3,43 +3,41 @@ package vista.pantallas;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import misc.Observador;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import misc.Observador;
+import pantallas.PantallaPausa;
 
-import pantallas.MenuPrincipal;
-import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 import vista.Vista;
 
-public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
+public class VistaPantallaPausa extends Vista implements Observador{
 
-	private static VistaMenuPrincipal instancia=null;
+	private static VistaPantallaPausa instancia=null;
 
-	private MenuPrincipal menu;
+	private PantallaPausa pantalla;
 	
 	ArrayList<VistaBoton> vistaBotones;
 
 	private Imagen sprite;
 
 	
-	private static final String RUTA_SPRITE_FONDO= "/sprites/FondoMenu.png";
+	private static final String RUTA_SPRITE_FONDO= "/sprites/PantallaJuegoPausado.png";
 
-	
-	private VistaMenuPrincipal (){
-		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+	public VistaPantallaPausa (PantallaPausa pausa){
+		pantalla=pausa;
+		sprite = new Imagen(RUTA_SPRITE_FONDO, pantalla);
 		vistaBotones = new ArrayList<VistaBoton>();
-		
+		instancia=this;
 	}
-	
-	public VistaMenuPrincipal (MenuPrincipal menu){
-		this.menu = menu;
-		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+	private VistaPantallaPausa (){
+		pantalla=PantallaPausa.getInstancia();
+		sprite = new Imagen(RUTA_SPRITE_FONDO, pantalla);
 		vistaBotones = new ArrayList<VistaBoton>();
-		instancia = this;
 	}
 	
 	public void agregarVistaBoton(VistaBoton vista){
@@ -58,9 +56,9 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 		}
 	}
 	
-	public static VistaMenuPrincipal getInstancia() {
+	public static VistaPantallaPausa getInstancia() {
 		if(instancia == null)
-			instancia = new VistaMenuPrincipal();
+			instancia = new VistaPantallaPausa();
 		return instancia;
 	}
 	
@@ -72,11 +70,11 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	}
 	
 	public Posicionable getPosicionable() {
-		return menu;
+		return pantalla;
 	}
 
-	public void setPosicionable(Posicionable menu) {
-		this.menu = (MenuPrincipal) menu;
+	public void setPosicionable(Posicionable pantalla) {
+		this.pantalla = (PantallaPausa) pantalla;
 	}
 	
 	@Override
@@ -97,6 +95,5 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	
+
 }

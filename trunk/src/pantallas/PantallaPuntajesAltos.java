@@ -40,8 +40,8 @@ public class PantallaPuntajesAltos extends Pantalla {
 	private static final String TAG_PUNTAJES = "archivo-de-puntajes";
 	private static final String TAG_PUNTAJE = "puntaje";
 	private static final int PUNTUACION_X = 200;
-	private static final int PUNTUACION_Y = 200;
-	private static final int SEPARACION_Y = 45;
+	private static final int PUNTUACION_Y = 250;
+	private static final int SEPARACION_Y = 90;
 	
 	private ArrayList<Puntuacion> puntajes;
 
@@ -75,7 +75,6 @@ public class PantallaPuntajesAltos extends Pantalla {
 						puntos = Integer.parseInt(elem.getTextContent());
 				}
 				Puntuacion p=new Puntuacion(nombre, puntos);
-				p.setPosicion(PUNTUACION_X, PUNTUACION_Y+(SEPARACION_Y*i));
 				puntajes.add(p);
 			}
 			Collections.sort(puntajes);
@@ -89,6 +88,10 @@ public class PantallaPuntajesAltos extends Pantalla {
 			e.printStackTrace();
 		} catch (TransformerFactoryConfigurationError e) {
 			e.printStackTrace();
+		}
+		for(int i=0;i<CANTIDAD_DE_PUNTAJES;i++){
+			puntajes.get(i).setPosicion(PUNTUACION_X, PUNTUACION_Y+(SEPARACION_Y*i));
+			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
 		}
 
 	}
@@ -131,12 +134,20 @@ public class PantallaPuntajesAltos extends Pantalla {
 	}
 
 	public void insertar(Puntuacion puntuacion) {
+		System.out.println(puntuacion.getNombre()+"  "+puntuacion.getPuntos());
 		puntajes.add(puntuacion);
 		Collections.sort(puntajes);
-		puntajes.remove(CANTIDAD_DE_PUNTAJES - 1);
-		for(int i=0;i<CANTIDAD_DE_PUNTAJES;i++){
+		for(int i=0;i<CANTIDAD_DE_PUNTAJES+1;i++){
 			puntajes.get(i).setPosicion(PUNTUACION_X,PUNTUACION_Y+SEPARACION_Y*i);
+			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
 		}
+		
+		puntajes.remove(CANTIDAD_DE_PUNTAJES);
+		for(int i=0;i<CANTIDAD_DE_PUNTAJES;i++){
+			puntajes.get(i).setPosicion(PUNTUACION_X, PUNTUACION_Y+(SEPARACION_Y*i));
+			System.out.println(puntajes.get(i).getNombre()+"  "+puntajes.get(i).getPuntos());
+		}
+		notificar();
 		guardar();
 	}
 
@@ -152,10 +163,10 @@ public class PantallaPuntajesAltos extends Pantalla {
 				Element elem=doc.createElement(TAG_PUNTAJE);
 				element.appendChild(elem);
 				Element eNombre=doc.createElement(TAG_NOMBRE);
-				element.appendChild(eNombre);
+				elem.appendChild(eNombre);
 				eNombre.setTextContent(puntajes.get(i).getNombre());
 				Element ePuntos=doc.createElement(TAG_PUNTOS);
-				element.appendChild(ePuntos);
+				elem.appendChild(ePuntos);
 				ePuntos.setTextContent(Integer.toString(puntajes.get(i).getPuntos()));
 			}
 

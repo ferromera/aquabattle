@@ -10,7 +10,7 @@ public class AccionJuegoNuevo implements AccionBoton{
 	}
 	@Override
 	public void actuar() {
-		PantallaActual.getInstancia().cambiarA(PantallaJuego.getInstancia());
+		PantallaActual.getInstancia().cambiarA(PantallaJuego.nuevaInstancia());
 		
 	}
 

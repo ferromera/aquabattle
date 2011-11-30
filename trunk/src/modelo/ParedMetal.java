@@ -102,7 +102,7 @@ public class ParedMetal extends Pared implements Posicionable, Observable {
 				else if (elem.getTagName().equals(TAG_DESTRUIDA))
 					destruida = Boolean.parseBoolean(elem.getTextContent());
 			}
-		}
+		}notificar();
 
 	}
 

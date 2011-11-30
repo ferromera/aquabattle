@@ -58,7 +58,7 @@ public class VistaPantallaJuego extends Vista implements Dibujable,SerializableX
 	public VistaPantallaJuego(PantallaJuego pantallaJuego) {
 		pantalla = pantallaJuego;
 		pantalla.adscribir(this);
-		vistaEscenario=VistaEscenario.getInstancia();
+		vistaEscenario=VistaEscenario.nuevaInstancia();
 		vistaVidas=new ArrayList<VistaVida>();
 		ElementoRectangular cuadradoTexto = new ElementoRectangular(TEXTO_PUNTOS_X, TEXTO_PUNTOS_Y);
 		textoPuntos= new TextoEstatico(TEXTO_PUNTOS);
@@ -152,6 +152,7 @@ public class VistaPantallaJuego extends Vista implements Dibujable,SerializableX
 
 	@Override
 	public void fromElementoXML(Element element) {
+		
 		NodeList hijos;
 		Element elem;
 		hijos = element.getChildNodes();

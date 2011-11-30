@@ -82,7 +82,7 @@ public class TanqueHeroe extends Tanque {
 	public void fromElementoXML(Element element) {
 		super.fromElementoXML((Element)element.getElementsByTagName(Tanque.TAG).item(0));
 		instancia=this;
-		
+		notificar();
 	}
 	
 
