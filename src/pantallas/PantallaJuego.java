@@ -112,7 +112,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 		pausar();
 		Timer timer = new Timer(2000, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cambiarA(FinDelJuego.getInstancia());
+				PantallaActual.getInstancia().cambiarA(FinDelJuego.getInstancia());
 			}
 		});
 		timer.setRepeats(false);
@@ -144,11 +144,6 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 
 	}
 
-	@Override
-	public void cambiarA(Pantalla pantalla) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public void dejarDeSerActual() {

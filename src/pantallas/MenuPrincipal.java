@@ -86,11 +86,6 @@ public class MenuPrincipal extends Pantalla {
 		
 	}
 
-	@Override
-	public void cambiarA(Pantalla pantalla) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void pausar() {
