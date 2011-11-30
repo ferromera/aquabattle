@@ -114,7 +114,7 @@ public class TanqueIFV extends TanqueEnemigo {
 					
 			}
 		}
-
+		notificar();
 	}
 
 }

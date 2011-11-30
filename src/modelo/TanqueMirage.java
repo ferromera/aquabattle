@@ -116,7 +116,8 @@ public class TanqueMirage extends TanqueEnemigo {
 				}
 					
 			}
-		}
+		}	
+		notificar();
 
 	}
 

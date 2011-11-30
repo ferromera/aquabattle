@@ -77,7 +77,7 @@ public class ParedConcreto extends Pared implements Posicionable, Observable {
 					destruida = Boolean.parseBoolean(elem.getTextContent());
 			}
 		}
-
+		notificar();
 	}
 
 }

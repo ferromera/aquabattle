@@ -24,6 +24,7 @@ import org.xml.sax.SAXException;
 import pantallas.MenuPrincipal;
 import pantallas.PantallaActual;
 import pantallas.PantallaJuego;
+import pantallas.PantallaPausa;
 
 import misc.Observador;
 import modelo.Escenario;
@@ -41,6 +42,10 @@ public class ControladorPantallaJuego implements KeyPressedObservador {
 	public static ControladorPantallaJuego getInstancia() {
 		if (instancia == null)
 			instancia = new ControladorPantallaJuego();
+		return instancia;
+	}
+	public static ControladorPantallaJuego nuevaInstancia() {
+		instancia = new ControladorPantallaJuego();
 		return instancia;
 	}
 
@@ -81,13 +86,16 @@ public class ControladorPantallaJuego implements KeyPressedObservador {
 		controlTanque.keyPressed(event);
 		int key = event.getKeyCode();
 		if (key == KeyEvent.VK_ENTER) {
+			PantallaActual.getInstancia().cambiarA(PantallaPausa.getInstancia());
+			
+			/*
 			if (!pausado) {
 				pausado = true;
 				PantallaJuego.getInstancia().pausar();
 			} else {
 				pausado = false;
 				PantallaJuego.getInstancia().reanudar();
-			}
+			}*/
 
 		}
 		if (key == KeyEvent.VK_S)

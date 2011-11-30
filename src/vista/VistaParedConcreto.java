@@ -71,7 +71,7 @@ public class VistaParedConcreto extends Vista implements Observador {
 			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_ParedConcretoDestruida,
 					pared);
 			sprite = nuevaImagen;
-			// Borrarla del escenario
+			
 		}
 	}
 

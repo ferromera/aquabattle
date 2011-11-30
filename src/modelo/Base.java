@@ -92,6 +92,7 @@ public class Base extends ElementoRectangularSolido implements Impactable,
 					impactosRecibidos = Integer.parseInt(elem.getTextContent());
 			}
 		}
+		notificar();
 
 	}
 }

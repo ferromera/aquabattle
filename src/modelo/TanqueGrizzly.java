@@ -103,7 +103,7 @@ public class TanqueGrizzly extends TanqueEnemigo {
 				}
 			}
 		}
-
+		notificar();
 	}
 
 }

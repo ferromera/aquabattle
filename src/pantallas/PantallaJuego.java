@@ -51,8 +51,26 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 			instancia = new PantallaJuego();
 		return instancia;
 	}
-
+	public static PantallaJuego nuevaInstancia() {
+		instancia = new PantallaJuego();
+		return instancia;
+	}
+	public static PantallaJuego cargarInstancia(Element element) {
+		instancia = new PantallaJuego(element);
+		return instancia;
+	}
+	public PantallaJuego(Element element){
+		new VistaPantallaJuego(this);
+		Escenario.nuevaInstancia();
+		niveles = new ArrayList<Nivel>();
+		puntos = 0;
+		vidas = new ArrayList<Vida>();
+		fromElementoXML(element);
+		
+	}
 	public PantallaJuego() {
+		new VistaPantallaJuego(this);
+		Escenario.nuevaInstancia();
 		niveles = new ArrayList<Nivel>();
 		niveles.add(new Nivel(1, RUTA_NIVEL_1, 1000));
 		// TODO: agregar mas niveles.
@@ -66,7 +84,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 		}
 		puntos = 0;
 		vidas = new ArrayList<Vida>();
-		new VistaPantallaJuego(this);
+		
 		for (int i = 0; i < VIDAS; i++)
 			vidas.add(FabricaElementos.crearVida(X_VIDA, Y_VIDA
 					+ SEPARACION_VIDA * i));
@@ -123,6 +141,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 
 	public void sumarPuntos(int puntosGanados) {
 		puntos += puntosGanados;
+		System.out.println(puntos);
 	}
 
 	public int getPuntos() {
@@ -161,7 +180,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 				VistaPantallaJuego.getInstancia());
 		ControladorJuego.getInstancia().agregarObjetoVivo(this);
 		ControladorJuego.getInstancia().agregarKeyPressObservador(
-				ControladorPantallaJuego.getInstancia());
+				ControladorPantallaJuego.nuevaInstancia());
 
 		reanudar();
 
@@ -263,6 +282,7 @@ public class PantallaJuego extends Pantalla implements SerializableXML {
 					
 			}
 		}
+		VistaPantallaJuego.getInstancia().setPosicionable(this);
 
 	}
 
