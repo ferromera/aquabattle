@@ -47,8 +47,6 @@ public abstract class Pantalla implements Posicionable, ObjetoVivo, Observable,
 		}
 	}
 
-	public abstract void cambiarA(Pantalla pantalla);
-
 	@Override
 	public double getX() {
 		return 0;

@@ -30,11 +30,6 @@ public class FinDelJuego extends Pantalla {
 		
 	}
 
-	@Override
-	public void cambiarA(Pantalla pantalla) {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	@Override
