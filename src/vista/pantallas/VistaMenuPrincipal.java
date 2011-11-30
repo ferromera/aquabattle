@@ -4,6 +4,9 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import misc.Observador;
 import modelo.ElementoRectangular;
 
@@ -29,7 +32,7 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	
 	private static final String RUTA_SPRITE_FONDO= "/sprites/FondoMenu.png";
 
-	public void agregarTextos(SuperficieDeDibujo sup){
+	/*public void agregarTextos(SuperficieDeDibujo sup){
 		String TEXTO;
 		int TEXTO1_X= 10;
 		int TEXTO1_Y= 575;
@@ -61,9 +64,10 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
 		
 		
-	}
-	public VistaMenuPrincipal (){
+	}*/
+	private VistaMenuPrincipal (){
 		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+		vistaBotones = new ArrayList<VistaBoton>();
 		
 	}
 	
@@ -100,9 +104,7 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
 		dibujarBotones(sup);
-		agregarTextos(sup);
 		
-
 	}
 	
 	public Posicionable getPosicionable() {
@@ -120,6 +122,16 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 		while(it.hasNext()){
 			it.next().actualizar();
 		}
+	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void fromElementoXML(Element element) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

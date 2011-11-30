@@ -15,10 +15,12 @@ public class Boton implements Observable,Posicionable {
 	private int x,y;
 	private boolean seleccionado;
 	private ArrayList<Observador> observadores=new ArrayList<Observador>();
+	private String texto;
 	
-	public Boton(int x,int y){
+	public Boton(int x,int y,String texto){
 		this.x=x;
 		this.y=y;
+		this.texto=texto;
 		seleccionado=false;
 	}
 	public int getAncho(){
@@ -48,7 +50,10 @@ public class Boton implements Observable,Posicionable {
 	public void seleccionar(){
 		seleccionado = true;
 		notificar();
-		
+	}
+	public void deseleccionar(){
+		seleccionado = false;
+		notificar();
 	}
 
 
@@ -64,6 +69,9 @@ public class Boton implements Observable,Posicionable {
 		while(it.hasNext()){
 			it.next().actualizar();
 		}
+	}
+	public String getTexto() {
+		return texto;
 	}
 }
 	

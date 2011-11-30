@@ -59,8 +59,8 @@ public class Pruebas {
 		controladorJuego.setSuperficieDeDibujo(panel);
 		controladorJuego.setIntervaloSimulacion(1000/50);
 	
-
-		PantallaActual.getInstancia().cambiarA(PantallaJuego.getInstancia());
+		PantallaActual.getInstancia();
+		//PantallaActual.getInstancia().cambiarA(PantallaJuego.getInstancia());
 		
 		/*//Agrego dibujables
 		Escenario escenario= Escenario.getActual();
