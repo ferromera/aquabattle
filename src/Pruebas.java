@@ -43,7 +43,7 @@ import modelo.armamento.LanzaCohetes;
 
 
 public class Pruebas {
-
+/*
 	
 	public static void main(String args[]){
 		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
@@ -64,7 +64,7 @@ public class Pruebas {
 		PantallaActual.getInstancia();
 		//PantallaActual.getInstancia().cambiarA(PantallaJuego.getInstancia());
 		
-		/*//Agrego dibujables
+		//Agrego dibujables
 		Escenario escenario= Escenario.getActual();
 		controladorJuego.agregarDibujable(VistaEscenario.getInstancia());
 		//Agrego objetos vivos
@@ -87,10 +87,10 @@ public class Pruebas {
 		} catch (NoPudoLeerXMLExeption e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
 		
 		controladorJuego.comenzarJuego();
-		
+		*/
 		/*
 		ControladorJuego controladorJuego= ControladorJuego.getInstancia();
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
@@ -145,7 +145,7 @@ public class Pruebas {
 		FabricaElementos.crearBalaAmetralladora();
 		FabricaElementos.crearBalaCanion();
 		FabricaElementos.crearCohete();
-		VistaEscenario.getInstancia().dibujar(panel);*/
+		VistaEscenario.getInstancia().dibujar(panel);
 		
-	}
+	}*/
 }
