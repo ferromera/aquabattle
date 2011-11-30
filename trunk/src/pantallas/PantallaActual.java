@@ -13,6 +13,7 @@ public class PantallaActual extends Pantalla {
 
 	public PantallaActual(Pantalla primeraPantalla){
 		estadoPantalla=primeraPantalla;
+		estadoPantalla.convertirEnActual();
 	}
 	
 	@Override

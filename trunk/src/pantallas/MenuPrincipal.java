@@ -14,19 +14,27 @@ public class MenuPrincipal extends Pantalla {
 	boolean pausado;
 	static MenuPrincipal instancia;
 	
-	private static final int BOTONES = 4;
-	private static final int X_BOTON = -5;
-	private static final int Y_BOTON = 545;
-	private static final int ALTO_BOTON = 40;
-	private static final int SEPARACION_BOTONES= 11;
+	private static final int X_BOTON_JUEGO_NUEVO = -5;
+	private static final int Y_BOTON_JUEGO_NUEVO = 545;
+	private static final int X_BOTON_MEJORES_PUNTAJES = -5;
+	private static final int Y_BOTON_MEJORES_PUNTAJES = 596;
+	private static final int X_BOTON_SALIR = -5;
+	private static final int Y_BOTON_SALIR = 647;
+	private static final String TEXTO_JUEGO_NUEVO="JUEGO NUEVO";
+	private static final String TEXTO_MEJORES_PUNTAJES="MEJORES PUNTAJES";
+	private static final String TEXTO_SALIR="SALIR";
+
 	private ArrayList<Boton> botones;
 
 	public MenuPrincipal(){
 		botones = new ArrayList<Boton>();
 		new VistaMenuPrincipal(this);
 		
-		for(int i=0 ;i<BOTONES;i++)
-			botones.add(FabricaElementos.crearBoton(X_BOTON,Y_BOTON+(ALTO_BOTON*i)+(SEPARACION_BOTONES*i)));		
+		botones.add(FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO));
+		botones.add(FabricaElementos.crearBoton(X_BOTON_MEJORES_PUNTAJES,Y_BOTON_MEJORES_PUNTAJES,TEXTO_MEJORES_PUNTAJES));
+		botones.add(FabricaElementos.crearBoton(X_BOTON_SALIR,Y_BOTON_SALIR,TEXTO_SALIR));
+		
+		
 		pausado = false;
 		
 		

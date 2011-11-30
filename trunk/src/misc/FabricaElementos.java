@@ -260,8 +260,8 @@ public class FabricaElementos {
 		return vida;
 	}
 	
-	public static Boton crearBoton(int x, int y) {
-		Boton boton = new Boton(x,y);
+	public static Boton crearBoton(int x, int y,String texto) {
+		Boton boton = new Boton(x,y,texto);
 		VistaBoton vista = new VistaBoton(boton);
 		VistaMenuPrincipal.getInstancia().agregarVistaBoton(vista);
 		return boton;
