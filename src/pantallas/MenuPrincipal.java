@@ -1,5 +1,6 @@
 package pantallas;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -15,6 +16,9 @@ public class MenuPrincipal extends Pantalla {
 	boolean pausado;
 	static MenuPrincipal instancia;
 	
+	private static final int X_BOTON_CONTINUAR = -5;
+	private static final int Y_BOTON_CONTINUAR = 494;
+	private static final String TEXTO_CONTINUAR = "CONTINUAR";
 	private static final int X_BOTON_JUEGO_NUEVO = -5;
 	private static final int Y_BOTON_JUEGO_NUEVO = 545;
 	private static final int X_BOTON_MEJORES_PUNTAJES = -5;
@@ -24,6 +28,8 @@ public class MenuPrincipal extends Pantalla {
 	private static final String TEXTO_JUEGO_NUEVO="JUEGO NUEVO";
 	private static final String TEXTO_MEJORES_PUNTAJES="MEJORES PUNTAJES";
 	private static final String TEXTO_SALIR="SALIR";
+	private static final String RUTA_GUARDADO="partida_guardada.xml";
+	
 
 	private ArrayList<Boton> botones;
 	private int indiceBotonSeleccionado;
@@ -33,8 +39,18 @@ public class MenuPrincipal extends Pantalla {
 	public MenuPrincipal(){
 		botones = new ArrayList<Boton>();
 		new VistaMenuPrincipal(this);
+		Boton boton;
+		if(new File(RUTA_GUARDADO).exists()){
+			boton=FabricaElementos.crearBoton(X_BOTON_CONTINUAR,Y_BOTON_CONTINUAR,TEXTO_CONTINUAR);
+			boton.setAccion(AccionContinuar.getInstancia());
+			botones.add(boton);
+			cantBotones=4;
+		}
+		else{
+			cantBotones=3;
+		}
 		
-		Boton boton=FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO);
+		boton=FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO);
 		boton.setAccion(AccionJuegoNuevo.getInstancia());
 		botones.add(boton);
 		boton=FabricaElementos.crearBoton(X_BOTON_MEJORES_PUNTAJES,Y_BOTON_MEJORES_PUNTAJES,TEXTO_MEJORES_PUNTAJES);
@@ -45,7 +61,7 @@ public class MenuPrincipal extends Pantalla {
 		botones.add(boton);
 		
 		
-		cantBotones=3;
+		
 		
 		botonSeleccionado=botones.get(0);
 		botonSeleccionado.seleccionar();
