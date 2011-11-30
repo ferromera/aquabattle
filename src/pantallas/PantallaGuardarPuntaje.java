@@ -1,42 +1,11 @@
 package pantallas;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.PrintStream;
-
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
-import modelo.Escenario;
-
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
-
 import titiritero.ControladorJuego;
-import vista.VistaEscenario;
 import vista.pantallas.VistaPantallaGuardarPuntaje;
-import vista.pantallas.VistaPantallaJuego;
 import controlador.ControladorPantallaGuardarPuntaje;
-import controlador.ControladorPantallaJuego;
+
 
 public class PantallaGuardarPuntaje extends Pantalla {
-
-	private static final String RUTA_PUNTAJE = "puntajes.xml";
-	public static final String TAG_PUNTAJE = "puntaje";
-	public static final String TAG_NOMBRE = "nombre";
-	public static final String TAG_PUNTOS = "puntos";
-	private static final String TAG_PUNTAJES = "puntajes";
 	private int puntaje;
 	private String nombre;
 	
@@ -63,9 +32,7 @@ public class PantallaGuardarPuntaje extends Pantalla {
 	}
 	
 	@Override
-	public void vivir() {
-		
-		
+	public void vivir() {	
 	}
 
 	@Override
@@ -79,8 +46,6 @@ public class PantallaGuardarPuntaje extends Pantalla {
 		// TODO Auto-generated method stub
 		
 	}
-
-	
 
 	@Override
 	public void convertirEnActual() {
@@ -109,54 +74,8 @@ public class PantallaGuardarPuntaje extends Pantalla {
 	}
 
 	public void guardar() {
+		PantallaPuntajesAltos.getInstancia().insertar(new Puntuacion(nombre,puntaje));
 		
-		try {
-			Document doc;
-			if(new File(RUTA_PUNTAJE).exists()){
-				doc = DocumentBuilderFactory.newInstance()
-					.newDocumentBuilder().parse(new File(RUTA_PUNTAJE));
-				
-			}else{
-				doc = DocumentBuilderFactory.newInstance()
-						.newDocumentBuilder().newDocument();
-				Element root=doc.createElement(TAG_PUNTAJES);
-				doc.appendChild(root);
-			}
-			
-			Element element=doc.getDocumentElement();
-			element.appendChild(getElementoPuntaje(doc));
-			
-			Transformer transformer = TransformerFactory.newInstance()
-					.newTransformer();
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-			transformer.transform(new DOMSource(doc), new StreamResult(
-					new PrintStream(RUTA_PUNTAJE)));
-
-		} catch (SAXException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerConfigurationException e) {
-			e.printStackTrace();
-		} catch (TransformerFactoryConfigurationError e) {
-			e.printStackTrace();
-		} catch (TransformerException e) {
-			e.printStackTrace();
-		}
-		
-	}
-
-	private Element getElementoPuntaje(Document doc) {
-		Element element= doc.createElement(TAG_PUNTAJE);
-		Element elem= doc.createElement(TAG_NOMBRE);
-		element.appendChild(elem);
-		elem.setTextContent(nombre);
-		elem=doc.createElement(TAG_PUNTOS);
-		element.appendChild(elem);
-		elem.setTextContent(Integer.toString(puntaje));
-		return element;
 	}
 
 	public String getNombre() {

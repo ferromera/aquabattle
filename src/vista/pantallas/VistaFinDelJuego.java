@@ -1,6 +1,9 @@
 package vista.pantallas;
 
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 import misc.Observador;
 import pantallas.FinDelJuego;
 import titiritero.Dibujable;
@@ -50,6 +53,18 @@ public class VistaFinDelJuego extends Vista implements Dibujable, Observador{
 
 	@Override
 	public void actualizar() {
+	}
+
+	@Override
+	public Element getElementoXML(Document doc) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
