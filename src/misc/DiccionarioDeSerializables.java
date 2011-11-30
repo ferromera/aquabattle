@@ -1,6 +1,7 @@
 package misc;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import modelo.ArmaTiradaCanion;
 import modelo.ArmaTiradaLanzaCohetes;
@@ -32,7 +33,10 @@ import modelo.mejoras.MejoraTanqueAtaque;
 import modelo.mejoras.MejoraTanqueVida;
 
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+
+import pantallas.Vida;
 
 import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
@@ -59,7 +63,24 @@ import vista.pantallas.VistaVida;
 
 public class DiccionarioDeSerializables {
 
-	private static HashMap<Long, Object> map = new HashMap<Long, Object>();
+	private static HashMap<Long, SerializableXML> map = new HashMap<Long, SerializableXML>();
+	private static HashMap<Long, Boolean> mapSerializados = new HashMap<Long, Boolean>();
+
+	public static boolean fueSerializado(long id) {
+		Boolean b = mapSerializados.get(new Long(id));
+		if (b == null)
+			return false;
+		return b.booleanValue();
+	}
+
+	public static void marcarSerializado(long id) {
+		mapSerializados.put(new Long(id), new Boolean(true));
+	}
+
+	public static void limpiar() {
+		map.clear();
+		mapSerializados.clear();
+	}
 
 	private static Long getID(Element element) {
 		NodeList hijos;
@@ -67,6 +88,8 @@ public class DiccionarioDeSerializables {
 		hijos = element.getChildNodes();
 		if (hijos != null && hijos.getLength() > 0) {
 			for (int i = 0; i < hijos.getLength(); i++) {
+				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
+					continue;
 				elem = (Element) hijos.item(i);
 				if (elem.getTagName().equals(ContadorDeInstancias.TAG_ID))
 					return new Long(elem.getTextContent());
@@ -75,161 +98,212 @@ public class DiccionarioDeSerializables {
 		return new Long(-1);
 	}
 
-	public static Object getInstancia(Element element)
-			throws NoPudoLeerXMLExeption {
+	public static Object getInstancia(Element element) {
 		Long id = getID(element);
-		Object instancia = map.get(id);
+		SerializableXML instancia = map.get(id);
 		if (instancia != null)
 			return instancia;
 		if (element.getTagName().equals(BotBordes.TAG)) {
-			instancia = new BotBordes(element);
+			instancia = new BotBordes();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(BotCentro.TAG)) {
-			instancia = new BotCentro(element);
+			instancia = new BotCentro();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Ametralladora.TAG)) {
-			instancia = new Ametralladora(element);
+			instancia = new Ametralladora();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(BalaAmetralladora.TAG)) {
-			instancia = new BalaAmetralladora(element);
+			instancia = new BalaAmetralladora();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(BalaCanion.TAG)) {
-			instancia = new BalaCanion(element);
+			instancia = new BalaCanion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Canion.TAG)) {
-			instancia = new Canion(element);
+			instancia = new Canion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Cohete.TAG)) {
-			instancia = new Cohete(element);
+			instancia = new Cohete();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(LanzaCohetes.TAG)) {
-			instancia = new LanzaCohetes(element);
+			instancia = new LanzaCohetes();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(MejoraTanqueAtaque.TAG)) {
-			instancia = new MejoraTanqueAtaque(element);
+			instancia = new MejoraTanqueAtaque();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(MejoraTanqueVida.TAG)) {
-			instancia = new MejoraTanqueVida(element);
+			instancia = new MejoraTanqueVida();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(ArmaTiradaCanion.TAG)) {
-			instancia = new ArmaTiradaCanion(element);
+			instancia = new ArmaTiradaCanion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(ArmaTiradaLanzaCohetes.TAG)) {
-			instancia = new ArmaTiradaLanzaCohetes(element);
+			instancia = new ArmaTiradaLanzaCohetes();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Base.TAG)) {
-			instancia = new Base(element);
+			instancia = new Base();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(BonusAtaque.TAG)) {
-			instancia = new BonusAtaque(element);
+			instancia = new BonusAtaque();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(BonusVida.TAG)) {
-			instancia = new BonusVida(element);
+			instancia = new BonusVida();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(ElementoRectangular.TAG)) {
-			instancia = new ElementoRectangular(element);
+			instancia = new ElementoRectangular();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Escenario.TAG)) {
-			instancia = new Escenario(element);
+			System.out.println("NUEVO ESCENARIO");
+			instancia = Escenario.nuevaInstancia();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Explosion.TAG)) {
-			instancia = new Explosion(element);
+			instancia = new Explosion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Flota.TAG)) {
-			instancia = new Flota(element);
+			instancia = new Flota();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(ParedConcreto.TAG)) {
-			instancia = new ParedConcreto(element);
+			instancia = new ParedConcreto();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(ParedMetal.TAG)) {
-			instancia = new ParedMetal(element);
+			instancia = new ParedMetal();
 			map.put(id, instancia);
-		} else if (element.getTagName()
-				.equals(PosicionadorAleatorioStd.TAG)) {
-			instancia = new PosicionadorAleatorioStd(element);
+			instancia.fromElementoXML(element);
+		} else if (element.getTagName().equals(PosicionadorAleatorioStd.TAG)) {
+			instancia = new PosicionadorAleatorioStd();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(TanqueGrizzly.TAG)) {
-			instancia = new TanqueGrizzly(element);
+			instancia = new TanqueGrizzly();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(TanqueHeroe.TAG)) {
-			instancia = new TanqueHeroe(element);
+			instancia = new TanqueHeroe();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(TanqueIFV.TAG)) {
-			instancia = new TanqueIFV(element);
+			instancia = new TanqueIFV();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(TanqueMirage.TAG)) {
-			instancia = new TanqueMirage(element);
+			instancia = new TanqueMirage();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
+		} else if (element.getTagName().equals(Vida.TAG)) {
+			instancia = new Vida();
+			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaPantallaJuego.TAG)) {
-			instancia = new VistaPantallaJuego(element);
+			instancia = new VistaPantallaJuego();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaVida.TAG)) {
-			instancia = new VistaVida(element);
+			instancia = new VistaVida();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaArmaTiradaCanion.TAG)) {
-			instancia = new VistaArmaTiradaCanion(element);
+			instancia = new VistaArmaTiradaCanion();
 			map.put(id, instancia);
-		} else if (element.getTagName().equals(
-				VistaArmaTiradaLanzaCohetes.TAG)) {
-			instancia = new VistaArmaTiradaLanzaCohetes(element);
+			instancia.fromElementoXML(element);
+		} else if (element.getTagName().equals(VistaArmaTiradaLanzaCohetes.TAG)) {
+			instancia = new VistaArmaTiradaLanzaCohetes();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaBalaAmetralladora.TAG)) {
-			instancia = new VistaBalaAmetralladora(element);
+			instancia = new VistaBalaAmetralladora();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaBalaCanion.TAG)) {
-			instancia = new VistaBalaCanion(element);
+			instancia = new VistaBalaCanion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaBase.TAG)) {
-			instancia = new VistaBase(element);
+			instancia = new VistaBase();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaBonusAtaque.TAG)) {
-			instancia = new VistaBonusAtaque(element);
+			instancia = new VistaBonusAtaque();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaBonusVida.TAG)) {
-			instancia = new VistaBonusVida(element);
+			instancia = new VistaBonusVida();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaCohete.TAG)) {
-			instancia = new VistaCohete(element);
+			instancia = new VistaCohete();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaEscenario.TAG)) {
-			instancia = new VistaEscenario(element);
+			instancia = VistaEscenario.nuevaInstancia();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaExplosion.TAG)) {
-			instancia = new VistaExplosion(element);
+			instancia = new VistaExplosion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaParedConcreto.TAG)) {
-			instancia = new VistaParedConcreto(element);
+			instancia = new VistaParedConcreto();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaParedMetal.TAG)) {
-			instancia = new VistaParedMetal(element);
+			instancia = new VistaParedMetal();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaTanqueGrizzly.TAG)) {
-			instancia = new VistaTanqueGrizzly(element);
+			instancia = new VistaTanqueGrizzly();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaTanqueHeroe.TAG)) {
-			instancia = new VistaTanqueHeroe(element);
+			instancia = new VistaTanqueHeroe();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaTanqueIFV.TAG)) {
-			instancia = new VistaTanqueIFV(element);
+			instancia = new VistaTanqueIFV();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(VistaTanqueMirage.TAG)) {
-			instancia = new VistaTanqueMirage(element);
+			instancia = new VistaTanqueMirage();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(FabricaBonusAtaque.TAG)) {
-			instancia = new FabricaBonusAtaque(element);
+			instancia = new FabricaBonusAtaque();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(FabricaBonusVida.TAG)) {
-			instancia = new FabricaBonusVida(element);
+			instancia = new FabricaBonusVida();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Nivel.TAG)) {
-			instancia = new Nivel(element);
+			instancia = new Nivel();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(SorteadorBernoulli.TAG)) {
-			instancia = new SorteadorBernoulli(element);
+			instancia = new SorteadorBernoulli();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		} else if (element.getTagName().equals(Direccion.TAG)) {
-			instancia = new Direccion(element);
+			instancia = new Direccion();
 			map.put(id, instancia);
+			instancia.fromElementoXML(element);
 		}
 		return instancia;
 	}

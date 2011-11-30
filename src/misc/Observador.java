@@ -1,6 +1,6 @@
 package misc;
 
-public interface Observador {
+public interface Observador extends SerializableXML {
 	/*
 	 * actualizar: debe actualizar el estado
 	 * del observador basandose en el estado

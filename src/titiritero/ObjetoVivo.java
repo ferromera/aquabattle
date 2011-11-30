@@ -1,6 +1,8 @@
 package titiritero;
 
-public interface ObjetoVivo {
+import misc.SerializableXML;
+
+public interface ObjetoVivo extends SerializableXML {
 	
 	public void vivir();
 

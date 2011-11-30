@@ -69,11 +69,15 @@ public class Ventana extends Frame implements SuperficieDeDibujo{
 		int x = (screenSize.width - frameSize.width) / 2;
 		int y = (screenSize.height - frameSize.height) / 2;
 		setLocation(x, y);
+		setFocusable(true);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				dispose();
 				System.exit(0);
 			}
+			public void windowGainedFocus(WindowEvent e) {
+		       Ventana.this.requestFocusInWindow();
+		    }
 		});
 		setVisible(true);
 		

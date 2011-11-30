@@ -1,8 +1,10 @@
 package modelo.armamento;
 
 import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import modelo.ElementoRectangularSolido;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import excepciones.NoPudoLeerXMLExeption;
@@ -22,9 +24,7 @@ public class BalaCanion extends Bala {
 		setAlto(ALTO);
 		setAncho(ANCHO);
 	}
-	public BalaCanion(Element element) throws NoPudoLeerXMLExeption{
-		super((Element)element.getElementsByTagName(Bala.TAG).item(0));
-	}
+	
 	public BalaCanion(double x, double y){
 		velocidad=VELOCIDAD;
 		fuerza=FUERZA;
@@ -32,6 +32,24 @@ public class BalaCanion extends Bala {
 		setAncho(ANCHO);
 		setX(x);
 		setY(y);
+	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem= doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if(DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element)element.getElementsByTagName(Bala.TAG).item(0));
+		
 	}
 	
 }

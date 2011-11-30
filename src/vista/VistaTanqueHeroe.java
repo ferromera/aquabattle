@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.Timer;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import excepciones.NoPudoLeerXMLExeption;
@@ -18,6 +19,7 @@ import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import utils.Direccion;
 import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.ElementoRectangular;
 import modelo.TanqueHeroe;
@@ -61,7 +63,10 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 	private static final double FPS_DESTRUIDO = 4.0;
 
 	public static final String TAG = "objeto-vista-tanque-heroe";
-
+	
+	public VistaTanqueHeroe(){
+		
+	}
 	public VistaTanqueHeroe(TanqueHeroe tanque) {
 		super(tanque);
 		tanque.adscribir(this);
@@ -117,60 +122,7 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 		actualizar();
 	}
 
-	public VistaTanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
-		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
-		tanque.adscribir(this);
-		orden = ORDEN;
-
-		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
-
-		Imagen subImagen = spriteTanque.getSubimagen(0,
-				FILA_SPRITE_NORMAL_AMETRALLADORA * ALTO_SPRITE,
-				spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteNormalAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
-				ALTO_SPRITE);
-		spriteNormalAmetralladora.setFps(FPS_NORMAL_AMETRALLADORA);
-
-		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_NORMAL_CANION
-				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteNormalCanion = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
-		spriteNormalCanion.setFps(FPS_NORMAL_CANION);
-
-		subImagen = spriteTanque.getSubimagen(0,
-				FILA_SPRITE_NORMAL_LANZACOHETES * ALTO_SPRITE,
-				spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteNormalLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
-				ALTO_SPRITE);
-		spriteNormalLanzaCohetes.setFps(FPS_NORMAL_LANZACOHETES);
-
-		subImagen = spriteTanque.getSubimagen(0,
-				FILA_SPRITE_MEJORADO_AMETRALLADORA * ALTO_SPRITE,
-				spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteMejoradoAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
-				ALTO_SPRITE);
-		spriteMejoradoAmetralladora.setFps(FPS_MEJORADO_AMETRALLADORA);
-
-		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_MEJORADO_CANION
-				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteMejoradoCanion = new Animacion(subImagen, ANCHO_SPRITE,
-				ALTO_SPRITE);
-		spriteMejoradoCanion.setFps(FPS_MEJORADO_CANION);
-
-		subImagen = spriteTanque.getSubimagen(0,
-				FILA_SPRITE_MEJORADO_LANZACOHETES * ALTO_SPRITE,
-				spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteMejoradoLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
-				ALTO_SPRITE);
-		spriteMejoradoLanzaCohetes.setFps(FPS_MEJORADO_LANZACOHETES);
-
-		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_DESTRUIDO
-				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
-		spriteDestruido = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
-		spriteDestruido.setFps(FPS_DESTRUIDO);
-
-		spriteActual = spriteNormalAmetralladora;
-		actualizar();
-	}
+	
 
 	public Posicionable getPosicionable() {
 		return tanque;
@@ -240,5 +192,76 @@ public class VistaTanqueHeroe extends VistaTanque implements Observador {
 			break;
 
 		}
+	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem= doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if(DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+		
+		
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
+		tanque.adscribir(this);
+		orden = ORDEN;
+
+		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
+
+		Imagen subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_NORMAL_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteNormalAmetralladora.setFps(FPS_NORMAL_AMETRALLADORA);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_NORMAL_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalCanion = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
+		spriteNormalCanion.setFps(FPS_NORMAL_CANION);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_NORMAL_LANZACOHETES * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteNormalLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteNormalLanzaCohetes.setFps(FPS_NORMAL_LANZACOHETES);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_MEJORADO_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoAmetralladora = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoAmetralladora.setFps(FPS_MEJORADO_AMETRALLADORA);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_MEJORADO_CANION
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoCanion = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoCanion.setFps(FPS_MEJORADO_CANION);
+
+		subImagen = spriteTanque.getSubimagen(0,
+				FILA_SPRITE_MEJORADO_LANZACOHETES * ALTO_SPRITE,
+				spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteMejoradoLanzaCohetes = new Animacion(subImagen, ANCHO_SPRITE,
+				ALTO_SPRITE);
+		spriteMejoradoLanzaCohetes.setFps(FPS_MEJORADO_LANZACOHETES);
+
+		subImagen = spriteTanque.getSubimagen(0, FILA_SPRITE_DESTRUIDO
+				* ALTO_SPRITE, spriteTanque.getAncho(), ALTO_SPRITE);
+		spriteDestruido = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
+		spriteDestruido.setFps(FPS_DESTRUIDO);
+
+		spriteActual = spriteNormalAmetralladora;
+		actualizar();
+		
 	}
 }

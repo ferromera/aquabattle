@@ -1,6 +1,7 @@
 package modelo;
 
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import pantallas.PantallaJuego;
@@ -8,6 +9,7 @@ import pantallas.PantallaJuego;
 import excepciones.NoPudoLeerXMLExeption;
 
 import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import modelo.armamento.Ametralladora;
 
 public class TanqueHeroe extends Tanque {
@@ -34,10 +36,6 @@ public class TanqueHeroe extends Tanque {
 		instancia = new TanqueHeroe();
 		return instancia;
 	}
-	public static TanqueHeroe nuevaInstancia(Element element) throws NoPudoLeerXMLExeption {
-		instancia = new TanqueHeroe(element);
-		return instancia;
-	}
 
 	public TanqueHeroe() {
 		destruido=false;
@@ -50,10 +48,7 @@ public class TanqueHeroe extends Tanque {
 		agregarArma(new Ametralladora(this));
 		
 	}
-	public TanqueHeroe(Element element) throws NoPudoLeerXMLExeption {
-		super((Element)element.getElementsByTagName(Tanque.TAG).item(0));
-		instancia=this;
-	}
+	
 	@Override
 	protected void destruir() {
 		Escenario.getActual().borrarObjetoVivo(this);
@@ -69,7 +64,26 @@ public class TanqueHeroe extends Tanque {
 		//No hace nada ya que el proximo movimiento
 		//es controlado por el usuario.
 	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem= doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if(DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+		
+		return element;
+	}
 
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element)element.getElementsByTagName(Tanque.TAG).item(0));
+		instancia=this;
+		
+	}
 	
 
 

@@ -161,7 +161,7 @@ public class FabricaElementos {
 		Base base = new Base(x, y);
 		base.posicionar();
 		Escenario.getActual().agregarBase(base);
-		VistaBase vista = new VistaBase();
+		VistaBase vista = new VistaBase(base);
 		VistaEscenario.getInstancia().agregarVista(vista);
 		return base;
 	}
@@ -198,6 +198,7 @@ public class FabricaElementos {
 
 	public static void insertarTanqueMirage(TanqueMirage tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
+		tanque.reanudar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
@@ -208,6 +209,7 @@ public class FabricaElementos {
 
 	public static void insertarTanqueIFV(TanqueIFV tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
+		tanque.reanudar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
@@ -218,6 +220,7 @@ public class FabricaElementos {
 
 	public static void insertarTanqueGrizzly(TanqueGrizzly tanque) throws NoSePudoPosicionarException {
 		tanque.posicionar();
+		tanque.reanudar();
 		Escenario.getActual().agregarObjeto(tanque);
 		Escenario.getActual().agregarObjetoSolido(tanque);
 		Escenario.getActual().agregarObjetoVivo(tanque);
@@ -230,6 +233,7 @@ public class FabricaElementos {
 	public static ArmaTiradaCanion crearArmaTiradaCanion(double posX,double posY)
 			throws NoSePudoPosicionarException {
 		ArmaTiradaCanion arma = new ArmaTiradaCanion(posX,posY);
+		
 		Escenario.getActual().agregarObjeto(arma);
 		Escenario.getActual().agregarObjetoVivo(arma);
 		VistaArmaTiradaCanion vista = new VistaArmaTiradaCanion(arma);

@@ -1,10 +1,12 @@
 package vista;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import excepciones.NoPudoLeerXMLExeption;
 
 import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.TanqueIFV;
 import modelo.armamento.Ametralladora;
@@ -40,7 +42,9 @@ public class VistaTanqueIFV extends VistaTanque implements Observador {
 	public static final String TAG = "objeto-vista-tanque-ifv";
 	
 
-
+	public VistaTanqueIFV(){
+		
+	}
 	public VistaTanqueIFV(TanqueIFV tanque) {
 		super(tanque);
 		orden=ORDEN;
@@ -63,27 +67,6 @@ public class VistaTanqueIFV extends VistaTanque implements Observador {
 		actualizar();
 	}
 
-	public VistaTanqueIFV(Element element)throws NoPudoLeerXMLExeption {
-		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
-		orden=ORDEN;
-		tanque.adscribir(this);
-		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
-		
-		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
-				FILA_SPRITE_AMETRALLADORA * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteAmetralladora.setFps(FPS_AMETRALLADORA);
-		
-		subImagen = spriteTanque.getSubimagen( 0 ,
-				FILA_SPRITE_CANION * ALTO_SPRITE,
-				spriteTanque.getAncho(),ALTO_SPRITE);
-		spriteCanion=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteCanion.setFps(FPS_CANION);
-		
-		spriteActual=spriteCanion;
-		actualizar();
-	}
 
 	public Posicionable getPosicionable() {
 		return tanque;
@@ -137,6 +120,43 @@ public class VistaTanqueIFV extends VistaTanque implements Observador {
 				break;
 				
 			}
+	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem= doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if(DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+		
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
+		orden=ORDEN;
+		tanque.adscribir(this);
+		Imagen spriteTanque = new Imagen(RUTA_SPRITE, tanque);
+		
+		Imagen subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_AMETRALLADORA * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteAmetralladora=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteAmetralladora.setFps(FPS_AMETRALLADORA);
+		
+		subImagen = spriteTanque.getSubimagen( 0 ,
+				FILA_SPRITE_CANION * ALTO_SPRITE,
+				spriteTanque.getAncho(),ALTO_SPRITE);
+		spriteCanion=new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+		spriteCanion.setFps(FPS_CANION);
+		
+		spriteActual=spriteCanion;
+		actualizar();
+		
 	}
 
 }

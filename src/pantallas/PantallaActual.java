@@ -11,7 +11,7 @@ public class PantallaActual extends Pantalla {
 	
 	Pantalla estadoPantalla;
 
-	private PantallaActual(Pantalla primeraPantalla){
+	public PantallaActual(Pantalla primeraPantalla){
 		estadoPantalla=primeraPantalla;
 	}
 	
