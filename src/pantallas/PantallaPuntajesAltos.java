@@ -183,4 +183,9 @@ public class PantallaPuntajesAltos extends Pantalla {
 		return puntajes.iterator();
 	}
 
+	public int getMenorPuntaje() {
+		System.out.println("Menor: "+puntajes.get(CANTIDAD_DE_PUNTAJES-1).getPuntos());
+		return puntajes.get(CANTIDAD_DE_PUNTAJES-1).getPuntos();
+	}
+
 }

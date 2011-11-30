@@ -35,9 +35,9 @@ public class Puntuacion implements Posicionable, Comparable<Puntuacion> {
 	@Override
 	public int compareTo(Puntuacion p) {
 		if(puntos >p.puntos)
-			return 1;
-		if(puntos < p.puntos)
 			return -1;
+		if(puntos < p.puntos)
+			return 1;
 		return 0;
 	}
 }
