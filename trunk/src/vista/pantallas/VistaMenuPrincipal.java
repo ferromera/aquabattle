@@ -87,8 +87,8 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	}
 	
 	private void dibujarBotones(SuperficieDeDibujo sup) {
-		ArrayList<VistaBoton> clon= new ArrayList<VistaBoton> (vistaBotones);
-		Iterator<VistaBoton> it= clon.iterator();
+
+		Iterator<VistaBoton> it= vistaBotones.iterator();
 		while(it.hasNext()){
 			it.next().dibujar(sup);
 		}

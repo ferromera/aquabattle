@@ -279,7 +279,6 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		if (!pausado)
 			return;
 		pausado = false;
-		System.out.println("reanudar()");
 		ultimoTiempo = new Date().getTime();
 		Iterator<MejoraTanque> it = mejoras.iterator();
 		while (it.hasNext()) {

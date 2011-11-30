@@ -1,6 +1,7 @@
 package pantallas;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import controlador.ControladorMenuPrincipal;
 
@@ -25,6 +26,9 @@ public class MenuPrincipal extends Pantalla {
 	private static final String TEXTO_SALIR="SALIR";
 
 	private ArrayList<Boton> botones;
+	private int indiceBotonSeleccionado;
+	private Boton botonSeleccionado;
+	private int cantBotones;
 
 	public MenuPrincipal(){
 		botones = new ArrayList<Boton>();
@@ -33,6 +37,11 @@ public class MenuPrincipal extends Pantalla {
 		botones.add(FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO));
 		botones.add(FabricaElementos.crearBoton(X_BOTON_MEJORES_PUNTAJES,Y_BOTON_MEJORES_PUNTAJES,TEXTO_MEJORES_PUNTAJES));
 		botones.add(FabricaElementos.crearBoton(X_BOTON_SALIR,Y_BOTON_SALIR,TEXTO_SALIR));
+		cantBotones=3;
+		
+		botonSeleccionado=botones.get(0);
+		botonSeleccionado.seleccionar();
+		indiceBotonSeleccionado=0;
 		
 		
 		pausado = false;
@@ -86,6 +95,23 @@ public class MenuPrincipal extends Pantalla {
 	@Override
 	public void reanudar() {
 		pausado=false;
+		
+	}
+	public void seleccionarSiguienteBoton() {
+		if(indiceBotonSeleccionado < cantBotones-1){
+			botonSeleccionado.deseleccionar();
+			indiceBotonSeleccionado++;
+			botonSeleccionado=botones.get(indiceBotonSeleccionado);
+			botonSeleccionado.seleccionar();
+		}
+	}
+	public void seleccionarBotonAnterior() {
+		if(indiceBotonSeleccionado > 0){
+			botonSeleccionado.deseleccionar();
+			indiceBotonSeleccionado--;
+			botonSeleccionado=botones.get(indiceBotonSeleccionado);
+			botonSeleccionado.seleccionar();
+		}
 		
 	}
 

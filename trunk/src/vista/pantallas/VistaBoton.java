@@ -56,6 +56,7 @@ public class VistaBoton extends Vista implements Observador {
 
 
 	public void dibujar(SuperficieDeDibujo sup) {
+		actualizar();
 		sprite.dibujar(sup);
 		textoBoton.dibujar(sup);
 		

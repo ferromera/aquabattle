@@ -53,7 +53,6 @@ public class PruebaTanqueHeroe {
 		
 		double x= heroe.getX();
 		double y= heroe.getY();
-		System.out.println(x+" "+y);
 		try {
 			Thread.sleep(30);
 		} catch (InterruptedException e) {
@@ -63,7 +62,7 @@ public class PruebaTanqueHeroe {
 		
 	 x= heroe.getX();
 	 y= heroe.getY();
-		System.out.println(x+" "+y);
+
 		Assert.assertTrue(x==300.0);
 		Assert.assertTrue(y>=196.9 && y<=197.1);
 	}
