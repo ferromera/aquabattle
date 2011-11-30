@@ -33,6 +33,8 @@ public class ControladorMenuPrincipal implements KeyPressedObservador{
 			menu.seleccionarSiguienteBoton();	 
 	     if(key==KeyEvent.VK_UP)
 	        menu.seleccionarBotonAnterior();
+	     if(key==KeyEvent.VK_ENTER)
+		        menu.presionarBoton();
 
 	}
 	

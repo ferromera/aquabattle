@@ -34,9 +34,17 @@ public class MenuPrincipal extends Pantalla {
 		botones = new ArrayList<Boton>();
 		new VistaMenuPrincipal(this);
 		
-		botones.add(FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO));
-		botones.add(FabricaElementos.crearBoton(X_BOTON_MEJORES_PUNTAJES,Y_BOTON_MEJORES_PUNTAJES,TEXTO_MEJORES_PUNTAJES));
-		botones.add(FabricaElementos.crearBoton(X_BOTON_SALIR,Y_BOTON_SALIR,TEXTO_SALIR));
+		Boton boton=FabricaElementos.crearBoton(X_BOTON_JUEGO_NUEVO,Y_BOTON_JUEGO_NUEVO,TEXTO_JUEGO_NUEVO);
+		boton.setAccion(AccionJuegoNuevo.getInstancia());
+		botones.add(boton);
+		boton=FabricaElementos.crearBoton(X_BOTON_MEJORES_PUNTAJES,Y_BOTON_MEJORES_PUNTAJES,TEXTO_MEJORES_PUNTAJES);
+		boton.setAccion(AccionPuntajes.getInstancia());
+		botones.add(boton);
+		boton=FabricaElementos.crearBoton(X_BOTON_SALIR,Y_BOTON_SALIR,TEXTO_SALIR);
+		boton.setAccion(AccionSalir.getInstancia());
+		botones.add(boton);
+		
+		
 		cantBotones=3;
 		
 		botonSeleccionado=botones.get(0);
@@ -112,6 +120,10 @@ public class MenuPrincipal extends Pantalla {
 			botonSeleccionado=botones.get(indiceBotonSeleccionado);
 			botonSeleccionado.seleccionar();
 		}
+		
+	}
+	public void presionarBoton() {
+		botonSeleccionado.actuar();
 		
 	}
 
