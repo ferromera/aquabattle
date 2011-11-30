@@ -48,6 +48,7 @@ public class Pruebas {
 		KeyPressedController keyController= new KeyPressedController(controladorJuego);
 		Ventana ventana = new Ventana(1024,768,controladorJuego);
 		//ventana.setUndecorated(true);
+
 		ventana.addKeyListener(keyController);
 		
 		

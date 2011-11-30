@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.armamento.Arma;
@@ -56,57 +59,14 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		itArmaActual = armas.iterator();
 		this.armaActual = null;
 		ultimoTiempo = new Date().getTime();
-		pausado=true;
-		mejoras=new ArrayList<MejoraTanque>();
-		disparoMejorado=false;
-		mejoraDisparo=0;
-	}
-	
-	public Tanque(Element element) throws NoPudoLeerXMLExeption{
-		super((Element)element.getElementsByTagName(ElementoRectangularSolido.TAG).item(0));
-		armas = new ArrayList<Arma>();
-		
-		armaActual = null;
-		ultimoTiempo = new Date().getTime();
-		
-		NodeList hijos;
-		Element elem;
-		hijos = element.getChildNodes();
-		if(hijos!=null && hijos.getLength()>0){
-			for(int i=0;i<hijos.getLength();i++){
-				elem = (Element) hijos.item(i);
-				if(elem.getTagName().equals(TAG_RESISTENCIA))
-					resistencia=Integer.parseInt(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_VELOCIDAD))
-					velocidad=Double.parseDouble(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_MOVIENDOSE))
-					moviendose=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_DESTRUIDO))
-					destruido=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_PAUSADO))
-					pausado=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_DISPARO_MEJORADO))
-					disparoMejorado=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_MEJORA_DISPARO))
-					mejoraDisparo=Double.parseDouble(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_ARMAS))
-					armas.add((Arma)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
-				else if(elem.getTagName().equals(TAG_ARMA_ACTUAL))
-					armaActual=(Arma)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
-				else if(elem.getTagName().equals(TAG_MEJORAS))
-					mejoras.add((MejoraTanque)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild()));
-			}
-		}
-		itArmaActual = armas.iterator();
-		while(itArmaActual.hasNext()){
-			if(itArmaActual.next()==armaActual)
-				break;
-		}
-		
+		pausado = true;
+		mejoras = new ArrayList<MejoraTanque>();
+		disparoMejorado = false;
+		mejoraDisparo = 0;
 	}
 
 	public void vivir() {
-		if(destruido||pausado)
+		if (destruido || pausado)
 			return;
 		long tiempoActual = new Date().getTime();
 		if (enMovimiento()) {
@@ -117,47 +77,45 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 			while (movimientoRestante > 1.0) {
 				movimientoRestante--;
 				avanzar();
-				if (estaColisionado()||fueraDeEscenario()) {
+				if (estaColisionado() || fueraDeEscenario()) {
 					retroceder();
 					calcularSiguienteMovimiento();
 					return;
 				}
 			}
 			avanzar(movimientoRestante);
-			if (estaColisionado()||fueraDeEscenario()) {
+			if (estaColisionado() || fueraDeEscenario()) {
 				retroceder(movimientoRestante);
 			}
-		}
-		else{
+		} else {
 			ultimoTiempo = tiempoActual;
 		}
 		calcularSiguienteMovimiento();
 	}
-	
 
 	/*
-	 * Debe definir la logica que determine el siguiente
-	 * movimiento.
+	 * Debe definir la logica que determine el siguiente movimiento.
 	 */
 	public abstract void calcularSiguienteMovimiento();
 
 	public void disparar() {
-		if(pausado)
+		if (pausado)
 			return;
 		armaActual.disparar();
 	}
 
-
-	public void mover(Direccion dir){
-		if(pausado)
+	public void mover(Direccion dir) {
+		if (pausado)
 			return;
 		setOrientacion(dir);
-		if(!moviendose){
-			moviendose=true;
+		if (!moviendose) {
+			moviendose = true;
 			notificar();
-		}moviendose=true;
-		
+		}
+		moviendose = true;
+
 	}
+
 	public void detener() {
 		moviendose = false;
 		notificar();
@@ -178,16 +136,17 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 			destruir();
 		}
 	}
-	
+
 	public boolean estaDestruido() {
 		return destruido;
 	}
+
 	protected void destruir() {
 		Escenario.getActual().borrarObjetoVivo(this);
 		Escenario.getActual().borrarSolido(this);
-		destruido=true;
+		destruido = true;
 		notificar();
-		
+
 	}
 
 	public boolean enMovimiento() {
@@ -195,7 +154,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void siguienteArma() {
-		if(pausado)
+		if (pausado)
 			return;
 		if (itArmaActual.hasNext())
 			armaActual = itArmaActual.next();
@@ -217,7 +176,7 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		} catch (NoExisteArmaSeleccionadaException e) {
 			e.printStackTrace();
 		}
-		if(disparoMejorado)
+		if (disparoMejorado)
 			arma.mejorarTiempoCarga(mejoraDisparo);
 
 	}
@@ -228,11 +187,11 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		itArmaActual = armas.iterator();
 		while (itArmaActual.hasNext()) {
 			armaActual = itArmaActual.next();
-			if (armaActual.equals(arma)){
+			if (armaActual.equals(arma)) {
 				notificar();
 				return;
 			}
-				
+
 		}
 		throw new NoExisteArmaSeleccionadaException();
 	}
@@ -253,12 +212,12 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void mejorarVelocidadDisparo(double porcentaje) {
-		if(disparoMejorado)
+		if (disparoMejorado)
 			return;
-		disparoMejorado=true;
-		mejoraDisparo=porcentaje;
+		disparoMejorado = true;
+		mejoraDisparo = porcentaje;
 		Iterator<Arma> it = armas.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			it.next().mejorarTiempoCarga(porcentaje);
 		}
 		notificar();
@@ -270,12 +229,12 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 	}
 
 	public void empeorarVelocidadDisparo(double porcentaje) {
-		if(!disparoMejorado)
+		if (!disparoMejorado)
 			return;
-		disparoMejorado=false;
-		mejoraDisparo=0;
+		disparoMejorado = false;
+		mejoraDisparo = 0;
 		Iterator<Arma> it = armas.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			it.next().empeorarTiempoCarga(porcentaje);
 		}
 		notificar();
@@ -295,33 +254,158 @@ public abstract class Tanque extends ElementoRectangularSolido implements
 		MejoraTanque mejoraTanque = (MejoraTanque) mejora;
 		mejoras.remove(mejoraTanque);
 		mejoraTanque.deshacer();
-		
+
 	}
-	public void setVelocidad(double vel){
-		velocidad=vel;
+
+	public void setVelocidad(double vel) {
+		velocidad = vel;
 	}
-	public boolean tieneDisparoMejorado(){
+
+	public boolean tieneDisparoMejorado() {
 		return disparoMejorado;
 	}
-	public void pausar(){
-		if(pausado)
+
+	public void pausar() {
+		if (pausado)
 			return;
-		pausado=true;
+		pausado = true;
 		Iterator<MejoraTanque> it = mejoras.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			it.next().pausar();
 		}
 	}
+
 	public void reanudar() {
-		if(!pausado)
+		if (!pausado)
 			return;
-		pausado=false;
-		ultimoTiempo=new Date().getTime();
+		pausado = false;
+		System.out.println("reanudar()");
+		ultimoTiempo = new Date().getTime();
 		Iterator<MejoraTanque> it = mejoras.iterator();
-		while(it.hasNext()){
+		while (it.hasNext()) {
 			it.next().reanudar();
 		}
-		
+
 	}
-	
+
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		element.appendChild(super.getElementoXML(doc));
+
+		Element elem = doc.createElement(TAG_RESISTENCIA);
+		element.appendChild(elem);
+		elem.setTextContent(Integer.toString(resistencia));
+
+		elem = doc.createElement(TAG_VELOCIDAD);
+		element.appendChild(elem);
+		elem.setTextContent(Double.toString(velocidad));
+
+		elem = doc.createElement(TAG_MOVIENDOSE);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(moviendose));
+
+		elem = doc.createElement(TAG_DESTRUIDO);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(destruido));
+
+		elem = doc.createElement(TAG_PAUSADO);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(pausado));
+
+		elem = doc.createElement(TAG_DISPARO_MEJORADO);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(disparoMejorado));
+
+		elem = doc.createElement(TAG_MEJORA_DISPARO);
+		element.appendChild(elem);
+		elem.setTextContent(Double.toString(mejoraDisparo));
+
+		Iterator<Arma> itArma = armas.iterator();
+		while (itArma.hasNext()) {
+			elem = doc.createElement(TAG_ARMAS);
+			element.appendChild(elem);
+			elem.appendChild(itArma.next().getElementoXML(doc));
+		}
+
+		elem = doc.createElement(TAG_ARMA_ACTUAL);
+		element.appendChild(elem);
+		elem.appendChild(armaActual.getElementoXML(doc));
+
+		Iterator<MejoraTanque> itMejora = mejoras.iterator();
+		while (itMejora.hasNext()) {
+			elem = doc.createElement(TAG_MEJORAS);
+			element.appendChild(elem);
+			elem.appendChild(itMejora.next().getElementoXML(doc));
+		}
+
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element) element.getElementsByTagName(
+				ElementoRectangularSolido.TAG).item(0));
+		armas = new ArrayList<Arma>();
+
+		armaActual = null;
+		ultimoTiempo = new Date().getTime();
+
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
+					continue;
+				elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_RESISTENCIA))
+					resistencia = Integer.parseInt(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_VELOCIDAD))
+					velocidad = Double.parseDouble(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_MOVIENDOSE))
+					moviendose = Boolean.parseBoolean(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_DESTRUIDO))
+					destruido = Boolean.parseBoolean(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_PAUSADO))
+					pausado = Boolean.parseBoolean(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_DISPARO_MEJORADO))
+					disparoMejorado = Boolean.parseBoolean(elem
+							.getTextContent());
+				else if (elem.getTagName().equals(TAG_MEJORA_DISPARO))
+					mejoraDisparo = Double.parseDouble(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_ARMAS)){
+					NodeList nodes=elem.getChildNodes();
+					int j;
+					for(j=0;j<nodes.getLength();j++)
+						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
+							break;
+					armas.add((Arma) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j)));
+				}
+				else if (elem.getTagName().equals(TAG_ARMA_ACTUAL)){
+					NodeList nodes=elem.getChildNodes();
+					int j;
+					for(j=0;j<nodes.getLength();j++)
+						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
+							break;
+					armaActual=(Arma) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+				}
+				else if (elem.getTagName().equals(TAG_MEJORAS)){
+					NodeList nodes=elem.getChildNodes();
+					int j;
+					for(j=0;j<nodes.getLength();j++)
+						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
+							break;
+					mejoras.add((MejoraTanque) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j)));
+				}
+			}
+		}
+		itArmaActual = armas.iterator();
+		while (itArmaActual.hasNext()) {
+			if (itArmaActual.next() == armaActual)
+				break;
+		}
+
+	}
+
 }

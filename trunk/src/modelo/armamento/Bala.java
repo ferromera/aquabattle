@@ -5,9 +5,13 @@ import java.util.Date;
 import javax.rmi.CORBA.Tie;
 import javax.swing.Timer;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import misc.ContadorDeInstancias;
+import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
 import modelo.Bonus;
 import modelo.ElementoRectangularSolido;
@@ -44,27 +48,6 @@ public abstract class Bala extends ElementoRectangularSolido implements
 
 	}
 
-	public Bala(Element element) throws NoPudoLeerXMLExeption {
-		super((Element) element.getElementsByTagName(
-				ElementoRectangularSolido.TAG).item(0));
-		NodeList hijos;
-		Element elem;
-		hijos = element.getChildNodes();
-		if(hijos!=null && hijos.getLength()>0){
-			for(int i=0;i<hijos.getLength();i++){
-				elem = (Element) hijos.item(i);
-				if(elem.getTagName().equals(TAG_DESTRUIDA))
-					destruida=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_PAUSADO))
-					pausado=Boolean.parseBoolean(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_FUERZA))
-					fuerza = Integer.parseInt(elem.getTextContent());
-				else if(elem.getTagName().equals(TAG_VELOCIDAD))
-					velocidad = Double.parseDouble(elem.getTextContent());
-			}
-		}
-
-	}
 
 	public void vivir() {
 		if (destruida || pausado)
@@ -78,7 +61,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 		while (movimientoRestante > 1.0) {
 			movimientoRestante--;
 			avanzar();
-			if (fueraDeEscenario()){
+			if (fueraDeEscenario()) {
 				destruir();
 				return;
 			}
@@ -92,7 +75,7 @@ public abstract class Bala extends ElementoRectangularSolido implements
 			}
 		}
 		avanzar(movimientoRestante);
-		if (fueraDeEscenario()){
+		if (fueraDeEscenario()) {
 			destruir();
 			return;
 		}
@@ -146,8 +129,8 @@ public abstract class Bala extends ElementoRectangularSolido implements
 			y += (getAlto() - explosion.getAlto()) / 2;
 			break;
 		case Direccion.OESTE:
-			//centrada en X
-			x-= explosion.getAncho()/2;
+			// centrada en X
+			x -= explosion.getAncho() / 2;
 			// centrada en Y
 			y += (getAlto() - explosion.getAlto()) / 2;
 			break;
@@ -164,18 +147,65 @@ public abstract class Bala extends ElementoRectangularSolido implements
 		return 1;
 	}
 
-	public void pausar(){
-		if(pausado)
+	public void pausar() {
+		if (pausado)
 			return;
-		pausado=true;
-		
+		pausado = true;
+
 	}
-	public void reanudar(){
-		if(!pausado)
+
+	public void reanudar() {
+		if (!pausado)
 			return;
-		pausado=false;
-		ultimoTiempo= new Date().getTime();
-		
+		pausado = false;
+		ultimoTiempo = new Date().getTime();
+
+	}
+
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		element.appendChild(super.getElementoXML(doc));
+		Element elem = doc.createElement(TAG_DESTRUIDA);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(destruida));
+
+		elem = doc.createElement(TAG_PAUSADO);
+		element.appendChild(elem);
+		elem.setTextContent(Boolean.toString(pausado));
+
+		elem = doc.createElement(TAG_FUERZA);
+		element.appendChild(elem);
+		elem.setTextContent(Integer.toString(fuerza));
+
+		elem = doc.createElement(TAG_VELOCIDAD);
+		element.appendChild(elem);
+		elem.setTextContent(Double.toString(velocidad));
+
+		return element;
+
+	}
+
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element) element.getElementsByTagName(
+				ElementoRectangularSolido.TAG).item(0));
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
+					continue;
+				elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_DESTRUIDA))
+					destruida = Boolean.parseBoolean(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_PAUSADO))
+					pausado = Boolean.parseBoolean(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_FUERZA))
+					fuerza = Integer.parseInt(elem.getTextContent());
+				else if (elem.getTagName().equals(TAG_VELOCIDAD))
+					velocidad = Double.parseDouble(elem.getTextContent());
+			}
+		}
 	}
 
 }

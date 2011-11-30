@@ -1,6 +1,8 @@
 package vista;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import excepciones.NoPudoLeerXMLExeption;
@@ -17,69 +19,45 @@ import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 
 public class VistaBonusVida extends Vista implements Observador {
-	private long id=ContadorDeInstancias.getId();
-	
+	private long id = ContadorDeInstancias.getId();
+
 	private BonusVida bonusVida;
-	
 
 	private Animacion spriteActual;
-	
 
 	private final String RUTA_SPRITE = "/sprites/SpriteBonusVida.png";
-	
+
 	private static final int ALTO_SPRITE = 50;
 	private static final int ANCHO_SPRITE = 50;
-	
+
 	private static final double FPS_BONUSVIDA = 5.0;
 
 	public static final String TAG = "objeto-vista-bonus-vida";
 
 	private static final String TAG_BONUS_VIDA = "bonus-vida";
-	
-	public VistaBonusVida(BonusVida bonusVida){
+
+	public VistaBonusVida() {
+
+	}
+
+	public VistaBonusVida(BonusVida bonusVida) {
 		this.bonusVida = bonusVida;
 		bonusVida.adscribir(this);
-		
 
 		Imagen spriteBonus = new Imagen(RUTA_SPRITE, bonusVida);
-		
-		Imagen subImagen = spriteBonus.getSubimagen( 0 , 0,
-				spriteBonus.getAncho(),ALTO_SPRITE);
-		
-		spriteActual = new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
+
+		Imagen subImagen = spriteBonus.getSubimagen(0, 0,
+				spriteBonus.getAncho(), ALTO_SPRITE);
+
+		spriteActual = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
 		spriteActual.setFps(FPS_BONUSVIDA);
 		spriteActual.reproducir();
-		
+
 		spriteActual.reproducir();
 		actualizar();
-		
+
 	}
-	
-	public VistaBonusVida(Element element) throws NoPudoLeerXMLExeption {
-		NodeList hijos;
-		Element elem;
-		hijos = element.getChildNodes();
-		if (hijos != null && hijos.getLength() > 0) {
-			for (int i = 0; i < hijos.getLength(); i++) {
-				elem = (Element) hijos.item(i);
-				if (elem.getTagName().equals(TAG_BONUS_VIDA))
-					bonusVida = (BonusVida) DiccionarioDeSerializables
-							.getInstancia((Element) elem.getFirstChild());
-			}
-		}
-		bonusVida.adscribir(this);
-		Imagen spriteBonus = new Imagen(RUTA_SPRITE, bonusVida);
-		
-		Imagen subImagen = spriteBonus.getSubimagen( 0 , 0,
-				spriteBonus.getAncho(),ALTO_SPRITE);
-		
-		spriteActual = new Animacion(subImagen,ANCHO_SPRITE,ALTO_SPRITE);
-		spriteActual.setFps(FPS_BONUSVIDA);
-		spriteActual.reproducir();
-		
-		spriteActual.reproducir();
-		actualizar();
-	}
+
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		spriteActual.dibujar(sup);
@@ -109,8 +87,58 @@ public class VistaBonusVida extends Vista implements Observador {
 			VistaEscenario.getInstancia().borrarVista(this);
 		}
 
+	}
+
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem = doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if (DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+
+		elem = doc.createElement(TAG_BONUS_VIDA);
+		element.appendChild(elem);
+		elem.appendChild(bonusVida.getElementoXML(doc));
+
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
+					continue;
+				elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_BONUS_VIDA)){
+					NodeList nodes=elem.getChildNodes();
+					int j;
+					for(j=0;j<nodes.getLength();j++)
+						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
+							break;
+					bonusVida=(BonusVida) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+				}
+			}
+		}
+		bonusVida.adscribir(this);
+		Imagen spriteBonus = new Imagen(RUTA_SPRITE, bonusVida);
+
+		Imagen subImagen = spriteBonus.getSubimagen(0, 0,
+				spriteBonus.getAncho(), ALTO_SPRITE);
+
+		spriteActual = new Animacion(subImagen, ANCHO_SPRITE, ALTO_SPRITE);
+		spriteActual.setFps(FPS_BONUSVIDA);
+		spriteActual.reproducir();
+
+		spriteActual.reproducir();
+		actualizar();
 
 	}
-	
-	
+
 }

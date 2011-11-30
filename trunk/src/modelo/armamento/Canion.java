@@ -1,6 +1,8 @@
 package modelo.armamento;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import excepciones.NoPudoLeerXMLExeption;
@@ -11,42 +13,71 @@ import misc.FabricaElementos;
 import modelo.Tanque;
 
 public class Canion extends Arma {
-	private long id=ContadorDeInstancias.getId();
-	
-	public  static final String TAG = "objeto-canion";
+	private long id = ContadorDeInstancias.getId();
+
+	public static final String TAG = "objeto-canion";
 	private static final String TAG_MUNICION = "municion";
-	
-	private static final int TIEMPO_CARGA=1000;
-	private static final int MUNICION_INICIAL=20;
-	
+
+	private static final int TIEMPO_CARGA = 1000;
+	private static final int MUNICION_INICIAL = 20;
+
 	private int municion;
-	
-	public Canion(Tanque tanque){
+
+	public Canion() {
+
+	}
+
+	public Canion(Tanque tanque) {
 		setTanque(tanque);
-		tiempoCarga=TIEMPO_CARGA;
-		municion=MUNICION_INICIAL;
+		tiempoCarga = TIEMPO_CARGA;
+		municion = MUNICION_INICIAL;
 	}
-	public Canion(Element element) throws NoPudoLeerXMLExeption{
-		super((Element)element.getElementsByTagName(Arma.TAG).item(0));
-		
-		NodeList hijos;
-		Element elem;
-		hijos = element.getChildNodes();
-		if(hijos!=null && hijos.getLength()>0){
-			for(int i=0;i<hijos.getLength();i++){
-				elem = (Element) hijos.item(i);
-				if(elem.getTagName().equals(TAG_MUNICION))
-					municion=Integer.parseInt(elem.getTextContent());
-			}
-		}
-		
-	}
-	protected Bala crearBala(){
+
+
+	protected Bala crearBala() {
 		municion--;
 		return FabricaElementos.crearBalaCanion();
 	}
-	public boolean tieneMunicion(){
-		return municion!=0;
+
+	public boolean tieneMunicion() {
+		return municion != 0;
 	}
-	
+
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem = doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if (DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+
+		elem = doc.createElement(TAG_MUNICION);
+		element.appendChild(elem);
+		elem.setTextContent(Integer.toString(municion));
+
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element) element.getElementsByTagName(Arma.TAG)
+				.item(0));
+
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
+					continue;
+				elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_MUNICION))
+					municion = Integer.parseInt(elem.getTextContent());
+			}
+		}
+
+	}
 }

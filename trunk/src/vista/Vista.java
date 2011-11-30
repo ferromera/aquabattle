@@ -1,9 +1,10 @@
 package vista;
 
+import misc.SerializableXML;
 import titiritero.Dibujable;
 
 
-public abstract class Vista implements Comparable<Vista>,Dibujable {
+public abstract class Vista implements Comparable<Vista>,Dibujable,SerializableXML {
 	protected int orden=1;
 	public int getOrden(){
 		return orden;

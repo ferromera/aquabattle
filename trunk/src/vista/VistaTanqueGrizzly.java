@@ -1,5 +1,6 @@
 package vista;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
@@ -34,22 +35,13 @@ public class VistaTanqueGrizzly extends VistaTanque implements Observador {
 	private static final double FPS = 25.0;
 
 	public static final String TAG = "objeto-vista-tanque-grizzly";
-
+	
+	public VistaTanqueGrizzly(){
+		
+	}
 	public VistaTanqueGrizzly(TanqueGrizzly tanque) {
 		super(tanque);
 
-		orden=ORDEN;
-		tanque.adscribir(this);
-		
-		spriteActual=new Animacion(new Imagen(RUTA_SPRITE, tanque),ANCHO_SPRITE,ALTO_SPRITE);
-		spriteActual.setFps(FPS);
-		
-		actualizar();
-	}
-
-
-	public VistaTanqueGrizzly(Element element) throws NoPudoLeerXMLExeption {
-		super((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
 		orden=ORDEN;
 		tanque.adscribir(this);
 		
@@ -108,4 +100,31 @@ public class VistaTanqueGrizzly extends VistaTanque implements Observador {
 				
 			}
 	}
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		Element elem= doc.createElement(ContadorDeInstancias.TAG_ID);
+		element.appendChild(elem);
+		elem.setTextContent(Long.toString(id));
+		if(DiccionarioDeSerializables.fueSerializado(id))
+			return element;
+		DiccionarioDeSerializables.marcarSerializado(id);
+		element.appendChild(super.getElementoXML(doc));
+		
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element)element.getElementsByTagName(VistaTanque.TAG).item(0));
+		orden=ORDEN;
+		tanque.adscribir(this);
+		
+		spriteActual=new Animacion(new Imagen(RUTA_SPRITE, tanque),ANCHO_SPRITE,ALTO_SPRITE);
+		spriteActual.setFps(FPS);
+		
+		actualizar();
+		
+	}
+	
 }

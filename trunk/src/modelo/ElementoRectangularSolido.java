@@ -2,10 +2,13 @@ package modelo;
 
 import java.util.Iterator;
 
+import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
 
+import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import utils.Direccion;
@@ -24,31 +27,15 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public static final String TAG = "objeto-elemento-rectangular-solido";
 
 	public abstract void recibirImpacto(int fuerza);
+
 	public abstract int getResistencia();
-	
+
 	private ElementoRectangularSolido elemColisionado;
 
 	public ElementoRectangularSolido() {
 		elemColisionado = null;
 	}
 
-	public ElementoRectangularSolido(Element element)
-			throws NoPudoLeerXMLExeption {
-		super((Element) element.getElementsByTagName(ElementoRectangular.TAG)
-				.item(0));
-		elemColisionado = null;
-		NodeList hijos;
-		Element elem;
-		hijos = element.getChildNodes();
-		if(hijos!=null && hijos.getLength()>0){
-			for(int i=0;i<hijos.getLength();i++){
-				elem = (Element) hijos.item(i);
-				if(elem.getTagName().equals(TAG_COLISIONADO))
-					elemColisionado=(ElementoRectangularSolido)DiccionarioDeSerializables.getInstancia((Element)elem.getFirstChild());
-			}
-		}
-		
-	}
 
 	public ElementoRectangularSolido getColisionado()
 			throws NoExisteElementoColisionadoException {
@@ -73,14 +60,14 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoSur() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
-		boolean primerVisto=true;
+		boolean primerVisto = true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoSur(solido)){
-				if(primerVisto){
+			if (estaViendoSur(solido)) {
+				if (primerVisto) {
 					solidoVisto = solido;
-					primerVisto=false;
+					primerVisto = false;
 				}
 				if (solidoVisto != null && solidoVisto.getY() > solido.getY())
 					solidoVisto = solido;
@@ -103,14 +90,14 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoNorte() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
-		boolean primerVisto=true;
+		boolean primerVisto = true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoNorte(solido)){
-				if(primerVisto){
+			if (estaViendoNorte(solido)) {
+				if (primerVisto) {
 					solidoVisto = solido;
-					primerVisto=false;
+					primerVisto = false;
 				}
 				if (solidoVisto != null && solidoVisto.getY() < solido.getY())
 					solidoVisto = solido;
@@ -133,17 +120,16 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoEste() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
-		boolean primerVisto=true;
+		boolean primerVisto = true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoEste(solido)){
-				if(primerVisto){
+			if (estaViendoEste(solido)) {
+				if (primerVisto) {
 					solidoVisto = solido;
-					primerVisto=false;
-				}
-				else
-				if (solidoVisto != null && solidoVisto.getX() > solido.getX())
+					primerVisto = false;
+				} else if (solidoVisto != null
+						&& solidoVisto.getX() > solido.getX())
 					solidoVisto = solido;
 			}
 		}
@@ -164,14 +150,14 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	public ElementoRectangularSolido getSolidoVistoOeste() {
 		Iterator<ElementoRectangularSolido> it = Escenario.getActual()
 				.getSolidos();
-		boolean primerVisto=true;
+		boolean primerVisto = true;
 		ElementoRectangularSolido solido = null, solidoVisto = null;
 		while (it.hasNext()) {
 			solido = it.next();
-			if (estaViendoOeste(solido)){
-				if(primerVisto){
+			if (estaViendoOeste(solido)) {
+				if (primerVisto) {
 					solidoVisto = solido;
-					primerVisto=false;
+					primerVisto = false;
 				}
 				if (solidoVisto != null && solidoVisto.getX() < solido.getX())
 					solidoVisto = solido;
@@ -196,43 +182,82 @@ public abstract class ElementoRectangularSolido extends ElementoRectangular
 	 */
 	public void posicionar() throws NoSePudoPosicionarException {
 		int iteracion = 1;
-		int maxIteracion=500;
-		double xInicial=getX();
-		double yInicial=getY();
-		if(!estaColisionado()&&!fueraDeEscenario())
+		int maxIteracion = 500;
+		double xInicial = getX();
+		double yInicial = getY();
+		if (!estaColisionado() && !fueraDeEscenario())
 			return;
-		while (iteracion< maxIteracion) {
-			setX(xInicial+iteracion);
-			setY(yInicial+iteracion);
-			if(!estaColisionado()&&!fueraDeEscenario())
+		while (iteracion < maxIteracion) {
+			setX(xInicial + iteracion);
+			setY(yInicial + iteracion);
+			if (!estaColisionado() && !fueraDeEscenario())
 				return;
-			//me muevo hacia la izquierda
-			while(getX()>xInicial-iteracion){
-				setX(getX()-1);
-				if(!estaColisionado()&&!fueraDeEscenario())
+			// me muevo hacia la izquierda
+			while (getX() > xInicial - iteracion) {
+				setX(getX() - 1);
+				if (!estaColisionado() && !fueraDeEscenario())
 					return;
 			}
-			//luego hacia abajo
-			while(getY()<yInicial+iteracion){
-				setY(getY()+1);
-				if(!estaColisionado()&&!fueraDeEscenario())
+			// luego hacia abajo
+			while (getY() < yInicial + iteracion) {
+				setY(getY() + 1);
+				if (!estaColisionado() && !fueraDeEscenario())
 					return;
 			}
-			//hacia la derecha
-			while(getX() < xInicial+iteracion){
-				setX(getX()+1);
-				if(!estaColisionado()&&!fueraDeEscenario())
+			// hacia la derecha
+			while (getX() < xInicial + iteracion) {
+				setX(getX() + 1);
+				if (!estaColisionado() && !fueraDeEscenario())
 					return;
 			}
-			//y hacia arriba
-			while(getY() > yInicial-iteracion+1){
-				setY(getY()-1);
-				if(!estaColisionado()&&!fueraDeEscenario())
+			// y hacia arriba
+			while (getY() > yInicial - iteracion + 1) {
+				setY(getY() - 1);
+				if (!estaColisionado() && !fueraDeEscenario())
 					return;
 			}
 			iteracion++;
 		}
-		throw new NoSePudoPosicionarException("No se pudo posicionar solido en ( "+xInicial+" ; "+yInicial+" ).");
+		throw new NoSePudoPosicionarException(
+				"No se pudo posicionar solido en ( " + xInicial + " ; "
+						+ yInicial + " ).");
+
+	}
+
+	@Override
+	public Element getElementoXML(Document doc) {
+		Element element = doc.createElement(TAG);
+		element.appendChild(super.getElementoXML(doc));
+		if (elemColisionado != null) {
+			Element elem = doc.createElement(TAG_COLISIONADO);
+			element.appendChild(elem);
+			elem.appendChild(elemColisionado.getElementoXML(doc));
+		}
+
+		return element;
+	}
+
+	@Override
+	public void fromElementoXML(Element element) {
+		super.fromElementoXML((Element) element.getElementsByTagName(
+				ElementoRectangular.TAG).item(0));
+		elemColisionado = null;
+		NodeList hijos;
+		Element elem;
+		hijos = element.getChildNodes();
+		if (hijos != null && hijos.getLength() > 0) {
+			for (int i = 0; i < hijos.getLength(); i++) {
+				if(hijos.item(i).getNodeType()!=Node.ELEMENT_NODE)continue;elem = (Element) hijos.item(i);
+				if (elem.getTagName().equals(TAG_COLISIONADO)){
+					NodeList nodes=elem.getChildNodes();
+					int j;
+					for(j=0;j<nodes.getLength();j++)
+						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
+							break;
+					elemColisionado=(ElementoRectangularSolido) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+				}
+			}
+		}
 
 	}
 }
