@@ -40,6 +40,7 @@ public class VistaBoton extends Vista implements Observador {
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
+
 	}
 
 	public Posicionable getPosicionable() {
