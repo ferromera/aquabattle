@@ -1,16 +1,20 @@
 package vista.pantallas;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import misc.Observador;
+import modelo.ElementoRectangular;
 
 import pantallas.MenuPrincipal;
 import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
+import titiritero.vista.TextoEstatico;
 import vista.Vista;
+import vista.pantallas.VistaPantallaJuego.TextoPuntos;
 
 public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
@@ -18,18 +22,55 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 
 	private MenuPrincipal menu;
 	
-	ArrayList<VistaBoton> vistaBotones = new ArrayList<VistaBoton>();
+	ArrayList<VistaBoton> vistaBotones;
 
 	private Imagen sprite;
+
+	
 	private static final String RUTA_SPRITE_FONDO= "/sprites/FondoMenu.png";
 
+	public void agregarTextos(SuperficieDeDibujo sup){
+		String TEXTO;
+		int TEXTO1_X= 10;
+		int TEXTO1_Y= 575;
+		int indice;
+		
+		for(indice = 0; indice < 4; indice++){
+			if(indice==0){
+				TEXTO = "CONTINUAR";
+			}
+			else if(indice==1){
+				TEXTO = "NUEVO JUEGO";
+			}
+			else if(indice==2){
+				TEXTO = "PUNTAJES ALTOS";
+			}
+			else{ //(indice==3){
+				TEXTO = "SALIR";
+			}
+
+		ElementoRectangular cuadradoTexto = new ElementoRectangular(TEXTO1_X, TEXTO1_Y + (51*indice));
+		TextoEstatico textoContinuar = new TextoEstatico(TEXTO);
+		textoContinuar.setFuente("Arial", 25);
+		Color unColor = new Color(255,255,255);
+		textoContinuar.setColor(unColor);
+		textoContinuar.setPosicionable(cuadradoTexto);
+		textoContinuar.dibujar(sup);
+		}
+		
+
+		
+		
+	}
 	public VistaMenuPrincipal (){
 		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+		
 	}
 	
 	public VistaMenuPrincipal (MenuPrincipal menu){
 		this.menu = menu;
 		sprite = new Imagen(RUTA_SPRITE_FONDO, menu);
+		vistaBotones = new ArrayList<VistaBoton>();
 		instancia = this;
 	}
 	
@@ -58,7 +99,10 @@ public class VistaMenuPrincipal extends Vista implements Dibujable, Observador{
 	
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
-		dibujarBotones(sup);		
+		dibujarBotones(sup);
+		agregarTextos(sup);
+		
+
 	}
 	
 	public Posicionable getPosicionable() {
