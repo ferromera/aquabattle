@@ -22,14 +22,10 @@ public class VistaFinDelJuego extends Vista implements Dibujable, Observador{
 	private Imagen sprite;
 	private static final String RUTA_SPRITE_FONDO= "/sprites/FondoJuegoTerminado.png";
 
+
 	public VistaFinDelJuego(){
+		this.finDelJuego = FinDelJuego.getInstancia();
 		sprite = new Imagen(RUTA_SPRITE_FONDO, finDelJuego);
-	}
-	
-	public VistaFinDelJuego(FinDelJuego finalJuego){
-		this.finDelJuego = finalJuego;
-		sprite = new Imagen(RUTA_SPRITE_FONDO, finalJuego);
-		instancia = this;
 	}
 	
 	public static VistaFinDelJuego getInstancia() {
