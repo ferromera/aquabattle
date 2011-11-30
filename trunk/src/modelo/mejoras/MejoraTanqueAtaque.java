@@ -11,15 +11,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaElementos;
-import misc.Nivel;
-import modelo.Flota;
+
 import modelo.Tanque;
-import modelo.TanqueHeroe;
+
 
 public class MejoraTanqueAtaque extends MejoraTanque implements ActionListener {
 	public static final String TAG = "objeto-mejora-tanque-ataque";

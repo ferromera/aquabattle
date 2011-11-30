@@ -2,7 +2,6 @@ package pantallas;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import controlador.ControladorMenuPrincipal;
 

@@ -1,6 +1,5 @@
 package vista;
 
-import java.util.Iterator;
 import java.util.PriorityQueue;
 
 import org.w3c.dom.Document;
@@ -8,12 +7,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import pantallas.Vida;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Nivel;
-import misc.Observador;
 import misc.SerializableXML;
 import modelo.Escenario;
 import titiritero.Posicionable;

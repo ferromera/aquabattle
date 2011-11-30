@@ -1,13 +1,8 @@
 package modelo;
 
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
 
 /*
  * Representa todos los elementos del modelo que no pueden ser chocados.

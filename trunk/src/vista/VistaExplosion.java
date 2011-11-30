@@ -5,18 +5,13 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.Explosion;
-import modelo.armamento.BalaAmetralladora;
-import modelo.armamento.Cohete;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
-import utils.Direccion;
 
 public class VistaExplosion extends Vista implements Observador {
 	private long id = ContadorDeInstancias.getId();

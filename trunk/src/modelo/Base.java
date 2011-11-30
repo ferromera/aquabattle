@@ -11,7 +11,6 @@ import org.w3c.dom.NodeList;
 import pantallas.PantallaJuego;
 
 import excepciones.NoExisteBaseException;
-import excepciones.NoPudoLeerXMLExeption;
 import titiritero.Posicionable;
 
 public class Base extends ElementoRectangularSolido implements Impactable,

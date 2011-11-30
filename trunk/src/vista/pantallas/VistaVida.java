@@ -5,13 +5,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import pantallas.Vida;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.armamento.Cohete;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
@@ -26,8 +23,6 @@ public class VistaVida extends Vista implements Observador {
 
 	private static final String RUTA_SPRITE = "/sprites/SpriteVida.png";
 
-	private static final int ALTO_SPRITE = 15;
-	private static final int ANCHO_SPRITE = 15;
 
 	public static final String TAG = "objeto-vista-vida";
 

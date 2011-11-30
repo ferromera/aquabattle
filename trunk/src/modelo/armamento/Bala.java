@@ -2,24 +2,17 @@ package modelo.armamento;
 
 import java.util.Date;
 
-import javax.rmi.CORBA.Tie;
-import javax.swing.Timer;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
-import modelo.Bonus;
 import modelo.ElementoRectangularSolido;
 import modelo.Escenario;
 import modelo.Explosion;
 
 import excepciones.NoExisteElementoColisionadoException;
-import excepciones.NoPudoLeerXMLExeption;
 import titiritero.ObjetoVivo;
 import utils.Direccion;
 

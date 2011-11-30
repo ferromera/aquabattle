@@ -19,13 +19,13 @@ public class ControladorPantallaGuardarPuntaje implements KeyPressedObservador {
 	@Override
 	public void keyPressed(KeyEvent event) {
 		int key= event.getKeyCode();
-		if(key==event.VK_BACK_SPACE)
+		if(key==KeyEvent.VK_BACK_SPACE)
 			pantalla.borrarUltimaLetra();
-		else if(key==event.VK_ENTER){
+		else if(key==KeyEvent.VK_ENTER){
 			pantalla.guardar();
 			PantallaActual.getInstancia().cambiarA(MenuPrincipal.getInstance());
 		}
-		else if(key!=event.VK_SHIFT)
+		else if(key!=KeyEvent.VK_SHIFT)
 			pantalla.agregarLetra(event.getKeyChar());
 		
 	}

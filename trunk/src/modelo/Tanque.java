@@ -9,16 +9,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.Observador;
+
 import modelo.armamento.Arma;
 import modelo.mejoras.Mejora;
 import modelo.mejoras.MejoraTanque;
 import modelo.mejoras.Mejorable;
 
 import excepciones.NoExisteArmaSeleccionadaException;
-import excepciones.NoPudoLeerXMLExeption;
 
 import titiritero.ObjetoVivo;
 import utils.Direccion;

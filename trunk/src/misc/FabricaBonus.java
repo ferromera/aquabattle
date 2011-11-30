@@ -5,14 +5,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.Timer;
 
-import modelo.TanqueEnemigo;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-
-import excepciones.NoPudoLeerXMLExeption;
 
 public abstract class FabricaBonus implements ActionListener, SerializableXML {
 	public static final String TAG = "objeto-fabrica-bonus";

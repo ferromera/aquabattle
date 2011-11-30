@@ -1,11 +1,9 @@
 package misc;
 
-import org.w3c.dom.Element;
 
 import pantallas.Boton;
 import pantallas.Vida;
 import controlador.ControladorPantallaJuego;
-import controlador.ControladorTanqueHeroe;
 import vista.VistaArmaTiradaCanion;
 import vista.VistaArmaTiradaLanzaCohetes;
 import vista.VistaBalaAmetralladora;
@@ -46,7 +44,6 @@ import modelo.TanqueMirage;
 import modelo.armamento.BalaAmetralladora;
 import modelo.armamento.BalaCanion;
 import modelo.armamento.Cohete;
-import titiritero.ControladorJuego;
 
 public class FabricaElementos {
 

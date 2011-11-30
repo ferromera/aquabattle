@@ -6,15 +6,12 @@ import java.util.Date;
 
 import javax.swing.Timer;
 
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 import titiritero.ObjetoVivo;
 

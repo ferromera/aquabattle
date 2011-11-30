@@ -15,7 +15,6 @@ import pantallas.Boton;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
-import titiritero.vista.ObjetoDeTexto;
 import titiritero.vista.TextoEstatico;
 import vista.Vista;
 

@@ -4,13 +4,11 @@ package modelo;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import pantallas.Pantalla;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import modelo.armamento.Canion;
 
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 public class ArmaTiradaCanion extends ArmaTirada {

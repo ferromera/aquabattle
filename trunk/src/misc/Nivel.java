@@ -1,7 +1,6 @@
 package misc;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -11,7 +10,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import modelo.Escenario;
 import modelo.Flota;
-import modelo.TanqueEnemigo;
 import modelo.TanqueGrizzly;
 import modelo.TanqueIFV;
 import modelo.TanqueMirage;

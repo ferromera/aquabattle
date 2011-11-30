@@ -5,13 +5,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaElementos;
 import misc.Observador;
-import modelo.ParedConcreto;
 import modelo.ParedMetal;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;

@@ -5,18 +5,12 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import excepciones.NoExisteBaseException;
-import excepciones.NoPudoLeerXMLExeption;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
 import modelo.Base;
-import modelo.Escenario;
-import modelo.armamento.BalaCanion;
-import titiritero.Dibujable;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
-import titiritero.vista.Animacion;
 import titiritero.vista.Imagen;
 
 public class VistaBase extends Vista implements Observador {
@@ -41,7 +35,7 @@ public class VistaBase extends Vista implements Observador {
 
 	public VistaBase(Base base) {
 		this.base = base;
-
+		orden=ORDEN;
 		base.adscribir(this);
 		sprite = new Imagen(RUTA_SPRITE_BaseNormal, base);
 

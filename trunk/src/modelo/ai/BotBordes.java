@@ -5,10 +5,6 @@ package modelo.ai;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
-import pantallas.Pantalla;
-
 import utils.Direccion;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;

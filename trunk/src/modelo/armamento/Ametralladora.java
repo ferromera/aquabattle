@@ -3,12 +3,9 @@ package modelo.armamento;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
-
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.FabricaElementos;
-import modelo.Pared;
 import modelo.Tanque;
 
 public class Ametralladora extends Arma {

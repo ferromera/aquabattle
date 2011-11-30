@@ -8,15 +8,12 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import excepciones.NoExisteBaseException;
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.YaExisteBaseException;
 
 import titiritero.ObjetoVivo;
 import titiritero.Posicionable;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaElementos;
-import misc.Nivel;
 import misc.Observable;
 import misc.Observador;
 

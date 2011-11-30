@@ -2,12 +2,10 @@ package modelo.armamento;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import modelo.ElementoRectangularSolido;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import excepciones.NoPudoLeerXMLExeption;
 
 public class BalaCanion extends Bala {
 	private long id=ContadorDeInstancias.getId();

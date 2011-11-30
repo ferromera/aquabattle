@@ -8,14 +8,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import titiritero.ObjetoVivo;
-
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
-import misc.FabricaBonus;
 import misc.FabricaElementos;
 import misc.SerializableXML;
 

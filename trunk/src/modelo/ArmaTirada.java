@@ -11,15 +11,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import misc.ContadorDeInstancias;
-import misc.DiccionarioDeSerializables;
-import misc.Observador;
-
-import excepciones.NoPudoLeerXMLExeption;
 import excepciones.NoSePudoPosicionarException;
 
 import titiritero.ObjetoVivo;
-import utils.Direccion;
 
 public abstract class ArmaTirada extends ElementoRectangularIntangible
 		implements ObjetoVivo, ActionListener {
