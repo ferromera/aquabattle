@@ -16,12 +16,20 @@ public class Boton implements Observable,Posicionable {
 	private boolean seleccionado;
 	private ArrayList<Observador> observadores=new ArrayList<Observador>();
 	private String texto;
+	private AccionBoton accion;
 	
 	public Boton(int x,int y,String texto){
 		this.x=x;
 		this.y=y;
 		this.texto=texto;
 		seleccionado=false;
+	}
+	public void setAccion(AccionBoton accion){
+		this.accion=accion;
+	}
+	public void actuar(){
+		if(accion!=null)
+			accion.actuar();
 	}
 	public int getAncho(){
 		return ANCHO;
