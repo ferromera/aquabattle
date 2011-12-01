@@ -8,70 +8,67 @@ import org.w3c.dom.NodeList;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.Base;
+import modelo.ParedConcreto;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 
-public class VistaBase extends Vista implements Observador {
-	public static final String TAG = "objeto-vista-base";
+public class VistaParedConcreto extends Vista implements Observador {
+	public static final String TAG = "objeto-vista-pared-concreto";
 
-	private static final int ORDEN = 3;
+	private static final int ORDEN = 1;
 
-	private static final String TAG_BASE = "base";
+	private static final String TAG_PARED = "pared";
 
 	private long id = ContadorDeInstancias.getId();
 
-	private Base base;
+	private ParedConcreto pared;
 	private Imagen sprite;
 
-	private static final String RUTA_SPRITE_BASE_NORMAL = "/sprites/baseNormal.png";
-	private static final String RUTA_SPRITE_BASE_CON_DISPARO = "/sprites/baseMediaAsta.png";
-	private static final String RUTA_SPRITE_BASE_DESTRUIDA = "/sprites/baseDestruida.png";
+	private final String RUTA_SPRITE_ParedConcretoNormal = "/sprites/SpriteParedConcretoNormal.png";
+	private final String RUTA_SPRITE_ParedConcretoDestruida = "/sprites/SpriteParedConcretoDestruida.png";
 
-	public VistaBase() {
-
-	}
-
-	public VistaBase(Base base) {
-		this.base = base;
-		orden=ORDEN;
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
-
+	public VistaParedConcreto(ParedConcreto paredConcreto) {
+		this.pared = paredConcreto;
+		paredConcreto.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE_ParedConcretoNormal, paredConcreto);
+		orden = ORDEN;
 		actualizar();
+
 	}
 
+	public VistaParedConcreto() {
+
+	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
 	}
 
 	public Posicionable getPosicionable() {
-		return base;
+		return this.pared;
 	}
 
-	public void setPosicionable(Posicionable basePos) {
-		this.base = (Base) basePos;
-		sprite.setPosicionable(basePos);
+	public void setPosicionable(Posicionable paredPos) {
+		this.pared = (ParedConcreto) paredPos;
+		sprite.setPosicionable(paredPos);
 	}
 
-	public void setBase(Base base) {
-		setPosicionable(base);
+	public void setParedConcreto(ParedConcreto pared) {
+		setPosicionable(pared);
 	}
 
-	public Base getBase() {
-		return base;
+	public ParedConcreto getParedConcreto() {
+		return pared;
 	}
 
 	@Override
 	public void actualizar() {
-		if (base.impactosRecibidos() == 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_CON_DISPARO, base);
+		if (pared.estaDestruida()) {
+			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_ParedConcretoDestruida,
+					pared);
 			sprite = nuevaImagen;
-		} else if (base.impactosRecibidos() > 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_DESTRUIDA, base);
-			sprite = nuevaImagen;
+			
 		}
 	}
 
@@ -85,9 +82,9 @@ public class VistaBase extends Vista implements Observador {
 			return element;
 		DiccionarioDeSerializables.marcarSerializado(id);
 
-		elem = doc.createElement(TAG_BASE);
+		elem = doc.createElement(TAG_PARED);
 		element.appendChild(elem);
-		elem.appendChild(base.getElementoXML(doc));
+		elem.appendChild(pared.getElementoXML(doc));
 
 		return element;
 	}
@@ -102,20 +99,21 @@ public class VistaBase extends Vista implements Observador {
 				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
 					continue;
 				elem = (Element) hijos.item(i);
-				if (elem.getTagName().equals(TAG_BASE)){
+				if (elem.getTagName().equals(TAG_PARED)){
 					NodeList nodes=elem.getChildNodes();
 					int j;
 					for(j=0;j<nodes.getLength();j++)
 						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
 							break;
-					base=(Base) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+					pared=(ParedConcreto) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
 				}
 			}
 		}
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
-
+		pared.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE_ParedConcretoNormal, pared);
+		orden = ORDEN;
 		actualizar();
 
 	}
+
 }

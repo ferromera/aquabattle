@@ -1,4 +1,4 @@
-package AlgoTank;
+package main;
 
 import pantallas.PantallaActual;
 import titiritero.ControladorJuego;

@@ -8,38 +8,35 @@ import org.w3c.dom.NodeList;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.Base;
+import modelo.Explosion;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
 
-public class VistaBase extends Vista implements Observador {
-	public static final String TAG = "objeto-vista-base";
-
-	private static final int ORDEN = 3;
-
-	private static final String TAG_BASE = "base";
-
+public class VistaExplosion extends Vista implements Observador {
 	private long id = ContadorDeInstancias.getId();
 
-	private Base base;
+	private Explosion explosion;
 	private Imagen sprite;
+	private static final int ORDEN = 4;
 
-	private static final String RUTA_SPRITE_BASE_NORMAL = "/sprites/baseNormal.png";
-	private static final String RUTA_SPRITE_BASE_CON_DISPARO = "/sprites/baseMediaAsta.png";
-	private static final String RUTA_SPRITE_BASE_DESTRUIDA = "/sprites/baseDestruida.png";
+	public static final String TAG = "objeto-vista-explosion";
 
-	public VistaBase() {
+	private static final String TAG_EXPLOSION = "explosion";
+
+	private final String RUTA_SPRITE = "/sprites/explosion.png";
+
+	public VistaExplosion(Explosion explosion) {
+		this.explosion = explosion;
+		explosion.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE, explosion);
+		orden = ORDEN;
+		actualizar();
 
 	}
 
-	public VistaBase(Base base) {
-		this.base = base;
-		orden=ORDEN;
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
+	public VistaExplosion() {
 
-		actualizar();
 	}
 
 
@@ -48,30 +45,26 @@ public class VistaBase extends Vista implements Observador {
 	}
 
 	public Posicionable getPosicionable() {
-		return base;
+		return explosion;
 	}
 
-	public void setPosicionable(Posicionable basePos) {
-		this.base = (Base) basePos;
-		sprite.setPosicionable(basePos);
+	public void setPosicionable(Posicionable explosion) {
+		this.explosion = (Explosion) explosion;
+		sprite.setPosicionable(explosion);
 	}
 
-	public void setBase(Base base) {
-		setPosicionable(base);
+	public void setExplosion(Explosion explosion) {
+		setPosicionable(explosion);
 	}
 
-	public Base getBase() {
-		return base;
+	public Explosion getExplosion() {
+		return explosion;
 	}
 
 	@Override
 	public void actualizar() {
-		if (base.impactosRecibidos() == 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_CON_DISPARO, base);
-			sprite = nuevaImagen;
-		} else if (base.impactosRecibidos() > 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_DESTRUIDA, base);
-			sprite = nuevaImagen;
+		if (explosion.estaDestruida()) {
+			VistaEscenario.getInstancia().borrarVista(this);
 		}
 	}
 
@@ -85,9 +78,9 @@ public class VistaBase extends Vista implements Observador {
 			return element;
 		DiccionarioDeSerializables.marcarSerializado(id);
 
-		elem = doc.createElement(TAG_BASE);
+		elem = doc.createElement(TAG_EXPLOSION);
 		element.appendChild(elem);
-		elem.appendChild(base.getElementoXML(doc));
+		elem.appendChild(explosion.getElementoXML(doc));
 
 		return element;
 	}
@@ -102,20 +95,22 @@ public class VistaBase extends Vista implements Observador {
 				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
 					continue;
 				elem = (Element) hijos.item(i);
-				if (elem.getTagName().equals(TAG_BASE)){
+				if (elem.getTagName().equals(TAG_EXPLOSION)){
 					NodeList nodes=elem.getChildNodes();
 					int j;
 					for(j=0;j<nodes.getLength();j++)
 						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
 							break;
-					base=(Base) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+					explosion=(Explosion) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
 				}
+					
 			}
 		}
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
-
+		explosion.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE, explosion);
+		orden = ORDEN;
 		actualizar();
 
 	}
+
 }

@@ -8,70 +8,82 @@ import org.w3c.dom.NodeList;
 import misc.ContadorDeInstancias;
 import misc.DiccionarioDeSerializables;
 import misc.Observador;
-import modelo.Base;
+import modelo.armamento.Cohete;
 import titiritero.Posicionable;
 import titiritero.SuperficieDeDibujo;
 import titiritero.vista.Imagen;
+import utils.Direccion;
 
-public class VistaBase extends Vista implements Observador {
-	public static final String TAG = "objeto-vista-base";
-
-	private static final int ORDEN = 3;
-
-	private static final String TAG_BASE = "base";
-
+public class VistaCohete extends Vista implements Observador {
 	private long id = ContadorDeInstancias.getId();
 
-	private Base base;
+	private Cohete bala;
 	private Imagen sprite;
+	private static final int ORDEN = 3;
 
-	private static final String RUTA_SPRITE_BASE_NORMAL = "/sprites/baseNormal.png";
-	private static final String RUTA_SPRITE_BASE_CON_DISPARO = "/sprites/baseMediaAsta.png";
-	private static final String RUTA_SPRITE_BASE_DESTRUIDA = "/sprites/baseDestruida.png";
+	public static final String TAG = "objeto-vista-cohete";
 
-	public VistaBase() {
+	private static final String TAG_BALA = "bala";
+
+	private final String RUTA_SPRITE = "/sprites/SpriteCohete.png";
+
+	public VistaCohete() {
 
 	}
 
-	public VistaBase(Base base) {
-		this.base = base;
-		orden=ORDEN;
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
-
+	public VistaCohete(Cohete bala) {
+		this.bala = bala;
+		bala.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE, bala);
+		orden = ORDEN;
 		actualizar();
-	}
 
+	}
 
 	public void dibujar(SuperficieDeDibujo sup) {
 		sprite.dibujar(sup);
 	}
 
 	public Posicionable getPosicionable() {
-		return base;
+		return bala;
 	}
 
-	public void setPosicionable(Posicionable basePos) {
-		this.base = (Base) basePos;
-		sprite.setPosicionable(basePos);
+	public void setPosicionable(Posicionable bala) {
+		this.bala = (Cohete) bala;
+		sprite.setPosicionable(bala);
 	}
 
-	public void setBase(Base base) {
-		setPosicionable(base);
+	public void setBala(Cohete bala) {
+		setPosicionable(bala);
 	}
 
-	public Base getBase() {
-		return base;
+	public Cohete getBala() {
+		return bala;
 	}
 
 	@Override
 	public void actualizar() {
-		if (base.impactosRecibidos() == 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_CON_DISPARO, base);
-			sprite = nuevaImagen;
-		} else if (base.impactosRecibidos() > 1) {
-			Imagen nuevaImagen = new Imagen(RUTA_SPRITE_BASE_DESTRUIDA, base);
-			sprite = nuevaImagen;
+		if (bala.estaDestruida()) {
+			VistaEscenario.getInstancia().borrarVista(this);
+		} else
+			actualizarOrientacion();
+	}
+
+	private void actualizarOrientacion() {
+		switch (bala.getOrientacion().get()) {
+		case Direccion.NORTE:
+			sprite.orientarArriba();
+			break;
+		case Direccion.SUR:
+			sprite.orientarAbajo();
+			break;
+		case Direccion.ESTE:
+			sprite.orientarDerecha();
+			break;
+		case Direccion.OESTE:
+			sprite.orientarIzquierda();
+			break;
+
 		}
 	}
 
@@ -85,9 +97,9 @@ public class VistaBase extends Vista implements Observador {
 			return element;
 		DiccionarioDeSerializables.marcarSerializado(id);
 
-		elem = doc.createElement(TAG_BASE);
+		elem = doc.createElement(TAG_BALA);
 		element.appendChild(elem);
-		elem.appendChild(base.getElementoXML(doc));
+		elem.appendChild(bala.getElementoXML(doc));
 
 		return element;
 	}
@@ -102,19 +114,19 @@ public class VistaBase extends Vista implements Observador {
 				if (hijos.item(i).getNodeType() != Node.ELEMENT_NODE)
 					continue;
 				elem = (Element) hijos.item(i);
-				if (elem.getTagName().equals(TAG_BASE)){
+				if (elem.getTagName().equals(TAG_BALA)){
 					NodeList nodes=elem.getChildNodes();
 					int j;
 					for(j=0;j<nodes.getLength();j++)
 						if (nodes.item(j).getNodeType() == Node.ELEMENT_NODE)
 							break;
-					base=(Base) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
+					bala=(Cohete) DiccionarioDeSerializables.getInstancia((Element)nodes.item(j));
 				}
 			}
 		}
-		base.adscribir(this);
-		sprite = new Imagen(RUTA_SPRITE_BASE_NORMAL, base);
-
+		bala.adscribir(this);
+		sprite = new Imagen(RUTA_SPRITE, bala);
+		orden = ORDEN;
 		actualizar();
 
 	}
