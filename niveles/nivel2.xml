@@ -1,0 +1,1108 @@
+<nivel2>
+	<bonus>
+		<bonus-ataque>
+			<bernoulli> 0.03 </bernoulli>
+		</bonus-ataque>
+		<bonus-vida> 
+			<bernoulli> 0.1 </bernoulli>
+		</bonus-vida>
+	</bonus>
+	<pared>
+		<pared-concreto>
+			<pos-x> 410 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 410 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 410 </pos-x>
+			<pos-y> 660 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 410 </pos-x>
+			<pos-y> 680 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 410 </pos-x>
+			<pos-y> 700 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 430 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 450 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 470 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 490 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 510 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 530 </pos-x>
+			<pos-y> 620 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 530 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 530 </pos-x>
+			<pos-y> 660 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 530 </pos-x>
+			<pos-y> 680 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 530 </pos-x>
+			<pos-y> 700 </pos-y>
+		</pared-concreto>
+		<pared-metal>
+			<pos-x> 430 </pos-x>
+			<pos-y> 700 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 430 </pos-x>
+			<pos-y> 680 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 430 </pos-x>
+			<pos-y> 660 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 430 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 450 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 470 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 490 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 510 </pos-x>
+			<pos-y> 640 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 510 </pos-x>
+			<pos-y> 660 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 510 </pos-x>
+			<pos-y> 680 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 510 </pos-x>
+			<pos-y> 700 </pos-y>
+		</pared-metal>
+		
+		<pared-metal>
+			<pos-x> 80 </pos-x>
+			<pos-y> 60 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 80 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 80 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 80 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 100 </pos-x>
+			<pos-y> 60 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 100 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 100 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 100 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 60 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 60 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-metal>
+		
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 520 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 120 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 520 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 140 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 160 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 160 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 180 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 180 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-metal>
+		
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 520 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 620 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 520 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 640 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 660 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 660 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 680 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 680 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-metal>
+		
+		<pared-metal>
+			<pos-x> 320 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 320 </pos-x>
+			<pos-y> 340 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 320 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 320 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 340 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 340 </pos-x>
+			<pos-y> 340 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 340 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 340 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 360 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 360 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 380 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 380 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 400 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 400 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 420 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 420 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 440 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 440 </pos-x>
+			<pos-y> 340 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 440 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 440 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 460 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 460 </pos-x>
+			<pos-y> 340 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 460 </pos-x>
+			<pos-y> 360 </pos-y>
+		</pared-metal>
+		<pared-metal>
+			<pos-x> 460 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-metal>
+		
+		<pared-concreto>
+			<pos-x> 80 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 80 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 100 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 100 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 120 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 120 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 140 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 140 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 160 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 160 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 180 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 180 </pos-x>
+			<pos-y> 320 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 120 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 120 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 140 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 140 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 160 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 160 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 180 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 180 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 200 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 200 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 200 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 200 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 220 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 220 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 220 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 220 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 240 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 240 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 240 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 240 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 260 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 260 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 260 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 260 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 340 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 340 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 360 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 360 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 380 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 380 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 380 </pos-x>
+			<pos-y> 140 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 380 </pos-x>
+			<pos-y> 160 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 400 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 400 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 400 </pos-x>
+			<pos-y> 140 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 400 </pos-x>
+			<pos-y> 160 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 420 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 420 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 280 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 280 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 300 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 300 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 320 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 320 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 340 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 340 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 460 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 460 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 480 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 480 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 500 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 500 </pos-x>
+			<pos-y> 500 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 280 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 440 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 460 </pos-x>
+			<pos-y> 280 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 460 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 540 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 540 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 560 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 560 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 580 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 580 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 600 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 600 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 660 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 660 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 680 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 680 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 700 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 700 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 720 </pos-x>
+			<pos-y> 180 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 720 </pos-x>
+			<pos-y> 200 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 80 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 100 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 120 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 140 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 140 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 160 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 160 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 220 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 240 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 260 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 260 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 280 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 280 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 300 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 440 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 440 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 460 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 460 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 620 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 640 </pos-x>
+			<pos-y> 480 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 700 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 700 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 720 </pos-x>
+			<pos-y> 540 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 720 </pos-x>
+			<pos-y> 560 </pos-y>
+		</pared-concreto>
+		
+		<pared-concreto>
+			<pos-x> 740 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 740 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 740 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 740 </pos-x>
+			<pos-y> 440 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 760 </pos-x>
+			<pos-y> 380 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 760 </pos-x>
+			<pos-y> 400 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 760 </pos-x>
+			<pos-y> 420 </pos-y>
+		</pared-concreto>
+		<pared-concreto>
+			<pos-x> 760 </pos-x>
+			<pos-y> 440 </pos-y>
+		</pared-concreto>
+	</pared>
+	<base>
+		<pos-x> 455 </pos-x>
+		<pos-y> 670 </pos-y>
+	</base>
+	<flotas>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<ifv>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<mirage>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</mirage>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 550 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<grizzly>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+		</flota>
+		<flota>
+			<grizzly>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 150 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<mirage>
+				<pos-x> 300 </pos-x>
+				<pos-y> 0 </pos-y>
+			</mirage>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+		</flota>
+		<flota>
+			<ifv>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<grizzly>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<ifv>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+		</flota>
+		<flota>
+			<ifv>
+				<pos-x> 0 </pos-x>
+				<pos-y> 0 </pos-y>
+			</ifv>
+			<grizzly>
+				<pos-x> 250 </pos-x>
+				<pos-y> 0 </pos-y>
+			</grizzly>
+			<mirage>
+				<pos-x> 420 </pos-x>
+				<pos-y> 0 </pos-y>
+			</mirage>
+			<mirage>
+				<pos-x> 670 </pos-x>
+				<pos-y> 0 </pos-y>
+			</mirage>
+		</flota>
+		
+	</flotas>
+	<heroe>
+		<pos-x>380</pos-x>
+		<pos-y> 500 </pos-y>
+	</heroe>
+</nivel2>
