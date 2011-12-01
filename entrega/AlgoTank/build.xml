@@ -15,7 +15,11 @@
 	</target>
 	<target name="compile" depends="init">
 		<!-- Compila los .java de ${src} a .class en ${build} --> 
-		<javac srcdir="${src}" destdir="${build}" includeantruntime="true"/>
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="true"
+		fork="true"
+		source="1.5"
+         target="1.5"
+		/>
 	</target>
 	
 	<target name="clean">
