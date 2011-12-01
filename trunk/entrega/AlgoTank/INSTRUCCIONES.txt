@@ -1,0 +1,8 @@
+Targets de ANT :
+
+compile: crea la carpeta build con los archivos .class compilados.
+test: ejecuta las pruebas con junit.
+jar: crea el ejecutable AlgoTank.jar
+run: corre el juego.
+
+Para correr el juego sin ANT una vez creado el jar ejecutar launch.bat.
