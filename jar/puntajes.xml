@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<archivo-de-puntajes>
+<puntaje>
+<nombre>San Martin</nombre>
+<puntos>500</puntos>
+</puntaje>
+<puntaje>
+<nombre>Belgrano</nombre>
+<puntos>200</puntos>
+</puntaje>
+<puntaje>
+<nombre>Güemes</nombre>
+<puntos>100</puntos>
+</puntaje>
+<puntaje>
+<nombre>Lavalle</nombre>
+<puntos>50</puntos>
+</puntaje>
+<puntaje>
+<nombre>Brown</nombre>
+<puntos>20</puntos>
+</puntaje>
+</archivo-de-puntajes>
