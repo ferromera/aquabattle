@@ -2,7 +2,6 @@ package controlador;
 
 import java.awt.event.KeyEvent;
 
-import pantallas.MenuPrincipal;
 import pantallas.PantallaActual;
 import pantallas.PantallaGuardarPuntaje;
 import pantallas.PantallaPuntajesAltos;
