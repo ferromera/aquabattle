@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import pantallas.MenuPrincipal;
 import pantallas.PantallaActual;
 import pantallas.PantallaGuardarPuntaje;
+import pantallas.PantallaPuntajesAltos;
 
 import titiritero.KeyPressedObservador;
 
@@ -23,7 +24,7 @@ public class ControladorPantallaGuardarPuntaje implements KeyPressedObservador {
 			pantalla.borrarUltimaLetra();
 		else if(key==KeyEvent.VK_ENTER){
 			pantalla.guardar();
-			PantallaActual.getInstancia().cambiarA(MenuPrincipal.getInstance());
+			PantallaActual.getInstancia().cambiarA(PantallaPuntajesAltos.getInstancia());
 		}
 		else if(key!=KeyEvent.VK_SHIFT)
 			pantalla.agregarLetra(event.getKeyChar());
